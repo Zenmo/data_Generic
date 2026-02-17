@@ -1,3 +1,4 @@
+# %%
 import pvlib
 # from pvlib.location import Location
 # from pvlib.pvsystem import PVSystem
@@ -10,8 +11,8 @@ import matplotlib.pyplot as plt
 
 df, meta = pvlib.iotools.get_bsrn(
     station='CAB',  # three letter code for the Cabauw station
-    start=pd.Timestamp(2024,1,1),
-    end=pd.Timestamp(2024,12,31),
+    start=pd.Timestamp(2025,1,1),
+    end=pd.Timestamp(2025,12,31),
     username="bsrnftp",  # replace with your own username
     password="bsrn1",  # replace with your own password
 )
@@ -66,7 +67,8 @@ plt.figure(figsize=(10, 6))
 mc.results.ac.plot()
 
 print(f'Total full load hours for 35-deg south facing system: {np.sum(mc.results.ac[:60*24*366])/60} hours')
-production_normalized_35degsouth = mc.results.ac[:60*24*366].resample('1h').mean()*0.88 # Manual adjustment to arrive at ~940 full load hours
+production_normalized_35degsouth = mc.results.ac[:60*24*366].resample('1h').mean()*0.755 # Manual adjustment to arrive at ~940 full load hours
+print(f'Total full load hours for 35-deg south facing system after resampling: {np.sum(production_normalized_35degsouth[:24*365])} hours')
 production_normalized_35degsouth.to_csv("data_PV_35degSouth_Cabouw.csv", header=True)
 
 ## 15 degree tilt, east-west facing
@@ -93,9 +95,12 @@ mc.run_model(weather)
 plt.figure(figsize=(10, 6))
 mc.results.ac.plot()
 
-print(f'Total full load hours for 35-deg south facing system: {np.sum(mc.results.ac[:60*24*366])/60} hours')
-production_normalized_15degeastwest = mc.results.ac[:60*24*366].resample('1h').mean()*.91 # Manual adjustment to arrive at ~855 full load hours
+print(f'Total full load hours for 15-deg east-west facing system: {np.sum(mc.results.ac[:60*24*366])/60} hours')
+production_normalized_15degeastwest = mc.results.ac[:60*24*366].resample('1h').mean()*.81 # Manual adjustment to arrive at ~855 full load hours
+print(f'Total full load hours for 15-deg east-west facing system after resampling: {np.sum(production_normalized_15degeastwest[:24*365])} hours')
 production_normalized_15degeastwest.to_csv("data_PV_15degEastWest_Cabouw.csv", header=True)
 
 
+# %%
+production_normalized_15degeastwest
 # %%

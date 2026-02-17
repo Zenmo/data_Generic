@@ -3,14 +3,14 @@ import numpy as np
 import pandas as pd
 import cdsapi
 # Watthub lat/lon:
-lat = 51.86784
-lon = 5.323151
+#lat = 51.86784
+#lon = 5.323151
 # Hoek van Holalnd lat/lon:
 lat = 51.9803
 lon = 4.1287
 # Windpark Neer
-lat = 51.302572
-lon = 5.941777
+#lat = 51.302572
+#lon = 5.941777
 
 
 dataset = "reanalysis-era5-single-levels"
@@ -22,7 +22,7 @@ request = {
         "100m_u_component_of_wind",
         "100m_v_component_of_wind"
     ],
-    "year": ["2024"],
+    "year": ["2025"],
     "month": [
         "01", "02", "03",
         "04", "05", "06",
