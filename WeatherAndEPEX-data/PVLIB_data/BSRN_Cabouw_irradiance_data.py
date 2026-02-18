@@ -100,7 +100,4 @@ production_normalized_15degeastwest = mc.results.ac[:60*24*366].resample('1h').m
 print(f'Total full load hours for 15-deg east-west facing system after resampling: {np.sum(production_normalized_15degeastwest[:24*365])} hours')
 production_normalized_15degeastwest.to_csv("data_PV_15degEastWest_Cabouw.csv", header=True)
 
-
-# %%
-production_normalized_15degeastwest
 # %%
