@@ -9,10 +9,11 @@ import pandas as pd
 from IPython.display import display as show
 import matplotlib.pyplot as plt
 
+# %%
 df, meta = pvlib.iotools.get_bsrn(
     station='CAB',  # three letter code for the Cabauw station
-    start=pd.Timestamp(2025,1,1),
-    end=pd.Timestamp(2025,12,31),
+    start=pd.Timestamp(2023,1,1),
+    end=pd.Timestamp(2023,12,31),
     username="bsrnftp",  # replace with your own username
     password="bsrn1",  # replace with your own password
 )
@@ -23,6 +24,8 @@ df, meta = pvlib.iotools.get_bsrn(
 site = location.Location(meta['latitude'], meta['longitude'], 'Europe/Amsterdam', name='Cabauw')
 # site = Location.from_epw(meta, df)
 
+
+# %%
 weather = df[['ghi', 'dni', 'dhi']].copy()
 # add temperature and wind if present, or set defaults
 weather['temp_air'] = df['temp_air']
@@ -51,14 +54,14 @@ system = pvsystem.PVSystem(
     temperature_model_parameters=dict(a=-3.56, b=-0.075, deltaT=3),
     inverter_parameters={     # inverter parameters
         'pdc0': 1,          # DC input limit [W]
-        'pac0': 1,          # AC output power [W]
-        'eta_inv_nom': 0.95
+        'pac0': 0.96,          # AC output power [W]
+        'eta_inv_nom': 0.95,  # nominal efficiency
     },
-    racking_model='insulated_back', # mounting configuration
+    racking_model='glass_open_rack', # mounting configuration
     module_type='glass_polymer', # module type    
 )
 # mc = ModelChain(system, site, aoi_model='physical', spectral_model='no_loss', temperature_model='sapm')
-mc = modelchain.ModelChain(system, site, aoi_model='physical', spectral_model='no_loss', temperature_model='sapm')
+mc = modelchain.ModelChain(system, site, aoi_model='physical', spectral_model='no_loss', temperature_model='sapm', losses_model='pvwatts')
 
 mc.run_model(weather)
 
@@ -66,9 +69,12 @@ mc.run_model(weather)
 plt.figure(figsize=(10, 6))
 mc.results.ac.plot()
 
+# RVO rekent voor een schaduwvrije zuidopstelling met ongeveer 340 kWh per 375 Wp per jaar = 907 kWh/kWp/jaar, dus 907 full load hours
+# https://www.rvo.nl/sites/default/files/2022/01/Tool-zonnestroom-voor-maatschappelijk-vastgoed.pdf
+
 print(f'Total full load hours for 35-deg south facing system: {np.sum(mc.results.ac[:60*24*366])/60} hours')
-production_normalized_35degsouth = mc.results.ac[:60*24*366].resample('1h').mean()*0.755 # Manual adjustment to arrive at ~940 full load hours
-print(f'Total full load hours for 35-deg south facing system after resampling: {np.sum(production_normalized_35degsouth[:24*365])} hours')
+production_normalized_35degsouth = mc.results.ac[:60*24*366].resample('1h').mean()
+print(f'Total full load hours for 35-deg south facing system after resampling: {np.sum(production_normalized_35degsouth[:24*366])} hours')
 production_normalized_35degsouth.to_csv("data_PV_35degSouth_Cabouw.csv", header=True)
 
 ## 15 degree tilt, east-west facing
@@ -78,16 +84,16 @@ array_kwargs = dict(
 )
 
 arrays = [
-    pvsystem.Array(pvsystem.FixedMount(10, 270), name='West-Facing Array',
+    pvsystem.Array(pvsystem.FixedMount(15, 270), name='West-Facing Array',
                    **array_kwargs),
-    pvsystem.Array(pvsystem.FixedMount(10, 90), name='East-Facing Array',
+    pvsystem.Array(pvsystem.FixedMount(15, 90), name='East-Facing Array',
                    **array_kwargs),
 ]
 
-system = pvsystem.PVSystem(arrays=arrays, inverter_parameters=dict(pdc0=1, eta_inv_nom=0.95), racking_model='insulated_back', module_type='glass_polymer')
+system = pvsystem.PVSystem(arrays=arrays, inverter_parameters=dict(pdc0=1, pac0=0.96, eta_inv_nom=0.95), racking_model='glass_open_rack', module_type='glass_polymer')
 
 # mc = ModelChain(system, site, aoi_model='physical', spectral_model='no_loss', temperature_model='sapm')
-mc = modelchain.ModelChain(system, site, aoi_model='physical', spectral_model='no_loss', temperature_model='sapm')
+mc = modelchain.ModelChain(system, site, aoi_model='physical', spectral_model='no_loss', temperature_model='sapm', losses_model='pvwatts')
 
 mc.run_model(weather)
 
@@ -95,9 +101,12 @@ mc.run_model(weather)
 plt.figure(figsize=(10, 6))
 mc.results.ac.plot()
 
+# RVO rekent voor een schaduwvrije oostwest-opstelling 8% minder opbrengst dan een zuidopstelling, dus ongeveer 835 kWh/kWp/jaar, dus 835 full load hours
+# https://www.rvo.nl/sites/default/files/2022/01/Tool-zonnestroom-voor-maatschappelijk-vastgoed.pdf
+
 print(f'Total full load hours for 15-deg east-west facing system: {np.sum(mc.results.ac[:60*24*366])/60} hours')
-production_normalized_15degeastwest = mc.results.ac[:60*24*366].resample('1h').mean()*.81 # Manual adjustment to arrive at ~855 full load hours
-print(f'Total full load hours for 15-deg east-west facing system after resampling: {np.sum(production_normalized_15degeastwest[:24*365])} hours')
+production_normalized_15degeastwest = mc.results.ac[:60*24*366].resample('1h').mean()
+print(f'Total full load hours for 15-deg east-west facing system after resampling: {np.sum(production_normalized_15degeastwest[:24*366])} hours')
 production_normalized_15degeastwest.to_csv("data_PV_15degEastWest_Cabouw.csv", header=True)
 
 # %%
