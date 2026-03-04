@@ -43,23 +43,57 @@ weather['wind_speed'] = 1  # m/s
 # %%
 ## 35 degree tilt, south facing
 
+# https://pvwatts.nlr.gov/pvwatts.php
+# Default PVWatts losses parameters, in percentage:
+losses_parameters = {
+    'soiling': 2,
+    'shading': 3,
+    'snow': 0,
+    'mismatch': 2,
+    'wiring': 2,
+    'connections': 0.5,
+    'lid': 1.5,
+    'nameplate_rating': 1,
+    'age': 0,
+    'availability': 3
+}
+
+# Old style PVSystem definition, for reference:
+# system = pvsystem.PVSystem(
+#    surface_tilt=35,          # tilt angle in degrees
+#    surface_azimuth=180,      # facing south
+#    module_parameters={       # example CEC module parameters
+#        'pdc0': 1,          # rated DC power [W]
+#        'gamma_pdc': -0.004,  # temperature coefficient [1/°C]
+#    },
+#    temperature_model_parameters=dict(a=-3.56, b=-0.075, deltaT=3),
+#    inverter_parameters={     # inverter parameters
+#        'pdc0': 1,          # DC input limit [W]
+#        'pac0': 0.96,          # AC output power [W]
+#        'eta_inv_nom': 0.95,  # nominal efficiency
+#    },
+#    racking_model='close_mount', # mounting configuration
+#    module_type='glass_polymer', # module type    
+#)
+
+mount = pvsystem.FixedMount(
+    surface_tilt=35,
+    surface_azimuth=180,
+    #racking_model='open_rack'
+)
+
+array = pvsystem.Array(
+    mount=mount,
+    #module_type='glass_polymer',
+    module_parameters={'pdc0': 1.0, 'gamma_pdc': -0.004},
+    temperature_model_parameters={'a': -3.56, 'b': -0.075, 'deltaT': 3},
+)
 
 system = pvsystem.PVSystem(
-    surface_tilt=35,          # tilt angle in degrees
-    surface_azimuth=180,      # facing south
-    module_parameters={       # example CEC module parameters
-        'pdc0': 1,          # rated DC power [W]
-        'gamma_pdc': -0.004,  # temperature coefficient [1/°C]
-    },
-    temperature_model_parameters=dict(a=-3.56, b=-0.075, deltaT=3),
-    inverter_parameters={     # inverter parameters
-        'pdc0': 1,          # DC input limit [W]
-        'pac0': 0.96,          # AC output power [W]
-        'eta_inv_nom': 0.95,  # nominal efficiency
-    },
-    racking_model='glass_open_rack', # mounting configuration
-    module_type='glass_polymer', # module type    
+    arrays=[array],
+    inverter_parameters={'pdc0': 1.0, 'pac0': 0.96, 'eta_inv_nom': 0.95},
 )
+
 # mc = ModelChain(system, site, aoi_model='physical', spectral_model='no_loss', temperature_model='sapm')
 mc = modelchain.ModelChain(system, site, aoi_model='physical', spectral_model='no_loss', temperature_model='sapm', losses_model='pvwatts')
 
@@ -90,7 +124,7 @@ arrays = [
                    **array_kwargs),
 ]
 
-system = pvsystem.PVSystem(arrays=arrays, inverter_parameters=dict(pdc0=1, pac0=0.96, eta_inv_nom=0.95), racking_model='glass_open_rack', module_type='glass_polymer')
+system = pvsystem.PVSystem(arrays=arrays, inverter_parameters=dict(pdc0=1, pac0=0.96, eta_inv_nom=0.95))
 
 # mc = ModelChain(system, site, aoi_model='physical', spectral_model='no_loss', temperature_model='sapm')
 mc = modelchain.ModelChain(system, site, aoi_model='physical', spectral_model='no_loss', temperature_model='sapm', losses_model='pvwatts')
