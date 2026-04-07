@@ -107,9 +107,9 @@ mc.results.ac.plot()
 # https://www.rvo.nl/sites/default/files/2022/01/Tool-zonnestroom-voor-maatschappelijk-vastgoed.pdf
 
 print(f'Total full load hours for 35-deg south facing system: {np.sum(mc.results.ac[:60*24*366])/60} hours')
-production_normalized_35degsouth = mc.results.ac[:60*24*366].resample('1h').mean()
+production_normalized_35degsouth = mc.results.ac[:60*24*366].resample('15min').mean()
 print(f'Total full load hours for 35-deg south facing system after resampling: {np.sum(production_normalized_35degsouth[:24*366])} hours')
-production_normalized_35degsouth.to_csv("data_PV_35degSouth_Cabouw.csv", header=True)
+production_normalized_35degsouth.to_csv("data_PV_35degSouth_Cabouw_15min_2023.csv", header=True)
 
 ## 15 degree tilt, east-west facing
 array_kwargs = dict(
@@ -139,8 +139,8 @@ mc.results.ac.plot()
 # https://www.rvo.nl/sites/default/files/2022/01/Tool-zonnestroom-voor-maatschappelijk-vastgoed.pdf
 
 print(f'Total full load hours for 15-deg east-west facing system: {np.sum(mc.results.ac[:60*24*366])/60} hours')
-production_normalized_15degeastwest = mc.results.ac[:60*24*366].resample('1h').mean()
+production_normalized_15degeastwest = mc.results.ac[:60*24*366].resample('15min').mean()
 print(f'Total full load hours for 15-deg east-west facing system after resampling: {np.sum(production_normalized_15degeastwest[:24*366])} hours')
-production_normalized_15degeastwest.to_csv("data_PV_15degEastWest_Cabouw.csv", header=True)
+production_normalized_15degeastwest.to_csv("data_PV_15degEastWest_Cabouw_15min_2023.csv", header=True)
 
 # %%

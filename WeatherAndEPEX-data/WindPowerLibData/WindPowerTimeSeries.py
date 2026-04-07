@@ -8,48 +8,62 @@ from windpowerlib import data as wt
 import xarray as xr
 import numpy as np
 
-# Watthub lat/lon:
-#lat = 51.86784
-#lon = 5.323151
-
-# Hoek van Holland lat/lon:
-#lat = 51.9803
-#lon = 4.1287
-
-# Windpark Neer
-lat = 51.302572
-lon = 5.941777
-
-ds = xr.open_dataset("data_ERA5_Windspeeds_Heibloem_2025.grib", engine="cfgrib")
-
-# $$
-u = ds["u100"]
-v = ds["v100"]
-T = ds["t2m"]
-p = ds["sp"]
-
 # %%
+#INPUT_WEATHER_FILE = "ERA5_Windspeeds_Geldermalsen_2025_reanalysis-era5-single-levels-timeseries.csv"
+#INPUT_WEATHER_FILE = "ERA5_Windspeeds_Geldermalsen_2024_reanalysis-era5-single-levels-timeseries.csv"
+#INPUT_WEATHER_FILE = "ERA5_Windspeeds_Geldermalsen_2023_reanalysis-era5-single-levels-timeseries.csv"
+#INPUT_WEATHER_FILE = "ERA5_Windspeeds_HoekVanHolland_2025_reanalysis-era5-single-levels-timeseries.csv"
+#INPUT_WEATHER_FILE = "ERA5_Windspeeds_HoekVanHolland_2024_reanalysis-era5-single-levels-timeseries.csv"
+#INPUT_WEATHER_FILE = "ERA5_Windspeeds_HoekVanHolland_2023_reanalysis-era5-single-levels-timeseries.csv"
+#INPUT_WEATHER_FILE = "ERA5_Windspeeds_Heibloem_2025_reanalysis-era5-single-levels-timeseries.csv"
+#INPUT_WEATHER_FILE = "ERA5_Windspeeds_Heibloem_2024_reanalysis-era5-single-levels-timeseries.csv"
+INPUT_WEATHER_FILE = "ERA5_Windspeeds_Heibloem_2023_reanalysis-era5-single-levels-timeseries.csv"
+
+TARGET_START = pd.Timestamp("2022-12-31 23:00:00", tz="UTC")
+TARGET_END = pd.Timestamp("2023-12-31 22:45:00", tz="UTC")
+times = pd.date_range("2023-01-01", "2024-01-01", freq="15min", tz="Europe/Amsterdam")
+times = times[:-1]  # drop last timestamp to have 8784 values
+
+#ds = xr.open_dataset("data_ERA5_Windspeeds_Heibloem_2025.grib", engine="cfgrib")
+df = pd.read_csv(INPUT_WEATHER_FILE)
+ds = df[["valid_time", "u100", "v100", "t2m", "sp"]].copy()
+ds.columns = ["time", "u100", "v100", "t2m", "sp"]
+
+ds["time"] = pd.to_datetime(ds["time"], utc=True, errors="coerce")
+ds = ds.dropna(subset=["time"]).sort_values("time")
+
+for col in ["u100", "v100", "t2m", "sp"]:
+    ds[col] = pd.to_numeric(ds[col], errors="coerce")
+
+ds = ds.set_index("time")
+ds_15min = (
+    ds[["u100", "v100", "t2m", "sp"]]
+    .resample("15min")
+    .interpolate(method="time")
+)
+
+ds_15min = ds_15min.loc[TARGET_START:TARGET_END].copy()
+
+u = ds_15min["u100"]
+v = ds_15min["v100"]
+T = ds_15min["t2m"]
+p = ds_15min["sp"]
 
 speed = np.sqrt(u**2 + v**2)
 speed.name = "wind_speed_100m"
 
 # For a single point, select nearest lat/lon:
-point_speed = speed.sel(latitude=lat, longitude=lon, method="nearest")
-point_T = T.sel(latitude=lat, longitude=lon, method="nearest")
-point_p = p.sel(latitude=lat, longitude=lon, method="nearest")
-wind_speed_series = point_speed.to_series()
-temp_series = point_T.to_series()
-pressure_series = point_p.to_series()
-# %%
+# point_speed = speed.sel(latitude=lat, longitude=lon, method="nearest")
+# point_T = T.sel(latitude=lat, longitude=lon, method="nearest")
+# point_p = p.sel(latitude=lat, longitude=lon, method="nearest")
+# wind_speed_series = point_speed.to_series()
+# temp_series = point_T.to_series()
+# pressure_series = point_p.to_series()
 
-times = pd.date_range("2025-01-01", "2026-01-01", freq="h", tz="UTC")
-times = times[:-1]  # drop last timestamp to have 8784 values
-
-# %%
 # example data (replace with your arrays)
-wind_speed = wind_speed_series.to_numpy(dtype=float)   # ← not np.array(…)
-temp_k = temp_series.to_numpy(dtype=float)
-pressure = pressure_series.to_numpy(dtype=float)
+wind_speed = speed.to_numpy(dtype=float)   # ← not np.array(…)
+temp_k = T.to_numpy(dtype=float)
+pressure = p.to_numpy(dtype=float)
 
 
 # IMPORTANT: create a MultiIndex columns where second level is the measurement height
@@ -65,7 +79,6 @@ cols = pd.MultiIndex.from_tuples(
 data = np.column_stack([wind_speed, temp_k, pressure, np.full_like(wind_speed, 0.2)])
 weather_df = pd.DataFrame(data, index=times, columns=cols)
 
-# %%
 # --------------------------------------------------
 # 2) Define a wind turbine
 #    (built-in example from the “turbine library”)
@@ -89,8 +102,7 @@ print(production.sum() / 1e6, "MWh")
 print(production.sum() / 1e6 / 4.2, "full load hours")
 
 
-# %%
 # write to csv
 production_normalized = production / 4.2e6  # 
-production_normalized.to_csv("data_Heibloem_2025_normalized_production.csv", header=True)
+production_normalized.to_csv("data_Heibloem_2023_quarterhourly_normalized_production.csv", header=True)
 # %%
