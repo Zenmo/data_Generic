@@ -32,6 +32,12 @@ for profile in profiles:
         # Read the file. It's a single column of data.
         data = pd.read_csv(file_path, header=None, names=[profile])
         
+        # DHWcalc output files (*_DHW.txt) contain a mean flow rate in
+        # litres/hour for each 15-minute time step (see DHWcalc manual,
+        # section 4 'Output Files'). Divide by 4 to convert to the tapped
+        # volume in litres per quarter-hour time step.
+        data[profile] = data[profile] / 4.0
+        
         # Ensure it has exactly 35040 rows, fill or truncate if necessary
         profile_data = data[profile].values
         if len(profile_data) > 35040:
