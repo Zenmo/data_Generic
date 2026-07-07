@@ -66,9 +66,10 @@ df_bodem = df_bodem[['YYYYMMDD', 'HH', 'TB1', 'TB2', 'TB3', 'TB4', 'TB5']].copy(
 
 print("4. Calculating ground temperatures for each 15-min timestep...")
 # Convert to a datetime so we can interpolate
-# We will use the most complete standard year (1981) from the data to map to our 1-year timeseries.
+# We will use the year below from the data to map to our 1-year timeseries.
+# Note: pick a non-leap year with complete TB5 data (bodemtemps_260.txt runs from 1981 up to early 2026).
 df_bodem['YYYYMMDD'] = df_bodem['YYYYMMDD'].astype(str)
-year_to_use = df_bodem['YYYYMMDD'].str[:4].unique()[0] # e.g. 1981
+year_to_use = '2025'
 df_bodem_year = df_bodem[df_bodem['YYYYMMDD'].str.startswith(year_to_use)].copy()
 
 # The 6-hourly data has HH=6,12,18,24. In pandas/datetime, HH=24 is 00:00 of the next day.
