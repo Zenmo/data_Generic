@@ -1,0 +1,177 @@
+weather_year,column,mode,unit,min,max,mean,median
+default,wind_e_prod_normalized,shape,normalized,0.000175,1.0,0.325691,0.224039
+1987,wind_e_prod_normalized,shape,normalized,0.0,1.0,0.201533,0.082312
+1997,wind_e_prod_normalized,shape,normalized,0.0,1.0,0.20082,0.076668
+2004,wind_e_prod_normalized,shape,normalized,0.0,1.0,0.221167,0.087146
+default,wind_e_prod_normalized,physical,capacity factor (output / installed MW),0.000169,0.965983,0.314612,0.216418
+1987,wind_e_prod_normalized,physical,capacity factor (output / installed MW),0.0,0.999758,0.201484,0.082292
+1997,wind_e_prod_normalized,physical,capacity factor (output / installed MW),0.0,0.999898,0.200799,0.07666
+2004,wind_e_prod_normalized,physical,capacity factor (output / installed MW),0.0,0.999781,0.221119,0.087127
+default,wind_e_prod_normalized_offshore,shape,normalized,2.1e-05,1.0,0.486206,0.456927
+1987,wind_e_prod_normalized_offshore,shape,normalized,0.0,1.0,0.331646,0.195851
+1997,wind_e_prod_normalized_offshore,shape,normalized,0.0,1.0,0.345408,0.214301
+2004,wind_e_prod_normalized_offshore,shape,normalized,0.0,1.0,0.380591,0.234058
+default,wind_e_prod_normalized_offshore,physical,capacity factor (output / installed MW),1.7e-05,0.797575,0.387785,0.364433
+1987,wind_e_prod_normalized_offshore,physical,capacity factor (output / installed MW),0.0,0.999924,0.331621,0.195836
+1997,wind_e_prod_normalized_offshore,physical,capacity factor (output / installed MW),0.0,0.999745,0.34532,0.214246
+2004,wind_e_prod_normalized_offshore,physical,capacity factor (output / installed MW),0.0,1.000007,0.380594,0.234059
+default,solar_e_prod_south35deg_normalized,shape,normalized,0.0,1.0,0.147679,0.003252
+1987,solar_e_prod_south35deg_normalized,shape,normalized,0.0,1.0,0.143436,0.003057
+1997,solar_e_prod_south35deg_normalized,shape,normalized,0.0,1.0,0.150116,0.003871
+2004,solar_e_prod_south35deg_normalized,shape,normalized,0.0,1.0,0.153653,0.003466
+default,solar_e_prod_south35deg_normalized,physical,capacity factor (output / installed MW),0.0,0.703292,0.103862,0.002287
+1987,solar_e_prod_south35deg_normalized,physical,capacity factor (output / installed MW),0.0,0.678871,0.097374,0.002075
+1997,solar_e_prod_south35deg_normalized,physical,capacity factor (output / installed MW),0.0,0.695811,0.104452,0.002693
+2004,solar_e_prod_south35deg_normalized,physical,capacity factor (output / installed MW),0.0,0.693163,0.106507,0.002402
+default,house_e_demand_other,shape,normalized,5.7e-05,0.000237,0.000114,0.000111
+1987,house_e_demand_other,shape,normalized,5.7e-05,0.000237,0.000114,0.000111
+1997,house_e_demand_other,shape,normalized,5.7e-05,0.000237,0.000114,0.000111
+2004,house_e_demand_other,shape,normalized,5.7e-05,0.000237,0.000114,0.000111
+default,house_e_demand_other,physical,MW per household,0.00011,0.000463,0.000223,0.000216
+1987,house_e_demand_other,physical,MW per household,0.00011,0.000463,0.000223,0.000216
+1997,house_e_demand_other,physical,MW per household,0.00011,0.000463,0.000223,0.000216
+2004,house_e_demand_other,physical,MW per household,0.00011,0.000463,0.000223,0.000216
+default,house_h_demand_hot_water,shape,normalized,1.1e-05,0.000262,0.000114,0.000125
+1987,house_h_demand_hot_water,shape,normalized,1.1e-05,0.000262,0.000114,0.000125
+1997,house_h_demand_hot_water,shape,normalized,1.1e-05,0.000262,0.000114,0.000125
+2004,house_h_demand_hot_water,shape,normalized,1.1e-05,0.000262,0.000114,0.000125
+default,house_h_demand_hot_water,physical,MW per household,2.6e-05,0.00061,0.000265,0.000291
+1987,house_h_demand_hot_water,physical,MW per household,2.6e-05,0.00061,0.000265,0.000291
+1997,house_h_demand_hot_water,physical,MW per household,2.6e-05,0.00061,0.000265,0.000291
+2004,house_h_demand_hot_water,physical,MW per household,2.6e-05,0.00061,0.000265,0.000291
+default,house_h_demand_space_heating,shape,normalized,0.0,0.000514,0.000114,7.4e-05
+1987,house_h_demand_space_heating,shape,normalized,0.0,0.000543,0.000114,8.4e-05
+1997,house_h_demand_space_heating,shape,normalized,0.0,0.000623,0.000114,8.3e-05
+2004,house_h_demand_space_heating,shape,normalized,0.0,0.000485,0.000114,7.7e-05
+default,house_h_demand_space_heating,physical,MW per household,0.0,0.003709,0.000824,0.000532
+1987,house_h_demand_space_heating,physical,MW per household,0.0,0.00512,0.001075,0.000789
+1997,house_h_demand_space_heating,physical,MW per household,0.0,0.00491,0.0009,0.000657
+2004,house_h_demand_space_heating,physical,MW per household,0.0,0.003789,0.000892,0.000601
+default,house_cooking_demand,shape,normalized,5.7e-05,0.000237,0.000114,0.000111
+1987,house_cooking_demand,shape,normalized,5.7e-05,0.000237,0.000114,0.000111
+1997,house_cooking_demand,shape,normalized,5.7e-05,0.000237,0.000114,0.000111
+2004,house_cooking_demand,shape,normalized,5.7e-05,0.000237,0.000114,0.000111
+default,house_cooking_demand,physical,MW per household,6e-06,2.3e-05,1.1e-05,1.1e-05
+1987,house_cooking_demand,physical,MW per household,6e-06,2.3e-05,1.1e-05,1.1e-05
+1997,house_cooking_demand,physical,MW per household,6e-06,2.3e-05,1.1e-05,1.1e-05
+2004,house_cooking_demand,physical,MW per household,6e-06,2.3e-05,1.1e-05,1.1e-05
+default,building_e_demand_other,shape,normalized,5.7e-05,0.000228,0.000114,9.4e-05
+1987,building_e_demand_other,shape,normalized,5.7e-05,0.000228,0.000114,9.4e-05
+1997,building_e_demand_other,shape,normalized,5.7e-05,0.000228,0.000114,9.4e-05
+2004,building_e_demand_other,shape,normalized,5.7e-05,0.000228,0.000114,9.4e-05
+default,building_e_demand_other,physical,MW per building,0.000411,0.001641,0.000823,0.000675
+1987,building_e_demand_other,physical,MW per building,0.000411,0.001641,0.000823,0.000675
+1997,building_e_demand_other,physical,MW per building,0.000411,0.001641,0.000823,0.000675
+2004,building_e_demand_other,physical,MW per building,0.000411,0.001641,0.000823,0.000675
+default,building_h_demand,shape,normalized,1.7e-05,0.000473,0.000114,8.3e-05
+1987,building_h_demand,shape,normalized,2e-05,0.000634,0.000114,8.3e-05
+1997,building_h_demand,shape,normalized,2.1e-05,0.000596,0.000114,8.9e-05
+2004,building_h_demand,shape,normalized,2.3e-05,0.000432,0.000114,8.5e-05
+default,building_h_demand,physical,MW per building,0.00024,0.006596,0.001592,0.001152
+1987,building_h_demand,physical,MW per building,0.000357,0.011542,0.002078,0.001506
+1997,building_h_demand,physical,MW per building,0.000327,0.009082,0.001739,0.001363
+2004,building_h_demand,physical,MW per building,0.000343,0.006513,0.001723,0.001284
+default,industry_steel_e_demand,shape,normalized,0.000114,0.000114,0.000114,0.000114
+1987,industry_steel_e_demand,shape,normalized,0.000114,0.000114,0.000114,0.000114
+1997,industry_steel_e_demand,shape,normalized,0.000114,0.000114,0.000114,0.000114
+2004,industry_steel_e_demand,shape,normalized,0.000114,0.000114,0.000114,0.000114
+default,industry_steel_e_demand,physical,raw MW (no per-unit denominator for this series),239.7267,239.7267,239.7267,239.7267
+1987,industry_steel_e_demand,physical,raw MW (no per-unit denominator for this series),239.7267,239.7267,239.7267,239.7267
+1997,industry_steel_e_demand,physical,raw MW (no per-unit denominator for this series),239.7267,239.7267,239.7267,239.7267
+2004,industry_steel_e_demand,physical,raw MW (no per-unit denominator for this series),239.7267,239.7267,239.7267,239.7267
+default,industry_other_e_demand,shape,normalized,8.3e-05,0.000169,0.000114,0.000104
+1987,industry_other_e_demand,shape,normalized,8.3e-05,0.000169,0.000114,0.000104
+1997,industry_other_e_demand,shape,normalized,8.3e-05,0.000169,0.000114,0.000104
+2004,industry_other_e_demand,shape,normalized,8.3e-05,0.000169,0.000114,0.000104
+default,industry_other_e_demand,physical,raw MW (no per-unit denominator for this series),3346.1963,6783.4639,4594.960749,4197.7139
+1987,industry_other_e_demand,physical,raw MW (no per-unit denominator for this series),3346.1963,6783.4639,4594.960749,4197.7139
+1997,industry_other_e_demand,physical,raw MW (no per-unit denominator for this series),3346.1963,6783.4639,4594.960749,4197.7139
+2004,industry_other_e_demand,physical,raw MW (no per-unit denominator for this series),3346.1963,6783.4639,4594.960749,4197.7139
+default,industry_steel_h_demand,shape,normalized,0.000114,0.000114,0.000114,0.000114
+1987,industry_steel_h_demand,shape,normalized,0.000114,0.000114,0.000114,0.000114
+1997,industry_steel_h_demand,shape,normalized,0.000114,0.000114,0.000114,0.000114
+2004,industry_steel_h_demand,shape,normalized,0.000114,0.000114,0.000114,0.000114
+default,industry_steel_h_demand,physical,raw MW (no per-unit denominator for this series),243.0701,243.0701,243.0701,243.0701
+1987,industry_steel_h_demand,physical,raw MW (no per-unit denominator for this series),243.0701,243.0701,243.0701,243.0701
+1997,industry_steel_h_demand,physical,raw MW (no per-unit denominator for this series),243.0701,243.0701,243.0701,243.0701
+2004,industry_steel_h_demand,physical,raw MW (no per-unit denominator for this series),243.0701,243.0701,243.0701,243.0701
+default,industry_other_h_demand,shape,normalized,7.3e-05,0.000181,0.000114,0.000112
+1987,industry_other_h_demand,shape,normalized,7.3e-05,0.000181,0.000114,0.000112
+1997,industry_other_h_demand,shape,normalized,7.3e-05,0.000181,0.000114,0.000112
+2004,industry_other_h_demand,shape,normalized,7.3e-05,0.000181,0.000114,0.000112
+default,industry_other_h_demand,physical,raw MW (no per-unit denominator for this series),3778.1322,9393.4287,5913.953668,5787.2221
+1987,industry_other_h_demand,physical,raw MW (no per-unit denominator for this series),3778.1322,9393.4287,5913.953668,5787.2221
+1997,industry_other_h_demand,physical,raw MW (no per-unit denominator for this series),3778.1322,9393.4287,5913.953668,5787.2221
+2004,industry_other_h_demand,physical,raw MW (no per-unit denominator for this series),3778.1322,9393.4287,5913.953668,5787.2221
+default,industry_chemicals_fertilizers_h_demand,shape,normalized,0.000114,0.000114,0.000114,0.000114
+1987,industry_chemicals_fertilizers_h_demand,shape,normalized,0.000114,0.000114,0.000114,0.000114
+1997,industry_chemicals_fertilizers_h_demand,shape,normalized,0.000114,0.000114,0.000114,0.000114
+2004,industry_chemicals_fertilizers_h_demand,shape,normalized,0.000114,0.000114,0.000114,0.000114
+default,industry_chemicals_fertilizers_h_demand,physical,raw MW (no per-unit denominator for this series),494.6728,494.6728,494.6728,494.6728
+1987,industry_chemicals_fertilizers_h_demand,physical,raw MW (no per-unit denominator for this series),494.6728,494.6728,494.6728,494.6728
+1997,industry_chemicals_fertilizers_h_demand,physical,raw MW (no per-unit denominator for this series),494.6728,494.6728,494.6728,494.6728
+2004,industry_chemicals_fertilizers_h_demand,physical,raw MW (no per-unit denominator for this series),494.6728,494.6728,494.6728,494.6728
+default,industry_chemicals_other_h_demand,shape,normalized,0.000114,0.000114,0.000114,0.000114
+1987,industry_chemicals_other_h_demand,shape,normalized,0.000114,0.000114,0.000114,0.000114
+1997,industry_chemicals_other_h_demand,shape,normalized,0.000114,0.000114,0.000114,0.000114
+2004,industry_chemicals_other_h_demand,shape,normalized,0.000114,0.000114,0.000114,0.000114
+default,industry_chemicals_other_h_demand,physical,raw MW (no per-unit denominator for this series),1312.5069,1312.5069,1312.5069,1312.5069
+1987,industry_chemicals_other_h_demand,physical,raw MW (no per-unit denominator for this series),1312.5069,1312.5069,1312.5069,1312.5069
+1997,industry_chemicals_other_h_demand,physical,raw MW (no per-unit denominator for this series),1312.5069,1312.5069,1312.5069,1312.5069
+2004,industry_chemicals_other_h_demand,physical,raw MW (no per-unit denominator for this series),1312.5069,1312.5069,1312.5069,1312.5069
+default,industry_chemicals_refineries_h_demand,shape,normalized,0.000114,0.000114,0.000114,0.000114
+1987,industry_chemicals_refineries_h_demand,shape,normalized,0.000114,0.000114,0.000114,0.000114
+1997,industry_chemicals_refineries_h_demand,shape,normalized,0.000114,0.000114,0.000114,0.000114
+2004,industry_chemicals_refineries_h_demand,shape,normalized,0.000114,0.000114,0.000114,0.000114
+default,industry_chemicals_refineries_h_demand,physical,raw MW (no per-unit denominator for this series),542.2731,542.2731,542.2731,542.2731
+1987,industry_chemicals_refineries_h_demand,physical,raw MW (no per-unit denominator for this series),542.2731,542.2731,542.2731,542.2731
+1997,industry_chemicals_refineries_h_demand,physical,raw MW (no per-unit denominator for this series),542.2731,542.2731,542.2731,542.2731
+2004,industry_chemicals_refineries_h_demand,physical,raw MW (no per-unit denominator for this series),542.2731,542.2731,542.2731,542.2731
+default,industry_metal_aluminium_h_demand,shape,normalized,0.000114,0.000114,0.000114,0.000114
+1987,industry_metal_aluminium_h_demand,shape,normalized,0.000114,0.000114,0.000114,0.000114
+1997,industry_metal_aluminium_h_demand,shape,normalized,0.000114,0.000114,0.000114,0.000114
+2004,industry_metal_aluminium_h_demand,shape,normalized,0.000114,0.000114,0.000114,0.000114
+default,industry_metal_aluminium_h_demand,physical,raw MW (no per-unit denominator for this series),14.5717,14.5717,14.5717,14.5717
+1987,industry_metal_aluminium_h_demand,physical,raw MW (no per-unit denominator for this series),14.5717,14.5717,14.5717,14.5717
+1997,industry_metal_aluminium_h_demand,physical,raw MW (no per-unit denominator for this series),14.5717,14.5717,14.5717,14.5717
+2004,industry_metal_aluminium_h_demand,physical,raw MW (no per-unit denominator for this series),14.5717,14.5717,14.5717,14.5717
+default,industry_metal_other_metals_h_demand,shape,normalized,0.000114,0.000114,0.000114,0.000114
+1987,industry_metal_other_metals_h_demand,shape,normalized,0.000114,0.000114,0.000114,0.000114
+1997,industry_metal_other_metals_h_demand,shape,normalized,0.000114,0.000114,0.000114,0.000114
+2004,industry_metal_other_metals_h_demand,shape,normalized,0.000114,0.000114,0.000114,0.000114
+default,industry_metal_other_metals_h_demand,physical,raw MW (no per-unit denominator for this series),43.1722,43.1722,43.1722,43.1722
+1987,industry_metal_other_metals_h_demand,physical,raw MW (no per-unit denominator for this series),43.1722,43.1722,43.1722,43.1722
+1997,industry_metal_other_metals_h_demand,physical,raw MW (no per-unit denominator for this series),43.1722,43.1722,43.1722,43.1722
+2004,industry_metal_other_metals_h_demand,physical,raw MW (no per-unit denominator for this series),43.1722,43.1722,43.1722,43.1722
+default,industry_other_non_specified_h_demand,shape,normalized,4.5e-05,0.000227,0.000114,0.00011
+1987,industry_other_non_specified_h_demand,shape,normalized,4.5e-05,0.000227,0.000114,0.00011
+1997,industry_other_non_specified_h_demand,shape,normalized,4.5e-05,0.000227,0.000114,0.00011
+2004,industry_other_non_specified_h_demand,shape,normalized,4.5e-05,0.000227,0.000114,0.00011
+default,industry_other_non_specified_h_demand,physical,raw MW (no per-unit denominator for this series),631.0358,3215.7328,1614.145282,1555.8113
+1987,industry_other_non_specified_h_demand,physical,raw MW (no per-unit denominator for this series),631.0358,3215.7328,1614.145282,1555.8113
+1997,industry_other_non_specified_h_demand,physical,raw MW (no per-unit denominator for this series),631.0358,3215.7328,1614.145282,1555.8113
+2004,industry_other_non_specified_h_demand,physical,raw MW (no per-unit denominator for this series),631.0358,3215.7328,1614.145282,1555.8113
+default,industry_food_h_demand,shape,normalized,4.5e-05,0.000227,0.000114,0.00011
+1987,industry_food_h_demand,shape,normalized,4.5e-05,0.000227,0.000114,0.00011
+1997,industry_food_h_demand,shape,normalized,4.5e-05,0.000227,0.000114,0.00011
+2004,industry_food_h_demand,shape,normalized,4.5e-05,0.000227,0.000114,0.00011
+default,industry_food_h_demand,physical,raw MW (no per-unit denominator for this series),613.7256,3127.521,1569.867134,1513.1333
+1987,industry_food_h_demand,physical,raw MW (no per-unit denominator for this series),613.7256,3127.521,1569.867134,1513.1333
+1997,industry_food_h_demand,physical,raw MW (no per-unit denominator for this series),613.7256,3127.521,1569.867134,1513.1333
+2004,industry_food_h_demand,physical,raw MW (no per-unit denominator for this series),613.7256,3127.521,1569.867134,1513.1333
+default,industry_paper_h_demand,shape,normalized,4.5e-05,0.000227,0.000114,0.00011
+1987,industry_paper_h_demand,shape,normalized,4.5e-05,0.000227,0.000114,0.00011
+1997,industry_paper_h_demand,shape,normalized,4.5e-05,0.000227,0.000114,0.00011
+2004,industry_paper_h_demand,shape,normalized,4.5e-05,0.000227,0.000114,0.00011
+default,industry_paper_h_demand,physical,raw MW (no per-unit denominator for this series),126.1741,642.9782,322.744552,311.0808
+1987,industry_paper_h_demand,physical,raw MW (no per-unit denominator for this series),126.1741,642.9782,322.744552,311.0808
+1997,industry_paper_h_demand,physical,raw MW (no per-unit denominator for this series),126.1741,642.9782,322.744552,311.0808
+2004,industry_paper_h_demand,physical,raw MW (no per-unit denominator for this series),126.1741,642.9782,322.744552,311.0808
+default,logistics_fleet_e_hgv,shape,normalized,3.3e-05,0.00066,0.000114,8.9e-05
+1987,logistics_fleet_e_hgv,shape,normalized,3.3e-05,0.00066,0.000114,8.9e-05
+1997,logistics_fleet_e_hgv,shape,normalized,3.3e-05,0.00066,0.000114,8.9e-05
+2004,logistics_fleet_e_hgv,shape,normalized,3.3e-05,0.00066,0.000114,8.9e-05
+default,logistics_fleet_e_hgv,physical,raw MW (no per-unit denominator for this series),0.1427,2.8817,0.498305,0.3866
+1987,logistics_fleet_e_hgv,physical,raw MW (no per-unit denominator for this series),0.1427,2.8817,0.498305,0.3866
+1997,logistics_fleet_e_hgv,physical,raw MW (no per-unit denominator for this series),0.1427,2.8817,0.498305,0.3866
+2004,logistics_fleet_e_hgv,physical,raw MW (no per-unit denominator for this series),0.1427,2.8817,0.498305,0.3866

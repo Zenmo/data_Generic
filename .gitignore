@@ -1,0 +1,9 @@
+
+RES/data_loader/raw/
+RES/data_loader/logs/
+RES/data_loader/__pycache__/
+RES/data_Generic/data_loader/old_data/
+RES/data_processing_scripts/__pycache__/
+RES/data_loader/data_processing_scripts/secrets.local.json
+
+

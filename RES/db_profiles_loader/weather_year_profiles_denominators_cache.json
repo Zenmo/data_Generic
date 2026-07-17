@@ -1,0 +1,9 @@
+{
+  "capacity_of_energy_power_wind_turbine_inland": 6463.514371290188,
+  "capacity_of_energy_power_wind_turbine_offshore": 3447.640714961505,
+  "capacity_of_energy_power_solar_pv_solar_radiation": 4229.434795789474,
+  "capacity_of_buildings_solar_pv_solar_radiation": 7883.499040103361,
+  "capacity_of_households_solar_pv_solar_radiation": 9405.6398487855,
+  "households": 7931940.0,
+  "buildings": 2791335.0
+}
