@@ -27,3 +27,13 @@ RES/data_loader/data_processing_scripts/klimaatmonitor_variabelen.csv
 RES/data_loader/data_processing_scripts/klimaatmonitor_kandidaat_totalen.csv
 # oude naam, geschreven door een eerdere versie van de probe — kan weg
 RES/data_loader/data_processing_scripts/klimaatmonitor_vbrz_variabelen.csv
+# vergelijk_gv_met_model.py
+RES/data_loader/data_processing_scripts/vergelijk_gv_model_*.csv
+
+# --- Grootverbruik-brondata: te groot voor git ---
+# GV_ELK_GEMEENTE.csv is 605 MB en GV_GAS_GEMEENTE.csv 118 MB; GitHub weigert
+# bestanden boven 100 MB, dus een push zou hierop stuklopen. Opnieuw te
+# downloaden via data.partnersinenergie.nl (zie README, "Validatie tegen
+# gemeten grootverbruik"). Het CBS-xlsx met verbruiksklassen is klein (224 KB)
+# en wordt bewust WEL meegenomen als referentiebestand.
+RES/data_loader/GV_*.csv

@@ -46,6 +46,16 @@ _HEATING_COLS = [
     "Stadsverwarming zonder gasverbruik",
     "Hoofdzakelijk elektrisch verwarmd met hoog gasverbruik",
     "Hoofdzakelijk elektrisch verwarmd met laag gasverbruik",
+    # Toegevoegd 2026-08-14. Stadsverwarming stond hierboven met de volledige
+    # drieslag hoog/laag/zonder gasverbruik, maar "Hoofdzakelijk elektrisch
+    # verwarmd" met slechts twee van de drie — de variant *zonder* gasverbruik
+    # ontbrak. Dat is juist de zuiver elektrisch verwarmde woning: landelijk
+    # mediaan 2,0% en gemiddeld 4,7% van de woningen per buurt, aanwezig in 54%
+    # van de buurten. Zonder deze kolom telde het model gemiddeld 2,32%
+    # elektrisch verwarmde woningen in plaats van 5,62% — meer dan een halvering.
+    # Controle: de zeven kolommen hierboven sommeerden tot mediaan 92%; met deze
+    # erbij 98%, en samen met "Type installaties onbekend" precies 100%.
+    "Hoofdzakelijk elektrisch verwarmd zonder gasverbruik",
 ]
 
 # Short output column names (same order as _HEATING_COLS)
@@ -57,9 +67,32 @@ _OUT_NAMES = [
     "stadsverwarming_zonder_gas",
     "elektrisch_hoog_gas",
     "elektrisch_laag_gas",
+    "elektrisch_zonder_gas",
 ]
 
 _MISSING = "."
+
+# Kolommen die NIET van de bovenliggende wijk of gemeente mogen erven.
+#
+# Een warmtenet is ruimtelijk en in de praktijk binair: het ligt in een buurt of
+# het ligt er niet. Het gemeentegemiddelde naar een buurt kopiëren verzint dus
+# infrastructuur die er fysiek niet is. Omdat CBS deze cellen juist onderdrukt
+# waar weinig of niets te melden valt, kan die fallback alleen maar warmtenetten
+# toevoegen, nooit weghalen — een eenzijdige fout.
+#
+# Gemeten op 2023 vóór deze wijziging: van de 4.380 buurten met stadsverwarming
+# > 0 in de output kwamen er 3.304 (75%) uit deze fallback en slechts 1.076 uit
+# echte brondata. Voorbeeld: buurt Dordtse Biesbosch (BU05059804), een
+# natuurgebied met 395 inwoners, kreeg zo 2% + 7% stadsverwarming van Dordrecht
+# toebedeeld terwijl de bron voor alle drie de jaren '.' geeft.
+#
+# Ontbrekende waarden blijven hier leeg en worden verderop in
+# make_buurten_csv.py op 0 gezet (zie _ZERO_ONLY_COLS daar).
+_GEEN_OUDERFALLBACK = {
+    "stadsverwarming_hoog_gas",
+    "stadsverwarming_laag_gas",
+    "stadsverwarming_zonder_gas",
+}
 
 
 def _parent_wk(bu_code: str) -> str:
@@ -125,7 +158,11 @@ def _build_lookup(df: pd.DataFrame) -> dict[tuple[str, int], dict[str, float | N
 
 
 def _resolve(code: str, year: int, lookup: dict) -> dict[str, float | None]:
-    """Return values for a code+year with BU→WK→GM fallback for missing cols."""
+    """Return values for a code+year with BU→WK→GM fallback for missing cols.
+
+    Uitzondering: de stadsverwarmingskolommen erven NIET van wijk of gemeente,
+    zie _GEEN_OUDERFALLBACK hieronder.
+    """
     base = lookup.get((code, year), {col: None for col in _OUT_NAMES})
 
     if not code.startswith("BU"):
@@ -140,9 +177,9 @@ def _resolve(code: str, year: int, lookup: dict) -> dict[str, float | None]:
     result = {}
     for col in _OUT_NAMES:
         v = base.get(col)
-        if v is None:
+        if v is None and col not in _GEEN_OUDERFALLBACK:
             v = wk_vals.get(col)
-        if v is None:
+        if v is None and col not in _GEEN_OUDERFALLBACK:
             v = gm_vals.get(col)
         result[col] = v
 

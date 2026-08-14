@@ -57,6 +57,7 @@ data_Generic/
     │   ├── cbs_kwb.py
     │   ├── diagnose_sector_geolevels.py      ← diagnose: onderdrukking per geo-niveau
     │   ├── probe_klimaatmonitor_aggregaten.py ← zoekt de controletotaal-variabelen
+    │   ├── vergelijk_gv_met_model.py         ← validatie tegen gemeten grootverbruik
     │   ├── mapping_kolomnamen_CBS.xlsx
     │   ├── secrets.local.json         ← API-keys (gitgenegeerd — nooit committen)
     │   └── requirements.txt
@@ -391,6 +392,21 @@ Het niveau `nederland` is nooit onderdrukt (0% ontbrekend), dus
 dat 23,7% resp. 40,0% — dat jaar is op RES-niveau nog niet volledig
 gepubliceerd; de log geeft daar een expliciete waarschuwing bij.
 
+### Op welke gebiedsniveaus bestaat dit eigenlijk?
+
+Live geverifieerd op 2026-08-13 (`diagnose_sector_geolevels.py`). Klimaatmonitor
+kent tien gebiedsniveaus — `buurt, gemeente, nederland, omgeving, postcode,
+provincie, res, res_landsdeel, subres, wijk` — maar **alle 39 SBI-variabelen
+worden alleen aangeboden op**:
+
+    gemeente · subres · res · provincie · omgeving · nederland
+
+**Per SBI-code bestaat er dus géén buurt- of wijkcijfer.** Alleen het
+ongesplitste totaal heeft een wijkvariant (`vbrze_tot_wijk`). De
+`elec_verbruik_*` / `gas_verbruik_*` kolommen in de buurten-CSV zijn daarom geen
+meting maar een verdeling — zie "Verdeling naar buurten" hieronder. Relevant als
+iemand die kolommen ooit als brondata wil citeren.
+
 ### Verdeling naar buurten
 
 Zie `_verdeel_energieverbruik_sector()` in `make_buurten_csv.py`: elke buurt
@@ -442,6 +458,101 @@ van een gemeente (in de buurten-CSV) precies gelijk is aan het gemeente-totaal:
 `som(buurten.elec_verbruik_<groep>) == gemeente.elec_verbruik_totaal_<eenheid>`
 voor elke groep samen. Geverifieerd op echte data (Dordrecht, 132 buurten):
 beide kwamen exact overeen (238.740.000 kWh).
+
+### Validatie tegen gemeten grootverbruik (GV) en CBS-verbruiksklassen
+
+`vergelijk_gv_met_model.py` houdt de modelvraag tegen twee onafhankelijke
+bronnen. Beide zeggen niets over de sectorverdeling — alleen over het totaal per
+gemeente — maar ze staan wél los van Klimaatmonitor, en dat is precies wat de
+reconciliatie zelf niet kan leveren.
+
+**Bron A — gemeten grootverbruik.** Kwartierwaarden elektriciteit en uurwaarden
+aardgas per gemeente, aansluitingen > 3x80A, mei 2025 t/m april 2026.
+Energiegebiedsprofielen Grootverbruik:
+<https://data.partnersinenergie.nl/producten/energiegebiedsprofielen-grootverbruik-gv>
+(`GV_ELK_GEMEENTE.csv` 633 MB / 12 mln regels, `GV_GAS_GEMEENTE.csv` 118 MB).
+
+Drie valkuilen in die bestanden, alle drie in het script afgevangen:
+
+1. **De gaskolom heeft geen eenheid in de header en staat in kWh, niet in m³.**
+   Het script leidt dat af uit de verhouding met het model (~11,3 ≈ de
+   calorische bovenwaarde 9,769 kWh/m³) en deelt. Wie die kolom rechtstreeks
+   optelt zit een factor 10 mis.
+2. **Onderdrukte waarden zijn leeg, niet nul.** Exact wanneer
+   `Aantal aansluitingen => 10 afname = 0` — privacy. Voor aardgas is dat 40%
+   van de regels en zijn **148 van de 344 gemeenten volledig zonder cijfer**,
+   waaronder Alblasserdam, Sliedrecht, Hardinxveld-Giessendam en
+   Hendrik-Ido-Ambacht. Als 0 meetellen levert onzin op; die gemeenten vallen
+   buiten de vergelijking.
+3. **Zes gemeentenamen hebben een provincie-achtervoegsel** dat CBS niet
+   gebruikt: `Beek (L.)`, `Hengelo (O.)`, `Laren (NH.)`, `Middelburg (Z.)`,
+   `Rijswijk (ZH.)`, `Stein (L.)`. Zonder strippen vallen die zes buiten de match.
+
+**Bron B — CBS-verbruiksklassen.** *Energieleveringen bedrijven en instellingen
+naar verbruiksklasse, 2023-2024* (maatwerk PR004610, i.o.v. RVO), per SBI-sector
+én per gemeente:
+<https://www.cbs.nl/nl-nl/maatwerk/2026/27/energieleveringen-bedrijven-en-instellingen-naar-verbruiksklasse-2023-2024>
+Tabel 4 = 2023, Tabel 5 = 2024. Klassegrenzen (Tabel 1), op **jaarverbruik**:
+
+| Klasse | Elektriciteit | Aardgas |
+|---|---|---|
+| M | 50.001 – 200.000 kWh | 25.001 – 75.000 m³ |
+| G | 200.001 – 10.000.000 kWh | 75.001 – 170.000 m³ |
+| ZG | > 10.000.000 kWh | > 170.000 m³ |
+
+**Waarom dit als ijkpunt voor GV/KV bruikbaar is.** Een 3x80A-aansluiting is
+ruwweg 55 kVA, dus maximaal ~480 MWh per jaar bij volcontinu vollast. Klasse ZG
+(> 10 GWh) kan daarom onmogelijk kleinverbruik zijn, en klasse G (> 200 MWh)
+vrijwel evenmin — dat vergt al een belastingfactor boven de 40% op een maximale
+KV-aansluiting. Klasse M (50–200 MWh) valt juist grotendeels ónder de grens.
+Vandaar: **ondergrens GV = ZG, bovengrens GV = G + ZG**. De gemeten GV-reeks
+hoort daartussen te liggen.
+
+Het blijft een band, geen gelijkheid: de klasse-indeling gaat over *jaarverbruik*
+en de GV/KV-grens over *aansluitcapaciteit*. Dit sluit ordegrootte-fouten uit,
+geen fouten van 10%. Twee verdere kanttekeningen: de indeling is per adres en
+gecombineerd over beide dragers (een adres met veel gas maar weinig stroom valt
+in een hoge klasse, en zijn kleine elektriciteitslevering telt daar dan in mee),
+en adressen ónder de M-grens staan niet in de tabel — de som M+G+ZG is dus lager
+dan de totale bedrijfslevering.
+
+> **Methodische val: gebruik de gepubliceerde TOTAAL-rij, niet de som van de
+> gemeenten.** CBS onderdrukt veel gemeentecellen met een punt. Optellen over
+> gemeenten holt het ijkpunt uit terwijl de GV-reeks daar wél waarden heeft; dan
+> lijkt gemeten GV **113%** van de bovengrens, dus onmogelijk hoog. Met de
+> TOTAAL-rij is het **91%**. Zelfde data, tegengestelde conclusie.
+
+**Uitkomst 2023 (landelijk):**
+
+| | Elektriciteit | Aardgas |
+|---|---|---|
+| gemeten GV | 45.695 GWh | 16.268 mln m³ *(196 gem.)* |
+| CBS ZG (ondergrens) | 32.433 GWh → GV = 141% | 20.309 mln m³ → GV = 80% |
+| CBS G+ZG (bovengrens) | 50.006 GWh → GV = **91%** | 21.064 mln m³ → GV = 77% |
+| oordeel | **binnen de band** | onbeslist (te veel onderdrukt) |
+| model | 71.706 GWh | 14.627 mln m³ |
+| CBS M+G+ZG | 56.054 GWh → model = 128% | 21.694 mln m³ → model = **67%** |
+
+*Elektriciteit* houdt stand. Dat GV op 91% van de bovengrens uitkomt en niet
+erboven, is precies wat de brondocumentatie voorspelt: GV bevat **geen op TenneT
+aangesloten verbruikers**, en dat zijn juist de allergrootste locaties, die
+allemaal in ZG vallen. Het model komt op 128% van het CBS-klassetotaal, wat klopt
+— CBS mist immers alles onder de M-grens.
+
+*Aardgas* faalt de test, maar de GV-kant is te zwaar onderdrukt om daar iets uit
+te concluderen. De regel die er wél toe doet is de laatste: **het model zit op
+67% van het CBS-klassetotaal, terwijl het daar juist bóven zou moeten liggen.**
+Dat gat komt overeen met het ontbreken van SBI D: CBS Tabel 2 geeft
+D Energievoorziening 7,02 mld m³ (M+G+ZG), tegen de ~8,5 mld m³ die uit de
+incl./excl.-controletotalen volgde. Drie onafhankelijke routes —
+controletotalen, gemeten grootverbruik en CBS-verbruiksklassen — wijzen op
+hetzelfde ontbrekende blok energiesector-gas.
+
+Per gemeente schrijft het script `vergelijk_gv_model_<jaar>.csv`. Gemeenten
+bóven de 100% van de modelvraag zijn het interessantst: daar staat gemeten vraag
+die het model niet kent. Voor Drechtsteden 2023 is dat Dordrecht (105% op
+elektriciteit, 123% op gas) — dezelfde gemeente die ook het grootste bijgeschatte
+aandeel in de regio heeft.
 
 ---
 
@@ -525,6 +636,7 @@ verkeerde plek, ook al klopt het totaal.
 |---|---|
 | `diagnose_sector_geolevels.py [jaren]` | Inventariseert de beschikbare GeoLevels per variabele en meet hoe vaak een waarde ontbreekt op gemeente-, subres-, res-, provincie- en landelijk niveau. Schrijft drie CSV's en geeft een expliciet oordeel over welke trap de data ondersteunt. |
 | `probe_klimaatmonitor_aggregaten.py [jaar]` | Zoekt in de volledige variabelencatalogus (1.574 stuks) op **naam** naar aggregaat-/controletotaalvariabelen, toetst ze op RES-niveau en controleert of ze een gedownloade Thema's-export exact reproduceren. Hiermee zijn `vbrze_tot` en `vbrzg_tot` gevonden. |
+| `vergelijk_gv_met_model.py [jaar]` | Vergelijkt de modelvraag per gemeente met gemeten grootverbruik (GV) en met de CBS-verbruiksklassen. Zie "Validatie tegen gemeten grootverbruik" hierboven. Vereist `GV_ELK_GEMEENTE.csv`, `GV_GAS_GEMEENTE.csv` en het CBS-xlsx in `data_loader/`. |
 
 > **Let op**: de `<eenheid>`-suffix kan tussen runs verschillen (CBS vs. Klimaatmonitor
 > gebruiken mogelijk niet dezelfde eenheid) — lees deze kolommen dus altijd op prefix

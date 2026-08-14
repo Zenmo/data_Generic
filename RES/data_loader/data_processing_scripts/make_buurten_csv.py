@@ -333,11 +333,22 @@ _GEMEENTE_VAL_COLS = [
     "blokverwarming",
     "elektrisch_hoog_gas",
     "elektrisch_laag_gas",
+    "elektrisch_zonder_gas",
 ]
 
 # CBS reports stadsverwarming as n.a. for buurten/gemeenten with no district
-# heating. n.a. genuinely means 0% — fill with gemeente value first, then 0.
-_GEMEENTE_VAL_THEN_ZERO_COLS = [
+# heating. n.a. genuinely means 0% — dus rechtstreeks op 0, ZONDER eerst de
+# gemeentewaarde te proberen.
+#
+# Tot 2026-08-14 vulde deze stap eerst met het gemeentegemiddelde en pas daarna
+# met 0, wat de eigen redenering hierboven tegensprak: als 'n.a.' echt 0%
+# betekent, dan is het kopiëren van een stadsbreed percentage naar een buurt
+# zonder warmtenet onjuist. Samen met dezelfde fallback in
+# make_verwarmingsinstallaties_csv.py (zie _GEEN_OUDERFALLBACK daar) leverde dat
+# 3.304 van de 4.380 buurten met 'stadsverwarming' op die in de brondata
+# helemaal geen cijfer hebben — 75% verzonnen. Een warmtenet is ruimtelijk en
+# feitelijk binair; een gemeentegemiddelde uitsmeren verzint leidingen.
+_ZERO_ONLY_COLS = [
     "stadsverwarming_hoog_gas",
     "stadsverwarming_laag_gas",
     "stadsverwarming_zonder_gas",
@@ -463,9 +474,17 @@ def _vul_ontbrekende_waarden(
     for col in _GEMEENTE_VAL_COLS:
         _fill_from_gemeente(col, zero_fallback=False)
 
-    # 1b. Stadsverwarming → gemeente value, then 0
-    for col in _GEMEENTE_VAL_THEN_ZERO_COLS:
-        _fill_from_gemeente(col, zero_fallback=True)
+    # 1b. Stadsverwarming → rechtstreeks 0, geen gemeentewaarde (zie de
+    #     toelichting bij _ZERO_ONLY_COLS: 'n.a.' betekent hier geen warmtenet).
+    for col in _ZERO_ONLY_COLS:
+        if col not in df.columns:
+            continue
+        df[col] = pd.to_numeric(df[col], errors="coerce").replace(_MISSING, float("nan"))
+        n_leeg = int(df[col].isna().sum())
+        df[col] = df[col].fillna(0)
+        if n_leeg:
+            log.info("    %s: %d missing → 0 (geen warmtenet; geen gemeente-fallback)",
+                     col, n_leeg)
 
     # 2. Business sub-categories → round(buurt_total × gemeente_fraction)
     if _BEDRIJF_TOTAAL in df.columns:
