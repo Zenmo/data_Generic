@@ -55,6 +55,8 @@ data_Generic/
     │   ├── make_tvw_csv.py
     │   ├── make_warmtetransitie_csv.py
     │   ├── cbs_kwb.py
+    │   ├── diagnose_sector_geolevels.py      ← diagnose: onderdrukking per geo-niveau
+    │   ├── probe_klimaatmonitor_aggregaten.py ← zoekt de controletotaal-variabelen
     │   ├── mapping_kolomnamen_CBS.xlsx
     │   ├── secrets.local.json         ← API-keys (gitgenegeerd — nooit committen)
     │   └── requirements.txt
@@ -295,6 +297,100 @@ een fractie lager dan de werkelijkheid (D resp. T ontbreken), en dat plant zich
 evenredig door naar alle buurten binnen die gemeente omdat de verdeling
 proportioneel gebeurt.
 
+### Reconciliatie: onderdrukte cellen terughalen (sinds 2026-08-13)
+
+CBS onderdrukt een sector/gemeente-cel als er te weinig bedrijven in zitten.
+Omdat dit script ~39 losse SBI-letter-variabelen optelt tot 8 groepen, draagt
+een onderdrukte letter stilzwijgend 0 bij: het groepstotaal *lijkt* gevuld maar
+is te laag. Gemeten: op groepsniveau is 0,3–10% van de cellen nul, maar op
+letterniveau ontbreekt gemiddeld **18,8%** van de gemeentecellen, oplopend tot
+99% (`vbrze_u`, `vbrzg_b`). Zie `../klimaatmonitor_sector_demand_gap.md` voor
+het volledige onderzoek.
+
+Elke variabele wordt daarom opgehaald met **`GeoLevels('all')`** in plaats van
+`GeoLevels('gemeente')` — één request die gemeente, RES-regio, provincie en
+Nederland tegelijk teruggeeft, dus zonder extra HTTP-verkeer. Daarna twee
+correctiestappen:
+
+**Stap 1 — per SBI-letter, tegen het RES-regiototaal.**
+`residu = regiototaal − som van de gemeenten in die regio`. Het positieve residu
+gaat naar de gemeenten die onderdrukt lijken (waarde 0 of afwezig), gewogen naar
+hun bedrijfsvestigingen voor die SBI-groep. Gemeenten die wél een echt cijfer
+opgaven blijven ongemoeid; is niets onderdrukt, dan wordt het residu over alle
+gemeenten verdeeld. Een negatief residu is een no-op — een opgegeven waarde
+wordt nooit verlaagd.
+
+**Alleen RES-niveau, bewust.** `_KM_RECONCILIATIE_LADDER = ["res"]`, zonder
+provincie- of landelijke trap. Als een RES-totaal zélf onderdrukt is, kan een
+provinciecijfer niet zeggen wélke RES-regio binnen die provincie het extra
+verbruik toekomt; escaleren zou ruimtelijke structuur verzinnen die niet in de
+bron zit. Die gevallen worden ongemoeid gelaten en in plaats daarvan
+gerapporteerd (zie dekkingsrapport hieronder).
+
+**Stap 2 — op groepsniveau, tegen het RVO-gecorrigeerde regiototaal.**
+De "Thema's"-cijfers bevatten een bijschatting door RVO die in geen enkele
+ODS-variabele per SBI-letter zit. Twee aggregaatvariabelen bevatten die wél
+(live geverifieerd 2026-08-13, reproduceren een gedownloade Thema's-export tot
+op 0,00%):
+
+| Drager | Variabele | Dekking |
+|---|---|---|
+| elektriciteit | `vbrze_tot` — *Totaal elektriciteitsverbruik bedrijven en instellingen, geleverd via openbaar net* | 31/31 regio's |
+| aardgas | `vbrzg_tot` — *Totaal aardgasverbruik bedrijven/instellingen (**excl. SBI D**)* | 19–21/31 regio's |
+
+Het resterende verschil met dit controletotaal gaat volledig naar groep `bf`
+(`_THEMA_RESTGROEP`), gewogen naar bedrijfsvestigingen. Onderbouwing uit de
+sectorvergelijking voor Drechtsteden 2023: landbouw klopte **exact** op beide
+dragers en diensten-gas op 1,6%, dus het residu hoort aantoonbaar bij industrie.
+
+> **Let op — gas gebruikt bewust de excl-SBI-D variant.** `vbrzg_tot_incl_sbid`
+> dekt alle 31 regio's, maar telt landelijk 23,06 mld m³ tegen 14,59 in het
+> model. Dat verschil van ~8,5 mld m³ is vrijwel geheel SBI D
+> (Energievoorziening): aardgas dat in centrales wordt verstookt. Dat is
+> brandstofinzet voor elektriciteitsproductie, geen industriële eindvraag —
+> meenemen zou `bf` op 75% van al het bedrijfsgas brengen en dubbeltellen met
+> opwek die het model apart modelleert. De regio's zonder excl-SBI-D-cijfer
+> houden alleen de correctie uit stap 1.
+
+Let ook op de eenheid-varianten in de catalogus (`vbrze_tot_gwh`, `_tj`,
+`vbrzg_tot_mm3`, …): dat is hetzelfde cijfer in een andere eenheid. De pipeline
+rekent in kWh/m³, dus altijd de code zónder achtervoegsel.
+
+Handmatig gedownloade `Thema's - <regio>.csv`-exports in `RES/` worden ook
+gelezen en gaan vóór de API voor de regio die ze noemen — bruikbaar als
+handmatige override, al komen beide in de praktijk exact overeen.
+
+**Gebiedskoppeling.** Klimaatmonitor identificeert gebieden met interne codes
+(`res_17`), die niet overeenkomen met `RES_code` in `municipalities.xlsx`. De
+pipeline vertaalt daarom via `GeoLevels('res')/GeoItems` naar namen en matcht op
+de genormaliseerde naam. Twee regio's heten in beide bronnen echt anders en
+staan in `_KM_GEBIED_ALIASSEN`: `Friesland` = `Fryslân`, `Cleantech` =
+`Stedendriehoek`. Klimaatmonitors `RES regio onbekend` is een restbak zonder
+tegenhanger en blijft ongekoppeld. Het aantal gematchte gebieden wordt gelogd
+(`Gebiedskoppeling 'res': 30 van 31`) — een naamconflict zou anders onzichtbaar
+de hele correctie uitschakelen.
+
+**Uitschakelen:** `RECONCILIEER_MET_REGIO = False` (stap 1) en
+`RECONCILIEER_MET_THEMA = False` (stap 2) in
+`make_energieverbruik_sector_csv.py`.
+
+### Dekkingsrapport: wat er bewust NIET in zit
+
+`processed_data_from_loader/energieverbruik_sector_res_dekking.csv`, elke run
+opnieuw geschreven, één rij per SBI-variabele × jaar × gat:
+
+| status | betekenis |
+|---|---|
+| `res_ontbreekt` | De RES-regio publiceert geen totaal voor deze variabele/jaar; de gemeenten houden hun eigen (onderdrukte) cijfer. `waarde_gemeenten` is wat het model gebruikt. |
+| `niet_toewijsbaar` | Het landelijke totaal overtreft de som van alle RES-totalen. Dat verschil kent Klimaatmonitor wél, maar wijst het aan geen enkele RES-regio toe. `ontbrekend_bedrag` is het bedrag; tel het per `carrier` op voor wat het model welbewust mist. |
+| `thema_bijschatting` | Correctie uit stap 2, per regio en drager. |
+
+Het niveau `nederland` is nooit onderdrukt (0% ontbrekend), dus
+`niet_toewijsbaar` is altijd berekenbaar en een eerlijke bovengrens. Gemeten
+2023: 5,17 TWh elektriciteit (11,8%) en 1,72 mld m³ gas (12,5%). Voor 2024 is
+dat 23,7% resp. 40,0% — dat jaar is op RES-niveau nog niet volledig
+gepubliceerd; de log geeft daar een expliciete waarschuwing bij.
+
 ### Verdeling naar buurten
 
 Zie `_verdeel_energieverbruik_sector()` in `make_buurten_csv.py`: elke buurt
@@ -304,18 +400,25 @@ mee in de som en krijgen 0.
 
 **Wat betekent `energieverbruik_sector_gelijk_verdeeld`?** Normaal verdeel je
 naar rato van vestigingenaantal (10 van de 100 vestigingen in de buurt → 10%
-van het gemeente-verbruik). Maar als een hele gemeente voor een bepaalde
-SBI-groep **geen enkele buurt met een bekend vestigingenaantal** heeft (alle
-buurten staan op `-99999` voor die groep), dan is er geen basis om naar rato
-te verdelen — 0 gedeeld door 0 vestigingen levert geen percentage op. In dat
-uitzonderingsgeval verdeelt het script het gemeente-verbruik voor die groep
-dan maar **gelijk over alle buurten** in die gemeente (ieder evenveel), in
-plaats van het verbruik gewoon te laten vervallen. Deze kolom (`True`/`False`
-per buurt) markeert precies welke buurten dit is overkomen, zodat je kunt zien
-waar de verdeling een schatting is in plaats van een echte naar-rato-berekening.
-In de praktijk komt dit zelden voor: bij de test op 2023-data gebeurde dit voor
-0 van de 14.421 buurten (elke gemeente had voor elke groep minstens één buurt
-met bekende vestigingen).
+van het gemeente-verbruik). Maar soms is er geen basis om naar rato te verdelen,
+en dan zouden alle aandelen 0 blijven en zou het verbruik van die gemeente voor
+die groep stilzwijgend verdwijnen. Twee gevallen:
+
+1. **geen enkele buurt met bekend vestigingenaantal** — alle buurten staan op
+   `-99999` voor die groep;
+2. **alle buurten hebben een geldige telling van 0** — de tellingen zijn er wel
+   en zijn legaal, ze sommeren alleen tot niets.
+
+Geval 2 is makkelijk te missen en ging tot 2026-08-14 mis: Renkum 2023 verloor
+zijn volledige 1.098.000 kWh SBI-A-elektriciteit, en 8 gemeenten samen 2,3 GWh,
+waardoor de aansluiting op de RES-controletotalen niet meer klopte. Sindsdien
+valt het script in **beide** gevallen terug op een **gelijke verdeling over alle
+buurten** in die gemeente. Deze kolom (`True`/`False` per buurt) markeert precies
+welke buurten dit is overkomen, zodat je kunt zien waar de verdeling een
+schatting is in plaats van een echte naar-rato-berekening.
+
+Controle na de fix (2023 én 2024): voor **342 van de 342 gemeenten** is de som
+van de buurten exact gelijk aan het gemeentetotaal, op beide dragers.
 
 ### Eenheden en totalen
 
@@ -379,7 +482,49 @@ de twee bekende gaten (SBI D gas, SBI T).
 | `elec_verbruik_totaal_<eenheid>` / `gas_verbruik_totaal_<eenheid>` | *(alleen gemeenten-CSV)* Som van alle 8 groepen — vergelijk met de som van de buurten-kolommen om de verdeling te controleren |
 | `elec_eenheid` / `gas_eenheid` | Dezelfde eenheid nogmaals als losse kolom (voor programmatische toegang zonder de kolomnaam te hoeven parsen) |
 | `energie_bron` / `energie_bron_url` | Welke bron dit specifieke bestand daadwerkelijk heeft geleverd (CBS of Klimaatmonitor) |
-| `energieverbruik_sector_gelijk_verdeeld` | *(alleen buurten-CSV)* `True` als de gemeente geen enkele buurt had met bekend vestigingenaantal voor die groep, en het verbruik daarom gelijk verdeeld is over alle buurten in plaats van naar rato — zie uitleg hierboven |
+| `energieverbruik_sector_gelijk_verdeeld` | *(alleen buurten-CSV)* `True` als er geen basis was om naar rato te verdelen (alle buurten `-99999`, óf alle tellingen geldig maar 0) en het verbruik daarom gelijk over alle buurten is verdeeld — zie uitleg hierboven |
+| `elec_bijgeschat_<eenheid>` / `gas_bijgeschat_<eenheid>` | *(alleen gemeenten-CSV)* Hoeveel van het verbruik van deze gemeente uit de reconciliatie komt in plaats van uit een eigen opgave |
+| `elec_bijgeschat_aandeel` / `gas_bijgeschat_aandeel` | *(alleen gemeenten-CSV)* Hetzelfde als fractie van het gemeentetotaal (0–1). **Dit is de kolom om op te controleren**: 0 = volledig eigen opgave, hoge waarden = de verdeling binnen die regio leunt zwaar op vestigingenweging |
+| `bijschatting_niveaus` | *(alleen gemeenten-CSV)* Welke correctiestappen hebben gevuurd (`res`, `thema`, of beide) |
+
+> De `*_bijgeschat_*`-kolommen staan bewust **buiten** de
+> `elec_verbruik_`/`gas_verbruik_`-naamruimte: alle code die sectorkolommen op
+> prefix selecteert zou ze anders als een negende sector aanzien.
+
+**Aandeel bijgeschat per RES-regio, 2023** (landelijk gemiddeld 10,7%
+elektriciteit / 26,0% gas; 1 van de 30 regio's heeft géén bijschatting nodig):
+
+| Regio | elektriciteit | aardgas |
+|---|---|---|
+| Groningen | 42,9% | 32,3% |
+| Noord-Holland Noord | 41,6% | 50,0% |
+| Zeeland | 36,1% | **93,0%** |
+| West-Overijssel | 27,5% | 1,1% |
+| Metropoolregio Eindhoven | 27,1% | 18,4% |
+| Drechtsteden | 25,1% | 17,5% |
+
+De regiototalen zijn betrouwbaar; de **ruimtelijke verdeling bínnen** deze
+regio's is de zwakke schakel. Zeeland-gas (93%) is het duidelijkste voorbeeld:
+vrijwel niets komt uit gepubliceerde gemeentecijfers, dus het hele regiototaal
+wordt over gemeenten verdeeld op basis van het *aantal* vestigingen. Voor een
+regio met een handvol zeer grote chemische verbruikers zet dat de vraag op de
+verkeerde plek, ook al klopt het totaal.
+
+### Validatie (2026-08-14, jaren 2023 en 2024)
+
+| Controle | Resultaat |
+|---|---|
+| som buurten == gemeentetotaal | **342/342 gemeenten exact**, beide dragers, beide jaren |
+| Drechtsteden vs. Thema's-export 2023 | elektriciteit 870,181 GWh, gas 118,2910 mln m³ — **exact gelijk** |
+| Drechtsteden vs. Thema's-export 2024 | elektriciteit 835,136 GWh, gas 109,8190 mln m³ — **exact gelijk** |
+| NL vs. `vbrze_tot` 2023 | 71,5672 TWh vs. 71,5900 → **−0,03%** (het verschil is `RES regio onbekend`, dat geen gemeenten heeft) |
+
+### Hulpscripts (read-only, wijzigen niets aan de pipeline)
+
+| Script | Doel |
+|---|---|
+| `diagnose_sector_geolevels.py [jaren]` | Inventariseert de beschikbare GeoLevels per variabele en meet hoe vaak een waarde ontbreekt op gemeente-, subres-, res-, provincie- en landelijk niveau. Schrijft drie CSV's en geeft een expliciet oordeel over welke trap de data ondersteunt. |
+| `probe_klimaatmonitor_aggregaten.py [jaar]` | Zoekt in de volledige variabelencatalogus (1.574 stuks) op **naam** naar aggregaat-/controletotaalvariabelen, toetst ze op RES-niveau en controleert of ze een gedownloade Thema's-export exact reproduceren. Hiermee zijn `vbrze_tot` en `vbrzg_tot` gevonden. |
 
 > **Let op**: de `<eenheid>`-suffix kan tussen runs verschillen (CBS vs. Klimaatmonitor
 > gebruiken mogelijk niet dezelfde eenheid) — lees deze kolommen dus altijd op prefix

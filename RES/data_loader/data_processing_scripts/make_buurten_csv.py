@@ -671,10 +671,18 @@ def _verdeel_energieverbruik_sector(
         proportioneel_mask = valid_mask & (total_valid > 0)
         share[proportioneel_mask] = valid_vals[proportioneel_mask] / total_valid[proportioneel_mask]
 
-        # No buurt in this gemeente has any data for this sector at all — no basis
-        # to allocate proportionally. Split the gemeente total evenly instead, so
-        # the entire demand is still assigned somewhere.
-        geen_data_mask = n_valid == 0
+        # No basis to allocate proportionally. Two distinct cases, both of which
+        # leave every share at 0 and would silently drop the gemeente's entire
+        # demand for this sector:
+        #   n_valid == 0      — every buurt is -99999, i.e. no data anywhere;
+        #   total_valid == 0  — every buurt reports a *valid* count of zero.
+        # The second is easy to miss (the counts are present and legal, they just
+        # sum to nothing) and did drop demand: Renkum 2023 lost its entire
+        # 1,098,000 kWh of SBI-A electricity, and 8 gemeenten together lost
+        # 2.3 GWh, which broke the reconciliation against the RES control totals.
+        # Split evenly in both cases, so the invariant in this docstring — all
+        # demand ends up assigned — actually holds.
+        geen_data_mask = (n_valid == 0) | (total_valid.fillna(0) <= 0)
         if geen_data_mask.any():
             share[geen_data_mask] = 1.0 / n_buurten_per_gm[geen_data_mask]
             fallback_flag |= geen_data_mask

@@ -1,9 +1,29 @@
+# --- Python ---
+# Generiek patroon: matcht op elke diepte. De eerdere regels noemden
+# RES/data_loader/__pycache__/ en RES/data_processing_scripts/__pycache__/,
+# maar de echte map is RES/data_loader/data_processing_scripts/__pycache__/ —
+# die viel dus door de mazen.
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
 
+# --- Ruwe downloads en logs (regenereerbaar) ---
 RES/data_loader/raw/
 RES/data_loader/logs/
-RES/data_loader/__pycache__/
 RES/data_Generic/data_loader/old_data/
-RES/data_processing_scripts/__pycache__/
+
+# --- Geheimen: nooit committen ---
 RES/data_loader/data_processing_scripts/secrets.local.json
 
-
+# --- Output van de diagnosescripts (regenereerbaar, geen broncode) ---
+# diagnose_sector_geolevels.py
+RES/data_loader/data_processing_scripts/diagnose_sector_geolevels.csv
+RES/data_loader/data_processing_scripts/diagnose_sector_missing.csv
+RES/data_loader/data_processing_scripts/diagnose_sector_residual.csv
+# probe_klimaatmonitor_aggregaten.py
+RES/data_loader/data_processing_scripts/klimaatmonitor_variabelen.csv
+RES/data_loader/data_processing_scripts/klimaatmonitor_kandidaat_totalen.csv
+# oude naam, geschreven door een eerdere versie van de probe — kan weg
+RES/data_loader/data_processing_scripts/klimaatmonitor_vbrz_variabelen.csv

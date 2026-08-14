@@ -1,0 +1,495 @@
+jaar;var_code;carrier;groep;res_regio;status;waarde_gemeenten;waarde_res;ontbrekend_bedrag
+2023;vbrze_a;elec;a;nan;res_ontbreekt;20000.0;;
+2023;vbrze_b;elec;bf;Alblasserwaard;res_ontbreekt;;;
+2023;vbrze_b;elec;bf;Foodvalley;res_ontbreekt;;;
+2023;vbrze_b;elec;bf;Goeree-Overflakkee;res_ontbreekt;;;
+2023;vbrze_b;elec;bf;HollandRijnland;res_ontbreekt;22000.0;;
+2023;vbrze_b;elec;bf;nan;res_ontbreekt;23000.0;;
+2023;vbrze_b;elec;bf;Noord-HollandNoord;res_ontbreekt;1368000.0;;
+2023;vbrze_b;elec;bf;Noord-HollandZuid;res_ontbreekt;222000.0;;
+2023;vbrze_b;elec;bf;U16;res_ontbreekt;27000.0;;
+2023;vbrze_b;elec;bf;West-Brabant;res_ontbreekt;171000.0;;
+2023;vbrze_b;elec;bf;West-Overijssel;res_ontbreekt;3172000.0;;
+2023;vbrze_b;elec;bf;Zuid-Limburg;res_ontbreekt;13000.0;;
+2023;vbrze_b;elec;bf;<niet toewijsbaar>;niet_toewijsbaar;1099520000.0;1094525000.0;552027000.0
+2023;vbrze_ctot;elec;bf;nan;res_ontbreekt;;;
+2023;vbrze_ctot;elec;bf;<niet toewijsbaar>;niet_toewijsbaar;25189026000.0;25187207000.0;1762000.0
+2023;vbrze_d;elec;bf;Drechtsteden;res_ontbreekt;1218000.0;;
+2023;vbrze_d;elec;bf;nan;res_ontbreekt;14521000.0;;
+2023;vbrze_d;elec;bf;Rotterdam/DenHaag;res_ontbreekt;410468000.0;;
+2023;vbrze_d;elec;bf;Cleantech;res_ontbreekt;989000.0;;
+2023;vbrze_d;elec;bf;Twente;res_ontbreekt;21111000.0;;
+2023;vbrze_d;elec;bf;Zuid-Limburg;res_ontbreekt;7490000.0;;
+2023;vbrze_d;elec;bf;<niet toewijsbaar>;niet_toewijsbaar;1384099000.0;942648000.0;742994000.0
+2023;vbrze_afval;elec;bf;nan;res_ontbreekt;192000.0;;
+2023;vbrze_afval;elec;bf;Noord-HollandZuid;res_ontbreekt;154900000.0;;
+2023;vbrze_afval;elec;bf;<niet toewijsbaar>;niet_toewijsbaar;1758731000.0;1603821000.0;161517000.0
+2023;vbrze_f;elec;bf;nan;res_ontbreekt;;;
+2023;vbrze_g1;elec;gi;nan;res_ontbreekt;201000.0;;
+2023;vbrze_i;elec;gi;nan;res_ontbreekt;76000.0;;
+2023;vbrze_h;elec;hj;nan;res_ontbreekt;292000.0;;
+2023;vbrze_h;elec;hj;<niet toewijsbaar>;niet_toewijsbaar;5894230000.0;5894217000.0;2000.0
+2023;vbrze_j;elec;hj;nan;res_ontbreekt;6132000.0;;
+2023;vbrze_j;elec;hj;Noord-HollandNoord;res_ontbreekt;32868000.0;;
+2023;vbrze_j;elec;hj;Noord-HollandZuid;res_ontbreekt;2054303000.0;;
+2023;vbrze_j;elec;hj;<niet toewijsbaar>;niet_toewijsbaar;4300483000.0;2213304000.0;3337204000.0
+2023;vbrze_k;elec;kl;nan;res_ontbreekt;0.0;;
+2023;vbrze_l;elec;kl;Alblasserwaard;res_ontbreekt;;;
+2023;vbrze_l;elec;kl;Drechtsteden;res_ontbreekt;6245000.0;;
+2023;vbrze_l;elec;kl;Foodvalley;res_ontbreekt;18243000.0;;
+2023;vbrze_l;elec;kl;FruitdeltaRivierenland;res_ontbreekt;4681000.0;;
+2023;vbrze_l;elec;kl;nan;res_ontbreekt;8000.0;;
+2023;vbrze_l;elec;kl;Twente;res_ontbreekt;29011000.0;;
+2023;vbrze_l;elec;kl;West-Brabant;res_ontbreekt;27166000.0;;
+2023;vbrze_l;elec;kl;West-Overijssel;res_ontbreekt;3089000.0;;
+2023;vbrze_l;elec;kl;<niet toewijsbaar>;niet_toewijsbaar;917457000.0;829021000.0;135711000.0
+2023;vbrze_m;elec;mn;nan;res_ontbreekt;12000.0;;
+2023;vbrze_n;elec;mn;FruitdeltaRivierenland;res_ontbreekt;21845000.0;;
+2023;vbrze_n;elec;mn;MetropoolregioEindhoven;res_ontbreekt;12152000.0;;
+2023;vbrze_n;elec;mn;nan;res_ontbreekt;212000.0;;
+2023;vbrze_n;elec;mn;Noord-HollandNoord;res_ontbreekt;4634000.0;;
+2023;vbrze_n;elec;mn;Noord-HollandZuid;res_ontbreekt;14553000.0;;
+2023;vbrze_n;elec;mn;Noordoost-Brabant;res_ontbreekt;8596000.0;;
+2023;vbrze_n;elec;mn;Cleantech;res_ontbreekt;4250000.0;;
+2023;vbrze_n;elec;mn;<niet toewijsbaar>;niet_toewijsbaar;420926000.0;354896000.0;177295000.0
+2023;vbrze_o;elec;oq;nan;res_ontbreekt;1262000.0;;
+2023;vbrze_p;elec;oq;nan;res_ontbreekt;197000.0;;
+2023;vbrze_q;elec;oq;nan;res_ontbreekt;3000.0;;
+2023;vbrze_r1;elec;ru;nan;res_ontbreekt;86000.0;;
+2023;vbrze_s;elec;ru;Foodvalley;res_ontbreekt;9029000.0;;
+2023;vbrze_s;elec;ru;Goeree-Overflakkee;res_ontbreekt;;;
+2023;vbrze_s;elec;ru;HollandRijnland;res_ontbreekt;9792000.0;;
+2023;vbrze_s;elec;ru;MetropoolregioEindhoven;res_ontbreekt;9109000.0;;
+2023;vbrze_s;elec;ru;nan;res_ontbreekt;3000.0;;
+2023;vbrze_s;elec;ru;Noordoost-Brabant;res_ontbreekt;17143000.0;;
+2023;vbrze_s;elec;ru;<niet toewijsbaar>;niet_toewijsbaar;439983000.0;394904000.0;65355000.0
+2023;vbrze_u;elec;ru;Achterhoek;res_ontbreekt;;;
+2023;vbrze_u;elec;ru;Alblasserwaard;res_ontbreekt;;;
+2023;vbrze_u;elec;ru;Amersfoort;res_ontbreekt;;;
+2023;vbrze_u;elec;ru;Arnhem/Nijmegen;res_ontbreekt;;;
+2023;vbrze_u;elec;ru;Drechtsteden;res_ontbreekt;;;
+2023;vbrze_u;elec;ru;Drenthe;res_ontbreekt;;;
+2023;vbrze_u;elec;ru;Flevoland;res_ontbreekt;;;
+2023;vbrze_u;elec;ru;Foodvalley;res_ontbreekt;;;
+2023;vbrze_u;elec;ru;FruitdeltaRivierenland;res_ontbreekt;;;
+2023;vbrze_u;elec;ru;Friesland;res_ontbreekt;;;
+2023;vbrze_u;elec;ru;Goeree-Overflakkee;res_ontbreekt;;;
+2023;vbrze_u;elec;ru;Groningen;res_ontbreekt;;;
+2023;vbrze_u;elec;ru;HartvanBrabant;res_ontbreekt;;;
+2023;vbrze_u;elec;ru;Hoekschewaard;res_ontbreekt;;;
+2023;vbrze_u;elec;ru;HollandRijnland;res_ontbreekt;;;
+2023;vbrze_u;elec;ru;MetropoolregioEindhoven;res_ontbreekt;;;
+2023;vbrze_u;elec;ru;Midden-Holland;res_ontbreekt;;;
+2023;vbrze_u;elec;ru;nan;res_ontbreekt;;;
+2023;vbrze_u;elec;ru;Noord-enMidden-Limburg;res_ontbreekt;;;
+2023;vbrze_u;elec;ru;Noord-HollandNoord;res_ontbreekt;;;
+2023;vbrze_u;elec;ru;Noord-HollandZuid;res_ontbreekt;;;
+2023;vbrze_u;elec;ru;Noordoost-Brabant;res_ontbreekt;;;
+2023;vbrze_u;elec;ru;Noord-Veluwe;res_ontbreekt;;;
+2023;vbrze_u;elec;ru;Rotterdam/DenHaag;res_ontbreekt;18473000.0;;
+2023;vbrze_u;elec;ru;Cleantech;res_ontbreekt;;;
+2023;vbrze_u;elec;ru;Twente;res_ontbreekt;;;
+2023;vbrze_u;elec;ru;U16;res_ontbreekt;;;
+2023;vbrze_u;elec;ru;West-Brabant;res_ontbreekt;;;
+2023;vbrze_u;elec;ru;West-Overijssel;res_ontbreekt;;;
+2023;vbrze_u;elec;ru;Zeeland;res_ontbreekt;;;
+2023;vbrze_u;elec;ru;Zuid-Limburg;res_ontbreekt;;;
+2023;vbrzg_a;gas;a;nan;res_ontbreekt;;;
+2023;vbrzg_a;gas;a;Noord-HollandZuid;res_ontbreekt;87407000.0;;
+2023;vbrzg_a;gas;a;U16;res_ontbreekt;38010000.0;;
+2023;vbrzg_a;gas;a;Zeeland;res_ontbreekt;24393000.0;;
+2023;vbrzg_a;gas;a;<niet toewijsbaar>;niet_toewijsbaar;3034626000.0;2884790000.0;238115000.0
+2023;vbrzg_b;gas;bf;Achterhoek;res_ontbreekt;;;
+2023;vbrzg_b;gas;bf;Alblasserwaard;res_ontbreekt;;;
+2023;vbrzg_b;gas;bf;Amersfoort;res_ontbreekt;;;
+2023;vbrzg_b;gas;bf;Arnhem/Nijmegen;res_ontbreekt;;;
+2023;vbrzg_b;gas;bf;Drechtsteden;res_ontbreekt;;;
+2023;vbrzg_b;gas;bf;Drenthe;res_ontbreekt;33000.0;;
+2023;vbrzg_b;gas;bf;Flevoland;res_ontbreekt;;;
+2023;vbrzg_b;gas;bf;Foodvalley;res_ontbreekt;;;
+2023;vbrzg_b;gas;bf;FruitdeltaRivierenland;res_ontbreekt;;;
+2023;vbrzg_b;gas;bf;Goeree-Overflakkee;res_ontbreekt;;;
+2023;vbrzg_b;gas;bf;Groningen;res_ontbreekt;;;
+2023;vbrzg_b;gas;bf;HartvanBrabant;res_ontbreekt;;;
+2023;vbrzg_b;gas;bf;Hoekschewaard;res_ontbreekt;;;
+2023;vbrzg_b;gas;bf;Midden-Holland;res_ontbreekt;;;
+2023;vbrzg_b;gas;bf;nan;res_ontbreekt;;;
+2023;vbrzg_b;gas;bf;Noord-enMidden-Limburg;res_ontbreekt;;;
+2023;vbrzg_b;gas;bf;Noord-HollandNoord;res_ontbreekt;10000.0;;
+2023;vbrzg_b;gas;bf;Noord-HollandZuid;res_ontbreekt;;;
+2023;vbrzg_b;gas;bf;Noordoost-Brabant;res_ontbreekt;;;
+2023;vbrzg_b;gas;bf;Noord-Veluwe;res_ontbreekt;;;
+2023;vbrzg_b;gas;bf;U16;res_ontbreekt;;;
+2023;vbrzg_b;gas;bf;West-Overijssel;res_ontbreekt;;;
+2023;vbrzg_b;gas;bf;Zeeland;res_ontbreekt;;;
+2023;vbrzg_b;gas;bf;Zuid-Limburg;res_ontbreekt;;;
+2023;vbrzg_b;gas;bf;<niet toewijsbaar>;niet_toewijsbaar;1503000.0;1460000.0;44058000.0
+2023;vbrzg_ctot;gas;bf;Flevoland;res_ontbreekt;35059000.0;;
+2023;vbrzg_ctot;gas;bf;nan;res_ontbreekt;;;
+2023;vbrzg_ctot;gas;bf;Noord-enMidden-Limburg;res_ontbreekt;239174000.0;;
+2023;vbrzg_ctot;gas;bf;Noord-Veluwe;res_ontbreekt;35789000.0;;
+2023;vbrzg_ctot;gas;bf;Zuid-Limburg;res_ontbreekt;50003000.0;;
+2023;vbrzg_ctot;gas;bf;<niet toewijsbaar>;niet_toewijsbaar;8563131000.0;8203104000.0;1330812000.0
+2023;vbrzg_afval;gas;bf;FruitdeltaRivierenland;res_ontbreekt;51000.0;;
+2023;vbrzg_afval;gas;bf;HartvanBrabant;res_ontbreekt;378000.0;;
+2023;vbrzg_afval;gas;bf;Hoekschewaard;res_ontbreekt;25000.0;;
+2023;vbrzg_afval;gas;bf;HollandRijnland;res_ontbreekt;178000.0;;
+2023;vbrzg_afval;gas;bf;MetropoolregioEindhoven;res_ontbreekt;110000.0;;
+2023;vbrzg_afval;gas;bf;nan;res_ontbreekt;;;
+2023;vbrzg_afval;gas;bf;Noord-HollandNoord;res_ontbreekt;77000.0;;
+2023;vbrzg_afval;gas;bf;Noord-HollandZuid;res_ontbreekt;4363000.0;;
+2023;vbrzg_afval;gas;bf;Noord-Veluwe;res_ontbreekt;;;
+2023;vbrzg_f;gas;bf;Drechtsteden;res_ontbreekt;1202000.0;;
+2023;vbrzg_f;gas;bf;Goeree-Overflakkee;res_ontbreekt;165000.0;;
+2023;vbrzg_f;gas;bf;nan;res_ontbreekt;1000.0;;
+2023;vbrzg_g1;gas;gi;nan;res_ontbreekt;;;
+2023;vbrzg_i;gas;gi;Arnhem/Nijmegen;res_ontbreekt;13126000.0;;
+2023;vbrzg_i;gas;gi;nan;res_ontbreekt;9000.0;;
+2023;vbrzg_i;gas;gi;Noord-Veluwe;res_ontbreekt;7161000.0;;
+2023;vbrzg_i;gas;gi;<niet toewijsbaar>;niet_toewijsbaar;405367000.0;385075000.0;18340000.0
+2023;vbrzg_h;gas;hj;nan;res_ontbreekt;;;
+2023;vbrzg_j;gas;hj;Midden-Holland;res_ontbreekt;160000.0;;
+2023;vbrzg_j;gas;hj;nan;res_ontbreekt;0.0;;
+2023;vbrzg_j;gas;hj;Rotterdam/DenHaag;res_ontbreekt;2909000.0;;
+2023;vbrzg_j;gas;hj;<niet toewijsbaar>;niet_toewijsbaar;28495000.0;25425000.0;3154000.0
+2023;vbrzg_k;gas;kl;nan;res_ontbreekt;1000.0;;
+2023;vbrzg_l;gas;kl;Drenthe;res_ontbreekt;887000.0;;
+2023;vbrzg_l;gas;kl;Groningen;res_ontbreekt;2538000.0;;
+2023;vbrzg_l;gas;kl;nan;res_ontbreekt;68000.0;;
+2023;vbrzg_l;gas;kl;Noord-HollandZuid;res_ontbreekt;6346000.0;;
+2023;vbrzg_l;gas;kl;<niet toewijsbaar>;niet_toewijsbaar;72168000.0;62396000.0;17327000.0
+2023;vbrzg_m;gas;mn;nan;res_ontbreekt;;;
+2023;vbrzg_n;gas;mn;nan;res_ontbreekt;;;
+2023;vbrzg_n;gas;mn;Noord-HollandNoord;res_ontbreekt;893000.0;;
+2023;vbrzg_n;gas;mn;Noord-HollandZuid;res_ontbreekt;2043000.0;;
+2023;vbrzg_n;gas;mn;<niet toewijsbaar>;niet_toewijsbaar;41786000.0;38844000.0;10159000.0
+2023;vbrzg_o;gas;oq;nan;res_ontbreekt;1000.0;;
+2023;vbrzg_p;gas;oq;Amersfoort;res_ontbreekt;3493000.0;;
+2023;vbrzg_p;gas;oq;Foodvalley;res_ontbreekt;5293000.0;;
+2023;vbrzg_p;gas;oq;nan;res_ontbreekt;17000.0;;
+2023;vbrzg_p;gas;oq;<niet toewijsbaar>;niet_toewijsbaar;228792000.0;220000000.0;9097000.0
+2023;vbrzg_q;gas;oq;nan;res_ontbreekt;;;
+2023;vbrzg_r1;gas;ru;nan;res_ontbreekt;23000.0;;
+2023;vbrzg_r1;gas;ru;<niet toewijsbaar>;niet_toewijsbaar;167460000.0;167449000.0;1000.0
+2023;vbrzg_s;gas;ru;Achterhoek;res_ontbreekt;1859000.0;;
+2023;vbrzg_s;gas;ru;Amersfoort;res_ontbreekt;2813000.0;;
+2023;vbrzg_s;gas;ru;Arnhem/Nijmegen;res_ontbreekt;3288000.0;;
+2023;vbrzg_s;gas;ru;Goeree-Overflakkee;res_ontbreekt;399000.0;;
+2023;vbrzg_s;gas;ru;HartvanBrabant;res_ontbreekt;2563000.0;;
+2023;vbrzg_s;gas;ru;HollandRijnland;res_ontbreekt;3854000.0;;
+2023;vbrzg_s;gas;ru;MetropoolregioEindhoven;res_ontbreekt;2885000.0;;
+2023;vbrzg_s;gas;ru;nan;res_ontbreekt;9000.0;;
+2023;vbrzg_s;gas;ru;Noord-HollandNoord;res_ontbreekt;2995000.0;;
+2023;vbrzg_s;gas;ru;Noord-HollandZuid;res_ontbreekt;9287000.0;;
+2023;vbrzg_s;gas;ru;Zuid-Limburg;res_ontbreekt;2586000.0;;
+2023;vbrzg_s;gas;ru;<niet toewijsbaar>;niet_toewijsbaar;110856000.0;78325000.0;51862000.0
+2023;vbrzg_u;gas;ru;Achterhoek;res_ontbreekt;;;
+2023;vbrzg_u;gas;ru;Alblasserwaard;res_ontbreekt;;;
+2023;vbrzg_u;gas;ru;Amersfoort;res_ontbreekt;;;
+2023;vbrzg_u;gas;ru;Arnhem/Nijmegen;res_ontbreekt;;;
+2023;vbrzg_u;gas;ru;Drechtsteden;res_ontbreekt;;;
+2023;vbrzg_u;gas;ru;Drenthe;res_ontbreekt;;;
+2023;vbrzg_u;gas;ru;Flevoland;res_ontbreekt;;;
+2023;vbrzg_u;gas;ru;Foodvalley;res_ontbreekt;;;
+2023;vbrzg_u;gas;ru;FruitdeltaRivierenland;res_ontbreekt;;;
+2023;vbrzg_u;gas;ru;Friesland;res_ontbreekt;;;
+2023;vbrzg_u;gas;ru;Goeree-Overflakkee;res_ontbreekt;;;
+2023;vbrzg_u;gas;ru;Groningen;res_ontbreekt;;;
+2023;vbrzg_u;gas;ru;HartvanBrabant;res_ontbreekt;;;
+2023;vbrzg_u;gas;ru;Hoekschewaard;res_ontbreekt;;;
+2023;vbrzg_u;gas;ru;HollandRijnland;res_ontbreekt;;;
+2023;vbrzg_u;gas;ru;MetropoolregioEindhoven;res_ontbreekt;;;
+2023;vbrzg_u;gas;ru;Midden-Holland;res_ontbreekt;;;
+2023;vbrzg_u;gas;ru;nan;res_ontbreekt;;;
+2023;vbrzg_u;gas;ru;Noord-enMidden-Limburg;res_ontbreekt;;;
+2023;vbrzg_u;gas;ru;Noord-HollandNoord;res_ontbreekt;;;
+2023;vbrzg_u;gas;ru;Noord-HollandZuid;res_ontbreekt;113000.0;;
+2023;vbrzg_u;gas;ru;Noordoost-Brabant;res_ontbreekt;;;
+2023;vbrzg_u;gas;ru;Noord-Veluwe;res_ontbreekt;;;
+2023;vbrzg_u;gas;ru;Rotterdam/DenHaag;res_ontbreekt;3222000.0;;
+2023;vbrzg_u;gas;ru;Cleantech;res_ontbreekt;;;
+2023;vbrzg_u;gas;ru;Twente;res_ontbreekt;;;
+2023;vbrzg_u;gas;ru;U16;res_ontbreekt;;;
+2023;vbrzg_u;gas;ru;West-Brabant;res_ontbreekt;;;
+2023;vbrzg_u;gas;ru;West-Overijssel;res_ontbreekt;;;
+2023;vbrzg_u;gas;ru;Zeeland;res_ontbreekt;;;
+2023;vbrzg_u;gas;ru;Zuid-Limburg;res_ontbreekt;;;
+2024;vbrze_a;elec;a;nan;res_ontbreekt;289000.0;;
+2024;vbrze_a;elec;a;<niet toewijsbaar>;niet_toewijsbaar;5281791000.0;5281779000.0;1000.0
+2024;vbrze_b;elec;bf;Achterhoek;res_ontbreekt;26000.0;;
+2024;vbrze_b;elec;bf;Alblasserwaard;res_ontbreekt;;;
+2024;vbrze_b;elec;bf;Foodvalley;res_ontbreekt;;;
+2024;vbrze_b;elec;bf;Goeree-Overflakkee;res_ontbreekt;;;
+2024;vbrze_b;elec;bf;HollandRijnland;res_ontbreekt;20000.0;;
+2024;vbrze_b;elec;bf;nan;res_ontbreekt;51000.0;;
+2024;vbrze_b;elec;bf;Noord-HollandNoord;res_ontbreekt;1243000.0;;
+2024;vbrze_b;elec;bf;Noord-HollandZuid;res_ontbreekt;290000.0;;
+2024;vbrze_b;elec;bf;U16;res_ontbreekt;35000.0;;
+2024;vbrze_b;elec;bf;West-Brabant;res_ontbreekt;190000.0;;
+2024;vbrze_b;elec;bf;West-Overijssel;res_ontbreekt;2779000.0;;
+2024;vbrze_b;elec;bf;Zuid-Limburg;res_ontbreekt;16000.0;;
+2024;vbrze_b;elec;bf;<niet toewijsbaar>;niet_toewijsbaar;1263462000.0;1258863000.0;417262000.0
+2024;vbrze_ctot;elec;bf;nan;res_ontbreekt;488000.0;;
+2024;vbrze_d;elec;bf;Drechtsteden;res_ontbreekt;1895000.0;;
+2024;vbrze_d;elec;bf;FruitdeltaRivierenland;res_ontbreekt;1460000.0;;
+2024;vbrze_d;elec;bf;nan;res_ontbreekt;15371000.0;;
+2024;vbrze_d;elec;bf;Rotterdam/DenHaag;res_ontbreekt;451649000.0;;
+2024;vbrze_d;elec;bf;Cleantech;res_ontbreekt;941000.0;;
+2024;vbrze_d;elec;bf;Zuid-Limburg;res_ontbreekt;1346000.0;;
+2024;vbrze_d;elec;bf;<niet toewijsbaar>;niet_toewijsbaar;1618120000.0;1160827000.0;770359000.0
+2024;vbrze_afval;elec;bf;nan;res_ontbreekt;1267000.0;;
+2024;vbrze_f;elec;bf;nan;res_ontbreekt;862000.0;;
+2024;vbrze_f;elec;bf;<niet toewijsbaar>;niet_toewijsbaar;961484000.0;961475000.0;2000.0
+2024;vbrze_g1;elec;gi;nan;res_ontbreekt;578000.0;;
+2024;vbrze_i;elec;gi;nan;res_ontbreekt;355000.0;;
+2024;vbrze_h;elec;hj;MetropoolregioEindhoven;res_ontbreekt;174954000.0;;
+2024;vbrze_h;elec;hj;nan;res_ontbreekt;1216000.0;;
+2024;vbrze_h;elec;hj;Noord-HollandNoord;res_ontbreekt;105184000.0;;
+2024;vbrze_h;elec;hj;Noord-HollandZuid;res_ontbreekt;1328661000.0;;
+2024;vbrze_h;elec;hj;Noordoost-Brabant;res_ontbreekt;110218000.0;;
+2024;vbrze_h;elec;hj;<niet toewijsbaar>;niet_toewijsbaar;5928939000.0;4209911000.0;1861538000.0
+2024;vbrze_j;elec;hj;nan;res_ontbreekt;6311000.0;;
+2024;vbrze_j;elec;hj;Noord-HollandNoord;res_ontbreekt;32048000.0;;
+2024;vbrze_j;elec;hj;Noord-HollandZuid;res_ontbreekt;2189817000.0;;
+2024;vbrze_j;elec;hj;<niet toewijsbaar>;niet_toewijsbaar;4784886000.0;2563016000.0;3581678000.0
+2024;vbrze_k;elec;kl;nan;res_ontbreekt;34000.0;;
+2024;vbrze_k;elec;kl;<niet toewijsbaar>;niet_toewijsbaar;1071179000.0;1071174000.0;1000.0
+2024;vbrze_l;elec;kl;Drechtsteden;res_ontbreekt;4006000.0;;
+2024;vbrze_l;elec;kl;Foodvalley;res_ontbreekt;18711000.0;;
+2024;vbrze_l;elec;kl;Goeree-Overflakkee;res_ontbreekt;;;
+2024;vbrze_l;elec;kl;HollandRijnland;res_ontbreekt;18165000.0;;
+2024;vbrze_l;elec;kl;nan;res_ontbreekt;8000.0;;
+2024;vbrze_l;elec;kl;<niet toewijsbaar>;niet_toewijsbaar;958166000.0;917280000.0;64032000.0
+2024;vbrze_m;elec;mn;nan;res_ontbreekt;124000.0;;
+2024;vbrze_n;elec;mn;Achterhoek;res_ontbreekt;370000.0;;
+2024;vbrze_n;elec;mn;FruitdeltaRivierenland;res_ontbreekt;3647000.0;;
+2024;vbrze_n;elec;mn;nan;res_ontbreekt;706000.0;;
+2024;vbrze_n;elec;mn;Noord-HollandNoord;res_ontbreekt;6703000.0;;
+2024;vbrze_n;elec;mn;Noord-HollandZuid;res_ontbreekt;11605000.0;;
+2024;vbrze_n;elec;mn;Noordoost-Brabant;res_ontbreekt;8499000.0;;
+2024;vbrze_n;elec;mn;West-Brabant;res_ontbreekt;20466000.0;;
+2024;vbrze_n;elec;mn;<niet toewijsbaar>;niet_toewijsbaar;394765000.0;343474000.0;183031000.0
+2024;vbrze_o;elec;oq;nan;res_ontbreekt;2771000.0;;
+2024;vbrze_o;elec;oq;<niet toewijsbaar>;niet_toewijsbaar;2843326000.0;2843308000.0;2000.0
+2024;vbrze_p;elec;oq;nan;res_ontbreekt;210000.0;;
+2024;vbrze_q;elec;oq;nan;res_ontbreekt;42000.0;;
+2024;vbrze_r1;elec;ru;nan;res_ontbreekt;344000.0;;
+2024;vbrze_r1;elec;ru;<niet toewijsbaar>;niet_toewijsbaar;1319307000.0;1319295000.0;1000.0
+2024;vbrze_s;elec;ru;Alblasserwaard;res_ontbreekt;;;
+2024;vbrze_s;elec;ru;Foodvalley;res_ontbreekt;9014000.0;;
+2024;vbrze_s;elec;ru;MetropoolregioEindhoven;res_ontbreekt;10375000.0;;
+2024;vbrze_s;elec;ru;nan;res_ontbreekt;3000.0;;
+2024;vbrze_s;elec;ru;Cleantech;res_ontbreekt;545000.0;;
+2024;vbrze_s;elec;ru;West-Overijssel;res_ontbreekt;4575000.0;;
+2024;vbrze_s;elec;ru;<niet toewijsbaar>;niet_toewijsbaar;429527000.0;405014000.0;66668000.0
+2024;vbrze_u;elec;ru;Achterhoek;res_ontbreekt;;;
+2024;vbrze_u;elec;ru;Alblasserwaard;res_ontbreekt;;;
+2024;vbrze_u;elec;ru;Amersfoort;res_ontbreekt;;;
+2024;vbrze_u;elec;ru;Arnhem/Nijmegen;res_ontbreekt;;;
+2024;vbrze_u;elec;ru;Drechtsteden;res_ontbreekt;;;
+2024;vbrze_u;elec;ru;Drenthe;res_ontbreekt;;;
+2024;vbrze_u;elec;ru;Flevoland;res_ontbreekt;;;
+2024;vbrze_u;elec;ru;Foodvalley;res_ontbreekt;;;
+2024;vbrze_u;elec;ru;FruitdeltaRivierenland;res_ontbreekt;;;
+2024;vbrze_u;elec;ru;Friesland;res_ontbreekt;;;
+2024;vbrze_u;elec;ru;Goeree-Overflakkee;res_ontbreekt;;;
+2024;vbrze_u;elec;ru;Groningen;res_ontbreekt;;;
+2024;vbrze_u;elec;ru;HartvanBrabant;res_ontbreekt;;;
+2024;vbrze_u;elec;ru;Hoekschewaard;res_ontbreekt;;;
+2024;vbrze_u;elec;ru;HollandRijnland;res_ontbreekt;;;
+2024;vbrze_u;elec;ru;MetropoolregioEindhoven;res_ontbreekt;;;
+2024;vbrze_u;elec;ru;Midden-Holland;res_ontbreekt;;;
+2024;vbrze_u;elec;ru;nan;res_ontbreekt;;;
+2024;vbrze_u;elec;ru;Noord-enMidden-Limburg;res_ontbreekt;;;
+2024;vbrze_u;elec;ru;Noord-HollandNoord;res_ontbreekt;;;
+2024;vbrze_u;elec;ru;Noord-HollandZuid;res_ontbreekt;;;
+2024;vbrze_u;elec;ru;Noordoost-Brabant;res_ontbreekt;;;
+2024;vbrze_u;elec;ru;Noord-Veluwe;res_ontbreekt;;;
+2024;vbrze_u;elec;ru;Rotterdam/DenHaag;res_ontbreekt;18799000.0;;
+2024;vbrze_u;elec;ru;Cleantech;res_ontbreekt;;;
+2024;vbrze_u;elec;ru;Twente;res_ontbreekt;;;
+2024;vbrze_u;elec;ru;U16;res_ontbreekt;;;
+2024;vbrze_u;elec;ru;West-Brabant;res_ontbreekt;;;
+2024;vbrze_u;elec;ru;West-Overijssel;res_ontbreekt;;;
+2024;vbrze_u;elec;ru;Zeeland;res_ontbreekt;;;
+2024;vbrze_u;elec;ru;Zuid-Limburg;res_ontbreekt;;;
+2024;vbrzg_a;gas;a;nan;res_ontbreekt;;;
+2024;vbrzg_a;gas;a;Noord-HollandZuid;res_ontbreekt;93822000.0;;
+2024;vbrzg_a;gas;a;U16;res_ontbreekt;35958000.0;;
+2024;vbrzg_a;gas;a;Zeeland;res_ontbreekt;27231000.0;;
+2024;vbrzg_a;gas;a;<niet toewijsbaar>;niet_toewijsbaar;3153136000.0;2996120000.0;298836000.0
+2024;vbrzg_b;gas;bf;Achterhoek;res_ontbreekt;;;
+2024;vbrzg_b;gas;bf;Alblasserwaard;res_ontbreekt;;;
+2024;vbrzg_b;gas;bf;Amersfoort;res_ontbreekt;;;
+2024;vbrzg_b;gas;bf;Arnhem/Nijmegen;res_ontbreekt;;;
+2024;vbrzg_b;gas;bf;Drechtsteden;res_ontbreekt;;;
+2024;vbrzg_b;gas;bf;Drenthe;res_ontbreekt;69000.0;;
+2024;vbrzg_b;gas;bf;Flevoland;res_ontbreekt;;;
+2024;vbrzg_b;gas;bf;Foodvalley;res_ontbreekt;;;
+2024;vbrzg_b;gas;bf;FruitdeltaRivierenland;res_ontbreekt;;;
+2024;vbrzg_b;gas;bf;Goeree-Overflakkee;res_ontbreekt;;;
+2024;vbrzg_b;gas;bf;Groningen;res_ontbreekt;;;
+2024;vbrzg_b;gas;bf;HartvanBrabant;res_ontbreekt;;;
+2024;vbrzg_b;gas;bf;Hoekschewaard;res_ontbreekt;;;
+2024;vbrzg_b;gas;bf;Midden-Holland;res_ontbreekt;;;
+2024;vbrzg_b;gas;bf;nan;res_ontbreekt;;;
+2024;vbrzg_b;gas;bf;Noord-enMidden-Limburg;res_ontbreekt;;;
+2024;vbrzg_b;gas;bf;Noord-HollandNoord;res_ontbreekt;10000.0;;
+2024;vbrzg_b;gas;bf;Noord-HollandZuid;res_ontbreekt;;;
+2024;vbrzg_b;gas;bf;Noordoost-Brabant;res_ontbreekt;;;
+2024;vbrzg_b;gas;bf;U16;res_ontbreekt;;;
+2024;vbrzg_b;gas;bf;West-Overijssel;res_ontbreekt;;;
+2024;vbrzg_b;gas;bf;Zeeland;res_ontbreekt;;;
+2024;vbrzg_b;gas;bf;Zuid-Limburg;res_ontbreekt;;;
+2024;vbrzg_b;gas;bf;<niet toewijsbaar>;niet_toewijsbaar;1435000.0;1356000.0;42140000.0
+2024;vbrzg_ctot;gas;bf;Flevoland;res_ontbreekt;6035000.0;;
+2024;vbrzg_ctot;gas;bf;Foodvalley;res_ontbreekt;31240000.0;;
+2024;vbrzg_ctot;gas;bf;HollandRijnland;res_ontbreekt;19016000.0;;
+2024;vbrzg_ctot;gas;bf;nan;res_ontbreekt;;;
+2024;vbrzg_ctot;gas;bf;Noord-enMidden-Limburg;res_ontbreekt;212994000.0;;
+2024;vbrzg_ctot;gas;bf;Noord-HollandZuid;res_ontbreekt;238570000.0;;
+2024;vbrzg_ctot;gas;bf;Rotterdam/DenHaag;res_ontbreekt;3003097000.0;;
+2024;vbrzg_ctot;gas;bf;Zuid-Limburg;res_ontbreekt;186490000.0;;
+2024;vbrzg_ctot;gas;bf;<niet toewijsbaar>;niet_toewijsbaar;8594241000.0;4896795000.0;5469194000.0
+2024;vbrzg_afval;gas;bf;Amersfoort;res_ontbreekt;128000.0;;
+2024;vbrzg_afval;gas;bf;Foodvalley;res_ontbreekt;59000.0;;
+2024;vbrzg_afval;gas;bf;nan;res_ontbreekt;;;
+2024;vbrzg_afval;gas;bf;Noord-HollandNoord;res_ontbreekt;65000.0;;
+2024;vbrzg_afval;gas;bf;Noord-HollandZuid;res_ontbreekt;3529000.0;;
+2024;vbrzg_afval;gas;bf;<niet toewijsbaar>;niet_toewijsbaar;100672000.0;96891000.0;26290000.0
+2024;vbrzg_f;gas;bf;nan;res_ontbreekt;1000.0;;
+2024;vbrzg_f;gas;bf;<niet toewijsbaar>;niet_toewijsbaar;61670000.00000001;61657000.0;2000.0
+2024;vbrzg_g1;gas;gi;MetropoolregioEindhoven;res_ontbreekt;20084000.0;;
+2024;vbrzg_g1;gas;gi;nan;res_ontbreekt;;;
+2024;vbrzg_g1;gas;gi;Noord-enMidden-Limburg;res_ontbreekt;16392000.0;;
+2024;vbrzg_g1;gas;gi;Zuid-Limburg;res_ontbreekt;13211000.0;;
+2024;vbrzg_g1;gas;gi;<niet toewijsbaar>;niet_toewijsbaar;443426000.0;393731000.0;51109000.0
+2024;vbrzg_i;gas;gi;nan;res_ontbreekt;9000.0;;
+2024;vbrzg_h;gas;hj;nan;res_ontbreekt;;;
+2024;vbrzg_j;gas;hj;nan;res_ontbreekt;1000.0;;
+2024;vbrzg_k;gas;kl;nan;res_ontbreekt;1000.0;;
+2024;vbrzg_l;gas;kl;Achterhoek;res_ontbreekt;236000.0;;
+2024;vbrzg_l;gas;kl;Arnhem/Nijmegen;res_ontbreekt;2163000.0;;
+2024;vbrzg_l;gas;kl;Foodvalley;res_ontbreekt;831000.0;;
+2024;vbrzg_l;gas;kl;FruitdeltaRivierenland;res_ontbreekt;257000.0;;
+2024;vbrzg_l;gas;kl;nan;res_ontbreekt;;;
+2024;vbrzg_l;gas;kl;<niet toewijsbaar>;niet_toewijsbaar;67330000.0;63840000.0;9098000.0
+2024;vbrzg_m;gas;mn;nan;res_ontbreekt;;;
+2024;vbrzg_n;gas;mn;Drechtsteden;res_ontbreekt;974000.0;;
+2024;vbrzg_n;gas;mn;Drenthe;res_ontbreekt;127000.0;;
+2024;vbrzg_n;gas;mn;Groningen;res_ontbreekt;595000.0;;
+2024;vbrzg_n;gas;mn;HartvanBrabant;res_ontbreekt;727000.0;;
+2024;vbrzg_n;gas;mn;HollandRijnland;res_ontbreekt;865000.0;;
+2024;vbrzg_n;gas;mn;MetropoolregioEindhoven;res_ontbreekt;1133000.0;;
+2024;vbrzg_n;gas;mn;Midden-Holland;res_ontbreekt;262000.0;;
+2024;vbrzg_n;gas;mn;nan;res_ontbreekt;;;
+2024;vbrzg_n;gas;mn;Noord-HollandZuid;res_ontbreekt;2934000.0;;
+2024;vbrzg_n;gas;mn;Rotterdam/DenHaag;res_ontbreekt;3143000.0;;
+2024;vbrzg_n;gas;mn;<niet toewijsbaar>;niet_toewijsbaar;31680000.0;20919000.0;22696000.0
+2024;vbrzg_o;gas;oq;nan;res_ontbreekt;1000.0;;
+2024;vbrzg_o;gas;oq;<niet toewijsbaar>;niet_toewijsbaar;148451000.0;148446000.0;1000.0
+2024;vbrzg_p;gas;oq;nan;res_ontbreekt;16000.0;;
+2024;vbrzg_q;gas;oq;nan;res_ontbreekt;;;
+2024;vbrzg_r1;gas;ru;nan;res_ontbreekt;21000.0;;
+2024;vbrzg_r1;gas;ru;<niet toewijsbaar>;niet_toewijsbaar;150524000.0;150520000.0;1000.0
+2024;vbrzg_s;gas;ru;Amersfoort;res_ontbreekt;1851000.0;;
+2024;vbrzg_s;gas;ru;Arnhem/Nijmegen;res_ontbreekt;3892000.0;;
+2024;vbrzg_s;gas;ru;Foodvalley;res_ontbreekt;2585000.0;;
+2024;vbrzg_s;gas;ru;HartvanBrabant;res_ontbreekt;1033000.0;;
+2024;vbrzg_s;gas;ru;nan;res_ontbreekt;7000.0;;
+2024;vbrzg_s;gas;ru;Noord-HollandZuid;res_ontbreekt;6327000.0;;
+2024;vbrzg_s;gas;ru;U16;res_ontbreekt;2998000.0;;
+2024;vbrzg_s;gas;ru;Zeeland;res_ontbreekt;1776000.0;;
+2024;vbrzg_s;gas;ru;<niet toewijsbaar>;niet_toewijsbaar;104541000.0;84077000.0;35067000.0
+2024;vbrzg_u;gas;ru;Achterhoek;res_ontbreekt;;;
+2024;vbrzg_u;gas;ru;Alblasserwaard;res_ontbreekt;;;
+2024;vbrzg_u;gas;ru;Amersfoort;res_ontbreekt;;;
+2024;vbrzg_u;gas;ru;Arnhem/Nijmegen;res_ontbreekt;;;
+2024;vbrzg_u;gas;ru;Drechtsteden;res_ontbreekt;;;
+2024;vbrzg_u;gas;ru;Drenthe;res_ontbreekt;;;
+2024;vbrzg_u;gas;ru;Flevoland;res_ontbreekt;;;
+2024;vbrzg_u;gas;ru;Foodvalley;res_ontbreekt;;;
+2024;vbrzg_u;gas;ru;FruitdeltaRivierenland;res_ontbreekt;;;
+2024;vbrzg_u;gas;ru;Friesland;res_ontbreekt;;;
+2024;vbrzg_u;gas;ru;Goeree-Overflakkee;res_ontbreekt;;;
+2024;vbrzg_u;gas;ru;Groningen;res_ontbreekt;;;
+2024;vbrzg_u;gas;ru;HartvanBrabant;res_ontbreekt;;;
+2024;vbrzg_u;gas;ru;Hoekschewaard;res_ontbreekt;;;
+2024;vbrzg_u;gas;ru;HollandRijnland;res_ontbreekt;;;
+2024;vbrzg_u;gas;ru;MetropoolregioEindhoven;res_ontbreekt;;;
+2024;vbrzg_u;gas;ru;Midden-Holland;res_ontbreekt;;;
+2024;vbrzg_u;gas;ru;nan;res_ontbreekt;;;
+2024;vbrzg_u;gas;ru;Noord-enMidden-Limburg;res_ontbreekt;;;
+2024;vbrzg_u;gas;ru;Noord-HollandNoord;res_ontbreekt;;;
+2024;vbrzg_u;gas;ru;Noord-HollandZuid;res_ontbreekt;;;
+2024;vbrzg_u;gas;ru;Noordoost-Brabant;res_ontbreekt;;;
+2024;vbrzg_u;gas;ru;Noord-Veluwe;res_ontbreekt;;;
+2024;vbrzg_u;gas;ru;Rotterdam/DenHaag;res_ontbreekt;3004000.0;;
+2024;vbrzg_u;gas;ru;Cleantech;res_ontbreekt;;;
+2024;vbrzg_u;gas;ru;Twente;res_ontbreekt;;;
+2024;vbrzg_u;gas;ru;U16;res_ontbreekt;;;
+2024;vbrzg_u;gas;ru;West-Brabant;res_ontbreekt;;;
+2024;vbrzg_u;gas;ru;West-Overijssel;res_ontbreekt;;;
+2024;vbrzg_u;gas;ru;Zeeland;res_ontbreekt;;;
+2024;vbrzg_u;gas;ru;Zuid-Limburg;res_ontbreekt;;;
+2023;<thema:bf>;elec;bf;Fruitdelta Rivierenland;thema_bijschatting;1027091000.0;1033155000.0;6064000.0
+2023;<thema:bf>;elec;bf;Stedendriehoek;thema_bijschatting;1084648000.0;1147866000.0;63218000.0
+2023;<thema:bf>;elec;bf;U16;thema_bijschatting;2458093000.0;2458142000.0;49000.0
+2023;<thema:bf>;elec;bf;Noord-Holland Noord;thema_bijschatting;2147742000.0;3496161000.0;1348419000.0
+2023;<thema:bf>;elec;bf;Noord-Holland Zuid;thema_bijschatting;11219668000.0;11397134000.0;177466000.0
+2023;<thema:bf>;elec;bf;Alblasserwaard;thema_bijschatting;284785000.0;332147000.0;47362000.0
+2023;<thema:bf>;elec;bf;Goeree-Overflakkee;thema_bijschatting;126361000.0;127845000.0;1484000.0
+2023;<thema:bf>;elec;bf;Hoeksche Waard;thema_bijschatting;184240000.0;184241000.0;1000.0
+2023;<thema:bf>;elec;bf;Holland Rijnland;thema_bijschatting;1292471000.0;1298114000.0;5643000.0
+2023;<thema:bf>;elec;bf;Rotterdam/Den Haag;thema_bijschatting;10880209000.0;10899822000.0;19613000.0
+2023;<thema:bf>;elec;bf;Metropoolregio Eindhoven;thema_bijschatting;3859056000.0;3876779000.0;17723000.0
+2023;<thema:bf>;elec;bf;Noordoost-Brabant;thema_bijschatting;2373089000.0;2385009000.0;11920000.0
+2023;<thema:bf>;elec;bf;West-Brabant;thema_bijschatting;3890616999.9999995;3907895000.0;17278000.000000477
+2023;<thema:bf>;elec;bf;Drenthe;thema_bijschatting;1593528999.9999998;1593580000.0;51000.00000023842
+2023;<thema:bf>;elec;bf;Zuid-Limburg;thema_bijschatting;2500003000.0;2569527000.0;69524000.0
+2023;<thema:bf>;elec;bf;Twente;thema_bijschatting;2114799000.0;2118260000.0;3461000.0
+2023;<thema:bf>;elec;bf;West-Overijssel;thema_bijschatting;1776828000.0;2096675000.0;319847000.0
+2023;<thema:bf>;elec;bf;Foodvalley;thema_bijschatting;1078413000.0;1082948000.0;4535000.0
+2024;<thema:bf>;elec;bf;Fruitdelta Rivierenland;thema_bijschatting;1024558000.0;1045256000.0;20698000.0
+2024;<thema:bf>;elec;bf;Stedendriehoek;thema_bijschatting;1108114000.0;1185532000.0;77418000.0
+2024;<thema:bf>;elec;bf;U16;thema_bijschatting;2483773000.0;2483867000.0;94000.0
+2024;<thema:bf>;elec;bf;Noord-Holland Noord;thema_bijschatting;2429083000.0;3919773000.0;1490690000.0
+2024;<thema:bf>;elec;bf;Noord-Holland Zuid;thema_bijschatting;11846600000.0;12044858000.0;198258000.0
+2024;<thema:bf>;elec;bf;Alblasserwaard;thema_bijschatting;292459000.0;303648000.0;11189000.0
+2024;<thema:bf>;elec;bf;Goeree-Overflakkee;thema_bijschatting;129699000.0;131034000.0;1335000.0
+2024;<thema:bf>;elec;bf;Holland Rijnland;thema_bijschatting;1288462000.0;1297031000.0;8569000.0
+2024;<thema:bf>;elec;bf;Rotterdam/Den Haag;thema_bijschatting;11144985000.0;11185628000.0;40643000.0
+2024;<thema:bf>;elec;bf;Metropoolregio Eindhoven;thema_bijschatting;3661747000.0;3682215000.0;20468000.0
+2024;<thema:bf>;elec;bf;Noordoost-Brabant;thema_bijschatting;2313092000.0;2385363000.0;72271000.0
+2024;<thema:bf>;elec;bf;West-Brabant;thema_bijschatting;3693789000.0;3711759000.0;17970000.0
+2024;<thema:bf>;elec;bf;Zuid-Limburg;thema_bijschatting;1633109000.0;1710965000.0;77856000.0
+2024;<thema:bf>;elec;bf;West-Overijssel;thema_bijschatting;1812399000.0;2032814000.0;220415000.0
+2024;<thema:bf>;elec;bf;Achterhoek;thema_bijschatting;946852000.0;957426000.0;10574000.0
+2024;<thema:bf>;elec;bf;Foodvalley;thema_bijschatting;1082902000.0;1086688000.0;3786000.0
+2023;<thema:bf>;gas;bf;Noord-Veluwe;thema_bijschatting;76114000.0;82039000.0;5925000.0
+2023;<thema:bf>;gas;bf;Noord-Holland Noord;thema_bijschatting;490745000.0;492670000.0;1925000.0
+2023;<thema:bf>;gas;bf;Hoeksche Waard;thema_bijschatting;22533000.0;22557000.0;24000.0
+2023;<thema:bf>;gas;bf;Holland Rijnland;thema_bijschatting;170472000.0;171468000.0;996000.0
+2023;<thema:bf>;gas;bf;Midden-Holland;thema_bijschatting;169788000.0;169847000.0;59000.0
+2023;<thema:bf>;gas;bf;Arnhem/Nijmegen;thema_bijschatting;310267000.0;310775000.0;508000.0
+2023;<thema:bf>;gas;bf;Foodvalley;thema_bijschatting;106240000.0;107215000.0;975000.0
+2024;<thema:bf>;gas;bf;Fruitdelta Rivierenland;thema_bijschatting;319277000.0;319845000.0;568000.0
+2024;<thema:bf>;gas;bf;Amersfoort;thema_bijschatting;64272000.0;64347000.0;75000.0
+2024;<thema:bf>;gas;bf;Noord-Holland Noord;thema_bijschatting;503563999.99999994;511306000.0;7742000.00000006
+2024;<thema:bf>;gas;bf;Goeree-Overflakkee;thema_bijschatting;19522000.0;19523000.0;1000.0
+2024;<thema:bf>;gas;bf;Fryslân;thema_bijschatting;317505000.0;317506000.0;1000.0
+2024;<thema:bf>;gas;bf;Hoeksche Waard;thema_bijschatting;21739000.0;21755000.0;16000.0
+2024;<thema:bf>;gas;bf;Holland Rijnland;thema_bijschatting;139456000.0;159810000.0;20354000.0
+2024;<thema:bf>;gas;bf;Midden-Holland;thema_bijschatting;165910000.0;166002000.0;92000.0
+2024;<thema:bf>;gas;bf;Rotterdam/Den Haag;thema_bijschatting;4704475000.0;4726614000.0;22139000.0
+2024;<thema:bf>;gas;bf;Hart van Brabant;thema_bijschatting;211058000.0;212442000.0;1384000.0
+2024;<thema:bf>;gas;bf;Metropoolregio Eindhoven;thema_bijschatting;379174000.0;380111000.0;937000.0
+2024;<thema:bf>;gas;bf;Noordoost-Brabant;thema_bijschatting;265021000.0;265038000.0;17000.0
+2024;<thema:bf>;gas;bf;West-Overijssel;thema_bijschatting;211615000.0;212892000.0;1277000.0
+2024;<thema:bf>;gas;bf;Achterhoek;thema_bijschatting;145522000.0;147020000.0;1498000.0
+2024;<thema:bf>;gas;bf;Arnhem/Nijmegen;thema_bijschatting;285989000.0;289080000.0;3091000.0
+2024;<thema:bf>;gas;bf;Foodvalley;thema_bijschatting;89611000.0;98438000.0;8827000.0
+2023;<thema:bf>;elec;bf;Drechtsteden;thema_bijschatting;682090000.0;870181000.0;188091000.0
+2024;<thema:bf>;elec;bf;Drechtsteden;thema_bijschatting;663291000.0;835136000.0;171845000.0
+2023;<thema:bf>;gas;bf;Drechtsteden;thema_bijschatting;100339000.0;118291000.0;17952000.0
+2024;<thema:bf>;gas;bf;Drechtsteden;thema_bijschatting;97006000.0;109819000.0;12813000.0
