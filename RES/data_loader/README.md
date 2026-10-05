@@ -279,11 +279,11 @@ hardcoded in `_KM_ELEC_VARS` / `_KM_GAS_VARS` na live verificatie op
 geverifieerd door alle 40 verwachte variabelen individueel op te vragen bij
 Klimaatmonitor):
 
-1. **SBI D (Energievoorziening), aardgas** — `vbrzg_d` bestaat niet (404).
-   Energiebedrijven verbruiken zelf kennelijk geen aardgas dat apart wordt
-   bijgehouden; elektriciteit voor SBI D wel (`vbrze_d`, bestaat wél). Geldt
-   voor zowel CBS (naam van `gas_bcdef` sluit SBI D expliciet uit) als
-   Klimaatmonitor.
+1. **SBI D (Energievoorziening), aardgas** — `vbrzg_d` bestaat niet (404);
+   elektriciteit voor SBI D wel (`vbrze_d`). Het gas van SBI D is wél af te
+   leiden als `vbrzg_tot_incl_sbid` − `vbrzg_tot` per gemeente (Drechtsteden
+   2023: ~15,6 mln m³, waarvan 14,7 in Dordrecht). Het is brandstofinzet voor
+   warmte- en elektriciteitsproductie, geen eindvraag, en hoort dus niet in `bf`.
 2. **SBI T (Huishoudens als werkgever)** — geen enkele Klimaatmonitor-variabele
    bestaat hiervoor (elektriciteit, gas, noch vestigingenaantal). Geverifieerd:
    nationaal is het aantal bedrijfsvestigingen in SBI T t.o.v. het totaal
@@ -350,8 +350,34 @@ dragers en diensten-gas op 1,6%, dus het residu hoort aantoonbaar bij industrie.
 > (Energievoorziening): aardgas dat in centrales wordt verstookt. Dat is
 > brandstofinzet voor elektriciteitsproductie, geen industriële eindvraag —
 > meenemen zou `bf` op 75% van al het bedrijfsgas brengen en dubbeltellen met
-> opwek die het model apart modelleert. De regio's zonder excl-SBI-D-cijfer
-> houden alleen de correctie uit stap 1.
+> opwek die het model apart modelleert.
+>
+> **Gas per gemeente (alle regio's).** Elke gemeente met een gepubliceerde
+> `vbrzg_tot` krijgt die waarde als plafond en, waar nodig, als aanvulling:
+>
+> - Ligt een gemeente *boven* haar eigen totaal, dan wordt het deel dat eerdere
+>   stappen bijschatten voor de industriegroep (`bf`) verlaagd, tot hooguit dat
+>   totaal (gemeten waarden blijven staan; andere groepen niet, want hun
+>   RES-lettertotaal is gepubliceerd en moet blijven kloppen). Dit herstelt verdelingen per SBI-letter die in de verkeerde gemeente
+>   belandden, bijv. staalgas van Tata Steel (Velsen) dat naar Haarlem ging
+>   (103 → 30 mln m³).
+> - In regio's **zonder** RES-totaal (2023: 12 van 31, waaronder Drechtsteden)
+>   wordt een gemeente *onder* haar totaal aangevuld tot dat totaal; zo komt bijv.
+>   Chemelot in Sittard-Geleen (+855 mln m³) in de juiste gemeente terecht.
+> - In regio's **met** RES-totaal bepaalt dat totaal hoeveel er bijkomt; het
+>   residu gaat eerst naar gemeenten die nog onder hun eigen totaal zitten (naar
+>   rato van die ruimte), daarna naar gemeenten zonder gepubliceerd totaal.
+>
+> Proefrun 2023: alle 316 gemeenten met een gepubliceerd totaal komen er exact op
+> uit (zonder deze stap lagen er 220 boven, samen +0,9 mld m³). Gemeenten waarvan
+> ook de gemeentewaarde geheim is, blijven ongemoeid; hun waarde incl. SBI D
+> invullen kan niet, want die bevat soms hele centrales (bijv. Eemsdelta).
+>
+> Een gedownloade `Thema's`-export levert voor gas alleen de kolom **excl.**
+> SBI D. Tot 2026-10-02 las de pipeline daar de kolom incl. SBI D; voor
+> Drechtsteden 2023 kwam daardoor ~15,6 mln m³ gas van energiebedrijven
+> (vrijwel geheel Dordrecht) als industriële vraag in het model, verdeeld over
+> alle zeven gemeenten.
 
 Let ook op de eenheid-varianten in de catalogus (`vbrze_tot_gwh`, `_tj`,
 `vbrzg_tot_mm3`, …): dat is hetzelfde cijfer in een andere eenheid. De pipeline

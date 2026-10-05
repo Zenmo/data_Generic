@@ -172,6 +172,32 @@ def _laad_solar() -> pd.DataFrame | None:
     return df
 
 
+def _laad_woningvoorraad() -> pd.DataFrame | None:
+    """
+    Woningen + m² per ETM woningtype × bouwperiode (make_woningvoorraad_etm_csv.py).
+    Alleen de 48 kolommen woningen_<type>_<periode> / m2_<type>_<periode> plus de bron
+    van de typeverdeling worden gemerged. Buurten buiten het BAG-gebied blijven n.a. —
+    bewust GEEN gemeente-fallback: de ETM-opbouw in het model valt dan terug op het
+    oude gemiddelde-verbruik-pad. Returns None als het bestand nog niet bestaat
+    (run: python run_pipeline.py --woningvoorraad).
+    """
+    csv = _find_latest("woningvoorraad_etm_buurten_2*.csv")
+    if csv is None:
+        log.warning(
+            "  Woningvoorraad-ETM CSV niet gevonden in processed/ — woningtype-kolommen worden "
+            "overgeslagen. Run: python run_pipeline.py --woningvoorraad"
+        )
+        return None
+    df = pd.read_csv(csv, sep=OUTPUT_SEPARATOR, dtype=str)
+    keep = ["buurtcode", "typeverdeling_bron"] + [
+        c for c in df.columns if c.startswith(("woningen_", "m2_")) and c.count("_") >= 2
+        and c not in ("woningen_bag_totaal", "m2_bag_totaal")
+    ]
+    df = df[keep].rename(columns={"buurtcode": "codering", "typeverdeling_bron": "woningvoorraad_etm_bron"})
+    log.info("  Woningvoorraad-ETM geladen: %s (%d buurten, %d kolommen)", csv.name, len(df), len(keep) - 2)
+    return df
+
+
 def _laad_energieverbruik_sector() -> pd.DataFrame | None:
     """
     Load sector electricity/gas demand by reading it back out of the already-
@@ -745,6 +771,7 @@ def maak_csv(
     energie_df: pd.DataFrame | None = None,
     bedrijfswagens_df: pd.DataFrame | None = None,
     capaciteitskaart_df: pd.DataFrame | None = None,
+    woningvoorraad_df: pd.DataFrame | None = None,
 ) -> bool:
     """Generate enriched kerncijfers_buurten_met_geometrie_{jaar}.csv. Returns True on success."""
     log.info("  --- Jaar %d ---", jaar)
@@ -840,6 +867,12 @@ def maak_csv(
         merged = merged.merge(capaciteitskaart_df, on="codering", how="left")
         n_matched = merged["voedingsgebied_id"].notna().sum()
         log.info("  Capaciteitskaart toegevoegd: %d buurten gekoppeld aan een voedingsgebied", n_matched)
+
+    # --- Merge woningvoorraad in ETM-indeling (BAG/3DBAG + CBS; alleen gedekte buurten) ---
+    if woningvoorraad_df is not None:
+        merged = merged.merge(woningvoorraad_df, on="codering", how="left")
+        n_matched = merged["woningvoorraad_etm_bron"].notna().sum()
+        log.info("  Woningvoorraad-ETM toegevoegd: %d buurten met data", n_matched)
 
     # --- Data-quality check: ElaadNL EV/PHEV counts vs. the vehicle-category totals ---
     _rapporteer_ev_overschrijdingen(merged, jaar)
@@ -958,6 +991,7 @@ def main(jaren=None) -> bool:
     warmtetransitie_df  = _laad_warmtetransitie()
     solar_df            = _laad_solar()
     energie_df          = _laad_energieverbruik_sector()
+    woningvoorraad_df   = _laad_woningvoorraad()
 
     all_ok = True
     t0 = time.monotonic()
@@ -973,6 +1007,7 @@ def main(jaren=None) -> bool:
                 energie_df=energie_df,
                 bedrijfswagens_df=_laad_bedrijfswagens(jaar),
                 capaciteitskaart_df=_laad_capaciteitskaart(jaar),
+                woningvoorraad_df=woningvoorraad_df,
             )
         except FileNotFoundError as exc:
             log.error("FOUT jaar %d: %s", jaar, exc)

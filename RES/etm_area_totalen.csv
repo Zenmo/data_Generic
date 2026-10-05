@@ -1,0 +1,9 @@
+etm_area;gemeentecode;analysis_year;number_of_inhabitants;present_number_of_residences;present_number_of_buildings;area_per_building_residence_equivalent;typical_useful_demand_for_space_heating_buildings_present;typical_useful_demand_for_space_heating_buildings_future
+GM0482_alblasserdam;GM0482;2023;20356.0;8406.0;1419.0;130.0;230.1646457854323;90.0
+GM0505_dordrecht;GM0505;2023;121434.0;55783.0;14753.0;130.0;255.704284698266;90.0
+GM0523_hardinxveld_giessendam;GM0523;2023;18681.0;7508.0;1962.0;130.0;229.73143099075224;90.0
+GM0531_hendrik_ido_ambacht;GM0531;2023;32183.0;12330.0;1615.0;130.0;219.4708822282254;90.0
+GM0590_papendrecht;GM0590;2023;32277.0;14474.0;2482.0;130.0;217.81437413412095;90.0
+GM0610_sliedrecht;GM0610;2023;26184.0;11078.0;3206.0;130.0;225.12752587658895;90.0
+GM0642_zwijndrecht;GM0642;2023;45018.0;20717.0;3656.0;130.0;234.2620957815469;90.0
+ES18_drechtsteden;ES18_drechtsteden;2023;296133.0;130296.0;29093.0;130.0;241.39909372;90.0

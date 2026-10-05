@@ -414,10 +414,17 @@ _DEKKING_BESTAND = "energieverbruik_sector_res_dekking.csv"
 # Agriculture matches exactly and services are within 1.6%, so the residual
 # demonstrably belongs to industry. Two known causes both sit there:
 #   - vbrzg_d does not exist in Klimaatmonitor at all (energy-sector gas is not
-#     tracked), while the Thema's gas figure is explicitly *incl. SBI D*;
+#     tracked), while the Thema's gas figure used here was *incl. SBI D*;
 #   - vbrze_d / vbrzg_b / vbrzg_f have no RES total for Drechtsteden, so those
 #     municipal values pass through unreconciled.
 # Hence: assign the whole residual to the industry group.
+#
+# Correction (2026-10-02): the first cause is not industry demand at all. SBI D
+# gas can be derived per gemeente as vbrzg_tot_incl_sbid - vbrzg_tot; for
+# Drechtsteden 2023 that is ~15.6 mln m3 (Dordrecht 14.7), i.e. most of the 17.35
+# mln m3 gap above. Gas is therefore now reconciled against the total EXCL. SBI D
+# (Drechtsteden 2023: 94.1 mln m3 over the 6 municipalities that publish it;
+# Papendrecht's is suppressed and it is left as reconciled per letter).
 #
 # Drop any number of Klimaatmonitor "Thema's - <regio>.csv" exports in the RES
 # folder; each is picked up automatically and applies ONLY to the RES region it
@@ -427,9 +434,17 @@ _THEMA_RESTGROEP = "bf"          # SBI B-F, "nijverheid en energie"
 _THEMA_BESTANDSPATROON = "Thema's - *.csv"
 
 # Column headers in the export, per carrier. The year is appended as "|<jaar>".
+#
+# Gas reads the EXCL-SBI-D column, for the same reason the API rung below uses
+# vbrzg_tot (see there). The export also carries an incl-SBI-D column, which is
+# always filled; reading that one silently put energy-company gas into the
+# industry group (Drechtsteden 2023: ~15.6 mln m3, almost all in Dordrecht,
+# spread over all municipalities by company locations). Where the excl column
+# is "?" the export simply contributes no gas total, and the gemeente-based
+# fallback (_gas_excl_sbid_uit_gemeenten) takes over.
 _THEMA_KOLOM = {
     "elec": "Totaal elektriciteitsverbruik bedrijven en instellingen, geleverd via openbaar net",
-    "gas": "Totaal aardgasverbruik bedrijven/instellingen (incl. SBI D)",
+    "gas": "Totaal aardgasverbruik bedrijven/instellingen (excl. SBI D)",
 }
 
 # The same control totals, straight from the ODS — so this works for ALL RES
@@ -449,8 +464,10 @@ _THEMA_KOLOM = {
 # difference is essentially gas burned in power stations. That is fuel input to
 # electricity generation, not industrial end-use demand — folding it into the
 # industry group would make bf 75% of all business gas and double-count against
-# any generation the model handles separately. The 12 regions where vbrzg_tot is
-# not published simply keep RES letter-level reconciliation.
+# any generation the model handles separately. For regions where vbrzg_tot is
+# not published at RES level (Drechtsteden among them), the control total is
+# rebuilt from the municipal vbrzg_tot values that ARE published, and applied to
+# those municipalities only (see _gas_excl_sbid_uit_gemeenten).
 #
 # Note the unit-suffixed twins in the catalogue (vbrze_tot_gwh, _tj,
 # vbrzg_tot_mm3, ...) are the SAME figure in other units. Always use the
@@ -1016,12 +1033,142 @@ def _thema_totalen_via_api(headers: dict, jaren: list[int]) -> pd.DataFrame:
     return df
 
 
+def _gas_excl_sbid_uit_gemeenten(headers: dict, jaren: list[int], indeling: pd.DataFrame,
+                                 al_gedekt: set[tuple[str, int]]) -> pd.DataFrame:
+    """Gas control totals excl. SBI D per municipality.
+
+    vbrzg_tot (excl. SBI D) is suppressed at RES level for some regions, but
+    usually published for most of their municipalities. Each published municipal
+    value becomes its own control total for that one municipality (column
+    `leden`), so a residual lands where the gas is actually used (e.g. Chemelot
+    in Sittard-Geleen) instead of being spread over the region by company
+    locations. A municipality whose own excl value is suppressed keeps its
+    letter-level figure untouched. Substituting its incl value instead is not
+    safe — in e.g. Eemsdelta that would add whole power stations to "industry".
+
+    Rows are made for every region. In regions whose RES-level value is
+    published (`al_gedekt`), that regional total still decides how much is
+    added; the municipal rows there only cap (`alleen_plafond`) and steer where
+    the regional residual goes. Same output shape as _thema_totalen_via_api(),
+    plus `leden` and `alleen_plafond`.
+    """
+    if indeling is None or "res_regio" not in indeling.columns:
+        return pd.DataFrame()
+    regio_van = indeling.dropna(subset=["res_regio"]).set_index("gemeentecode")["res_regio"]
+
+    rijen = []
+    for jaar in jaren:
+        excl = _km_fetch_variable(headers, "vbrzg_tot", jaar, geolevel="gemeente")
+        if excl is None:
+            log.warning("  Gas excl. SBI D (%d): gemeentewaarden niet op te halen — "
+                        "geen aanvulling.", jaar)
+            continue
+        excl_g = excl.dropna(subset=["gemeentecode", "waarde"]).set_index("gemeentecode")["waarde"]
+
+        for regio, leden in regio_van.groupby(regio_van):
+            sleutel = _gebiedssleutel(regio)
+            alleen_plafond = (sleutel, jaar) in al_gedekt
+            e = excl_g.reindex(list(leden.index))
+            gepubliceerd = list(e.dropna().index)
+            if not gepubliceerd:
+                continue
+            geheim = list(e[e.isna()].index)
+            if geheim and not alleen_plafond:
+                log.info("  Gas excl. SBI D %d %s: controletotaal over %d van %d gemeenten; "
+                         "%s ongemoeid (excl. SBI D geheim).",
+                         jaar, regio, len(gepubliceerd), len(e), ", ".join(geheim))
+            for gm in gepubliceerd:
+                rijen.append({
+                    "regio_sleutel": sleutel,
+                    "regio": f"{regio} / {gm}",
+                    "jaar": jaar,
+                    "carrier": "gas",
+                    "totaal": float(e[gm]),
+                    "bestand": "ODS:vbrzg_tot (per gemeente)",
+                    "leden": [gm],
+                    "alleen_plafond": alleen_plafond,
+                })
+    return pd.DataFrame(rijen)
+
+
+def _plafond_bijschatting(merged: pd.DataFrame, masker: pd.Series, carrier: str, jaar: int,
+                          overschot: float, leden: list[str],
+                          eerdere_bijschatting: list[pd.DataFrame] | None) -> pd.DataFrame | None:
+    """Lower what earlier rungs imputed to these municipalities by up to `overschot`.
+
+    Only imputed amounts are touched, never a published figure, so the result
+    can stay above the control total when the published letters alone already
+    exceed it. Only the industry group (_THEMA_RESTGROEP) is lowered: that is
+    where large single sites (Tata Steel, Chemelot) get spread over the wrong
+    municipalities. Other groups are left alone, because their RES letter totals
+    are published and lowering one municipality would break that regional total
+    (e.g. agriculture gas in Drechtsteden, 1.64 mln m3). Returns a bookkeeping
+    frame with negative `bijgeschat` (so provenance nets out), or None if
+    nothing was imputed here.
+    """
+    if not eerdere_bijschatting:
+        return None
+    alles = pd.concat([f for f in eerdere_bijschatting if "groep" in f.columns], ignore_index=True)
+    if alles.empty:
+        return None
+    eigen = alles[alles["carrier"].eq(carrier) & alles["jaar"].eq(jaar)
+                  & alles["gemeentecode"].isin(leden) & alles["groep"].eq(_THEMA_RESTGROEP)]
+    per_groep = eigen.groupby(["gemeentecode", "groep"])["bijgeschat"].sum()
+    per_groep = per_groep[per_groep > 0]
+    beschikbaar = float(per_groep.sum())
+    if beschikbaar <= 0:
+        return None
+
+    verlaging = min(overschot, beschikbaar)
+    aandeel = per_groep / beschikbaar
+    rijen = []
+    for (gm, groep), a in aandeel.items():
+        delta = verlaging * float(a)
+        doel = masker & merged["gemeentecode"].eq(gm) & merged["groep"].eq(groep)
+        if not doel.any():
+            continue
+        merged.loc[doel, carrier] = (
+            pd.to_numeric(merged.loc[doel, carrier], errors="coerce").fillna(0.0) - delta
+        ).clip(lower=0.0)
+        rijen.append({"gemeentecode": gm, "bijgeschat": -delta, "jaar": jaar,
+                      "carrier": carrier, "groep": groep})
+    return pd.DataFrame(rijen) if rijen else None
+
+
+def _verdeel_naar_ruimte(merged: pd.DataFrame, masker: pd.Series, carrier: str, jaar: int,
+                         residual: float, leden: pd.Index, gemeente_totaal: dict,
+                         gewichtsaandeel: pd.Series) -> pd.Series:
+    """Hand a regional residual first to municipalities that are below their own
+    published total, in proportion to that room and never beyond it. What is left
+    goes to municipalities without a published total (by company locations), and
+    only if there are none to all members. Returns gemeentecode -> amount."""
+    huidig = (merged.loc[masker].groupby("gemeentecode")[carrier]
+              .apply(lambda x: pd.to_numeric(x, errors="coerce").sum()))
+    bekend = pd.Series({gm: gemeente_totaal[(gm, jaar)] for gm in leden
+                        if (gm, jaar) in gemeente_totaal})
+    ruimte = (bekend - huidig.reindex(bekend.index).fillna(0.0)).clip(lower=0.0)
+    verdeling = pd.Series(0.0, index=leden)
+
+    if ruimte.sum() > 0:
+        naar_ruimte = min(residual, float(ruimte.sum()))
+        verdeling.loc[ruimte.index] += ruimte / ruimte.sum() * naar_ruimte
+        residual -= naar_ruimte
+    if residual > 0:
+        onbekend = leden.difference(bekend.index)
+        doelen = onbekend if len(onbekend) else leden
+        w = gewichtsaandeel.reindex(doelen).fillna(0.0)
+        w = w / w.sum() if w.sum() > 0 else pd.Series(1.0 / len(doelen), index=doelen)
+        verdeling.loc[doelen] += w * residual
+    return verdeling
+
+
 def _reconcilieer_met_thema(
     merged: pd.DataFrame,
     indeling: pd.DataFrame | None,
     gewichten_per_jaar: dict[int, pd.DataFrame | None],
     headers: dict | None = None,
     jaren: list[int] | None = None,
+    eerdere_bijschatting: list[pd.DataFrame] | None = None,
 ) -> tuple[pd.DataFrame, list[pd.DataFrame], list[dict]]:
     """Final rung: scale a region's group totals up to its Thema's control total.
 
@@ -1031,7 +1178,13 @@ def _reconcilieer_met_thema(
     municipalities by their company locations for that group — see the module
     constant block for the evidence that industry is where it belongs.
 
-    Never reduces a figure, and never touches a region without an export.
+    Never reduces a published figure. For gas, every municipality with a
+    published total excl. SBI D is also capped: when it ends up ABOVE that total,
+    the part that earlier rungs imputed to it is lowered, down to that total at
+    most (_plafond_bijschatting). That undoes letter-level fair shares that
+    landed in the wrong municipality, e.g. Tata Steel gas spread from Velsen to
+    Haarlem. A regional gas residual then goes first to municipalities that are
+    still below their own total (_verdeel_naar_ruimte).
     """
     if not RECONCILIEER_MET_THEMA or indeling is None or merged.empty:
         return merged, [], []
@@ -1044,14 +1197,34 @@ def _reconcilieer_met_thema(
         api = _thema_totalen_via_api(headers, jaren)
         if not api.empty:
             bronnen.append(api)
+        # Gas regions without a RES-level excl-SBI-D value: rebuild it from municipalities.
+        gedekt = set()
+        if not api.empty:
+            gas_api = api[api["carrier"] == "gas"]
+            gedekt = set(zip(gas_api["regio_sleutel"], gas_api["jaar"].astype(int)))
+        aanvulling = _gas_excl_sbid_uit_gemeenten(headers, jaren, indeling, gedekt)
+        if not aanvulling.empty:
+            log.info("  Gas excl. SBI D uit gemeenten: %d regio-jaar waarden", len(aanvulling))
+            bronnen.append(aanvulling)
     export = _laad_thema_totalen()
     if not export.empty:
         bronnen.append(export)
     if not bronnen:
         return merged, [], []
 
-    thema = pd.concat(bronnen, ignore_index=True).drop_duplicates(
-        subset=["regio_sleutel", "jaar", "carrier"], keep="last")
+    thema = pd.concat(bronnen, ignore_index=True)
+    # Per-gemeente gas totals share their region key; keep them all, de-duplicate the rest.
+    per_gemeente = thema["leden"].apply(lambda v: isinstance(v, list)) if "leden" in thema else pd.Series(False, index=thema.index)
+    # Municipal rows first: their caps must be applied before a regional residual
+    # is measured and handed out.
+    thema = pd.concat([
+        thema[per_gemeente],
+        thema[~per_gemeente].drop_duplicates(subset=["regio_sleutel", "jaar", "carrier"], keep="last"),
+    ], ignore_index=True)
+    gemeente_totaal = {
+        (r["leden"][0], int(r["jaar"])): float(r["totaal"])
+        for _, r in thema[thema["leden"].apply(lambda v: isinstance(v, list))].iterrows()
+    } if "leden" in thema else {}
 
     merged = merged.copy()
     bijschat_frames: list[pd.DataFrame] = []
@@ -1063,7 +1236,13 @@ def _reconcilieer_met_thema(
         if carrier not in merged.columns:
             continue
 
-        leden = regio_van_gemeente[regio_van_gemeente == rij["regio_sleutel"]].index
+        # A total built from part of a region's municipalities (gas excl. SBI D)
+        # applies only to those municipalities.
+        eigen_leden = rij.get("leden")
+        if isinstance(eigen_leden, list):
+            leden = pd.Index(eigen_leden)
+        else:
+            leden = regio_van_gemeente[regio_van_gemeente == rij["regio_sleutel"]].index
         masker = merged["jaar"].eq(jaar) & merged["gemeentecode"].isin(leden)
         if not masker.any():
             log.warning("  Thema's %s %d: geen gemeenten gevonden voor regio '%s' — "
@@ -1073,6 +1252,25 @@ def _reconcilieer_met_thema(
         huidig = pd.to_numeric(merged.loc[masker, carrier], errors="coerce").sum(min_count=1)
         residual = doel - (huidig if pd.notna(huidig) else 0.0)
         aandeel = 100 * residual / doel if doel else float("nan")
+
+        if pd.notna(residual) and residual < 0 and isinstance(rij.get("leden"), list):
+            verlaagd = _plafond_bijschatting(merged, masker, carrier, jaar, -residual,
+                                             list(leden), eerdere_bijschatting)
+            if verlaagd is not None:
+                bijschat_frames.append(verlaagd)
+                dekking_rijen.append({
+                    "jaar": jaar, "var_code": "<plafond gemeentetotaal>", "carrier": carrier,
+                    "groep": "", "res_regio": rij["regio"], "status": "bijschatting_verlaagd",
+                    "waarde_gemeenten": huidig, "waarde_res": doel,
+                    "ontbrekend_bedrag": float(verlaagd["bijgeschat"].sum()),
+                })
+                log.info("  Thema's %s %d %s: model (%.4g) boven gemeentetotaal (%.4g) — "
+                         "bijschatting met %.4g verlaagd.", carrier, jaar, rij["regio"],
+                         huidig, doel, -float(verlaagd["bijgeschat"].sum()))
+            continue
+
+        if isinstance(rij.get("leden"), list) and rij.get("alleen_plafond") == True:  # noqa: E712 (may be numpy bool or NaN)
+            continue  # regional total decides the top-up here (see below)
 
         if not pd.notna(residual) or residual <= 0:
             log.info("  Thema's %s %d %s: model (%.4g) is al >= controletotaal (%.4g) — "
@@ -1098,7 +1296,11 @@ def _reconcilieer_met_thema(
                         carrier, jaar, rij["regio"], _THEMA_RESTGROEP)
             continue
 
-        toegekend = merged.loc[doelrijen, "gemeentecode"].map(deel).fillna(0.0) * residual
+        verdeling = deel * residual
+        if carrier == "gas" and not isinstance(rij.get("leden"), list) and gemeente_totaal:
+            verdeling = _verdeel_naar_ruimte(merged, masker, carrier, jaar, residual, leden,
+                                             gemeente_totaal, deel)
+        toegekend = merged.loc[doelrijen, "gemeentecode"].map(verdeling).fillna(0.0)
         merged.loc[doelrijen, carrier] = (
             pd.to_numeric(merged.loc[doelrijen, carrier], errors="coerce").fillna(0.0)
             + toegekend.to_numpy()
@@ -1393,6 +1595,7 @@ def _km_download(jaren: list[int]) -> tuple[pd.DataFrame, pd.DataFrame] | None:
                         bij = bijschatting.rename("bijgeschat").reset_index()
                         bij["jaar"] = jaar
                         bij["carrier"] = carrier
+                        bij["groep"] = groep
                         bijschat_frames.append(bij)
 
     if not frames:
@@ -1413,7 +1616,8 @@ def _km_download(jaren: list[int]) -> tuple[pd.DataFrame, pd.DataFrame] | None:
     # Final rung, on the 8-group aggregate: scale up to the RVO-corrected
     # Thema's regional totals where an export is available.
     merged, thema_bij, thema_dekking = _reconcilieer_met_thema(
-        merged, indeling, gewichten_per_jaar, headers=headers, jaren=jaren)
+        merged, indeling, gewichten_per_jaar, headers=headers, jaren=jaren,
+        eerdere_bijschatting=bijschat_frames)
     bijschat_frames.extend(thema_bij)
     dekking_rijen.extend(thema_dekking)
     if thema_bij:
