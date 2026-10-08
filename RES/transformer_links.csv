@@ -1,0 +1,638 @@
+child_transformer_id;parent_transformer_id
+GO;Station Goor 110 kV
+ODZ;Station Oldenzaal 110 kV
+AMLM;Station Almelo Mosterdpot 110 kV
+AMLU;Station Almelo Urenco 110 kV
+OL;Station Olst 110 kV
+ZLF;Station Zwolle Frankhuis 110 kV
+MSBT;Station Maasbracht 150 kV
+RT;Station Raalte 110 kV
+DDV;Station Dedemsvaart 110 kV
+WW;Station Waalwijk 150 kV
+MLBK;Station Maalbroek 150 kV
+SW;Station Steenwijk 110 kV
+ESDV;Station Enschede Vechtstraat 110 kV
+RS;Station Rijssen 110 kV
+RMND;Station Roermond 150 kV
+EMW;Station Emmen Weerdingen 110 kV
+TRBK;Station Treebeek 150 kV
+RSD;Station Roosendaal 150 kV
+BD;Station Breda 150 kV
+GT;Station Geertruidenberg 150 kV
+DVTP;Station Deventer Platvoet 110 kV
+LUTT;Station Lutterade 150 kV
+ZLW;Station Zwolle Weteringkade 110 kV
+GLTK;Station Gasselte Kraanlanden 110 kV
+MZ;Station Maarheeze 150 kV
+WS;Station Winschoten 110 kV
+UD;Station Uden 150 kV
+KWD;Station Kropswolde 110 kV
+BT;Station Best 150 kV
+TBG;Station Tubbergen 110 kV
+WSMR;Station Winsum Ranum 110 kV
+HPT;Station Hapert 150 kV
+BGMR;Station Bargermeer 110 kV
+HTN;Station s Hertogenbosch Noord 150 kV
+KELP;Station Kelpen 150 kV
+ZYV;Station Zeyerveen 110 kV
+OS;Station Oss 150 kV
+HEER;Station Limmel 150 kV
+BOSP;Station Limmel 150 kV
+TBN;Station Tilburg Noord 150 kV
+EHVW;Station Eindhoven West 150 kV
+BUGG;Station Buggenum 150 kV
+OTD;Station Oosteind 150 kV
+GNBS;Station Groningen Bloemsingel 110 kV
+HGLW;Station Hengelo Weideweg 110 kV
+HGV;Station Hoogeveen 110 kV
+NEDW;Station Nederweert 150 kV
+MSKZ;Station Musselkanaal Zandberg 110 kV
+EHVO;Station Eindhoven Oost 150 kV
+SBRN;Station Schoonbron 150 kV
+BOZ;Station Bergen op Zoom 150 kV
+NVD;Station Nijverdal 110 kV
+ESDH;Station Enschede Heekstraat 110 kV
+KZVZ;Station Klazienaveen Zwet 110kV
+LIMM;Station Limmel 150 kV
+HTW;Station s Hertogenbosch West 150 kV
+MP;Station Meppel 110 kV
+HMZ;Station Helmond Zuid 150 kV
+PCH;Station Princenhage 150 kV
+HELD;Station Helden 150 kV
+ERD;Station Eerde 150 kV
+VLH;Station Vollenhove 110 kV
+BLER;Station Blerick 150 kV
+ARI;Station Aarle Rixtel 150 kV
+HRST;Station Horst 150 kV
+TBZ;Station Tilburg Zuid 150 kV
+VENR;Station Venray 150 kV
+ETN;Station Etten 150 kV
+ISM;Station IJsselmuiden 110kV
+VVL10;Station Vierverlaten 110 kV
+WDT;Station Woensdrecht 150 kV
+HPS;Station Haps 150 kV
+EHVZ;Station Eindhoven Zuid 150 kV
+MAK;Station Marsdijk 110 kV
+BEEK;Station Beek 150 kV
+GNHU;Station Groningen Hunze 110 kV
+GNHK;Station Groningen v. Heemskerkstraat 110
+BXT;Station Boxtel 150 kV
+KP;Station Kampen 110 kV
+WRTH;Station Weertheide 150 kV
+WEW;Station Weiwerd 220
+ESDW;Station Enschede Wesselerbrink 110 kV
+GENN;Station Gennep 150 kV
+ZLH;Station Zwolle Hessenweg 110 kV
+WVV;Station Limmel 150 kV
+TBC;Station Tilburg Noord 150 kV
+VO;Station Veenoord 110 kV
+BBS;Station Biesbosch 150 kV
+HUSK;Station Huskensweg 150 kV
+EHVN;Station Eindhoven Noord 150 kV
+BORN;Station Born 150 kV
+HGLB;Station Hengelo Boldershoek 110 kV
+CVD;Station Coevorden 110 kV
+MDK;Station Moerdijk 150 kV
+VDM;Station Veendam 110 kV
+HBG;Station Haaksbergen 110 kV
+DVTB;Station Deventer Bergweide 110 kV
+VH;Station Vroomshoop 110 kV
+BELF;Station Belfeld 150 kV
+TERW;Station Terwinselen 150 kV
+GNBH;Station Groningen Bornholmstraat 110 kV
+CALF;Station Californië 150 kV
+HMO;Station Helmond Oost 150 kV
+BL;Station Beilen 110 kV
+LS;Station Losser 110 kV
+ZS;Station Zwartsluis 110 kV
+ESDM;Station Enschede Marssteden 110 kV
+TBW;Station Tilburg West 150 kV
+MEE;Station Meeden 220
+CU;Station Cuyk 150 kV
+HDB;Station Hardenberg 110 kV
+BOEK;Station Boekend 150 kV
+MRUM;Station Merum 150 kV
+DTO;Station Dinteloord 150kV
+SKN;Station Stadskanaal 110 kV
+OMD;Station Ommen Dante 110 kV
+EHAVO;Station Eemshaven Oost 220
+EHAVM;Station Eemshaven Midden 110 kV
+OS HEERHUGOWAARD 50-1i;Station Oterleek 150
+OS LEIDEN ZUID WEST 10-1i;Station Leiden 150 kV
+OS ZUTPHEN 10-2i;Station Zutphen 150
+OS LEEUWARDEN 10-4i;Station Leeuwarden 110
+OS UITHOORN 50-1i;Station Amstelveen 150
+OS ZAANDIJK 50-1i;Station Wijdewormer 150
+OS PRESIKHAAF 10-2i;Station Kattenberg 150
+OS TEERSDIJK 10-1i;Station Teersdijk 150
+OS ALMERE 10-1i;Station Almere 150 (CBL)
+OS WAARDERPOLDER 10-2i;Station Waarderpolder 150
+OS AALSMEER BLOEMENVEILING 10-2i;Station Amstelveen 150
+OS NUNSPEET 10-2i;Station Harderwijk 150 (CBL)
+OS ZUILICHEM 20-1i;Station Zuilichem 150 kV
+OS LEEUWARDEN 10-1i;Station Leeuwarden 110
+OS ZAANDAM NOORD 50-1i;Station Amsterdam Hemweg 150
+OS ZORGVLIED 20-4i;Station Zorgvlied 150
+OS SASSENHEIM 10-2i;Station Sassenheim 150 kV
+OS NIEUWE MEER 10-1i;Station Nieuwe Meer 150
+OS EERBEEK 10-1i + 10-2i;Station Eerbeek 150
+OS AMSTELVEEN BOLWERK 50-1i;Station Amstelveen 150
+OS DUKENBURG 10-1i;Station Nijmegen 150
+OS NIJKERK 10-2i;Station Harderwijk 150 (CBL)
+OS VENSERWEG 10-11i;Station Venserweg 150
+OS SCHALKWIJK 10-1i;Station Vijfhuizen 150
+OS ELST 10-1i;Station Elst 150
+OS DE VAART 10-1i;Station Almere De Vaart 150 (CBL)
+OS APELDOORN 10-1i;Station Apeldoorn 150
+OS BORCULO 10-1i;Station Borculo 150
+OS NOORD PAPAVERWEG 10-1i;Station Amsterdam Noord Papaverweg 150
+OS WOUDHUIS 10-1i;Station Woudhuis 150
+OS HOOGTE KADIJK 10-1i;Station Amsterdam Hoogte Kadijk 150
+OS SCHENKENSCHANS 10-2i;Station Schenkenschans 110kV
+OS ELST 10-2i;Station Elst 150
+OS BASISWEG 10-1i;Station Amsterdam Hemweg 150
+OS ZAANDAM WEST 10-1i;Station Amsterdam Hemweg 150
+OS WESTZAANSTRAAT 10-1i;Station Amsterdam Hemweg 150
+OS TIEL 10-2i;Station Tiel 150
+OS HUIZEN 10-1i;Station 's Graveland 150
+OS OUDORP 10-1i;Station Oterleek 150
+OS VENSERWEG 10-12i;Station Venserweg 150
+OS PAMPUS 10-1i;Station Pampus 150 (CBL)
+OS SCHIPLUIDENLAAN 10-1i;Station Amsterdam Hemweg 150
+OS Heiloo 10-1i + 10-2i;Station Oterleek 150
+OS HEERENVEEN 10-1i;Station Heerenveen 110
+OS WESTHAVEN 10-1i;Station Amsterdam Hemweg 150
+OS MARNIXSTRAAT 10-1i;Station Amsterdam Hemweg 150
+OS FREDERIKSPLEIN 10-1i;Station Amsterdam Hoogte Kadijk 150
+OS MARNEZIJL 10-2i;Station Marnezijl 110
+OS SNEEK 10-1i;Station Sneek 110
+OS BIJLMER ZUID 10-1i;Station Bijlmer Zuid 150
+OS HATTEM 10-1i;Station Hattem 150 (CBL)
+OS DRONTEN 10-1i;Station Dronten 150 (CBL)
+OS NOORDWIJK 10-1i;Station Sassenheim 150 kV
+OS NAARDEN 50-1i;Station 's Graveland 150
+OS DRUTEN 10-1i;Station Druten 150
+OS VAASSEN 10-1i;Station Vaassen 150
+OS ALPHEN CENTRUM 10-2i;Station Alphen a/d Rijn 150 kV
+OS RHIJNSPOOR 10-1i;Station Amsterdam Hoogte Kadijk 150
+OS VLIEGENBOS 10-1i;Station Amsterdam Noord Papaverweg 150
+OS TEERSDIJK 10-2i;Station Teersdijk 150
+OS APELDOORN 10-2i;Station Apeldoorn 150
+OS DE VAART 10-3i;Station Almere De Vaart 150 (CBL)
+OS BEVERWIJK 50-1i;Station Velsen 150
+OS VELSEN 10-1i;Station Velsen 150
+OS LEIDEN NOORD 10-1i;Station Leiden 150 kV
+OS SCHIPHOL OOST 50-1i;Station Amstelveen 150
+OS WAGENINGEN 10-1i;Station Dodewaard 150
+OS HERBAYUM 10-1i;Station Herbayum 110
+OS EDAM 10-2i;Station Wijdewormer 150
+OS EIBERGEN 10-3i;Station Eibergen 110 kV
+OS NIEUW VENNEP 10-1i;Station Haarlemmermeer 150
+OS SCHAGEN 10-1i;Station Oterleek 150
+Emmeloord inst. 2+3;Station Emmeloord Zuidervaart 110 kV
+OS ZUIDERVELD 10-1i;Station Zuiderveld 150 (CBL)
+OS HOORN GELDELOZEWEG 50-1i;Station Westwoud 150
+OS LEMMER 20-4i;Station Lemmer 110
+OS DODEWAARD 10-1i;Station Dodewaard 150
+OS PRESIKHAAF 10-1i;Station Kattenberg 150
+OS NUNSPEET 10-1i;Station Harderwijk 150 (CBL)
+OS ZUTPHEN 10-1i;Station Zutphen 150
+OS MARNEZIJL 20-3i;Station Marnezijl 110
+OS BERGUM CENTRALE 10-1i;Station Bergum 110
+OS DOETINCHEM 10-5i;Station Doetinchem 150
+OS DOETINCHEM 20-6i;Station Doetinchem 150
+OS EMMELOORD 10-1i;Station Emmeloord Zuidervaart 110 kV
+OS HERBAYUM 20KV 20-1i;Station Herbayum 110
+OS IJMUIDEN 50-1i;Station Velsen 150
+OS OUDEHASKE 20-4i;Station Oudehaske 110
+OS WEESP 10-1i;Station Amstelveen 150
+OS PLATVOET 10-1i;Station Deventer Platvoet 110 kV
+Medemblik Transformator 1;Station Westwoud 150
+OS ALKMAAR 10-1i;Station Oterleek 150
+OS WORMERVEER 50-1i;Station Wijdewormer 150
+OS WARMENHUIZEN 10-1i;Station Oterleek 150
+OS HOORN HOLENWEG 10-2i;Station Westwoud 150
+OS DEN HELDER VOGELWIJK 10-1i;Station Anna Paulowna 150
+OS ZOETERWOUDE 10-2i;Station Alphen a/d Rijn 150 kV
+OS NIEUWKOOP 10-1i;Station Alphen a/d Rijn 150 kV
+OS AALSMEER BLOEMENVEILING 10-1i;Station Amstelveen 150
+OS OTERLEEK 10-2i;Station Oterleek 150
+OS ALPHEN CENTRUM 10-1i;Station Alphen a/d Rijn 150 kV
+OS LEIDERDORP 10-1i;Station Leiden 150 kV
+OS WAARDERPOLDER 10-1i;Station Waarderpolder 150
+OS ULKESLUIS 10-1i;Station Anna Paulowna 150
+OS DRACHTEN 10-1i;Station Drachten 110
+OS MEDEMBLIK 10-2i;Station Westwoud 150
+OS HARDERWIJK 10-2i;Station Harderwijk 150 (CBL)
+OS TIEL 10-1i;Station Tiel 150
+OS WINSELINGSEWEG 10-2i;Station Nijmegen 150
+OS BERGUM CENTRALE 10-2i;Station Bergum 110
+OS ARNHEM 10-1i;Station Arnhem 150
+OS KATWIJK 10-3i;Station Sassenheim 150 kV
+OS OVERVEEN 10-1i;Station Vijfhuizen 150
+OS KARPERWEG 10-4i;Station Nieuwe Meer 150
+OS WESTWOUD 10-4i;Station Westwoud 150
+OS CULEMBORG 10-1i;Station Tiel 150
+OS WINSELINGSEWEG 10-3i;Station Nijmegen 150
+OS DOETINCHEM 20-7i;Station Doetinchem 150
+OS KROMMENIE 50-1i;Station Wijdewormer 150
+OS HAARLEMMERMEER 20-2i;Station Haarlemmermeer 150
+OS HARDERWIJK 10-1i;Station Harderwijk 150 (CBL)
+OS ZALTBOMMEL 10-1i;Station Zaltbommel 150
+RS HOOGWOUD 10-5i;Station De Weel 150
+OS GORREDIJK 10-1i;Station Gorredijk 110
+OS ENKHUIZEN 10-1i;Station Westwoud 150
+OS RIJKSUNIVERSITEIT LEIDEN 10-1i;Station Leiden 150 kV
+OS ZUIDBROEK 20-1i;Station Zuidbroek 150
+OS ZALTBOMMEL 20-5i;Station Zaltbommel 150
+OS SINT ANNAMOLEN 10-1i;Station Nijmegen 150
+OS OOSTERBEEK 10-1i;Station Kattenberg 150
+OS RIJNSBURG 10-1i;Station Leiden 150 kV
+Amstelveen;Station Amstelveen 150
+OS BIJLMER NOORD 20-4i;Station Bijlmer Noord 150
+OS UILENBURG 50-1i;Station Amsterdam Noord Papaverweg 150
+OS ZEVENAAR 10-1i;Station Zevenaar 150
+OS ZEEWOLDE 20KV 20-7i;Station Zeewolde 150 (CBL)
+OS PURMEREND SCHAEPMANSTRAAT 50-1i;Station Wijdewormer 150
+OS KARPERWEG 10-3i;Station Nieuwe Meer 150
+OS WOUDHUIS 10-2i;Station Woudhuis 150
+OS LOCHEM 10-1i;Station Lochem 150
+OS OVERVEEN 10-2i;Station Vijfhuizen 150
+OS RAUWERD 10-1i;Station Rauwerd 110
+OS ANNA PAULOWNA 10-2i;Station Anna Paulowna 150
+OS WATERGRAAFSMEER 10-2i;Station Watergraafsmeer 150
+OS 'S-GRAVELAND 50-2i;Station 's Graveland 150
+OS ZALTBOMMEL 10-2i;Station Zaltbommel 150
+OS ALPHEN WEST 10-1i;Station Alphen a/d Rijn 150 kV
+OS LISSE 10-2i;Station Sassenheim 150 kV
+OS HOOFDDORP 10-1i;Station Haarlemmermeer 150
+OS DRACHTEN 10-2i;Station Drachten 110
+OS ULFT 10-1i;Station Ulft 150
+OS WOLVEGA 10-2i;Station Wolvega 110
+OS LISSE 10-1i;Station Sassenheim 150 kV
+OS BASISWEG 10-2i;Station Amsterdam Hemweg 150
+OS RENKUM 10-1i;Station Renkum 150
+OS MARNIXSTRAAT 10-2i;Station Amsterdam Hemweg 150
+OS KATWIJK 10-2i;Station Sassenheim 150 kV
+OS IJPOLDER 10-4i;Station Amsterdam Hemweg 150
+OS SCHENKENSCHANS 10-9i;Station Schenkenschans 110kV
+OS HAARLEMMERMEER 10-1i;Station Haarlemmermeer 150
+OS ZEVENAAR 10-3i;Station Zevenaar 150
+OS SLOTERMEER 10-1i;Station Amsterdam Hemweg 150
+OS HILLEGOM 10-1i;Station Sassenheim 150 kV
+OS ULFT 20-3i;Station Ulft 150
+OS DE WEEL 20-1i;Station De Weel 150
+OS OUDEHASKE 10-2i;Station Oudehaske 110
+OS OOSTERHOUT 20-2i;Station Oosterhout 150 kV
+OS DOETINCHEM 10-3i;Station Doetinchem 150
+VLH DE VOORST 61 10-1i;Station Vollenhove 110 kV
+OS TEXEL 10-1i;Station Anna Paulowna 150
+Bijlmer Noord 10kV totaal;Station Bijlmer Noord 150
+OS ROZENBURG 10-1i;Station Haarlemmermeer 150
+OS WINSELINGSEWEG 10-1i;Station Nijmegen 150
+OS PURMEREND KWADIJKERKOOGWEG 50-1i;Station Wijdewormer 150
+OS KATTENBERG (D 219) 10-1i;Station Kattenberg 150
+OS ZEEWOLDE 20KV 20-8i;Station Zeewolde 150 (CBL)
+OS ZEEWOLDE 10-1i;Station Zeewolde 150 (CBL)
+OS TIEL 20-4i;Station Tiel 150
+RS HOOGWOUD 10-4i;Station De Weel 150
+OS WINTERSWIJK 10-1i;Station Winterswijk 150
+OS ZEVENHUIZEN 10-1i;Station Alphen a/d Rijn 150 kV
+OS DOKKUM 20kV 20-1i;Station Dokkum 110
+OS ENKHUIZEN 10-2i;Station Westwoud 150
+OS DODEWAARD 10-3i;Station Dodewaard 150
+OS HARSELAAR 10-1i;Station Harselaar 150 (CBL)
+OS OOSTERWOLDE 10-1i;Station Oosterwolde 110
+OS WASSENAAR 10-1i;Station Leiden 150 kV
+OS SCHAGEN 10-4i;Station Oterleek 150
+OS EMMELOORD 20-5i;Station Emmeloord Zuidervaart 110 kV
+OS SCHAGEN 10-2i;Station Oterleek 150
+OS OUDORP 10-2i;Station Oterleek 150
+OS EDE 10-2i;Station Ede 150
+OS BERGUM KOUMARWEI 20-1i;Station Bergum 110
+OS LUTTELGEEST 20-1i;Station Luttelgeest Kalenbergerweg 110kV
+OS HERBAYUM 20KV 20-2i;Station Herbayum 110
+OS SASSENHEIM 10-1i;Station Sassenheim 150 kV
+OS RIJKSUNIVERSITEIT LEIDEN 10-2i;Station Leiden 150 kV
+OS NIJKERK 10-1i;Station Harderwijk 150 (CBL)
+OS UITGEEST 50-1i;Station Velsen 150
+OS MEDEMBLIK 10-1i;Station Westwoud 150
+OS WEESP 10-2i;Station Amstelveen 150
+Lemmer 10kV;Station Lemmer 110
+OS HARSELAAR 20-3i;Station Harselaar 150 (CBL)
+OS OTERLEEK 10-4i;Station Oterleek 150
+OS HILVERSUM RAAFSTRAAT 10-1i;Station 's Graveland 150
+OS OOSTERWOLDE 10-2i;Station Oosterwolde 110
+OS SEXTANTWEG 10-1i;Station Amsterdam Hemweg 150
+OS CRAILO 10-1i;Station 's Graveland 150
+OS OOSTERHOUT 20-1i;Station Oosterhout 150 kV
+OS SCHENKENSCHANS 10-1i;Station Schenkenschans 110kV
+OS EDE 10-1i;Station Ede 150
+OS CULEMBORG 10-9i;Station Tiel 150
+OS ZEVENHUIZEN 10-2i;Station Alphen a/d Rijn 150 kV
+OS WESTHAVEN 10-2i;Station Amsterdam Hemweg 150
+OS OUDEHASKE 10-1i;Station Oudehaske 110
+OS WERVERSHOOF 10-1i;Station Westwoud 150
+OS IJBURG 20-2i;Station Diemen 150
+OS EDAM 10-1i;Station Wijdewormer 150
+OS OUDEHASKE 20-5i;Station Oudehaske 110
+OS LEIMUIDEN 10-2i;Station Leiden 150 kV
+OS MIDDENMEER 20-2i;Station Middenmeer 150
+OS HERBAYUM 10-2i;Station Herbayum 110
+OS VIJFHUIZEN 10-2i;Station Vijfhuizen 150
+OS HOORN HOLENWEG 10-1i;Station Westwoud 150
+OS ZUTPHEN 20-3i;Station Zutphen 150
+OS DOKKUM 10-1i;Station Dokkum 110
+OS LELYSTAD 10-1i;Station Lelystad 150 (CBL)
+OS HOOGTE KADIJK 10-2i;Station Amsterdam Hoogte Kadijk 150
+OS ZORGVLIED 20-3i;Station Zorgvlied 150
+OS ZEEWOLDE 20KV 20-9i;Station Zeewolde 150 (CBL)
+OS DALE 10-1i;Station Dale 150
+OS CULEMBORG 10-2i;Station Tiel 150
+OS FRANKENENG 10-1i;Station Ede 150
+OS 'S-GRAVELAND 10-1i;Station 's Graveland 150
+OS BORCULO 20-3i;Station Borculo 150
+OS HOOFDDORP 10-2i;Station Haarlemmermeer 150
+OS HILVERSUM JONKERWEG 10-1i;Station 's Graveland 150
+OS DEN HELDER DE SCHOOTEN 10-2i;Station Anna Paulowna 150
+OS VIJFHUIZEN 10-1i;Station Vijfhuizen 150
+OS DRONTEN 20KV 20-2i;Station Dronten 150 (CBL)
+OS RUIGOORD 10-1i;Station Vijfhuizen 150
+OS WEESP 10-9i;Station Amstelveen 150
+OS ZALTBOMMEL 20-4i;Station Zaltbommel 150
+OS ROZENBURG 10-2i;Station Haarlemmermeer 150
+CM59;Station Merwedekanaal
+TT019_10;Station Ommoord 150 kV
+CM15;Station Soest 150
+CM60;Station Utrecht Lage Weide 150
+CM10;Station Oudenrijn 150
+CM63;Station Dordrecht Merwedehaven 150 kV
+TS066_10;Station Soest 150
+TT004_10;Station Rotterdam Marconistraat 150 kV
+TT024_10;Station Ommoord 150 kV
+CM11;Station Soest 150
+CM66;Station Alblasserdam 150 kV
+TT025_10;Station Ommoord 150 kV
+TT030_10;Station Westerlee 150 kV
+CM73;Station Goes de Poel 150
+CM76;Station Geervliet 150
+CM50;Station Rijswijk 150 kV
+TT026_10;Station Rotterdam Waalhaven 150 kV
+TH009_10;Station Gouda 150 kV
+CM10;Station Utrecht Lage Weide 150
+CM79;Station Kruiningen 150
+CM20;Station Zoetermeer 150 kV
+CM29/45;Station Dordrecht Zuid 150
+CM80;Station Kruiningen 150
+CM31;Station Gouda 150 kV
+TH053_23;Station Rotterdam Waalhaven 150 kV
+TT033_10;Station Oudeland 150
+CM84;Station Geervliet 150
+TT039_10;Station Delft 150 kV
+CM49;Station Rijswijk 150 kV
+CM52;Station Rijswijk 150 kV
+CM22;Station Arkel 150
+CM60;Station Breukelen 150
+TT042_10;Station Zoetermeer 150 kV
+CM29/64;Station Dordrecht Zuid 150
+CM14;Station Utrecht Lage Weide 150
+TT228_10;Station Goes de Poel 150
+TZ018_10;Station Delft 150 kV
+CM50;Station Voorburg 150 kV
+CM63;Station Alblasserdam 150 kV
+CM29/45;Station Dordrecht Merwedehaven 150 kV
+CM26;Station s Gravenhage 150 kV
+TT032_13;Station Ommoord 150 kV
+TT037_10;Station Delft 150 kV
+TS069_10;Station Breukelen 150
+CM85;Station Geervliet 150
+TT035_10;Station Ommoord 150 kV
+TT034_10;Station Rotterdam Marconistraat 150 kV
+TT041_10;Station Ommoord 150 kV
+TT062_10;Station Ypenburg 150 kV
+TT046_10;Station Zoetermeer 150 kV
+TT076_10;Station Gouda 150 kV
+TT069_10;Station Zoetermeer 150 kV
+TT072_10;Station Gouda 150 kV
+TT022_10;Station Rotterdam Waalhaven 150 kV
+CM12;Station Merwedekanaal
+CM48;Station Krimpen a/d IJssel 150 kV
+TT028_10;Station Delft 150 kV
+TT029_10;Station Westerlee 150 kV
+TT065_10;Station Voorburg 150 kV
+TT068_10;Station Ypenburg 150 kV
+TT002_10;Station Rotterdam Centrum 150 kV
+TH201_10_A;Station Goes de Poel 150
+TT045_10;Station Zoetermeer 150 kV
+TH064_23;Station Ypenburg 150 kV
+TH201_10_B;Station Goes de Poel 150
+TT063_10;Station Voorburg 150 kV
+TH202_10;Station Vlissingen 150
+TH203_10_A;Station Westdorpe 150
+TT044_10;Station Delft 150 kV
+TT043_10;Station Zoetermeer 150 kV
+TT075_10;Station Gouda 150 kV
+TT079_10;Station Zoetermeer 150 kV
+TS043_10;Station Bunschoten
+CM37;Station Driebergen 150
+TT078_10;Station Zoetermeer 150 kV
+CM52;Station Ypenburg 150 kV
+TT066_10;Station Voorburg 150 kV
+TH039_23;Station Ommoord 150 kV
+TH061_23;Station Rotterdam Marconistraat 150 kV
+TS004_10;Station Haarlemmermeer 150
+TS064_10;Station Driebergen 150
+TS062_10;Station Soest 150
+TT014_10;Station Rotterdam Marconistraat 150 kV
+CM47;Station Rotterdam Zuidwijk 150 kV
+TH212_10_AB;Station Middelburg 150
+TH210_10;Station Oostburg 150
+CM51;Station Rijswijk 150 kV
+CM47;Station Rotterdam Waalhaven 150 kV
+CM55;Station Voorburg 150 kV
+CM60;Station Merwedekanaal
+TT013_10;Station Rotterdam Marconistraat 150 kV
+TT224_10_A;Station Westdorpe 150
+CM54;Station Rijswijk 150 kV
+CM56;Station Voorburg 150 kV
+CM18;Station Borssele 150
+TT088_13;Station Alblasserdam 150 kV
+CM00;Station Goes de Poel 150
+CM40;Station Driebergen 150
+CM39;Station Nieuwegein 150
+CM14;Station Breukelen 150
+TT038_10;Station Delft 150 kV
+TH056_25;Station Oudeland 150
+CM85;Station Botlek 150
+TT018_10;Station Rotterdam Marconistraat 150 kV
+TT070_10;Station Zoetermeer 150 kV
+TH010_10;Station Delft 150 kV
+TH011_23;Station Zoetermeer 150 kV
+TS068_10;Station Oudenrijn 150
+TH086_13;Station Middelharnis 150
+TT219_10_A;Station Westdorpe 150
+CM38;Station Veenendaal 't Goeie Spoor 150
+CM39;Station Utrecht Lage Weide 150
+CM13;Station Breukelen 150
+CM26;Station Voorburg 150 kV
+CM12;Station Soest 150
+CM24;Station Zoetermeer 150 kV
+CM24;Station Delft 150 kV
+TT020_10;Station Rotterdam Marconistraat 150 kV
+TT104_10;Station Delft 150 kV
+CM44;Station Rilland 150
+CM39;Station Driebergen 150
+CM22;Station Dordrecht Merwedehaven 150 kV
+TT110_10;Station Delft 150 kV
+TH212_10_C;Station Middelburg 150
+CM63;Station Dordrecht Zuid 150
+118065277_23;Station Rotterdam Zuidwijk 150 kV
+CM63;Station Arkel 150
+CM15;Station Bunschoten
+TT114_10;Station Ommoord 150 kV
+TS073_10;Station Driebergen 150
+CM35/72;Station Ypenburg 150 kV
+TH029_10;Station Botlek 150
+TS040_10;Station Breukelen 150
+CM41;Station Driebergen 150
+CM41;Station Nieuwegein 150
+TH027_10;Station Europoort 150
+TT008_10;Station Rotterdam Waalhaven 150 kV
+TH021_23;Station Botlek 150
+TH021_10;Station Botlek 150
+TH027_23;Station Europoort 150
+CM35/72;Station Delft 150 kV
+CM19/30;Station Delft 150 kV
+TT220_10;Station Westdorpe 150
+CM38;Station Veenendaal Wageningselaan 150
+TS060_10;Station Soest 150
+CM28;Station Gouda 150 kV
+TT068_23;Station Ypenburg 150 kV
+CM60;Station Nieuwegein 150
+CM29/64;Station Dordrecht Merwedehaven 150 kV
+CM26;Station Rijswijk 150 kV
+TT049_10;Station Zoetermeer 150 kV
+TT050_10;Station Voorburg 150 kV
+CM58;Station Oudenrijn 150
+TH215_10_A;Station Borssele 150
+TH209_10;Station Kruiningen 150
+CM37;Station Nieuwegein 150
+TS059_10;Station Veenendaal Wageningselaan 150
+TS058_10;Station Veenendaal 't Goeie Spoor 150
+CM35/72;Station Voorburg 150 kV
+TT091_13;Station Middelharnis 150
+TT010_10;Station Ommoord 150 kV
+TS056_10;Station Soest 150
+TS044_10;Station Driebergen 150
+CM34/46;Station Middelburg 150
+TT006_10;Station Alphen a/d Rijn 150 kV
+CM23;Station Delft 150 kV
+CM23;Station Zoetermeer 150 kV
+CM34/46;Station Vlissingen 150
+TT015_10;Station Rotterdam Marconistraat 150 kV
+CM59;Station Nieuwegein 150
+CM59;Station Breukelen 150
+TS071_10;Station Soest 150
+CM39;Station Merwedekanaal
+CM00;Station Kruiningen 150
+CM08;Station Alphen a/d Rijn 150 kV
+TS070_10;Station Breukelen 150
+TT005_10;Station Rotterdam Waalhaven 150 kV
+CM09;Station Gouda 150 kV
+CM74;Station Europoort 150
+CM54;Station Voorburg 150 kV
+CM71;Station Terneuzen 150
+CM71;Station Westdorpe 150
+CM66;Station Dordrecht Merwedehaven 150 kV
+TS054_10;Station Oudenrijn 150
+CM07;Station Gouda 150 kV
+CM36;Station Driebergen 150
+CM77;Station Oudeland 150
+CM77;Station Botlek 150
+CM80;Station Rilland 150
+CM66;Station Arkel 150
+CM47;Station Krimpen a/d IJssel 150 kV
+CM36;Station Veenendaal 't Goeie Spoor 150
+TT011_10;Station Oudeland 150
+CM08;Station Gouda 150 kV
+CM80;Station Goes de Poel 150
+TT113_10;Station Zoetermeer 150 kV
+CM10;Station Merwedekanaal
+TS072_10;Station Nieuwegein 150
+CM11;Station Bunschoten
+TT073_10;Station Gouda 150 kV
+TT085_13;Station Arkel 150
+TT082_13;Station Dordrecht Merwedehaven 150 kV
+CM19/30;Station Zoetermeer 150 kV
+TS061_10;Station Soest 150
+CM39;Station Oudenrijn 150
+TZ020_25;Station Zoetermeer 150 kV
+TS049_10;Station Soest 150
+TT056_10;Station Rijswijk 150 kV
+TT057_10;Station Rijswijk 150 kV
+TT058_10;Station Voorburg 150 kV
+TT071_10;Station Gouda 150 kV
+TT048_10;Station Zoetermeer 150 kV
+TT059_10;Station s Gravenhage 150 kV
+TT102_10;Station Delft 150 kV
+CM44;Station Kruiningen 150
+CM53;Station Rijswijk 150 kV
+CM00;Station Middelharnis 150
+TS085_10;Station Utrecht Lage Weide 150
+TS084_10;Station Soest 150
+TS081_10;Station Utrecht Lage Weide 150
+TS080_10;Station Nieuwegein 150
+TS077_10;Station Utrecht Lage Weide 150
+TH058_23;Station Maasvlakte 150
+TT023_10;Station Geervliet 150
+CM32;Station Alphen a/d Rijn 150 kV
+CM33;Station Alphen a/d Rijn 150 kV
+CM59;Station Driebergen 150
+TT047_10;Station Zoetermeer 150 kV
+TH060_23;Station Rotterdam Centrum 150 kV
+CM52;Station Voorburg 150 kV
+TS046_10;Station Driebergen 150
+TS045_10;Station Soest 150
+TT024_25;Station Ommoord 150 kV
+CM12;Station Driebergen 150
+CM56/78;Station Voorburg 150 kV
+CM56/78;Station Zoetermeer 150 kV
+TH230_10;Station Willem Anna Polder 150
+CM57;Station Oudenrijn 150
+TT146_23;Station Maasvlakte 150
+TT143_13;Station Krimpen a/d IJssel 150 kV
+TT134_23;Station Rotterdam Marconistraat 150 kV
+TT133_23;Station Voorburg 150 kV
+TT120_10;Station Zoetermeer 150 kV
+TT119_23;Station Delft 150 kV
+TT115_10;Station Delft 150 kV
+TT041_23;Station Ommoord 150 kV
+TS052_10;Station Oudenrijn 150
+TS051_10;Station Nieuwegein 150
+TT108_10;Station Ypenburg 150 kV
+TT107_10;Station Zoetermeer 150 kV
+TT105_10;Station Delft 150 kV
+CM38;Station Driebergen 150
+CM60;Station Oudenrijn 150
+CM38;Station Soest 150
+CM56;Station Ypenburg 150 kV
+CM12;Station Breukelen 150
+TS067_10;Station Nieuwegein 150
+CM19/30;Station Ommoord 150 kV
+CM80;Station Willem Anna Polder 150
+CM10;Station Nieuwegein 150
+CM85;Station Tinte 150
+TH058_25_1;Station Maasvlakte 150
+TZ001_23;Station Rotterdam Zuidwijk 150 kV
+CM85;Station Europoort 150
+CM14;Station Merwedekanaal
+TH003_13;Station Krimpen a/d IJssel 150 kV
+TH008_13;Station Dordrecht Merwedehaven 150 kV
+TT103_10;Station Delft 150 kV
+TH039_25;Station Ommoord 150 kV
+CM56/78;Station Ypenburg 150 kV
+TT052_10;Station Voorburg 150 kV
+TT054_10;Station Rijswijk 150 kV
+TT054_25;Station Rijswijk 150 kV
+Westerlee;Station Westerlee 150 kV
+De Lier;Station De Lier 150 kV
