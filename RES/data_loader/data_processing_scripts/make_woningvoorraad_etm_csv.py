@@ -49,9 +49,8 @@ Output (processed_data_from_loader/):
   woningvoorraad_etm_buurten_bag_ongekalibreerd_<datum>.csv
   woningvoorraad_etm_gemeenten_vergelijking_<datum>.csv   BAG vs gekalibreerd vs ETM
   etm_area_woningvoorraad_<datum>.csv                 ETM area-data per gemeente
-  data_Generic/etm_area_woningvoorraad.csv            idem, vaste naam voor het model
-  data_Generic/etm_area_totalen.csv                   inwoners, woningen, utiliteitsgebouwen en
-                                                      utiliteits-intensiteit per ETM-gebied (groei/sloop)
+  data_Generic/RES/etm_area_woningvoorraad.csv        idem, vaste naam voor het model; SAMENGEVOEGD
+  data_Generic/RES/etm_area_totalen.csv               (andere gebieden blijven staan, zie make_etm_area_csv.py)
 
 Run standalone:  python make_woningvoorraad_etm_csv.py [--gemeenten GM0505 GM0642 ...]
                  [--buurtjaar 2024] [--zonder-3dbag] [--ep-online pad.csv] [--etm-startjaar 2023]
@@ -73,6 +72,7 @@ import shapely
 from shapely.geometry import box
 from shapely.prepared import prep
 
+from make_etm_area_csv import gm_naar_etm_code, haal_etm_area_codes, schrijf_vaste_bestanden
 from config import (CACHE_MAX_AGE_DAYS, CRS_RD, DATA_GENERIC, FILL_UNMATCHED, OUTPUT_SEPARATOR,
                     PROCESSED_DIR, RAW_DIR, REQUEST_TIMEOUT)
 
@@ -82,19 +82,9 @@ log = logging.getLogger(__name__)
 # Drechtsteden, zelfde zeven gemeenten als _DRECHTSTEDEN_GEMEENTEN in make_buurten_csv.py.
 DEFAULT_GEMEENTEN = ["GM0482", "GM0505", "GM0523", "GM0531", "GM0590", "GM0610", "GM0642"]
 
-# ETM area codes (uit scenarios/_drechtsteden_scenarios_PMIEK_ZH_ETM.xlsx)
-ETM_AREA_CODES = {
-    "GM0482": "GM0482_alblasserdam",
-    "GM0505": "GM0505_dordrecht",
-    "GM0523": "GM0523_hardinxveld_giessendam",
-    "GM0531": "GM0531_hendrik_ido_ambacht",
-    "GM0590": "GM0590_papendrecht",
-    "GM0610": "GM0610_sliedrecht",
-    "GM0642": "GM0642_zwijndrecht",
-    "GM1978": "GM1978_molenlanden",
-}
+# ETM-regio die naast de gemeenten wordt opgehaald (de ETM area code per gemeente komt uit
+# /api/v3/areas, zie make_etm_area_csv.py; landelijk vullen: python make_etm_area_csv.py)
 ETM_REGIO_CODE = "ES18_drechtsteden"
-ETM_AREA_URL = "https://engine.energytransitionmodel.com/api/v3/areas/{code}"
 
 # --- ETM-indeling ----------------------------------------------------------------------------
 TYPES = ["apartments", "terraced_houses", "semi_detached_houses", "detached_houses"]
@@ -244,47 +234,10 @@ def download_laag(naam: str, url: str, typename: str, gebied, gm_key: str, extra
     return df
 
 
-# ETM area-totalen die het model nodig heeft als noemer voor groei/sloop (zie
-# java_files/J_HousingStock_ETM_PATCH.java, deel 8): inwoners, woningen, utiliteitsgebouwen
-# (in "residence equivalents" van area_per_building_residence_equivalent m²) en de
-# utiliteits-warmte-intensiteit bestaand/nieuw.
-_ETM_AREA_TOTALEN = [
-    "analysis_year", "number_of_inhabitants", "present_number_of_residences",
-    "present_number_of_buildings", "area_per_building_residence_equivalent",
-    "typical_useful_demand_for_space_heating_buildings_present",
-    "typical_useful_demand_for_space_heating_buildings_future",
-]
-
-
-def haal_etm_area(gm_codes: list[str]) -> tuple[pd.DataFrame, pd.DataFrame]:
+def haal_etm_area(gm_codes: list[str], regio: str | None = ETM_REGIO_CODE) -> tuple[pd.DataFrame, pd.DataFrame]:
     """ETM area-data per gemeente (+ regio): (lang per type × periode, totalen per gebied)."""
-    rijen, totalen = [], []
-    for code in [*(ETM_AREA_CODES.get(g) for g in gm_codes), ETM_REGIO_CODE]:
-        if code is None:
-            continue
-        try:
-            r = requests.get(ETM_AREA_URL.format(code=code), timeout=REQUEST_TIMEOUT)
-            r.raise_for_status()
-            d = r.json()
-        except (requests.RequestException, ValueError) as exc:
-            log.warning("  ETM area %s niet opgehaald: %s", code, exc)
-            continue
-        for t in TYPES:
-            for p in PERIODS:
-                rijen.append({
-                    "etm_area": code,
-                    "gemeentecode": code[:6] if code.startswith("GM") else code,
-                    "analysis_year": d.get("analysis_year"),
-                    "type": t, "periode": p,
-                    "etm_present_number": d.get(f"present_number_of_{t}_{p}"),
-                    "etm_typical_useful_demand_kWh_m2": d.get(f"typical_useful_demand_for_space_heating_{t}_{p}"),
-                    "etm_present_share_in_useful_demand": d.get(
-                        f"present_share_of_{t}_{p}_in_useful_demand_for_space_heating"),
-                })
-        totalen.append({"etm_area": code, "gemeentecode": code[:6] if code.startswith("GM") else code,
-                        **{k: d.get(k) for k in _ETM_AREA_TOTALEN}})
-        log.info("  ETM area %s opgehaald (analysis_year %s)", code, d.get("analysis_year"))
-    return pd.DataFrame(rijen), pd.DataFrame(totalen)
+    codes = list(gm_naar_etm_code(gm_codes).values()) + ([regio] if regio else [])
+    return haal_etm_area_codes(codes)
 
 
 # =========================================================================================
@@ -695,10 +648,10 @@ def main(gemeenten: list[str] | None = None, buurtjaar: int = 2024, met_3dbag: b
         verg["m2_per_woning"] = (verg["gekalibreerd_m2"] / verg["gekalibreerd_woningen"].replace(0, np.nan)).round(1)
         etm_pad = PROCESSED_DIR / f"etm_area_woningvoorraad_{today}.csv"
         etm.to_csv(etm_pad, sep=OUTPUT_SEPARATOR, index=False)
-        # vaste naam in data_Generic/ voor het model (J_ETMHousingIntensity leest dit in)
-        etm.to_csv(DATA_GENERIC / "etm_area_woningvoorraad.csv", sep=OUTPUT_SEPARATOR, index=False)
-        etm_totalen.to_csv(DATA_GENERIC / "etm_area_totalen.csv", sep=OUTPUT_SEPARATOR, index=False)
-        log.info("Opgeslagen: %s (+ kopie data_Generic/etm_area_woningvoorraad.csv)", etm_pad.name)
+        # vaste naam in data_Generic/RES/ voor het model (J_ETMAreaData); samenvoegen, zodat gebieden
+        # van andere projecten (of de landelijke run van make_etm_area_csv.py) blijven staan
+        schrijf_vaste_bestanden(etm, etm_totalen, samenvoegen=True)
+        log.info("Opgeslagen: %s (+ samengevoegd in data_Generic/RES/etm_area_*.csv)", etm_pad.name)
         tot = verg.groupby("gemeentecode")[["bag_woningen", "etm_present_number"]].sum()
         for gm, r in tot.iterrows():
             log.info("  %s: BAG %6.0f woningen  vs ETM %6.0f  (%+.1f%%)", gm, r["bag_woningen"],

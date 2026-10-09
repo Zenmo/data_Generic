@@ -18,6 +18,7 @@ Usage:
     python run_pipeline.py --gemeenten-potentie              # Municipality PV/wind potential CSVs (2023, 2024)
     python run_pipeline.py --gemeenten-potentie --overmorgen # ... also cross-check/fill with Over Morgen wind WFS
     python run_pipeline.py --woningvoorraad # Woningen + m² per buurt in ETM-indeling (type × bouwperiode), BAG/3DBAG + CBS; opt-in
+    python run_pipeline.py --etm-area       # ETM area-data (woningvoorraad + totalen) voor alle NL ETM-gebieden; opt-in
 
 Phase 6 (buurten) merges CBS kerncijfers + Phase 3 verwarmingsinstallaties + Phase 5 ElaadNL
 + Phase 5b TVW + Phase 5c WarmteTransitie + Phase 5d solar + Phase 5e bedrijfswagens + Phase 5f
@@ -67,6 +68,7 @@ import make_capaciteitskaart_csv
 import make_buurten_csv
 import make_gemeenten_potentie_csv
 import make_woningvoorraad_etm_csv
+import make_etm_area_csv
 
 TODAY = date.today().isoformat()
 
@@ -228,6 +230,16 @@ def run_woningvoorraad(log: logging.Logger) -> bool:
     return ok
 
 
+def run_etm_area(log: logging.Logger) -> bool:
+    log.info("--- ETM area-data voor alle NL ETM-gebieden ---")
+    ok = make_etm_area_csv.main()
+    if ok:
+        log.info("--- ETM area-data complete ---")
+    else:
+        log.error("--- ETM area-data FAILED ---")
+    return ok
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="WarmteAtlas data pipeline")
     group = parser.add_mutually_exclusive_group()
@@ -244,6 +256,7 @@ def main() -> None:
     group.add_argument("--buurten",      action="store_true", help="Phase 6 only: generate enriched buurten CSVs")
     group.add_argument("--gemeenten-potentie", action="store_true", help="Municipality PV/wind potential CSVs (2023, 2024); opt-in, not part of the full run")
     group.add_argument("--woningvoorraad", action="store_true", help="Woningen + m² per buurt per ETM woningtype × bouwperiode (BAG/3DBAG, gekalibreerd op CBS); opt-in, not part of the full run")
+    group.add_argument("--etm-area", action="store_true", help="ETM area-data (woningvoorraad + totalen) for all Dutch ETM areas; opt-in, not part of the full run")
     parser.add_argument("--overmorgen", action="store_true", help="With --gemeenten-potentie: also download + cross-check + fill using the Over Morgen wind WFS")
     parser.add_argument("--force", action="store_true", help="Re-process even if output CSVs already exist for the current raw data")
     args = parser.parse_args()
@@ -257,7 +270,7 @@ def main() -> None:
         or args.windturbines or args.elaadnl or args.tvw
         or args.warmtetransitie or args.solar or args.bedrijfswagens
         or args.capaciteitskaart or args.buurten or args.gemeenten_potentie
-        or args.woningvoorraad
+        or args.woningvoorraad or args.etm_area
     )
     do_download          = no_flag or args.download
     do_process           = no_flag or args.process
@@ -345,6 +358,9 @@ def main() -> None:
     # Opt-in only: never runs as part of the default full pipeline.
     if args.woningvoorraad:
         if not run_woningvoorraad(log):
+            exit_code = 1
+    if args.etm_area:
+        if not run_etm_area(log):
             exit_code = 1
 
     elapsed = time.monotonic() - t0
