@@ -393,18 +393,23 @@ _BEDRIJF_CATS = [
     "ru_cultuur_recreatie_overige_diensten",
 ]
 
-# _BEDRIJF_CATS column -> the matching 8-group code used by
-# make_energieverbruik_sector_csv.py (elec_verbruik_<groep> / gas_verbruik_<groep>).
-_BEDRIJF_COL_TO_GROEP = {
-    "a_landbouw_bosbouw_en_visserij":         "a",
-    "bf_nijverheid_en_energie":               "bf",
-    "gi_handel_en_horeca":                    "gi",
-    "hj_vervoer_informatie_en_communicatie":  "hj",
-    "kl_financiele_diensten_onroerend_goed":  "kl",
-    "mn_zakelijke_dienstverlening":           "mn",
-    "oq_overheid_onderwijs_en_zorg":          "oq",
-    "ru_cultuur_recreatie_overige_diensten":  "ru",
-}
+# (_BEDRIJF_CATS column, group code used by make_energieverbruik_sector_csv.py
+# (elec_verbruik_<groep> / gas_verbruik_<groep>)). KWB only counts H+J together, so
+# h (transport), j (ICT/datacenters) and the compatibility column hj (= h + j) all
+# use the H+J company locations as their distribution key. hj therefore stays
+# exactly h + j per buurt as well.
+_BEDRIJF_COL_TO_GROEP = [
+    ("a_landbouw_bosbouw_en_visserij",         "a"),
+    ("bf_nijverheid_en_energie",               "bf"),
+    ("gi_handel_en_horeca",                    "gi"),
+    ("hj_vervoer_informatie_en_communicatie",  "h"),
+    ("hj_vervoer_informatie_en_communicatie",  "j"),
+    ("kl_financiele_diensten_onroerend_goed",  "kl"),
+    ("mn_zakelijke_dienstverlening",           "mn"),
+    ("oq_overheid_onderwijs_en_zorg",          "oq"),
+    ("ru_cultuur_recreatie_overige_diensten",  "ru"),
+    ("hj_vervoer_informatie_en_communicatie",  "hj"),  # compatibility, = h + j
+]
 
 # Columns from external datasets (solar, EV, bedrijfswagens) with no gemeente fallback → -99999.
 _MISSING_SENTINEL_PREFIXES = ("solar_", "ev_", "bestelautos_", "vrachtautos_")
@@ -685,7 +690,7 @@ def _verdeel_energieverbruik_sector(
     df = df.copy()
 
     if energie_df is None or energie_df.empty or "codering" not in df.columns:
-        for groep in _BEDRIJF_COL_TO_GROEP.values():
+        for _, groep in _BEDRIJF_COL_TO_GROEP:
             df[f"elec_verbruik_{groep}"] = _MISSING
             df[f"gas_verbruik_{groep}"] = _MISSING
         df["energieverbruik_sector_gelijk_verdeeld"] = False
@@ -704,7 +709,7 @@ def _verdeel_energieverbruik_sector(
     n_buurten_per_gm = gm_code.groupby(gm_code).transform("size")
     fallback_flag = pd.Series(False, index=df.index)
 
-    for bedrijf_col, groep in _BEDRIJF_COL_TO_GROEP.items():
+    for bedrijf_col, groep in _BEDRIJF_COL_TO_GROEP:
         waarden = pd.to_numeric(df.get(bedrijf_col), errors="coerce")
         valid_mask = waarden.notna() & (waarden != _MISSING)
         valid_vals = waarden.where(valid_mask)

@@ -30,18 +30,31 @@ downstream needs to know which one actually ran):
      the "bf" gas group sums B/C/E/F only.
 
 Both sources publish per SBI-letter or SBI-branch figures; this script
-aggregates them to the same 8-group scheme used elsewhere in this pipeline
-(a / bf / gi / hj / kl / mn / oq / ru — see mapping_kolomnamen_CBS.xlsx and
-make_buurten_csv.py's company-location columns):
+aggregates them to a 9-group scheme (a / bf / gi / h / j / kl / mn / oq / ru).
+It follows the company-location groups of CBS KWB (mapping_kolomnamen_CBS.xlsx,
+make_buurten_csv.py), except that KWB's H+J is split into h and j, so that SBI J
+(ICT/datacenters) gets its own column. KWB only counts H+J together, so h and j
+both use the H+J company locations as their weight.
 
     a  = A                              landbouw, bosbouw en visserij
     bf = B, C, D, E, F                  nijverheid en energie
     gi = G, I                           handel en horeca
-    hj = H, J                           vervoer, informatie en communicatie
-    kl = K, L                           financiële diensten, onroerend goed
+    h  = H                              vervoer en opslag
+    j  = J                              informatie en communicatie (incl. ICT/datacenters)
+    kl = K, L                          financiële diensten, onroerend goed
     mn = M, N                           zakelijke dienstverlening
     oq = O, P, Q                        overheid, onderwijs, zorg
     ru = R, S, T, U                     cultuur, recreatie, overige diensten
+
+For compatibility the output also keeps elec_verbruik_hj_<unit> / gas_verbruik_hj_<unit>
+(= h + j). They are NOT part of the 9 groups or of the _totaal_ columns: anyone summing
+sectors should use h and j, or hj, never both.
+
+Letters are SBI 2008. SBI 2025 splits J into J (publishing, broadcasting) and K
+(telecom, IT, data processing/hosting, including datacenters) and shifts K-U one
+letter on. Klimaatmonitor and KWB use SBI 2008 up to and including 2024 (KWB 2025 still
+uses the SBI 2008 groups). For years >= 2025, _waarschuw_sbi2025() warns, because the
+letter-based variable codes may then mean something else.
 
 For CBS, the branch dimension's category Keys are matched to this scheme by
 parsing the leading SBI letter(s) out of each category's Title at runtime
@@ -147,7 +160,7 @@ CBS_SOURCE_URL = "https://opendata.cbs.nl/statline/#/CBS/nl/dataset/82538NED/tab
 # Only municipality-level rows are kept (region codes starting with "GM").
 _REGIO_PREFIX = "GM"
 
-# SBI letter(s) -> our 8-group scheme (see module docstring for the full table).
+# SBI letter(s) -> our 9-group scheme (see module docstring for the full table).
 _LETTER_TO_GROEP = {}
 for _letter in "A":
     _LETTER_TO_GROEP[_letter] = "a"
@@ -155,8 +168,8 @@ for _letter in "BCDEF":
     _LETTER_TO_GROEP[_letter] = "bf"
 for _letter in "GI":
     _LETTER_TO_GROEP[_letter] = "gi"
-for _letter in "HJ":
-    _LETTER_TO_GROEP[_letter] = "hj"
+_LETTER_TO_GROEP["H"] = "h"
+_LETTER_TO_GROEP["J"] = "j"   # ICT/datacenters: eigen groep, los van H
 for _letter in "KL":
     _LETTER_TO_GROEP[_letter] = "kl"
 for _letter in "MN":
@@ -166,7 +179,24 @@ for _letter in "OPQ":
 for _letter in "RSTU":
     _LETTER_TO_GROEP[_letter] = "ru"
 
-_GROEPEN = ["a", "bf", "gi", "hj", "kl", "mn", "oq", "ru"]
+_GROEPEN = ["a", "bf", "gi", "h", "j", "kl", "mn", "oq", "ru"]
+
+# Compatibility column for readers that still expect KWB's H+J (e.g. lux2
+# GCNeighbourhoodDataAssembler): hj = h + j. Not in _GROEPEN, not in the totals.
+_COMPAT_GROEPEN = {"hj": ["h", "j"]}
+
+# The first year in which the source tables may use SBI 2025 letters (see module docstring).
+_EERSTE_JAAR_SBI2025 = 2025
+
+
+def _waarschuw_sbi2025(jaren) -> None:
+    """Warn if a year is requested in which SBI 2025 may apply: letters J-U change there."""
+    latere = sorted(j for j in jaren if j >= _EERSTE_JAAR_SBI2025)
+    if latere:
+        log.warning(
+            "  Jaren %s: controleer of Klimaatmonitor/CBS nog SBI 2008 gebruikt. In SBI 2025 is "
+            "J gesplitst (datacenters/IT naar K) en schuiven K-U een letter op; de groepen "
+            "h/j/kl/... hier gaan uit van SBI 2008.", latere)
 
 DEFAULT_YEARS = [2023, 2024]
 
@@ -181,7 +211,7 @@ def _finaliseer_kolommen(wide: pd.DataFrame, elec_unit: str, gas_unit: str) -> p
     Klimaatmonitor may report different units, so the suffix is whatever that
     specific run's source actually used, not a hardcoded assumption. Also adds
     elec_verbruik_totaal_<unit> / gas_verbruik_totaal_<unit>, the sum across all
-    8 SBI-groups, so a municipality's grand total can be cross-checked against
+    9 SBI-groups (h and j separately; the hj compatibility column is NOT included), so a municipality's grand total can be cross-checked against
     the sum of its neighbourhoods' shares in the buurten CSV.
 
     Downstream code must look up these columns by prefix (e.g.
@@ -197,8 +227,17 @@ def _finaliseer_kolommen(wide: pd.DataFrame, elec_unit: str, gas_unit: str) -> p
     wide["elec_verbruik_totaal_" + elec_slug] = wide[elec_cols_oud].sum(axis=1, min_count=1)
     wide["gas_verbruik_totaal_" + gas_slug] = wide[gas_cols_oud].sum(axis=1, min_count=1)
 
-    rename = {f"elec_verbruik_{g}": f"elec_verbruik_{g}_{elec_slug}" for g in _GROEPEN}
-    rename.update({f"gas_verbruik_{g}": f"gas_verbruik_{g}_{gas_slug}" for g in _GROEPEN})
+    # Compatibility columns (hj = h + j), computed after the totals so they are not
+    # counted twice.
+    for compat, delen in _COMPAT_GROEPEN.items():
+        for carrier in ("elec", "gas"):
+            bron = [f"{carrier}_verbruik_{g}" for g in delen if f"{carrier}_verbruik_{g}" in wide.columns]
+            if bron:
+                wide[f"{carrier}_verbruik_{compat}"] = wide[bron].sum(axis=1, min_count=1)
+
+    groepen = _GROEPEN + [g for g in _COMPAT_GROEPEN if f"elec_verbruik_{g}" in wide.columns]
+    rename = {f"elec_verbruik_{g}": f"elec_verbruik_{g}_{elec_slug}" for g in groepen}
+    rename.update({f"gas_verbruik_{g}": f"gas_verbruik_{g}_{gas_slug}" for g in groepen})
     return wide.rename(columns=rename)
 
 
@@ -279,10 +318,17 @@ def _discover_branch_groups(branch_dim_key: str) -> dict[str, str]:
         if groep is None:
             unmapped.append(title)
             continue
+        # A range across several groups (e.g. 'H-J' now that h and j are separate)
+        # cannot be assigned to one group.
+        if m.group(2):
+            letters = [chr(c) for c in range(ord(letter), ord(m.group(2)) + 1)]
+            if len({_LETTER_TO_GROEP.get(x) for x in letters}) > 1:
+                unmapped.append(title)
+                continue
         mapping[row["Key"]] = groep
 
-    log.info("  Branche-categorieën: %d gemapt naar 8 groepen, %d niet herkend",
-              len(mapping), len(unmapped))
+    log.info("  Branche-categorieën: %d gemapt naar %d groepen, %d niet herkend",
+              len(mapping), len(_GROEPEN), len(unmapped))
     if unmapped:
         log.warning("  Niet-gemapte branche-categorieën (overgeslagen): %s", unmapped)
     return mapping
@@ -485,7 +531,8 @@ _KM_ELEC_VARS: dict[str, list[str]] = {
     "a":  ["vbrze_a"],
     "bf": ["vbrze_b", "vbrze_ctot", "vbrze_d", "vbrze_afval", "vbrze_f"],
     "gi": ["vbrze_g1", "vbrze_i"],
-    "hj": ["vbrze_h", "vbrze_j"],
+    "h":  ["vbrze_h"],
+    "j":  ["vbrze_j"],
     "kl": ["vbrze_k", "vbrze_l"],
     "mn": ["vbrze_m", "vbrze_n"],
     "oq": ["vbrze_o", "vbrze_p", "vbrze_q"],
@@ -497,7 +544,8 @@ _KM_GAS_VARS: dict[str, list[str]] = {
     "a":  ["vbrzg_a"],
     "bf": ["vbrzg_b", "vbrzg_ctot", "vbrzg_afval", "vbrzg_f"],
     "gi": ["vbrzg_g1", "vbrzg_i"],
-    "hj": ["vbrzg_h", "vbrzg_j"],
+    "h":  ["vbrzg_h"],
+    "j":  ["vbrzg_j"],
     "kl": ["vbrzg_k", "vbrzg_l"],
     "mn": ["vbrzg_m", "vbrzg_n"],
     "oq": ["vbrzg_o", "vbrzg_p", "vbrzg_q"],
@@ -633,6 +681,10 @@ def _laad_bedrijfsvestigingen_per_gemeente(jaar: int) -> pd.DataFrame | None:
 
     df = df.rename(columns={"codering": "gemeentecode", **kolom_naar_groep})
     df["gemeentecode"] = df["gemeentecode"].astype(str).str.strip()
+    # KWB counts H+J together: h and j both get the H+J company locations as weight.
+    if "hj" in df.columns:
+        df["h"] = df["hj"]
+        df["j"] = df["hj"]
     kolommen = [g for g in _GROEPEN if g in df.columns]
     gewichten = df.set_index("gemeentecode")[kolommen].apply(pd.to_numeric, errors="coerce")
     # A negative sentinel that slipped through would invert the weighting.
@@ -1172,7 +1224,7 @@ def _reconcilieer_met_thema(
 ) -> tuple[pd.DataFrame, list[pd.DataFrame], list[dict]]:
     """Final rung: scale a region's group totals up to its Thema's control total.
 
-    Operates on the 8-group aggregate (not per SBI letter), because the RVO
+    Operates on the 9-group aggregate (not per SBI letter), because the RVO
     correction is only published as a whole-region total. The entire positive
     residual is assigned to _THEMA_RESTGROEP, weighted across the region's
     municipalities by their company locations for that group — see the module
@@ -1339,7 +1391,7 @@ def _dekking_voor_variabele(
     """Record what this variable's RES coverage failed to attribute.
 
     Called per variable+year so the report is at the same granularity as the
-    suppression itself — the 8-group CSV cannot show this, since a group total
+    suppression itself — the 9-group CSV cannot show this, since a group total
     that looks fine can still hide a fully-suppressed letter.
     """
     rijen: list[dict] = []
@@ -1613,7 +1665,7 @@ def _km_download(jaren: list[int]) -> tuple[pd.DataFrame, pd.DataFrame] | None:
     )
     log.info("  Klimaatmonitor: %d gemeente x jaar x groep rijen opgehaald", len(merged))
 
-    # Final rung, on the 8-group aggregate: scale up to the RVO-corrected
+    # Final rung, on the 9-group aggregate: scale up to the RVO-corrected
     # Thema's regional totals where an export is available.
     merged, thema_bij, thema_dekking = _reconcilieer_met_thema(
         merged, indeling, gewichten_per_jaar, headers=headers, jaren=jaren,
@@ -1767,6 +1819,7 @@ def haal_energieverbruik_sector(jaren: list[int]) -> pd.DataFrame | None:
     """
     t0 = time.monotonic()
     log.info("Sectorale elektriciteit/aardgas per gemeente ophalen (jaren=%s)...", jaren)
+    _waarschuw_sbi2025(jaren)
 
     bijschatting: pd.DataFrame | None = None
     result = _van_cbs(jaren)
