@@ -11,28 +11,28 @@ jaar;var_code;carrier;groep;res_regio;status;waarde_gemeenten;waarde_res;ontbrek
 2023;vbrze_b;elec;bf;West-Brabant;res_ontbreekt;171000.0;;
 2023;vbrze_b;elec;bf;West-Overijssel;res_ontbreekt;3172000.0;;
 2023;vbrze_b;elec;bf;Zuid-Limburg;res_ontbreekt;13000.0;;
-2023;vbrze_b;elec;bf;<niet toewijsbaar>;niet_toewijsbaar;1099520000.0;1094525000.0;552027000.0
+2023;vbrze_b;elec;bf;<niet toewijsbaar>;niet_toewijsbaar;1099519999.8290741;1094525000.0;552027000.0
 2023;vbrze_ctot;elec;bf;nan;res_ontbreekt;;;
-2023;vbrze_ctot;elec;bf;<niet toewijsbaar>;niet_toewijsbaar;25189026000.0;25187207000.0;1762000.0
+2023;vbrze_ctot;elec;bf;<niet toewijsbaar>;niet_toewijsbaar;25189025999.66059;25187207000.0;1762000.0
 2023;vbrze_d;elec;bf;Drechtsteden;res_ontbreekt;1218000.0;;
 2023;vbrze_d;elec;bf;nan;res_ontbreekt;14521000.0;;
 2023;vbrze_d;elec;bf;Rotterdam/DenHaag;res_ontbreekt;410468000.0;;
 2023;vbrze_d;elec;bf;Cleantech;res_ontbreekt;989000.0;;
 2023;vbrze_d;elec;bf;Twente;res_ontbreekt;21111000.0;;
 2023;vbrze_d;elec;bf;Zuid-Limburg;res_ontbreekt;7490000.0;;
-2023;vbrze_d;elec;bf;<niet toewijsbaar>;niet_toewijsbaar;1384099000.0;942648000.0;742994000.0
+2023;vbrze_d;elec;bf;<niet toewijsbaar>;niet_toewijsbaar;1384098999.910696;942648000.0;742994000.0
 2023;vbrze_afval;elec;bf;nan;res_ontbreekt;192000.0;;
 2023;vbrze_afval;elec;bf;Noord-HollandZuid;res_ontbreekt;154900000.0;;
-2023;vbrze_afval;elec;bf;<niet toewijsbaar>;niet_toewijsbaar;1758731000.0;1603821000.0;161517000.0
+2023;vbrze_afval;elec;bf;<niet toewijsbaar>;niet_toewijsbaar;1758730999.9619236;1603821000.0;161517000.0
 2023;vbrze_f;elec;bf;nan;res_ontbreekt;;;
 2023;vbrze_g1;elec;gi;nan;res_ontbreekt;201000.0;;
 2023;vbrze_i;elec;gi;nan;res_ontbreekt;76000.0;;
 2023;vbrze_h;elec;h;nan;res_ontbreekt;292000.0;;
-2023;vbrze_h;elec;h;<niet toewijsbaar>;niet_toewijsbaar;5894230000.0;5894217000.0;2000.0
+2023;vbrze_h;elec;h;<niet toewijsbaar>;niet_toewijsbaar;5894229999.967435;5894217000.0;2000.0
 2023;vbrze_j;elec;j;nan;res_ontbreekt;6132000.0;;
 2023;vbrze_j;elec;j;Noord-HollandNoord;res_ontbreekt;32868000.0;;
 2023;vbrze_j;elec;j;Noord-HollandZuid;res_ontbreekt;2054303000.0;;
-2023;vbrze_j;elec;j;<niet toewijsbaar>;niet_toewijsbaar;4300483000.0;2213304000.0;3337204000.0
+2023;vbrze_j;elec;j;<niet toewijsbaar>;niet_toewijsbaar;4300482999.998979;2213304000.0;3337204000.0
 2023;vbrze_k;elec;kl;nan;res_ontbreekt;0.0;;
 2023;vbrze_l;elec;kl;Alblasserwaard;res_ontbreekt;;;
 2023;vbrze_l;elec;kl;Drechtsteden;res_ontbreekt;6245000.0;;
@@ -42,7 +42,7 @@ jaar;var_code;carrier;groep;res_regio;status;waarde_gemeenten;waarde_res;ontbrek
 2023;vbrze_l;elec;kl;Twente;res_ontbreekt;29011000.0;;
 2023;vbrze_l;elec;kl;West-Brabant;res_ontbreekt;27166000.0;;
 2023;vbrze_l;elec;kl;West-Overijssel;res_ontbreekt;3089000.0;;
-2023;vbrze_l;elec;kl;<niet toewijsbaar>;niet_toewijsbaar;917457000.0;829021000.0;135711000.0
+2023;vbrze_l;elec;kl;<niet toewijsbaar>;niet_toewijsbaar;917456999.9690144;829021000.0;135711000.0
 2023;vbrze_m;elec;mn;nan;res_ontbreekt;12000.0;;
 2023;vbrze_n;elec;mn;FruitdeltaRivierenland;res_ontbreekt;21845000.0;;
 2023;vbrze_n;elec;mn;MetropoolregioEindhoven;res_ontbreekt;12152000.0;;
@@ -51,7 +51,7 @@ jaar;var_code;carrier;groep;res_regio;status;waarde_gemeenten;waarde_res;ontbrek
 2023;vbrze_n;elec;mn;Noord-HollandZuid;res_ontbreekt;14553000.0;;
 2023;vbrze_n;elec;mn;Noordoost-Brabant;res_ontbreekt;8596000.0;;
 2023;vbrze_n;elec;mn;Cleantech;res_ontbreekt;4250000.0;;
-2023;vbrze_n;elec;mn;<niet toewijsbaar>;niet_toewijsbaar;420926000.0;354896000.0;177295000.0
+2023;vbrze_n;elec;mn;<niet toewijsbaar>;niet_toewijsbaar;420925999.9816452;354896000.0;177295000.0
 2023;vbrze_o;elec;oq;nan;res_ontbreekt;1262000.0;;
 2023;vbrze_p;elec;oq;nan;res_ontbreekt;197000.0;;
 2023;vbrze_q;elec;oq;nan;res_ontbreekt;3000.0;;
@@ -62,7 +62,7 @@ jaar;var_code;carrier;groep;res_regio;status;waarde_gemeenten;waarde_res;ontbrek
 2023;vbrze_s;elec;ru;MetropoolregioEindhoven;res_ontbreekt;9109000.0;;
 2023;vbrze_s;elec;ru;nan;res_ontbreekt;3000.0;;
 2023;vbrze_s;elec;ru;Noordoost-Brabant;res_ontbreekt;17143000.0;;
-2023;vbrze_s;elec;ru;<niet toewijsbaar>;niet_toewijsbaar;439983000.0;394904000.0;65355000.0
+2023;vbrze_s;elec;ru;<niet toewijsbaar>;niet_toewijsbaar;439982999.97693443;394904000.0;65355000.0
 2023;vbrze_u;elec;ru;Achterhoek;res_ontbreekt;;;
 2023;vbrze_u;elec;ru;Alblasserwaard;res_ontbreekt;;;
 2023;vbrze_u;elec;ru;Amersfoort;res_ontbreekt;;;
@@ -98,7 +98,7 @@ jaar;var_code;carrier;groep;res_regio;status;waarde_gemeenten;waarde_res;ontbrek
 2023;vbrzg_a;gas;a;Noord-HollandZuid;res_ontbreekt;87407000.0;;
 2023;vbrzg_a;gas;a;U16;res_ontbreekt;38010000.0;;
 2023;vbrzg_a;gas;a;Zeeland;res_ontbreekt;24393000.0;;
-2023;vbrzg_a;gas;a;<niet toewijsbaar>;niet_toewijsbaar;3034626000.0;2884790000.0;238115000.0
+2023;vbrzg_a;gas;a;<niet toewijsbaar>;niet_toewijsbaar;3034625999.9935465;2884790000.0;238115000.0
 2023;vbrzg_b;gas;bf;Achterhoek;res_ontbreekt;;;
 2023;vbrzg_b;gas;bf;Alblasserwaard;res_ontbreekt;;;
 2023;vbrzg_b;gas;bf;Amersfoort;res_ontbreekt;;;
@@ -123,13 +123,13 @@ jaar;var_code;carrier;groep;res_regio;status;waarde_gemeenten;waarde_res;ontbrek
 2023;vbrzg_b;gas;bf;West-Overijssel;res_ontbreekt;;;
 2023;vbrzg_b;gas;bf;Zeeland;res_ontbreekt;;;
 2023;vbrzg_b;gas;bf;Zuid-Limburg;res_ontbreekt;;;
-2023;vbrzg_b;gas;bf;<niet toewijsbaar>;niet_toewijsbaar;1503000.0;1460000.0;44058000.0
+2023;vbrzg_b;gas;bf;<niet toewijsbaar>;niet_toewijsbaar;1503000.0000000002;1460000.0;44058000.0
 2023;vbrzg_ctot;gas;bf;Flevoland;res_ontbreekt;35059000.0;;
 2023;vbrzg_ctot;gas;bf;nan;res_ontbreekt;;;
 2023;vbrzg_ctot;gas;bf;Noord-enMidden-Limburg;res_ontbreekt;239174000.0;;
 2023;vbrzg_ctot;gas;bf;Noord-Veluwe;res_ontbreekt;35789000.0;;
 2023;vbrzg_ctot;gas;bf;Zuid-Limburg;res_ontbreekt;50003000.0;;
-2023;vbrzg_ctot;gas;bf;<niet toewijsbaar>;niet_toewijsbaar;8563131000.0;8203104000.0;1330812000.0
+2023;vbrzg_ctot;gas;bf;<niet toewijsbaar>;niet_toewijsbaar;8563130999.984972;8203104000.0;1330812000.0
 2023;vbrzg_afval;gas;bf;FruitdeltaRivierenland;res_ontbreekt;51000.0;;
 2023;vbrzg_afval;gas;bf;HartvanBrabant;res_ontbreekt;378000.0;;
 2023;vbrzg_afval;gas;bf;Hoekschewaard;res_ontbreekt;25000.0;;
@@ -146,28 +146,28 @@ jaar;var_code;carrier;groep;res_regio;status;waarde_gemeenten;waarde_res;ontbrek
 2023;vbrzg_i;gas;gi;Arnhem/Nijmegen;res_ontbreekt;13126000.0;;
 2023;vbrzg_i;gas;gi;nan;res_ontbreekt;9000.0;;
 2023;vbrzg_i;gas;gi;Noord-Veluwe;res_ontbreekt;7161000.0;;
-2023;vbrzg_i;gas;gi;<niet toewijsbaar>;niet_toewijsbaar;405367000.0;385075000.0;18340000.0
+2023;vbrzg_i;gas;gi;<niet toewijsbaar>;niet_toewijsbaar;405366999.9999994;385075000.0;18340000.0
 2023;vbrzg_h;gas;h;nan;res_ontbreekt;;;
 2023;vbrzg_j;gas;j;Midden-Holland;res_ontbreekt;160000.0;;
 2023;vbrzg_j;gas;j;nan;res_ontbreekt;0.0;;
 2023;vbrzg_j;gas;j;Rotterdam/DenHaag;res_ontbreekt;2909000.0;;
-2023;vbrzg_j;gas;j;<niet toewijsbaar>;niet_toewijsbaar;28495000.0;25425000.0;3154000.0
+2023;vbrzg_j;gas;j;<niet toewijsbaar>;niet_toewijsbaar;28494999.99991709;25425000.0;3154000.0
 2023;vbrzg_k;gas;kl;nan;res_ontbreekt;1000.0;;
 2023;vbrzg_l;gas;kl;Drenthe;res_ontbreekt;887000.0;;
 2023;vbrzg_l;gas;kl;Groningen;res_ontbreekt;2538000.0;;
 2023;vbrzg_l;gas;kl;nan;res_ontbreekt;68000.0;;
 2023;vbrzg_l;gas;kl;Noord-HollandZuid;res_ontbreekt;6346000.0;;
-2023;vbrzg_l;gas;kl;<niet toewijsbaar>;niet_toewijsbaar;72168000.0;62396000.0;17327000.0
+2023;vbrzg_l;gas;kl;<niet toewijsbaar>;niet_toewijsbaar;72167999.99793242;62396000.0;17327000.0
 2023;vbrzg_m;gas;mn;nan;res_ontbreekt;;;
 2023;vbrzg_n;gas;mn;nan;res_ontbreekt;;;
 2023;vbrzg_n;gas;mn;Noord-HollandNoord;res_ontbreekt;893000.0;;
 2023;vbrzg_n;gas;mn;Noord-HollandZuid;res_ontbreekt;2043000.0;;
-2023;vbrzg_n;gas;mn;<niet toewijsbaar>;niet_toewijsbaar;41786000.0;38844000.0;10159000.0
+2023;vbrzg_n;gas;mn;<niet toewijsbaar>;niet_toewijsbaar;41785999.99985807;38844000.0;10159000.0
 2023;vbrzg_o;gas;oq;nan;res_ontbreekt;1000.0;;
 2023;vbrzg_p;gas;oq;Amersfoort;res_ontbreekt;3493000.0;;
 2023;vbrzg_p;gas;oq;Foodvalley;res_ontbreekt;5293000.0;;
 2023;vbrzg_p;gas;oq;nan;res_ontbreekt;17000.0;;
-2023;vbrzg_p;gas;oq;<niet toewijsbaar>;niet_toewijsbaar;228792000.0;220000000.0;9097000.0
+2023;vbrzg_p;gas;oq;<niet toewijsbaar>;niet_toewijsbaar;228791999.9999991;220000000.0;9097000.0
 2023;vbrzg_q;gas;oq;nan;res_ontbreekt;;;
 2023;vbrzg_r1;gas;ru;nan;res_ontbreekt;23000.0;;
 2023;vbrzg_r1;gas;ru;<niet toewijsbaar>;niet_toewijsbaar;167460000.0;167449000.0;1000.0
@@ -182,7 +182,7 @@ jaar;var_code;carrier;groep;res_regio;status;waarde_gemeenten;waarde_res;ontbrek
 2023;vbrzg_s;gas;ru;Noord-HollandNoord;res_ontbreekt;2995000.0;;
 2023;vbrzg_s;gas;ru;Noord-HollandZuid;res_ontbreekt;9287000.0;;
 2023;vbrzg_s;gas;ru;Zuid-Limburg;res_ontbreekt;2586000.0;;
-2023;vbrzg_s;gas;ru;<niet toewijsbaar>;niet_toewijsbaar;110856000.0;78325000.0;51862000.0
+2023;vbrzg_s;gas;ru;<niet toewijsbaar>;niet_toewijsbaar;110855999.99887882;78325000.0;51862000.0
 2023;vbrzg_u;gas;ru;Achterhoek;res_ontbreekt;;;
 2023;vbrzg_u;gas;ru;Alblasserwaard;res_ontbreekt;;;
 2023;vbrzg_u;gas;ru;Amersfoort;res_ontbreekt;;;
@@ -215,7 +215,7 @@ jaar;var_code;carrier;groep;res_regio;status;waarde_gemeenten;waarde_res;ontbrek
 2023;vbrzg_u;gas;ru;Zeeland;res_ontbreekt;;;
 2023;vbrzg_u;gas;ru;Zuid-Limburg;res_ontbreekt;;;
 2024;vbrze_a;elec;a;nan;res_ontbreekt;289000.0;;
-2024;vbrze_a;elec;a;<niet toewijsbaar>;niet_toewijsbaar;5281791000.0;5281779000.0;1000.0
+2024;vbrze_a;elec;a;<niet toewijsbaar>;niet_toewijsbaar;5281790999.999998;5281779000.0;1000.0
 2024;vbrze_b;elec;bf;Achterhoek;res_ontbreekt;26000.0;;
 2024;vbrze_b;elec;bf;Alblasserwaard;res_ontbreekt;;;
 2024;vbrze_b;elec;bf;Foodvalley;res_ontbreekt;;;
@@ -228,7 +228,7 @@ jaar;var_code;carrier;groep;res_regio;status;waarde_gemeenten;waarde_res;ontbrek
 2024;vbrze_b;elec;bf;West-Brabant;res_ontbreekt;190000.0;;
 2024;vbrze_b;elec;bf;West-Overijssel;res_ontbreekt;2779000.0;;
 2024;vbrze_b;elec;bf;Zuid-Limburg;res_ontbreekt;16000.0;;
-2024;vbrze_b;elec;bf;<niet toewijsbaar>;niet_toewijsbaar;1263462000.0;1258863000.0;417262000.0
+2024;vbrze_b;elec;bf;<niet toewijsbaar>;niet_toewijsbaar;1263461999.8767629;1258863000.0;417262000.0
 2024;vbrze_ctot;elec;bf;nan;res_ontbreekt;488000.0;;
 2024;vbrze_d;elec;bf;Drechtsteden;res_ontbreekt;1895000.0;;
 2024;vbrze_d;elec;bf;FruitdeltaRivierenland;res_ontbreekt;1460000.0;;
@@ -236,10 +236,10 @@ jaar;var_code;carrier;groep;res_regio;status;waarde_gemeenten;waarde_res;ontbrek
 2024;vbrze_d;elec;bf;Rotterdam/DenHaag;res_ontbreekt;451649000.0;;
 2024;vbrze_d;elec;bf;Cleantech;res_ontbreekt;941000.0;;
 2024;vbrze_d;elec;bf;Zuid-Limburg;res_ontbreekt;1346000.0;;
-2024;vbrze_d;elec;bf;<niet toewijsbaar>;niet_toewijsbaar;1618120000.0;1160827000.0;770359000.0
+2024;vbrze_d;elec;bf;<niet toewijsbaar>;niet_toewijsbaar;1618119999.8622673;1160827000.0;770359000.0
 2024;vbrze_afval;elec;bf;nan;res_ontbreekt;1267000.0;;
 2024;vbrze_f;elec;bf;nan;res_ontbreekt;862000.0;;
-2024;vbrze_f;elec;bf;<niet toewijsbaar>;niet_toewijsbaar;961484000.0;961475000.0;2000.0
+2024;vbrze_f;elec;bf;<niet toewijsbaar>;niet_toewijsbaar;961483999.999999;961475000.0;2000.0
 2024;vbrze_g1;elec;gi;nan;res_ontbreekt;578000.0;;
 2024;vbrze_i;elec;gi;nan;res_ontbreekt;355000.0;;
 2024;vbrze_h;elec;h;MetropoolregioEindhoven;res_ontbreekt;174954000.0;;
@@ -247,19 +247,19 @@ jaar;var_code;carrier;groep;res_regio;status;waarde_gemeenten;waarde_res;ontbrek
 2024;vbrze_h;elec;h;Noord-HollandNoord;res_ontbreekt;105184000.0;;
 2024;vbrze_h;elec;h;Noord-HollandZuid;res_ontbreekt;1328661000.0;;
 2024;vbrze_h;elec;h;Noordoost-Brabant;res_ontbreekt;110218000.0;;
-2024;vbrze_h;elec;h;<niet toewijsbaar>;niet_toewijsbaar;5928939000.0;4209911000.0;1861538000.0
+2024;vbrze_h;elec;h;<niet toewijsbaar>;niet_toewijsbaar;5928938999.998234;4209911000.0;1861538000.0
 2024;vbrze_j;elec;j;nan;res_ontbreekt;6311000.0;;
 2024;vbrze_j;elec;j;Noord-HollandNoord;res_ontbreekt;32048000.0;;
 2024;vbrze_j;elec;j;Noord-HollandZuid;res_ontbreekt;2189817000.0;;
-2024;vbrze_j;elec;j;<niet toewijsbaar>;niet_toewijsbaar;4784886000.0;2563016000.0;3581678000.0
+2024;vbrze_j;elec;j;<niet toewijsbaar>;niet_toewijsbaar;4784885999.944752;2563016000.0;3581678000.0
 2024;vbrze_k;elec;kl;nan;res_ontbreekt;34000.0;;
-2024;vbrze_k;elec;kl;<niet toewijsbaar>;niet_toewijsbaar;1071179000.0;1071174000.0;1000.0
+2024;vbrze_k;elec;kl;<niet toewijsbaar>;niet_toewijsbaar;1071178999.9999995;1071174000.0;1000.0
 2024;vbrze_l;elec;kl;Drechtsteden;res_ontbreekt;4006000.0;;
 2024;vbrze_l;elec;kl;Foodvalley;res_ontbreekt;18711000.0;;
 2024;vbrze_l;elec;kl;Goeree-Overflakkee;res_ontbreekt;;;
 2024;vbrze_l;elec;kl;HollandRijnland;res_ontbreekt;18165000.0;;
 2024;vbrze_l;elec;kl;nan;res_ontbreekt;8000.0;;
-2024;vbrze_l;elec;kl;<niet toewijsbaar>;niet_toewijsbaar;958166000.0;917280000.0;64032000.0
+2024;vbrze_l;elec;kl;<niet toewijsbaar>;niet_toewijsbaar;958165999.9732072;917280000.0;64032000.0
 2024;vbrze_m;elec;mn;nan;res_ontbreekt;124000.0;;
 2024;vbrze_n;elec;mn;Achterhoek;res_ontbreekt;370000.0;;
 2024;vbrze_n;elec;mn;FruitdeltaRivierenland;res_ontbreekt;3647000.0;;
@@ -268,20 +268,20 @@ jaar;var_code;carrier;groep;res_regio;status;waarde_gemeenten;waarde_res;ontbrek
 2024;vbrze_n;elec;mn;Noord-HollandZuid;res_ontbreekt;11605000.0;;
 2024;vbrze_n;elec;mn;Noordoost-Brabant;res_ontbreekt;8499000.0;;
 2024;vbrze_n;elec;mn;West-Brabant;res_ontbreekt;20466000.0;;
-2024;vbrze_n;elec;mn;<niet toewijsbaar>;niet_toewijsbaar;394765000.0;343474000.0;183031000.0
+2024;vbrze_n;elec;mn;<niet toewijsbaar>;niet_toewijsbaar;394764999.98108196;343474000.0;183031000.0
 2024;vbrze_o;elec;oq;nan;res_ontbreekt;2771000.0;;
 2024;vbrze_o;elec;oq;<niet toewijsbaar>;niet_toewijsbaar;2843326000.0;2843308000.0;2000.0
 2024;vbrze_p;elec;oq;nan;res_ontbreekt;210000.0;;
 2024;vbrze_q;elec;oq;nan;res_ontbreekt;42000.0;;
 2024;vbrze_r1;elec;ru;nan;res_ontbreekt;344000.0;;
-2024;vbrze_r1;elec;ru;<niet toewijsbaar>;niet_toewijsbaar;1319307000.0;1319295000.0;1000.0
+2024;vbrze_r1;elec;ru;<niet toewijsbaar>;niet_toewijsbaar;1319306999.9999995;1319295000.0;1000.0
 2024;vbrze_s;elec;ru;Alblasserwaard;res_ontbreekt;;;
 2024;vbrze_s;elec;ru;Foodvalley;res_ontbreekt;9014000.0;;
 2024;vbrze_s;elec;ru;MetropoolregioEindhoven;res_ontbreekt;10375000.0;;
 2024;vbrze_s;elec;ru;nan;res_ontbreekt;3000.0;;
 2024;vbrze_s;elec;ru;Cleantech;res_ontbreekt;545000.0;;
 2024;vbrze_s;elec;ru;West-Overijssel;res_ontbreekt;4575000.0;;
-2024;vbrze_s;elec;ru;<niet toewijsbaar>;niet_toewijsbaar;429527000.0;405014000.0;66668000.0
+2024;vbrze_s;elec;ru;<niet toewijsbaar>;niet_toewijsbaar;429526999.95943713;405014000.0;66668000.0
 2024;vbrze_u;elec;ru;Achterhoek;res_ontbreekt;;;
 2024;vbrze_u;elec;ru;Alblasserwaard;res_ontbreekt;;;
 2024;vbrze_u;elec;ru;Amersfoort;res_ontbreekt;;;
@@ -317,7 +317,7 @@ jaar;var_code;carrier;groep;res_regio;status;waarde_gemeenten;waarde_res;ontbrek
 2024;vbrzg_a;gas;a;Noord-HollandZuid;res_ontbreekt;93822000.0;;
 2024;vbrzg_a;gas;a;U16;res_ontbreekt;35958000.0;;
 2024;vbrzg_a;gas;a;Zeeland;res_ontbreekt;27231000.0;;
-2024;vbrzg_a;gas;a;<niet toewijsbaar>;niet_toewijsbaar;3153136000.0;2996120000.0;298836000.0
+2024;vbrzg_a;gas;a;<niet toewijsbaar>;niet_toewijsbaar;3153135999.9762807;2996120000.0;298836000.0
 2024;vbrzg_b;gas;bf;Achterhoek;res_ontbreekt;;;
 2024;vbrzg_b;gas;bf;Alblasserwaard;res_ontbreekt;;;
 2024;vbrzg_b;gas;bf;Amersfoort;res_ontbreekt;;;
@@ -341,7 +341,7 @@ jaar;var_code;carrier;groep;res_regio;status;waarde_gemeenten;waarde_res;ontbrek
 2024;vbrzg_b;gas;bf;West-Overijssel;res_ontbreekt;;;
 2024;vbrzg_b;gas;bf;Zeeland;res_ontbreekt;;;
 2024;vbrzg_b;gas;bf;Zuid-Limburg;res_ontbreekt;;;
-2024;vbrzg_b;gas;bf;<niet toewijsbaar>;niet_toewijsbaar;1435000.0;1356000.0;42140000.0
+2024;vbrzg_b;gas;bf;<niet toewijsbaar>;niet_toewijsbaar;1434999.9999564027;1356000.0;42140000.0
 2024;vbrzg_ctot;gas;bf;Flevoland;res_ontbreekt;6035000.0;;
 2024;vbrzg_ctot;gas;bf;Foodvalley;res_ontbreekt;31240000.0;;
 2024;vbrzg_ctot;gas;bf;HollandRijnland;res_ontbreekt;19016000.0;;
@@ -350,20 +350,20 @@ jaar;var_code;carrier;groep;res_regio;status;waarde_gemeenten;waarde_res;ontbrek
 2024;vbrzg_ctot;gas;bf;Noord-HollandZuid;res_ontbreekt;238570000.0;;
 2024;vbrzg_ctot;gas;bf;Rotterdam/DenHaag;res_ontbreekt;3003097000.0;;
 2024;vbrzg_ctot;gas;bf;Zuid-Limburg;res_ontbreekt;186490000.0;;
-2024;vbrzg_ctot;gas;bf;<niet toewijsbaar>;niet_toewijsbaar;8594241000.0;4896795000.0;5469194000.0
+2024;vbrzg_ctot;gas;bf;<niet toewijsbaar>;niet_toewijsbaar;8594240999.967285;4896795000.0;5469194000.0
 2024;vbrzg_afval;gas;bf;Amersfoort;res_ontbreekt;128000.0;;
 2024;vbrzg_afval;gas;bf;Foodvalley;res_ontbreekt;59000.0;;
 2024;vbrzg_afval;gas;bf;nan;res_ontbreekt;;;
 2024;vbrzg_afval;gas;bf;Noord-HollandNoord;res_ontbreekt;65000.0;;
 2024;vbrzg_afval;gas;bf;Noord-HollandZuid;res_ontbreekt;3529000.0;;
-2024;vbrzg_afval;gas;bf;<niet toewijsbaar>;niet_toewijsbaar;100672000.0;96891000.0;26290000.0
+2024;vbrzg_afval;gas;bf;<niet toewijsbaar>;niet_toewijsbaar;100671999.99596141;96891000.0;26290000.0
 2024;vbrzg_f;gas;bf;nan;res_ontbreekt;1000.0;;
-2024;vbrzg_f;gas;bf;<niet toewijsbaar>;niet_toewijsbaar;61670000.00000001;61657000.0;2000.0
+2024;vbrzg_f;gas;bf;<niet toewijsbaar>;niet_toewijsbaar;61669999.99999898;61657000.0;2000.0
 2024;vbrzg_g1;gas;gi;MetropoolregioEindhoven;res_ontbreekt;20084000.0;;
 2024;vbrzg_g1;gas;gi;nan;res_ontbreekt;;;
 2024;vbrzg_g1;gas;gi;Noord-enMidden-Limburg;res_ontbreekt;16392000.0;;
 2024;vbrzg_g1;gas;gi;Zuid-Limburg;res_ontbreekt;13211000.0;;
-2024;vbrzg_g1;gas;gi;<niet toewijsbaar>;niet_toewijsbaar;443426000.0;393731000.0;51109000.0
+2024;vbrzg_g1;gas;gi;<niet toewijsbaar>;niet_toewijsbaar;443425999.99763274;393731000.0;51109000.0
 2024;vbrzg_i;gas;gi;nan;res_ontbreekt;9000.0;;
 2024;vbrzg_h;gas;h;nan;res_ontbreekt;;;
 2024;vbrzg_j;gas;j;nan;res_ontbreekt;1000.0;;
@@ -373,7 +373,7 @@ jaar;var_code;carrier;groep;res_regio;status;waarde_gemeenten;waarde_res;ontbrek
 2024;vbrzg_l;gas;kl;Foodvalley;res_ontbreekt;831000.0;;
 2024;vbrzg_l;gas;kl;FruitdeltaRivierenland;res_ontbreekt;257000.0;;
 2024;vbrzg_l;gas;kl;nan;res_ontbreekt;;;
-2024;vbrzg_l;gas;kl;<niet toewijsbaar>;niet_toewijsbaar;67330000.0;63840000.0;9098000.0
+2024;vbrzg_l;gas;kl;<niet toewijsbaar>;niet_toewijsbaar;67329999.99831033;63840000.0;9098000.0
 2024;vbrzg_m;gas;mn;nan;res_ontbreekt;;;
 2024;vbrzg_n;gas;mn;Drechtsteden;res_ontbreekt;974000.0;;
 2024;vbrzg_n;gas;mn;Drenthe;res_ontbreekt;127000.0;;
@@ -385,13 +385,13 @@ jaar;var_code;carrier;groep;res_regio;status;waarde_gemeenten;waarde_res;ontbrek
 2024;vbrzg_n;gas;mn;nan;res_ontbreekt;;;
 2024;vbrzg_n;gas;mn;Noord-HollandZuid;res_ontbreekt;2934000.0;;
 2024;vbrzg_n;gas;mn;Rotterdam/DenHaag;res_ontbreekt;3143000.0;;
-2024;vbrzg_n;gas;mn;<niet toewijsbaar>;niet_toewijsbaar;31680000.0;20919000.0;22696000.0
+2024;vbrzg_n;gas;mn;<niet toewijsbaar>;niet_toewijsbaar;31679999.999660987;20919000.0;22696000.0
 2024;vbrzg_o;gas;oq;nan;res_ontbreekt;1000.0;;
-2024;vbrzg_o;gas;oq;<niet toewijsbaar>;niet_toewijsbaar;148451000.0;148446000.0;1000.0
+2024;vbrzg_o;gas;oq;<niet toewijsbaar>;niet_toewijsbaar;148450999.99834734;148446000.0;1000.0
 2024;vbrzg_p;gas;oq;nan;res_ontbreekt;16000.0;;
 2024;vbrzg_q;gas;oq;nan;res_ontbreekt;;;
 2024;vbrzg_r1;gas;ru;nan;res_ontbreekt;21000.0;;
-2024;vbrzg_r1;gas;ru;<niet toewijsbaar>;niet_toewijsbaar;150524000.0;150520000.0;1000.0
+2024;vbrzg_r1;gas;ru;<niet toewijsbaar>;niet_toewijsbaar;150523999.99999863;150520000.0;1000.0
 2024;vbrzg_s;gas;ru;Amersfoort;res_ontbreekt;1851000.0;;
 2024;vbrzg_s;gas;ru;Arnhem/Nijmegen;res_ontbreekt;3892000.0;;
 2024;vbrzg_s;gas;ru;Foodvalley;res_ontbreekt;2585000.0;;
@@ -400,7 +400,7 @@ jaar;var_code;carrier;groep;res_regio;status;waarde_gemeenten;waarde_res;ontbrek
 2024;vbrzg_s;gas;ru;Noord-HollandZuid;res_ontbreekt;6327000.0;;
 2024;vbrzg_s;gas;ru;U16;res_ontbreekt;2998000.0;;
 2024;vbrzg_s;gas;ru;Zeeland;res_ontbreekt;1776000.0;;
-2024;vbrzg_s;gas;ru;<niet toewijsbaar>;niet_toewijsbaar;104541000.0;84077000.0;35067000.0
+2024;vbrzg_s;gas;ru;<niet toewijsbaar>;niet_toewijsbaar;104540999.99977723;84077000.0;35067000.0
 2024;vbrzg_u;gas;ru;Achterhoek;res_ontbreekt;;;
 2024;vbrzg_u;gas;ru;Alblasserwaard;res_ontbreekt;;;
 2024;vbrzg_u;gas;ru;Amersfoort;res_ontbreekt;;;
@@ -432,498 +432,561 @@ jaar;var_code;carrier;groep;res_regio;status;waarde_gemeenten;waarde_res;ontbrek
 2024;vbrzg_u;gas;ru;West-Overijssel;res_ontbreekt;;;
 2024;vbrzg_u;gas;ru;Zeeland;res_ontbreekt;;;
 2024;vbrzg_u;gas;ru;Zuid-Limburg;res_ontbreekt;;;
-2023;<plafond gemeentetotaal>;gas;;Achterhoek / GM0197;bijschatting_verlaagd;5090572.274293265;5000000.0;-90572.2742932653
-2023;<plafond gemeentetotaal>;gas;;Achterhoek / GM0222;bijschatting_verlaagd;29830796.381256413;29641000.0;-189796.38125641271
-2023;<plafond gemeentetotaal>;gas;;Achterhoek / GM1509;bijschatting_verlaagd;9519490.016694902;9350000.0;-149433.82645913397
-2023;<plafond gemeentetotaal>;gas;;Achterhoek / GM1586;bijschatting_verlaagd;11454380.054336762;11375000.0;-79380.05433676206
-2023;<plafond gemeentetotaal>;gas;;Achterhoek / GM1859;bijschatting_verlaagd;36727345.80731315;36554000.0;-132286.5013774105
-2023;<plafond gemeentetotaal>;gas;;Achterhoek / GM1876;bijschatting_verlaagd;44462005.85835914;44344000.0;-118005.85835914314
-2023;<plafond gemeentetotaal>;gas;;Achterhoek / GM1955;bijschatting_verlaagd;8837130.53763953;8688000.0;-140467.79687158592
-2023;<plafond gemeentetotaal>;gas;;Alblasserwaard / GM0512;bijschatting_verlaagd;51900108.0038615;51894000.0;-6108.003861501813
+2023;<plafond gemeentetotaal>;gas;;Achterhoek / GM0197;bijschatting_verlaagd;5052943.134620329;5000000.0;-52943.134620329365
+2023;<plafond gemeentetotaal>;gas;;Achterhoek / GM0222;bijschatting_verlaagd;29761643.1114388;29641000.0;-120643.11143879965
+2023;<plafond gemeentetotaal>;gas;;Achterhoek / GM0294;bijschatting_verlaagd;8794388.759571228;8794000.0;-388.75957122817636
+2023;<plafond gemeentetotaal>;gas;;Achterhoek / GM1509;bijschatting_verlaagd;9412703.045757102;9350000.0;-62703.04575710185
+2023;<plafond gemeentetotaal>;gas;;Achterhoek / GM1586;bijschatting_verlaagd;11405237.435545811;11375000.0;-30237.43554581143
+2023;<plafond gemeentetotaal>;gas;;Achterhoek / GM1859;bijschatting_verlaagd;36619194.81352781;36554000.0;-65194.81352780759
+2023;<plafond gemeentetotaal>;gas;;Achterhoek / GM1876;bijschatting_verlaagd;44415404.08335559;44344000.0;-71404.0833555907
+2023;<plafond gemeentetotaal>;gas;;Achterhoek / GM1955;bijschatting_verlaagd;8748485.616069274;8688000.0;-60485.61606927402
+2023;<plafond gemeentetotaal>;gas;;Alblasserwaard / GM0512;bijschatting_verlaagd;51894549.52076677;51894000.0;-549.5207667723298
+2023;<plafond gemeentetotaal>;gas;;Alblasserwaard / GM1978;bijschatting_verlaagd;12002450.47922808;12002000.0;-450.479228079319
 2023;<plafond gemeentetotaal>;gas;;Amersfoort / GM0307;bijschatting_verlaagd;28813644.049871262;28477000.0;-806.5173116089613
-2023;<plafond gemeentetotaal>;gas;;Amersfoort / GM0308;bijschatting_verlaagd;6430064.520812806;6333000.0;-1550.3879965969734
-2023;<plafond gemeentetotaal>;gas;;Amersfoort / GM0313;bijschatting_verlaagd;11001375.5636661;10754000.0;-247375.56366609968
-2023;<plafond gemeentetotaal>;gas;;Amersfoort / GM0317;bijschatting_verlaagd;4407312.880901072;4305000.0;-102312.88090107217
-2023;<plafond gemeentetotaal>;gas;;Amersfoort / GM0327;bijschatting_verlaagd;5436888.671530527;4952000.0;-1429.8022635283198
-2023;<plafond gemeentetotaal>;gas;;Amersfoort / GM0342;bijschatting_verlaagd;11787684.814832991;11650000.0;-389.00203665987783
-2023;<plafond gemeentetotaal>;gas;;Amersfoort / GM0351;bijschatting_verlaagd;2159029.498385243;1871000.0;-1068.0450643223594
-2023;<plafond gemeentetotaal>;gas;;Arnhem/Nijmegen / GM0225;bijschatting_verlaagd;9297718.61826424;9178000.0;-119718.61826423928
-2023;<plafond gemeentetotaal>;gas;;Arnhem/Nijmegen / GM0226;bijschatting_verlaagd;4677523.877335854;3600000.0;-285808.8930936613
-2023;<plafond gemeentetotaal>;gas;;Arnhem/Nijmegen / GM0252;bijschatting_verlaagd;1921328.8841571368;1716000.0;-201971.6177861873
-2023;<plafond gemeentetotaal>;gas;;Arnhem/Nijmegen / GM0277;bijschatting_verlaagd;1077391.790784266;186000.0;-824803.8886285466
-2023;<plafond gemeentetotaal>;gas;;Arnhem/Nijmegen / GM0293;bijschatting_verlaagd;1092704.7745752097;888000.0;-190539.2620624409
-2023;<plafond gemeentetotaal>;gas;;Arnhem/Nijmegen / GM0299;bijschatting_verlaagd;44927320.71901608;44820000.0;-107320.71901608258
-2023;<plafond gemeentetotaal>;gas;;Arnhem/Nijmegen / GM1734;bijschatting_verlaagd;18538833.491012298;17920000.0;-618833.4910122976
-2023;<plafond gemeentetotaal>;gas;;Arnhem/Nijmegen / GM1945;bijschatting_verlaagd;32210351.22988557;10284000.0;-21926351.22988557
-2023;<plafond gemeentetotaal>;gas;;Cleantech / GM0213;bijschatting_verlaagd;84104588.34677996;84000000.0;-8956.525257578378
-2023;<plafond gemeentetotaal>;gas;;Cleantech / GM0262;bijschatting_verlaagd;22053456.592093773;21790000.0;-12735.059350619256
-2023;<plafond gemeentetotaal>;gas;;Cleantech / GM0301;bijschatting_verlaagd;12206933.191233708;11972000.0;-17773.104808007094
-2023;<plafond gemeentetotaal>;gas;;Drechtsteden / GM0482;bijschatting_verlaagd;13034141.425666498;12773000.0;-3602.5824964131994
-2023;<thema:bf>;gas;bf;Drechtsteden / GM0505;thema_bijschatting;26230093.356956545;26467000.0;236906.64304345474
-2023;<thema:bf>;gas;bf;Drechtsteden / GM0523;thema_bijschatting;3380968.8450256004;3416000.0;35031.1549743996
-2023;<thema:bf>;gas;bf;Drechtsteden / GM0531;thema_bijschatting;3321307.589501764;3517000.0;195692.41049823584
-2023;<plafond gemeentetotaal>;gas;;Drechtsteden / GM0610;bijschatting_verlaagd;9585133.713917432;9330000.0;-4299.856527977044
-2023;<plafond gemeentetotaal>;gas;;Drechtsteden / GM0642;bijschatting_verlaagd;38989900.471699744;38563000.0;-7011.477761836442
-2023;<thema:bf>;gas;bf;Drenthe / GM0106;thema_bijschatting;17275782.333554238;17374000.0;98217.66644576192
-2023;<plafond gemeentetotaal>;gas;;Drenthe / GM0109;bijschatting_verlaagd;27635972.145927686;27498000.0;-137972.14592768624
-2023;<plafond gemeentetotaal>;gas;;Drenthe / GM0114;bijschatting_verlaagd;79239183.9745533;76973000.0;-450799.6146435453
-2023;<plafond gemeentetotaal>;gas;;Drenthe / GM0118;bijschatting_verlaagd;49056237.057427585;45301000.0;-3755237.057427585
-2023;<plafond gemeentetotaal>;gas;;Drenthe / GM0119;bijschatting_verlaagd;26549810.173734013;24658000.0;-1859557.4211701378
-2023;<plafond gemeentetotaal>;gas;;Drenthe / GM1681;bijschatting_verlaagd;8610072.180246072;6623000.0;-1980832.9051594946
-2023;<plafond gemeentetotaal>;gas;;Drenthe / GM1690;bijschatting_verlaagd;6380817.734258318;4124000.0;-2061683.2278190658
-2023;<plafond gemeentetotaal>;gas;;Drenthe / GM1699;bijschatting_verlaagd;8889239.690023873;6925000.0;-1920195.1631648166
-2023;<plafond gemeentetotaal>;gas;;Drenthe / GM1701;bijschatting_verlaagd;5507641.61744317;5386000.0;-85219.65317919075
-2023;<plafond gemeentetotaal>;gas;;Drenthe / GM1730;bijschatting_verlaagd;8899099.76457622;7090000.0;-1758494.5178456737
-2023;<plafond gemeentetotaal>;gas;;Drenthe / GM1731;bijschatting_verlaagd;31685994.201958627;31584000.0;-101994.20195862651
-2023;<plafond gemeentetotaal>;gas;;Flevoland / GM0034;bijschatting_verlaagd;23798292.050159905;23444000.0;-352786.02243313205
-2023;<thema:bf>;gas;bf;Flevoland / GM0050;thema_bijschatting;8695906.489678368;9222000.0;526093.510321632
-2023;<plafond gemeentetotaal>;gas;;Flevoland / GM0184;bijschatting_verlaagd;3528647.0844848254;3438000.0;-53409.83606557377
-2023;<plafond gemeentetotaal>;gas;;Foodvalley / GM0279;bijschatting_verlaagd;3548909.5643782704;3288000.0;-3367.3469387755104
-2023;<plafond gemeentetotaal>;gas;;Foodvalley / GM0339;bijschatting_verlaagd;1156915.358854431;1038000.0;-2326.530612244898
-2023;<plafond gemeentetotaal>;gas;;Foodvalley / GM0340;bijschatting_verlaagd;7509241.545658449;7254000.0;-6183.673469387755
-2023;<plafond gemeentetotaal>;gas;;Friesland / GM0059;bijschatting_verlaagd;13609535.762041835;11863000.0;-1746535.762041835
-2023;<plafond gemeentetotaal>;gas;;Friesland / GM0060;bijschatting_verlaagd;3968122.195246462;3807000.0;-161122.19524646178
-2023;<thema:bf>;gas;bf;Friesland / GM0074;thema_bijschatting;33569922.12804086;37662000.0;4092077.8719591424
-2023;<plafond gemeentetotaal>;gas;;Friesland / GM0080;bijschatting_verlaagd;65278768.89342557;64709000.0;-8678.010471204188
-2023;<plafond gemeentetotaal>;gas;;Friesland / GM0085;bijschatting_verlaagd;8358940.344950087;7247000.0;-1111940.3449500874
-2023;<plafond gemeentetotaal>;gas;;Friesland / GM0086;bijschatting_verlaagd;6977385.773123426;5599000.0;-1378385.7731234264
-2023;<plafond gemeentetotaal>;gas;;Friesland / GM0088;bijschatting_verlaagd;1125332.7662930666;1045000.0;-58158.83896513185
-2023;<plafond gemeentetotaal>;gas;;Friesland / GM0090;bijschatting_verlaagd;18876026.74794128;16729000.0;-2147026.7479412816
-2023;<plafond gemeentetotaal>;gas;;Friesland / GM0093;bijschatting_verlaagd;3220888.493331963;2958000.0;-262888.4933319632
-2023;<plafond gemeentetotaal>;gas;;Friesland / GM0096;bijschatting_verlaagd;1331605.3158775426;1228000.0;-103605.3158775426
-2023;<plafond gemeentetotaal>;gas;;Friesland / GM0098;bijschatting_verlaagd;7624763.3319597915;6214000.0;-1410763.3319597915
-2023;<plafond gemeentetotaal>;gas;;Friesland / GM0737;bijschatting_verlaagd;30963922.554305702;26026000.0;-1477088.591688391
-2023;<plafond gemeentetotaal>;gas;;Friesland / GM1891;bijschatting_verlaagd;3264498.8890439803;2133000.0;-1116539.4078904372
-2023;<plafond gemeentetotaal>;gas;;Friesland / GM1900;bijschatting_verlaagd;50879366.35225681;46321000.0;-4558366.352256812
-2023;<plafond gemeentetotaal>;gas;;Friesland / GM1940;bijschatting_verlaagd;39119684.06233319;39112000.0;-6247.1952131638
-2023;<plafond gemeentetotaal>;gas;;Friesland / GM1949;bijschatting_verlaagd;47723659.73880267;45379000.0;-2344659.7388026714
-2023;<plafond gemeentetotaal>;gas;;Friesland / GM1970;bijschatting_verlaagd;15620067.697349336;13315000.0;-2305067.697349336
-2023;<thema:bf>;gas;bf;FruitdeltaRivierenland / GM0214;thema_bijschatting;4900592.539125518;4909000.0;8407.460874482058
-2023;<thema:bf>;gas;bf;FruitdeltaRivierenland / GM0263;thema_bijschatting;22967521.625666372;23165000.0;197478.37433362752
-2023;<thema:bf>;gas;bf;FruitdeltaRivierenland / GM0281;thema_bijschatting;29079737.743088413;29080000.0;262.2569115869701
-2023;<thema:bf>;gas;bf;FruitdeltaRivierenland / GM0297;thema_bijschatting;163223023.40524864;163229000.0;5976.594751358032
-2023;<thema:bf>;gas;bf;FruitdeltaRivierenland / GM0668;thema_bijschatting;3024940.7836274416;3032000.0;7059.216372558381
-2023;<thema:bf>;gas;bf;Groningen / GM0014;thema_bijschatting;126304377.97179243;128291000.0;1986622.0282075703
-2023;<plafond gemeentetotaal>;gas;;Groningen / GM0037;bijschatting_verlaagd;7190354.594794668;6687000.0;-503354.59479466826
-2023;<plafond gemeentetotaal>;gas;;Groningen / GM0765;bijschatting_verlaagd;10861513.600570198;10694000.0;-167513.60057019815
-2023;<plafond gemeentetotaal>;gas;;Groningen / GM1895;bijschatting_verlaagd;28832402.640842788;28334000.0;-498402.6408427879
-2023;<plafond gemeentetotaal>;gas;;Groningen / GM1952;bijschatting_verlaagd;67197008.3074136;66998000.0;-199008.30741359293
-2023;<plafond gemeentetotaal>;gas;;Groningen / GM1966;bijschatting_verlaagd;54342921.43080867;53571000.0;-771921.4308086708
-2023;<plafond gemeentetotaal>;gas;;Groningen / GM1969;bijschatting_verlaagd;18893036.35345577;18527000.0;-318291.936433196
-2023;<plafond gemeentetotaal>;gas;;HartvanBrabant / GM0766;bijschatting_verlaagd;57860244.96799745;57329000.0;-54.11140583554377
-2023;<plafond gemeentetotaal>;gas;;HartvanBrabant / GM0784;bijschatting_verlaagd;12952802.983049665;8616000.0;-55.70291777188329
-2023;<plafond gemeentetotaal>;gas;;HartvanBrabant / GM0785;bijschatting_verlaagd;3193785.78793306;2655000.0;-48.275862068965516
-2023;<plafond gemeentetotaal>;gas;;HartvanBrabant / GM0797;bijschatting_verlaagd;42647871.24824444;41622000.0;-132.6259946949602
-2023;<plafond gemeentetotaal>;gas;;HartvanBrabant / GM0798;bijschatting_verlaagd;3137179.1224634824;2797000.0;-38.196286472148536
-2023;<plafond gemeentetotaal>;gas;;HartvanBrabant / GM0809;bijschatting_verlaagd;4404373.7502686875;3940000.0;-58.355437665782496
-2023;<plafond gemeentetotaal>;gas;;HartvanBrabant / GM0824;bijschatting_verlaagd;9415646.13444231;8474000.0;-70.55702917771883
-2023;<plafond gemeentetotaal>;gas;;HartvanBrabant / GM0855;bijschatting_verlaagd;86484743.02963033;82215000.0;-402.65251989389924
-2023;<plafond gemeentetotaal>;gas;;HartvanBrabant / GM0867;bijschatting_verlaagd;22536352.975970596;21669000.0;-139.52254641909815
-2023;<plafond gemeentetotaal>;gas;;HollandRijnland / GM0534;bijschatting_verlaagd;6157910.357256171;6105000.0;-1236.893203883495
-2023;<plafond gemeentetotaal>;gas;;HollandRijnland / GM0569;bijschatting_verlaagd;17255978.90475284;17246000.0;-2365.0485436893205
-2023;<plafond gemeentetotaal>;gas;;HollandRijnland / GM0575;bijschatting_verlaagd;14815907.939590074;14684000.0;-2283.495145631068
-2023;<plafond gemeentetotaal>;gas;;HollandRijnland / GM0579;bijschatting_verlaagd;2915718.432760754;2773000.0;-625.2427184466019
-2023;<plafond gemeentetotaal>;gas;;HollandRijnland / GM0626;bijschatting_verlaagd;2551139.328685495;2490000.0;-1019.4174757281553
-2023;<plafond gemeentetotaal>;gas;;HollandRijnland / GM1525;bijschatting_verlaagd;22988158.56846559;10003000.0;-12985158.56846559
-2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM0743;bijschatting_verlaagd;37972937.14866103;37860000.0;-6246.841294298922
-2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM0753;bijschatting_verlaagd;8304310.895713616;7946000.0;-7682.896764252698
-2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM0762;bijschatting_verlaagd;13687741.625395555;13478000.0;-11488.443759630201
-2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM0770;bijschatting_verlaagd;4900772.170011707;4667000.0;-7323.882896764253
-2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM0820;bijschatting_verlaagd;4316925.688857152;3970000.0;-5528.813559322034
-2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM0823;bijschatting_verlaagd;16242977.53627955;12484000.0;-6821.263482280431
-2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM0847;bijschatting_verlaagd;46281131.13204168;46064000.0;-8831.741140215716
-2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM0858;bijschatting_verlaagd;8252526.606946146;7889000.0;-9118.952234206472
-2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM0861;bijschatting_verlaagd;13492063.63780978;13488000.0;-4063.637809779495
-2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM0866;bijschatting_verlaagd;2126767.796779548;1802000.0;-3590.1386748844375
-2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM1652;bijschatting_verlaagd;10219844.869571798;9976000.0;-11991.063174114022
-2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM1658;bijschatting_verlaagd;2949839.52495619;2718000.0;-5600.616332819723
-2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM1659;bijschatting_verlaagd;48171378.23907649;37184000.0;-10987378.239076488
-2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM1667;bijschatting_verlaagd;3380734.2366113;2473000.0;-5887.827426810478
-2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM1706;bijschatting_verlaagd;12476924.431499835;12292000.0;-8185.516178736518
-2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM1724;bijschatting_verlaagd;6268323.999281569;6028000.0;-8831.741140215716
-2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM1728;bijschatting_verlaagd;8259827.953445036;8043000.0;-9477.966101694916
-2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM1771;bijschatting_verlaagd;11248585.720675696;10839000.0;-12062.86594761171
-2023;<plafond gemeentetotaal>;gas;;Midden-Holland / GM1892;bijschatting_verlaagd;76258794.3304377;76173000.0;-12003.550295857987
-2023;<plafond gemeentetotaal>;gas;;Noord-HollandNoord / GM0361;bijschatting_verlaagd;48704841.462966666;29584000.0;-141.10052259452812
-2023;<plafond gemeentetotaal>;gas;;Noord-HollandNoord / GM0373;bijschatting_verlaagd;7170112.6502605975;7094000.0;-37.19643406086689
-2023;<plafond gemeentetotaal>;gas;;Noord-HollandNoord / GM0383;bijschatting_verlaagd;4533247.437352594;4530000.0;-40.885336612357825
-2023;<plafond gemeentetotaal>;gas;;Noord-HollandNoord / GM0399;bijschatting_verlaagd;2562478.057872868;2502000.0;-22.44082385490317
-2023;<plafond gemeentetotaal>;gas;;Noord-HollandNoord / GM0400;bijschatting_verlaagd;27545330.413254887;17364000.0;-51.029818628957884
-2023;<plafond gemeentetotaal>;gas;;Noord-HollandNoord / GM0441;bijschatting_verlaagd;80153748.5225339;16278000.0;-6342053.932486684
-2023;<plafond gemeentetotaal>;gas;;Noord-HollandNoord / GM0498;bijschatting_verlaagd;9514992.266129177;9457000.0;-33.20012296341839
-2023;<thema:bf>;gas;bf;Noord-HollandZuid / GM0358;thema_bijschatting;23141156.533654287;27805000.0;4663843.466345713
-2023;<thema:bf>;gas;bf;Noord-HollandZuid / GM0362;thema_bijschatting;21682352.71244556;22135000.0;452647.28755443916
-2023;<thema:bf>;gas;bf;Noord-HollandZuid / GM0363;thema_bijschatting;302975207.1120254;323883000.0;20907792.88797462
-2023;<plafond gemeentetotaal>;gas;;Noord-HollandZuid / GM0375;bijschatting_verlaagd;41485832.5946482;23758000.0;-17727832.594648197
-2023;<thema:bf>;gas;bf;Noord-HollandZuid / GM0376;thema_bijschatting;1654482.7012842498;1662000.0;7517.298715750221
-2023;<plafond gemeentetotaal>;gas;;Noord-HollandZuid / GM0377;bijschatting_verlaagd;8932772.69122957;3486000.0;-5446772.691229571
-2023;<plafond gemeentetotaal>;gas;;Noord-HollandZuid / GM0385;bijschatting_verlaagd;10319309.992123019;7726000.0;-42.7120303512422
-2023;<plafond gemeentetotaal>;gas;;Noord-HollandZuid / GM0392;bijschatting_verlaagd;103175593.18581007;30238000.0;-72937593.18581007
-2023;<plafond gemeentetotaal>;gas;;Noord-HollandZuid / GM0394;bijschatting_verlaagd;105461620.88444854;105457000.0;-80.2839309754008
-2023;<plafond gemeentetotaal>;gas;;Noord-HollandZuid / GM0396;bijschatting_verlaagd;24723000.31154785;6353000.0;-18370000.31154785
-2023;<plafond gemeentetotaal>;gas;;Noord-HollandZuid / GM0397;bijschatting_verlaagd;14657082.540715901;4402000.0;-8191540.532286974
-2023;<thema:bf>;gas;bf;Noord-HollandZuid / GM0402;thema_bijschatting;19917531.54952587;20286000.0;368468.45047413185
-2023;<thema:bf>;gas;bf;Noord-HollandZuid / GM0406;thema_bijschatting;6628455.0314158145;6640000.0;11544.968584185466
-2023;<plafond gemeentetotaal>;gas;;Noord-HollandZuid / GM0417;bijschatting_verlaagd;4353293.586551195;3041000.0;-4.283441439236324
-2023;<plafond gemeentetotaal>;gas;;Noord-HollandZuid / GM0431;bijschatting_verlaagd;2601776.559186108;1731000.0;-5.140129727083588
-2023;<thema:bf>;gas;bf;Noord-HollandZuid / GM0437;thema_bijschatting;5091709.689155584;5147000.0;55290.3108444158
-2023;<thema:bf>;gas;bf;Noord-HollandZuid / GM0453;thema_bijschatting;54526790.4609357;282744000.0;228217209.5390643
-2023;<plafond gemeentetotaal>;gas;;Noord-HollandZuid / GM0473;bijschatting_verlaagd;15180378.677210964;4275000.0;-10905378.677210964
-2023;<plafond gemeentetotaal>;gas;;Noord-HollandZuid / GM0852;bijschatting_verlaagd;2128253.665693915;2124000.0;-8.322114796230572
-2023;<plafond gemeentetotaal>;gas;;Noord-HollandZuid / GM0880;bijschatting_verlaagd;12522740.821301168;12515000.0;-9.790723289683026
-2023;<plafond gemeentetotaal>;gas;;Noord-HollandZuid / GM1696;bijschatting_verlaagd;4583983.13571538;4582000.0;-17.623301921429444
-2023;<plafond gemeentetotaal>;gas;;Noord-HollandZuid / GM1942;bijschatting_verlaagd;11802714.800235352;11802000.0;-23.37535185411822
-2023;<plafond gemeentetotaal>;gas;;Noord-enMidden-Limburg / GM0889;bijschatting_verlaagd;5912086.279362755;5843000.0;-43053.85556915544
-2023;<plafond gemeentetotaal>;gas;;Noord-enMidden-Limburg / GM0893;bijschatting_verlaagd;14823968.751259463;14761000.0;-62735.618115055084
-2023;<plafond gemeentetotaal>;gas;;Noord-enMidden-Limburg / GM0907;bijschatting_verlaagd;6885268.679090633;6698000.0;-91028.1517747858
-2023;<plafond gemeentetotaal>;gas;;Noord-enMidden-Limburg / GM0944;bijschatting_verlaagd;1950452.707725145;1649000.0;-35673.194614443084
-2023;<plafond gemeentetotaal>;gas;;Noord-enMidden-Limburg / GM0946;bijschatting_verlaagd;5356873.31981688;4953000.0;-113170.13463892289
-2023;<thema:bf>;gas;bf;Noord-enMidden-Limburg / GM0957;thema_bijschatting;138575634.8556901;138734000.0;158365.14430990815
-2023;<thema:bf>;gas;bf;Noord-enMidden-Limburg / GM0983;thema_bijschatting;110209927.21017657;110298000.0;88072.7898234278
-2023;<plafond gemeentetotaal>;gas;;Noord-enMidden-Limburg / GM0984;bijschatting_verlaagd;41241818.85356432;40722000.0;-178365.97307221542
-2023;<thema:bf>;gas;bf;Noord-enMidden-Limburg / GM1894;thema_bijschatting;86982717.91608062;95399000.0;8416282.083919376
-2023;<plafond gemeentetotaal>;gas;;Noordoost-Brabant / GM0755;bijschatting_verlaagd;10486011.122210637;9681000.0;-49590.835985354
-2023;<plafond gemeentetotaal>;gas;;Noordoost-Brabant / GM0757;bijschatting_verlaagd;10928832.75993061;10353000.0;-93961.58397224969
+2023;<plafond gemeentetotaal>;gas;;Amersfoort / GM0308;bijschatting_verlaagd;6415030.148876218;6333000.0;-1644.23896481981
+2023;<plafond gemeentetotaal>;gas;;Amersfoort / GM0313;bijschatting_verlaagd;10952112.712307125;10754000.0;-198112.71230712533
+2023;<plafond gemeentetotaal>;gas;;Amersfoort / GM0317;bijschatting_verlaagd;4473317.538511985;4305000.0;-168317.53851198498
+2023;<plafond gemeentetotaal>;gas;;Amersfoort / GM0327;bijschatting_verlaagd;5342865.741641224;4952000.0;-174.500204369577
+2023;<plafond gemeentetotaal>;gas;;Amersfoort / GM0342;bijschatting_verlaagd;11791130.707993928;11650000.0;-389.00203665987783
+2023;<plafond gemeentetotaal>;gas;;Amersfoort / GM0351;bijschatting_verlaagd;2247899.095366;1871000.0;-339.7123047291136
+2023;<plafond gemeentetotaal>;gas;;Arnhem/Nijmegen / GM0221;bijschatting_verlaagd;1820860.224101403;1816000.0;-4860.22410140303
+2023;<plafond gemeentetotaal>;gas;;Arnhem/Nijmegen / GM0225;bijschatting_verlaagd;9207472.974124374;9178000.0;-29472.974124373868
+2023;<plafond gemeentetotaal>;gas;;Arnhem/Nijmegen / GM0226;bijschatting_verlaagd;3668706.426963154;3600000.0;-68706.42696315423
+2023;<plafond gemeentetotaal>;gas;;Arnhem/Nijmegen / GM0252;bijschatting_verlaagd;1763741.203821111;1716000.0;-47741.203821111005
+2023;<plafond gemeentetotaal>;gas;;Arnhem/Nijmegen / GM0277;bijschatting_verlaagd;191532.38085076166;186000.0;-5532.380850761663
+2023;<plafond gemeentetotaal>;gas;;Arnhem/Nijmegen / GM0293;bijschatting_verlaagd;923562.8012655589;888000.0;-35562.80126555893
+2023;<plafond gemeentetotaal>;gas;;Arnhem/Nijmegen / GM0299;bijschatting_verlaagd;44846717.56680959;44820000.0;-26717.56680958718
+2023;<plafond gemeentetotaal>;gas;;Arnhem/Nijmegen / GM1705;bijschatting_verlaagd;43219562.85351042;43169000.0;-50562.853510417044
+2023;<plafond gemeentetotaal>;gas;;Arnhem/Nijmegen / GM1734;bijschatting_verlaagd;18074059.023194328;17920000.0;-154059.02319432795
+2023;<plafond gemeentetotaal>;gas;;Arnhem/Nijmegen / GM1945;bijschatting_verlaagd;10373838.66114685;10284000.0;-89838.6611468494
+2023;<plafond gemeentetotaal>;gas;;Cleantech / GM0200;bijschatting_verlaagd;71550485.39210661;71550000.0;-485.39210660755634
+2023;<plafond gemeentetotaal>;gas;;Cleantech / GM0213;bijschatting_verlaagd;84000404.84097236;84000000.0;-404.8409723639488
+2023;<plafond gemeentetotaal>;gas;;Cleantech / GM0232;bijschatting_verlaagd;12339177.957887039;12339000.0;-177.95788703858852
+2023;<plafond gemeentetotaal>;gas;;Cleantech / GM0246;bijschatting_verlaagd;5150084.544769064;5150000.0;-84.54476906359196
+2023;<plafond gemeentetotaal>;gas;;Cleantech / GM0262;bijschatting_verlaagd;21790910.746659223;21790000.0;-910.7466592229903
+2023;<plafond gemeentetotaal>;gas;;Cleantech / GM0285;bijschatting_verlaagd;6982134.883159939;6982000.0;-134.8831599391997
+2023;<plafond gemeentetotaal>;gas;;Cleantech / GM0301;bijschatting_verlaagd;11972801.634445772;11972000.0;-801.634445771575
+2023;<thema:bf>;gas;bf;Drechtsteden / GM0505;thema_bijschatting;26427674.593398195;26467000.0;39325.40660180524
+2023;<thema:bf>;gas;bf;Drechtsteden / GM0523;thema_bijschatting;3403509.7820620006;3416000.0;12490.217937999405
+2023;<plafond gemeentetotaal>;gas;;Drechtsteden / GM0531;bijschatting_verlaagd;3517000.0000000005;3517000.0;-4.656612873077393e-10
+2023;<thema:bf>;gas;bf;Drenthe / GM0109;thema_bijschatting;27482794.17820242;27498000.0;15205.821797579527
+2023;<plafond gemeentetotaal>;gas;;Drenthe / GM0118;bijschatting_verlaagd;45301000.00000001;45301000.0;-7.450580596923828e-09
+2023;<plafond gemeentetotaal>;gas;;Drenthe / GM1681;bijschatting_verlaagd;6623000.087860104;6623000.0;-0.0878601036965847
+2023;<plafond gemeentetotaal>;gas;;Drenthe / GM1690;bijschatting_verlaagd;4124595.6610677997;4124000.0;-595.661067799665
+2023;<plafond gemeentetotaal>;gas;;Drenthe / GM1699;bijschatting_verlaagd;6925000.404319852;6925000.0;-0.40431985165923834
+2023;<thema:bf>;gas;bf;Flevoland / GM0050;thema_bijschatting;9221999.999765938;9222000.0;0.0002340618520975113
+2023;<plafond gemeentetotaal>;gas;;Foodvalley / GM0279;bijschatting_verlaagd;3288000.097846967;3288000.0;-0.09784696716815233
+2023;<thema:bf>;gas;bf;Friesland / GM0074;thema_bijschatting;37660688.09313084;37662000.0;1311.9068691581488
+2023;<plafond gemeentetotaal>;gas;;Friesland / GM0088;bijschatting_verlaagd;1045000.0000000001;1045000.0;-1.1641532182693481e-10
+2023;<thema:bf>;gas;bf;FruitdeltaRivierenland / GM0214;thema_bijschatting;4900990.083719518;4909000.0;8009.916280481964
+2023;<thema:bf>;gas;bf;FruitdeltaRivierenland / GM0263;thema_bijschatting;23067009.916009337;23165000.0;97990.08399066329
+2023;<thema:bf>;gas;bf;Groningen / GM0014;thema_bijschatting;128290941.13676502;128291000.0;58.86323498189449
+2023;<plafond gemeentetotaal>;gas;;HartvanBrabant / GM0766;bijschatting_verlaagd;57860090.14929394;57329000.0;-1.0331632891299236
+2023;<plafond gemeentetotaal>;gas;;HartvanBrabant / GM0784;bijschatting_verlaagd;12952853.00115991;8616000.0;-64.53167444005878
+2023;<plafond gemeentetotaal>;gas;;HartvanBrabant / GM0785;bijschatting_verlaagd;3158829.260544927;2655000.0;-72.19038085957322
+2023;<plafond gemeentetotaal>;gas;;HartvanBrabant / GM0797;bijschatting_verlaagd;42647544.226101026;41622000.0;-1.0381078838480562
+2023;<plafond gemeentetotaal>;gas;;HartvanBrabant / GM0798;bijschatting_verlaagd;3128109.3627414317;2797000.0;-0.6433094016618952
+2023;<plafond gemeentetotaal>;gas;;HartvanBrabant / GM0809;bijschatting_verlaagd;4355947.252946364;3940000.0;-36.44559785435837
+2023;<plafond gemeentetotaal>;gas;;HartvanBrabant / GM0824;bijschatting_verlaagd;9415630.412874699;8474000.0;-59.148398031624204
+2023;<plafond gemeentetotaal>;gas;;HartvanBrabant / GM0855;bijschatting_verlaagd;86492626.87308764;82215000.0;-71.8519232814981
+2023;<plafond gemeentetotaal>;gas;;HartvanBrabant / GM0867;bijschatting_verlaagd;22621369.46125007;21669000.0;-693.1174449582476
+2023;<plafond gemeentetotaal>;gas;;HollandRijnland / GM0579;bijschatting_verlaagd;2773074.0564887174;2773000.0;-36.44487838477386
+2023;<plafond gemeentetotaal>;gas;;HollandRijnland / GM0626;bijschatting_verlaagd;2490020.8456746843;2490000.0;-20.845674684271216
+2023;<plafond gemeentetotaal>;gas;;HollandRijnland / GM0638;bijschatting_verlaagd;20857000.000000004;20857000.0;-3.725290298461914e-09
+2023;<plafond gemeentetotaal>;gas;;HollandRijnland / GM1525;bijschatting_verlaagd;10008412.749355031;10003000.0;-5412.749355031177
+2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM0743;bijschatting_verlaagd;37989238.902115904;37860000.0;-5428.88153337049
+2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM0753;bijschatting_verlaagd;8294853.255613487;7946000.0;-821.2382787526445
+2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM0762;bijschatting_verlaagd;13682613.36569648;13478000.0;-11145.532576142934
+2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM0770;bijschatting_verlaagd;4890707.112488078;4667000.0;-1648.0661478953045
+2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM0794;bijschatting_verlaagd;56515788.258634046;55661000.0;-1394.0880269297365
+2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM0820;bijschatting_verlaagd;4302383.56761235;3970000.0;-703.1468033582398
+2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM0823;bijschatting_verlaagd;12756201.593331086;12484000.0;-73.49525177496102
+2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM0847;bijschatting_verlaagd;46256880.73749352;46064000.0;-489.0891319466536
+2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM0848;bijschatting_verlaagd;24519115.446245387;24286000.0;-233115.4462453872
+2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM0858;bijschatting_verlaagd;8235412.976310884;7889000.0;-151.6290511999487
+2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM0861;bijschatting_verlaagd;13514745.205920206;13488000.0;-26745.205920206383
+2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM0866;bijschatting_verlaagd;2090808.859801373;1802000.0;-96.05965945425888
+2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM1652;bijschatting_verlaagd;10232486.781879785;9976000.0;-3049.306115894208
+2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM1658;bijschatting_verlaagd;2933988.945870839;2718000.0;-454.3372568866398
+2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM1659;bijschatting_verlaagd;43663900.98502431;37184000.0;-6479900.985024311
+2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM1667;bijschatting_verlaagd;2681593.953170794;2473000.0;-3.9382695344839433
+2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM1706;bijschatting_verlaagd;12475044.326769726;12292000.0;-3252.747683275542
+2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM1724;bijschatting_verlaagd;6251791.333424357;6028000.0;-1019.3749245490361
+2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM1728;bijschatting_verlaagd;8248763.316930338;8043000.0;-2171.5732003477856
+2023;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM1771;bijschatting_verlaagd;11229681.075667046;10839000.0;-2332.977112004272
+2023;<plafond gemeentetotaal>;gas;;Midden-Holland / GM1892;bijschatting_verlaagd;76177511.63019052;76173000.0;-511.6301905189375
+2023;<plafond gemeentetotaal>;gas;;Noord-HollandNoord / GM0441;bijschatting_verlaagd;16278000.000000002;16278000.0;-1.862645149230957e-09
+2023;<thema:bf>;gas;bf;Noord-HollandZuid / GM0358;thema_bijschatting;23141812.293318998;27805000.0;4663187.706681002
+2023;<thema:bf>;gas;bf;Noord-HollandZuid / GM0362;thema_bijschatting;21684226.12362721;22135000.0;450773.8763727918
+2023;<thema:bf>;gas;bf;Noord-HollandZuid / GM0363;thema_bijschatting;302999858.05283034;323883000.0;20883141.94716966
+2023;<plafond gemeentetotaal>;gas;;Noord-HollandZuid / GM0375;bijschatting_verlaagd;23758000.000000004;23758000.0;-3.725290298461914e-09
+2023;<thema:bf>;gas;bf;Noord-HollandZuid / GM0376;thema_bijschatting;1654752.43903597;1662000.0;7247.560964029981
+2023;<plafond gemeentetotaal>;gas;;Noord-HollandZuid / GM0396;bijschatting_verlaagd;6353000.000000001;6353000.0;-9.313225746154785e-10
+2023;<plafond gemeentetotaal>;gas;;Noord-HollandZuid / GM0397;bijschatting_verlaagd;4402000.26997097;4402000.0;-0.2699709702283144
+2023;<thema:bf>;gas;bf;Noord-HollandZuid / GM0402;thema_bijschatting;19919507.694308102;20286000.0;366492.30569189787
+2023;<thema:bf>;gas;bf;Noord-HollandZuid / GM0406;thema_bijschatting;6629270.754291495;6640000.0;10729.245708504692
+2023;<plafond gemeentetotaal>;gas;;Noord-HollandZuid / GM0431;bijschatting_verlaagd;1731000.1126126894;1731000.0;-0.017865772275762914
+2023;<thema:bf>;gas;bf;Noord-HollandZuid / GM0437;thema_bijschatting;5092107.22276764;5147000.0;54892.777232360095
+2023;<thema:bf>;gas;bf;Noord-HollandZuid / GM0473;thema_bijschatting;4274999.999999999;4275000.0;9.313225746154785e-10
+2023;<thema:bf>;gas;bf;Noord-enMidden-Limburg / GM1894;thema_bijschatting;89974617.51911141;95399000.0;5424382.48088859
+2023;<plafond gemeentetotaal>;gas;;Noordoost-Brabant / GM0755;bijschatting_verlaagd;10419328.991417877;9681000.0;-49590.835985354
+2023;<plafond gemeentetotaal>;gas;;Noordoost-Brabant / GM0757;bijschatting_verlaagd;10936166.498021744;10353000.0;-93961.58397224969
 2023;<plafond gemeentetotaal>;gas;;Noordoost-Brabant / GM0796;bijschatting_verlaagd;40734091.05111554;39894000.0;-256282.7657378741
 2023;<plafond gemeentetotaal>;gas;;Noordoost-Brabant / GM0828;bijschatting_verlaagd;49230108.227078356;47441000.0;-191553.49157206743
-2023;<plafond gemeentetotaal>;gas;;Noordoost-Brabant / GM0845;bijschatting_verlaagd;3943902.0544669554;3203000.0;-103096.73796955174
-2023;<plafond gemeentetotaal>;gas;;Noordoost-Brabant / GM0865;bijschatting_verlaagd;7396249.120609311;6946000.0;-76343.78697745287
-2023;<plafond gemeentetotaal>;gas;;Noordoost-Brabant / GM1721;bijschatting_verlaagd;6318531.163764118;4992000.0;-65858.27313381493
+2023;<plafond gemeentetotaal>;gas;;Noordoost-Brabant / GM0845;bijschatting_verlaagd;3948536.7428645045;3203000.0;-103096.73796955174
+2023;<plafond gemeentetotaal>;gas;;Noordoost-Brabant / GM0865;bijschatting_verlaagd;7368688.71772092;6946000.0;-76343.78697745287
+2023;<plafond gemeentetotaal>;gas;;Noordoost-Brabant / GM1721;bijschatting_verlaagd;6326666.224334005;4992000.0;-65858.27313381493
 2023;<plafond gemeentetotaal>;gas;;Noordoost-Brabant / GM1948;bijschatting_verlaagd;82448220.14454906;80069000.0;-170102.51117991054
-2023;<plafond gemeentetotaal>;gas;;Noordoost-Brabant / GM1982;bijschatting_verlaagd;52962852.555545285;49406000.0;-122684.55452356381
+2023;<plafond gemeentetotaal>;gas;;Noordoost-Brabant / GM1982;bijschatting_verlaagd;53036991.60216787;49406000.0;-122684.55452356381
 2023;<plafond gemeentetotaal>;gas;;Noordoost-Brabant / GM1991;bijschatting_verlaagd;23682201.80073013;22079000.0;-175525.45894816087
-2023;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM0502;bijschatting_verlaagd;8511911.53856461;7767000.0;-36683.61514480613
-2023;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM0503;bijschatting_verlaagd;48192268.81302914;48104000.0;-52831.42659610835
-2023;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM0542;bijschatting_verlaagd;4189432.146189481;3968000.0;-17025.40989974256
-2023;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM0556;bijschatting_verlaagd;2923596.384637627;2845000.0;-24923.795935705595
-2023;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM0597;bijschatting_verlaagd;13712379.122785334;13290000.0;-8889.770923111817
-2023;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM0606;bijschatting_verlaagd;14026017.230477065;13933000.0;-24344.295758675435
-2023;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM0613;bijschatting_verlaagd;3728614.1544157625;3471000.0;-12988.457036917003
-2023;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM0629;bijschatting_verlaagd;7108339.6395113785;6691000.0;-3008.8455432070764
-2023;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM0637;bijschatting_verlaagd;30698035.14741379;26042000.0;-4656035.14741379
-2023;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM1621;bijschatting_verlaagd;216281625.4406954;215755000.0;-39491.930179815216
-2023;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM1926;bijschatting_verlaagd;88363317.92230304;88067000.0;-34050.81979948512
-2023;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM1930;bijschatting_verlaagd;10827467.53380506;10253000.0;-51427.2690786038
-2023;<plafond gemeentetotaal>;gas;;Twente / GM0141;bijschatting_verlaagd;91337044.46352573;31518000.0;-59819044.46352573
-2023;<plafond gemeentetotaal>;gas;;Twente / GM0153;bijschatting_verlaagd;37966248.08088332;37709000.0;-18083.333333333336
-2023;<plafond gemeentetotaal>;gas;;Twente / GM0158;bijschatting_verlaagd;5796735.164185527;5515000.0;-265606.48148148146
-2023;<plafond gemeentetotaal>;gas;;Twente / GM0163;bijschatting_verlaagd;15726800.66252394;15356000.0;-305294.80630055343
-2023;<plafond gemeentetotaal>;gas;;Twente / GM0168;bijschatting_verlaagd;6580389.877053406;6321000.0;-204547.5202213708
-2023;<plafond gemeentetotaal>;gas;;Twente / GM0173;bijschatting_verlaagd;13691639.902658608;13477000.0;-214639.9026586078
-2023;<plafond gemeentetotaal>;gas;;Twente / GM0183;bijschatting_verlaagd;4688825.231057387;4306000.0;-280871.22179650917
-2023;<plafond gemeentetotaal>;gas;;Twente / GM0189;bijschatting_verlaagd;9084948.170430444;8780000.0;-262553.53341847594
-2023;<plafond gemeentetotaal>;gas;;Twente / GM1700;bijschatting_verlaagd;10305530.829506965;9852000.0;-448783.36526181357
-2023;<plafond gemeentetotaal>;gas;;Twente / GM1742;bijschatting_verlaagd;11329174.175326625;10738000.0;-470154.00170285226
-2023;<plafond gemeentetotaal>;gas;;Twente / GM1774;bijschatting_verlaagd;8773664.37533564;8387000.0;-283924.16985951475
-2023;<plafond gemeentetotaal>;gas;;U16 / GM0312;bijschatting_verlaagd;4920601.081488629;4903000.0;-11350.701402805611
-2023;<plafond gemeentetotaal>;gas;;U16 / GM0321;bijschatting_verlaagd;12725226.176324865;9854000.0;-2871226.176324865
-2023;<plafond gemeentetotaal>;gas;;U16 / GM0331;bijschatting_verlaagd;2701491.8348031347;2638000.0;-19815.63126252505
-2023;<thema:bf>;gas;bf;U16 / GM0335;thema_bijschatting;2529248.0096265464;2532000.0;2751.990373453591
-2023;<thema:bf>;gas;bf;U16 / GM0344;thema_bijschatting;69526134.85630336;69627000.0;100865.14369663596
-2023;<plafond gemeentetotaal>;gas;;U16 / GM0352;bijschatting_verlaagd;2488890.030755516;2469000.0;-17891.78356713427
-2023;<plafond gemeentetotaal>;gas;;U16 / GM0353;bijschatting_verlaagd;5708552.410313937;5678000.0;-19623.24649298597
-2023;<plafond gemeentetotaal>;gas;;U16 / GM0355;bijschatting_verlaagd;18516004.615453914;18450000.0;-31743.486973947896
-2023;<thema:bf>;gas;bf;U16 / GM0356;thema_bijschatting;10748088.192678353;10992000.0;243911.80732164718
-2023;<plafond gemeentetotaal>;gas;;U16 / GM0589;bijschatting_verlaagd;1462855.1744853624;1401000.0;-12120.240480961924
-2023;<plafond gemeentetotaal>;gas;;U16 / GM0632;bijschatting_verlaagd;37478852.99734626;37436000.0;-42517.03406813627
-2023;<thema:bf>;gas;bf;U16 / GM0736;thema_bijschatting;13484279.221118992;13486000.0;1720.7788810078055
-2023;<plafond gemeentetotaal>;gas;;U16 / GM1581;bijschatting_verlaagd;10251268.545713156;10244000.0;-7268.545713156462
-2023;<plafond gemeentetotaal>;gas;;West-Brabant / GM0744;bijschatting_verlaagd;5152945.288707966;5125000.0;-12881.177942195089
-2023;<thema:bf>;gas;bf;West-Brabant / GM0748;thema_bijschatting;261294908.5884773;261347000.0;52091.41152268648
-2023;<plafond gemeentetotaal>;gas;;West-Brabant / GM0758;bijschatting_verlaagd;52987207.33622387;52828000.0;-137617.06555671178
-2023;<plafond gemeentetotaal>;gas;;West-Brabant / GM0777;bijschatting_verlaagd;62940529.26927937;62834000.0;-44470.73337186399
-2023;<plafond gemeentetotaal>;gas;;West-Brabant / GM0840;bijschatting_verlaagd;5745265.5898417365;5715000.0;-30265.58984173648
-2023;<thema:bf>;gas;bf;West-Brabant / GM0873;thema_bijschatting;8700744.286677612;9122000.0;421255.713322388
-2023;<plafond gemeentetotaal>;gas;;West-Brabant / GM0879;bijschatting_verlaagd;10055852.337614728;10022000.0;-31282.860716759496
-2023;<plafond gemeentetotaal>;gas;;West-Brabant / GM1655;bijschatting_verlaagd;10993574.794390991;10953000.0;-40574.79439099133
-2023;<plafond gemeentetotaal>;gas;;West-Brabant / GM1674;bijschatting_verlaagd;36874386.63962967;36803000.0;-67252.86160249739
-2023;<plafond gemeentetotaal>;gas;;West-Brabant / GM1719;bijschatting_verlaagd;30830917.030266397;30770000.0;-36496.67083621942
-2023;<plafond gemeentetotaal>;gas;;West-Brabant / GM1723;bijschatting_verlaagd;2848518.507793458;2821000.0;-16868.209210017376
-2023;<plafond gemeentetotaal>;gas;;West-Brabant / GM1959;bijschatting_verlaagd;14992276.877739133;14915000.0;-77276.87773913331
-2023;<plafond gemeentetotaal>;gas;;West-Overijssel / GM0148;bijschatting_verlaagd;8402997.462279476;8283000.0;-5753.560371517028
-2023;<plafond gemeentetotaal>;gas;;West-Overijssel / GM0160;bijschatting_verlaagd;18201103.26810444;18107000.0;-270.5882352941176
-2023;<plafond gemeentetotaal>;gas;;West-Overijssel / GM0166;bijschatting_verlaagd;59612695.56608109;59506000.0;-12304.643962848297
-2023;<plafond gemeentetotaal>;gas;;West-Overijssel / GM0175;bijschatting_verlaagd;8180212.026260335;8152000.0;-3588.8544891640868
-2023;<plafond gemeentetotaal>;gas;;West-Overijssel / GM0177;bijschatting_verlaagd;13486261.18775599;13364000.0;-6323.219814241486
-2023;<plafond gemeentetotaal>;gas;;West-Overijssel / GM0180;bijschatting_verlaagd;7125168.953962375;7042000.0;-6152.321981424148
-2023;<plafond gemeentetotaal>;gas;;West-Overijssel / GM0193;bijschatting_verlaagd;44327891.139755055;44198000.0;-315.29411764705884
-2023;<plafond gemeentetotaal>;gas;;West-Overijssel / GM1708;bijschatting_verlaagd;8525551.75969787;8391000.0;-10937.461300309596
-2023;<plafond gemeentetotaal>;gas;;West-Overijssel / GM1773;bijschatting_verlaagd;4634885.108874671;4560000.0;-3247.0588235294117
-2023;<plafond gemeentetotaal>;gas;;West-Overijssel / GM1896;bijschatting_verlaagd;22466767.97929937;22412000.0;-5810.526315789474
-2023;<plafond gemeentetotaal>;gas;;Zeeland / GM0664;bijschatting_verlaagd;20253478.854453895;19625000.0;-628478.8544538952
-2023;<plafond gemeentetotaal>;gas;;Zeeland / GM0687;bijschatting_verlaagd;474083151.50955796;33135000.0;-440948151.50955796
-2023;<plafond gemeentetotaal>;gas;;Zeeland / GM0716;bijschatting_verlaagd;16733180.046084166;15809000.0;-869033.8680926918
-2023;<plafond gemeentetotaal>;gas;;Zeeland / GM0717;bijschatting_verlaagd;7417991.64816438;6794000.0;-623991.6481643803
-2023;<plafond gemeentetotaal>;gas;;Zeeland / GM1676;bijschatting_verlaagd;22796815.582584593;21872000.0;-924815.5825845934
-2023;<plafond gemeentetotaal>;gas;;Zeeland / GM1695;bijschatting_verlaagd;3347493.923511267;3097000.0;-221632.79857397504
-2023;<plafond gemeentetotaal>;gas;;Zeeland / GM1714;bijschatting_verlaagd;9935867.252073346;9508000.0;-427867.2520733457
-2023;<plafond gemeentetotaal>;gas;;Zuid-Limburg / GM0882;bijschatting_verlaagd;6540852.075956735;6533000.0;-7852.075956734829
-2023;<thema:bf>;gas;bf;Zuid-Limburg / GM0888;thema_bijschatting;6905931.932962675;7219000.0;313068.06703732535
-2023;<thema:bf>;gas;bf;Zuid-Limburg / GM0899;thema_bijschatting;4455602.748845629;5393000.0;937397.2511543706
-2023;<thema:bf>;gas;bf;Zuid-Limburg / GM0917;thema_bijschatting;30203297.56437809;32528000.0;2324702.43562191
-2023;<thema:bf>;gas;bf;Zuid-Limburg / GM0928;thema_bijschatting;26748856.867804073;26778000.0;29143.132195927203
-2023;<thema:bf>;gas;bf;Zuid-Limburg / GM0935;thema_bijschatting;26874948.83597423;152601000.0;125726051.16402577
-2023;<thema:bf>;gas;bf;Zuid-Limburg / GM0938;thema_bijschatting;1903487.561804404;1922000.0;18512.438195595983
-2023;<plafond gemeentetotaal>;gas;;Zuid-Limburg / GM0965;bijschatting_verlaagd;1047046.6405405772;1013000.0;-4231.178707224334
-2023;<thema:bf>;gas;bf;Zuid-Limburg / GM0971;thema_bijschatting;4955220.215390606;7836000.0;2880779.784609394
-2023;<plafond gemeentetotaal>;gas;;Zuid-Limburg / GM0981;bijschatting_verlaagd;2441208.016762936;2415000.0;-3580.228136882129
-2023;<plafond gemeentetotaal>;gas;;Zuid-Limburg / GM0986;bijschatting_verlaagd;1151084.3380907527;1106000.0;-5370.342205323194
-2023;<plafond gemeentetotaal>;gas;;Zuid-Limburg / GM0994;bijschatting_verlaagd;5740572.675184162;5730000.0;-6997.718631178708
-2023;<plafond gemeentetotaal>;gas;;Zuid-Limburg / GM1729;bijschatting_verlaagd;4155184.178816152;4155000.0;-184.17881615180522
-2023;<thema:bf>;gas;bf;Zuid-Limburg / GM1883;thema_bijschatting;17278392.032118924;872099000.0;854820607.9678811
-2023;<plafond gemeentetotaal>;gas;;Zuid-Limburg / GM1954;bijschatting_verlaagd;7262338.545551939;7075000.0;-17250.190114068442
-2024;<plafond gemeentetotaal>;gas;;Alblasserwaard / GM1978;bijschatting_verlaagd;35564415.39527847;11591000.0;-23973415.39527847
-2024;<plafond gemeentetotaal>;gas;;Amersfoort / GM0313;bijschatting_verlaagd;11508815.065692537;10439000.0;-1069815.0656925365
-2024;<plafond gemeentetotaal>;gas;;Arnhem/Nijmegen / GM0225;bijschatting_verlaagd;8904107.70079435;8392000.0;-207182.70079435126
-2024;<plafond gemeentetotaal>;gas;;Arnhem/Nijmegen / GM0226;bijschatting_verlaagd;3978596.2933351593;3228000.0;-204624.88967343335
-2024;<plafond gemeentetotaal>;gas;;Arnhem/Nijmegen / GM0252;bijschatting_verlaagd;1701972.6069811804;1566000.0;-135972.60698118038
-2024;<plafond gemeentetotaal>;gas;;Arnhem/Nijmegen / GM0277;bijschatting_verlaagd;1003803.2677519012;159000.0;-756700.809701063
-2024;<plafond gemeentetotaal>;gas;;Arnhem/Nijmegen / GM0293;bijschatting_verlaagd;915136.2770791636;749000.0;-135563.9894086496
-2024;<plafond gemeentetotaal>;gas;;Arnhem/Nijmegen / GM1734;bijschatting_verlaagd;16838426.301853485;16382000.0;-456426.3018534854
-2024;<plafond gemeentetotaal>;gas;;Arnhem/Nijmegen / GM1945;bijschatting_verlaagd;31320096.553329293;7543000.0;-23777096.553329293
-2024;<plafond gemeentetotaal>;gas;;Cleantech / GM0213;bijschatting_verlaagd;42302755.37040608;41956000.0;-22972.55425464165
-2024;<plafond gemeentetotaal>;gas;;Cleantech / GM0232;bijschatting_verlaagd;12005330.76379853;11838000.0;-40694.238965365206
-2024;<plafond gemeentetotaal>;gas;;Cleantech / GM0262;bijschatting_verlaagd;23909312.339048076;23689000.0;-31833.396610003423
-2024;<plafond gemeentetotaal>;gas;;Cleantech / GM0301;bijschatting_verlaagd;10810792.946764547;10775000.0;-35792.94676454738
-2024;<plafond gemeentetotaal>;gas;;Drechtsteden / GM0482;bijschatting_verlaagd;12265576.322543172;11933000.0;-2863.6792768415335
-2024;<thema:bf>;gas;bf;Drechtsteden / GM0505;thema_bijschatting;24944975.792474043;25095000.0;150024.20752595738
-2024;<plafond gemeentetotaal>;gas;;Drechtsteden / GM0523;bijschatting_verlaagd;3619745.576773664;2964000.0;-3608.235888820333
-2024;<thema:bf>;gas;bf;Drechtsteden / GM0610;thema_bijschatting;8563074.208547773;8936000.0;372925.79145222716
-2024;<plafond gemeentetotaal>;gas;;Drechtsteden / GM0642;bijschatting_verlaagd;39130900.38713194;38337000.0;-5755.995346451483
-2024;<thema:bf>;gas;bf;Drenthe / GM0106;thema_bijschatting;15155599.892178498;15473000.0;317400.1078215018
-2024;<thema:bf>;gas;bf;Drenthe / GM0109;thema_bijschatting;24469366.144093465;24506000.0;36633.85590653494
-2024;<thema:bf>;gas;bf;Drenthe / GM0114;thema_bijschatting;75791955.93075642;76765000.0;973044.0692435801
-2024;<thema:bf>;gas;bf;Drenthe / GM0118;thema_bijschatting;43570524.18825667;43972000.0;401475.8117433265
-2024;<thema:bf>;gas;bf;Drenthe / GM0119;thema_bijschatting;23977518.43041259;24030000.0;52481.569587409496
-2024;<plafond gemeentetotaal>;gas;;Drenthe / GM1681;bijschatting_verlaagd;6118732.474164792;6112000.0;-6686.393805309734
-2024;<plafond gemeentetotaal>;gas;;Drenthe / GM1690;bijschatting_verlaagd;3856498.0077422475;3708000.0;-7004.793510324484
-2024;<thema:bf>;gas;bf;Drenthe / GM1699;thema_bijschatting;6261580.349572139;6306000.0;44419.65042786114
-2024;<thema:bf>;gas;bf;Drenthe / GM1701;thema_bijschatting;5500400.235534004;5505000.0;4599.764465996064
-2024;<thema:bf>;gas;bf;Drenthe / GM1730;thema_bijschatting;6388279.209439846;6394000.0;5720.790560154244
-2024;<plafond gemeentetotaal>;gas;;Drenthe / GM1731;bijschatting_verlaagd;33455168.570836782;32093000.0;-142.77286135693214
-2024;<thema:bf>;gas;bf;Flevoland / GM0050;thema_bijschatting;8244198.799971929;9126000.0;881801.2000280712
-2024;<thema:bf>;gas;bf;Flevoland / GM0184;thema_bijschatting;3094407.595472422;3103000.0;8592.404527578037
-2024;<plafond gemeentetotaal>;gas;;Friesland / GM0059;bijschatting_verlaagd;11091478.458420532;10585000.0;-506478.4584205318
-2024;<plafond gemeentetotaal>;gas;;Friesland / GM0060;bijschatting_verlaagd;3571099.2549162437;3528000.0;-43099.25491624372
-2024;<plafond gemeentetotaal>;gas;;Friesland / GM0080;bijschatting_verlaagd;56354042.780660674;56293000.0;-6063.172509545297
-2024;<plafond gemeentetotaal>;gas;;Friesland / GM0085;bijschatting_verlaagd;6361345.227433452;6048000.0;-313345.2274334524
-2024;<plafond gemeentetotaal>;gas;;Friesland / GM0086;bijschatting_verlaagd;5516430.628094729;5109000.0;-407430.62809472904
-2024;<plafond gemeentetotaal>;gas;;Friesland / GM0088;bijschatting_verlaagd;1194777.9770632458;960000.0;-234777.97706324584
-2024;<plafond gemeentetotaal>;gas;;Friesland / GM0090;bijschatting_verlaagd;15725641.245224196;15152000.0;-573641.2452241965
-2024;<plafond gemeentetotaal>;gas;;Friesland / GM0093;bijschatting_verlaagd;2880763.3538736827;2802000.0;-78763.35387368267
-2024;<plafond gemeentetotaal>;gas;;Friesland / GM0096;bijschatting_verlaagd;1218090.4563413276;1172000.0;-25416.83075063024
-2024;<plafond gemeentetotaal>;gas;;Friesland / GM0098;bijschatting_verlaagd;6301417.960951168;5897000.0;-404417.9609511681
-2024;<plafond gemeentetotaal>;gas;;Friesland / GM0737;bijschatting_verlaagd;26660985.427133456;26403000.0;-257985.42713345587
-2024;<plafond gemeentetotaal>;gas;;Friesland / GM1891;bijschatting_verlaagd;2275227.7067798935;1931000.0;-317710.384382878
-2024;<plafond gemeentetotaal>;gas;;Friesland / GM1900;bijschatting_verlaagd;43803912.968787886;42653000.0;-1150912.9687878862
-2024;<plafond gemeentetotaal>;gas;;Friesland / GM1940;bijschatting_verlaagd;37882333.22819434;37880000.0;-2333.2281943410635
-2024;<plafond gemeentetotaal>;gas;;Friesland / GM1949;bijschatting_verlaagd;47712079.868766315;47232000.0;-480079.8687663153
-2024;<plafond gemeentetotaal>;gas;;Friesland / GM1970;bijschatting_verlaagd;12179145.155266294;11507000.0;-672145.1552662943
-2024;<plafond gemeentetotaal>;gas;;FruitdeltaRivierenland / GM0214;bijschatting_verlaagd;4763923.828667136;4729000.0;-34923.82866713591
-2024;<plafond gemeentetotaal>;gas;;FruitdeltaRivierenland / GM0668;bijschatting_verlaagd;2704067.314080966;2670000.0;-34067.31408096617
-2024;<thema:bf>;gas;bf;Groningen / GM0014;thema_bijschatting;115345210.43274523;116554000.0;1208789.5672547668
-2024;<plafond gemeentetotaal>;gas;;Groningen / GM0037;bijschatting_verlaagd;6601364.152019901;6598000.0;-3364.152019901201
-2024;<thema:bf>;gas;bf;Groningen / GM0765;thema_bijschatting;12063193.963377358;12066000.0;2806.036622641608
-2024;<plafond gemeentetotaal>;gas;;Groningen / GM1895;bijschatting_verlaagd;28138643.991317596;28134000.0;-4643.9913175962865
-2024;<thema:bf>;gas;bf;Groningen / GM1952;thema_bijschatting;53860116.52384413;53966000.0;105883.47615586966
-2024;<plafond gemeentetotaal>;gas;;Groningen / GM1966;bijschatting_verlaagd;74179026.23304515;41061000.0;-33118026.233045146
-2024;<plafond gemeentetotaal>;gas;;Groningen / GM1969;bijschatting_verlaagd;17360794.148947477;17357000.0;-3794.1489474773407
-2024;<plafond gemeentetotaal>;gas;;HartvanBrabant / GM0766;bijschatting_verlaagd;51770846.32626992;51245000.0;-2151.0373443983403
-2024;<plafond gemeentetotaal>;gas;;HartvanBrabant / GM0798;bijschatting_verlaagd;2458839.840546282;2451000.0;-1493.7759336099584
-2024;<plafond gemeentetotaal>;gas;;HartvanBrabant / GM0824;bijschatting_verlaagd;7585994.115264116;7584000.0;-1994.115264115855
-2024;<plafond gemeentetotaal>;gas;;HollandRijnland / GM0534;bijschatting_verlaagd;5822691.924442643;5751000.0;-3475.1760697020773
-2024;<plafond gemeentetotaal>;gas;;HollandRijnland / GM0546;bijschatting_verlaagd;21684221.455289327;21393000.0;-14705.481894949842
-2024;<plafond gemeentetotaal>;gas;;HollandRijnland / GM0579;bijschatting_verlaagd;2608484.2600601166;2521000.0;-1829.040036685304
-2024;<plafond gemeentetotaal>;gas;;HollandRijnland / GM0626;bijschatting_verlaagd;2549679.805838551;2498000.0;-3109.368062365017
-2024;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM0743;bijschatting_verlaagd;37590610.15553918;37572000.0;-12047.892676811172
-2024;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM0753;bijschatting_verlaagd;6787563.02930356;6773000.0;-14563.029303560033
-2024;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM0770;bijschatting_verlaagd;4181584.884661939;4176000.0;-5584.884661938995
-2024;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM0820;bijschatting_verlaagd;3688891.3959286725;3672000.0;-10309.021568817807
-2024;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM0847;bijschatting_verlaagd;44568531.06320245;44536000.0;-16395.070446794583
-2024;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM0858;bijschatting_verlaagd;7195228.319177068;7188000.0;-7228.319177067839
-2024;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM0861;bijschatting_verlaagd;12973717.386048019;11853000.0;-20493.83805849323
-2024;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM0866;bijschatting_verlaagd;1683340.944844437;1682000.0;-1340.9448444370646
-2024;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM1652;bijschatting_verlaagd;22044137.965717915;10033000.0;-12011137.965717915
-2024;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM1658;bijschatting_verlaagd;2377234.2871184996;2362000.0;-10309.021568817807
-2024;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM1667;bijschatting_verlaagd;2643594.230282413;2298000.0;-10681.636806244955
-2024;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM1706;bijschatting_verlaagd;11944008.185531888;11938000.0;-6008.185531888157
-2024;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM1724;bijschatting_verlaagd;5837224.5315337265;5822000.0;-15224.531533726491
-2024;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM1728;bijschatting_verlaagd;7553246.053733643;7552000.0;-1246.0537336431444
-2024;<plafond gemeentetotaal>;gas;;Midden-Holland / GM0627;bijschatting_verlaagd;44199839.92125607;44183000.0;-6656.455142231947
-2024;<plafond gemeentetotaal>;gas;;Midden-Holland / GM1901;bijschatting_verlaagd;6462073.638080418;6330000.0;-8704.595185995624
-2024;<plafond gemeentetotaal>;gas;;Noord-HollandNoord / GM0405;bijschatting_verlaagd;12862824.05052784;11617000.0;-1245824.0505278409
-2024;<plafond gemeentetotaal>;gas;;Noord-HollandNoord / GM0441;bijschatting_verlaagd;95143213.0134092;15475000.0;-2417482.2097378275
-2024;<plafond gemeentetotaal>;gas;;Noord-HollandNoord / GM0532;bijschatting_verlaagd;6978310.937320053;6875000.0;-103310.93732005265
-2024;<thema:bf>;gas;bf;Noord-HollandZuid / GM0358;thema_bijschatting;21316019.524529435;26735000.0;5418980.475470565
-2024;<thema:bf>;gas;bf;Noord-HollandZuid / GM0362;thema_bijschatting;22020062.22298834;22138000.0;117937.777011659
-2024;<thema:bf>;gas;bf;Noord-HollandZuid / GM0363;thema_bijschatting;292672078.5310103;305838000.0;13165921.46898967
-2024;<thema:bf>;gas;bf;Noord-HollandZuid / GM0375;thema_bijschatting;7183988.41905429;22733000.0;15549011.58094571
-2024;<thema:bf>;gas;bf;Noord-HollandZuid / GM0376;thema_bijschatting;1446009.1963085039;1459000.0;12990.803691496141
-2024;<thema:bf>;gas;bf;Noord-HollandZuid / GM0377;thema_bijschatting;3191019.2297218074;3197000.0;5980.770278192591
-2024;<thema:bf>;gas;bf;Noord-HollandZuid / GM0385;thema_bijschatting;7152022.153164334;7166000.0;13977.846835666336
-2024;<thema:bf>;gas;bf;Noord-HollandZuid / GM0392;thema_bijschatting;27406540.947222527;27444000.0;37459.05277747288
-2024;<thema:bf>;gas;bf;Noord-HollandZuid / GM0394;thema_bijschatting;104903095.63646902;105454000.0;550904.3635309786
-2024;<thema:bf>;gas;bf;Noord-HollandZuid / GM0397;thema_bijschatting;3502789.4094763515;3768000.0;265210.59052364854
-2024;<thema:bf>;gas;bf;Noord-HollandZuid / GM0402;thema_bijschatting;17704075.497483812;17726000.0;21924.502516187727
-2024;<thema:bf>;gas;bf;Noord-HollandZuid / GM0437;thema_bijschatting;4158013.0938478927;4214000.0;55986.90615210729
-2024;<thema:bf>;gas;bf;Noord-HollandZuid / GM0439;thema_bijschatting;7293341.825967177;14578000.0;7284658.174032823
-2024;<thema:bf>;gas;bf;Noord-HollandZuid / GM0453;thema_bijschatting;8879026.503675858;327233000.0;318353973.4963241
-2024;<thema:bf>;gas;bf;Noord-HollandZuid / GM0473;thema_bijschatting;4008313.502705414;4752000.0;743686.4972945862
-2024;<thema:bf>;gas;bf;Noord-HollandZuid / GM0479;thema_bijschatting;100505429.36536293;103257000.0;2751570.6346370727
-2024;<thema:bf>;gas;bf;Noord-HollandZuid / GM1942;thema_bijschatting;10804053.367653616;10806000.0;1946.6323463842273
-2024;<plafond gemeentetotaal>;gas;;Noord-Veluwe / GM0230;bijschatting_verlaagd;5902541.345093716;5894000.0;-7541.345093715546
-2024;<plafond gemeentetotaal>;gas;;Noord-Veluwe / GM0243;bijschatting_verlaagd;16592039.691289967;16586000.0;-6039.691289966926
-2024;<plafond gemeentetotaal>;gas;;Noord-Veluwe / GM0269;bijschatting_verlaagd;8589697.32516285;6575000.0;-2014697.3251628503
-2024;<plafond gemeentetotaal>;gas;;Noord-Veluwe / GM0302;bijschatting_verlaagd;16603105.887541344;16597000.0;-6105.887541344389
-2024;<plafond gemeentetotaal>;gas;;Noord-enMidden-Limburg / GM0889;bijschatting_verlaagd;5308394.631085664;5279000.0;-29394.631085664034
-2024;<plafond gemeentetotaal>;gas;;Noord-enMidden-Limburg / GM0893;bijschatting_verlaagd;14968434.944076316;14919000.0;-49434.94407631643
-2024;<plafond gemeentetotaal>;gas;;Noord-enMidden-Limburg / GM0907;bijschatting_verlaagd;6653885.535207379;6572000.0;-81885.53520737868
-2024;<thema:bf>;gas;bf;Noord-enMidden-Limburg / GM0944;thema_bijschatting;700441.1223449085;1508000.0;807558.8776550915
-2024;<plafond gemeentetotaal>;gas;;Noord-enMidden-Limburg / GM0946;bijschatting_verlaagd;4894574.498662868;4807000.0;-87574.49866286758
-2024;<thema:bf>;gas;bf;Noord-enMidden-Limburg / GM0957;thema_bijschatting;139146769.36615267;139348000.0;201230.63384732604
-2024;<thema:bf>;gas;bf;Noord-enMidden-Limburg / GM0984;thema_bijschatting;39731610.35521745;39736000.0;4389.644782550633
-2024;<thema:bf>;gas;bf;Noord-enMidden-Limburg / GM0988;thema_bijschatting;28304758.723017022;28363000.0;58241.276982977986
-2024;<thema:bf>;gas;bf;Noord-enMidden-Limburg / GM1711;thema_bijschatting;9836682.18242423;9842000.0;5317.817575769499
-2024;<plafond gemeentetotaal>;gas;;Noordoost-Brabant / GM0755;bijschatting_verlaagd;10224403.207188133;10118000.0;-92907.88951443505
-2024;<plafond gemeentetotaal>;gas;;Noordoost-Brabant / GM0757;bijschatting_verlaagd;9888818.23178761;9725000.0;-163818.2317876108
-2024;<plafond gemeentetotaal>;gas;;Noordoost-Brabant / GM0828;bijschatting_verlaagd;44337922.60270583;44337000.0;-174.24242424242425
-2024;<plafond gemeentetotaal>;gas;;Noordoost-Brabant / GM0845;bijschatting_verlaagd;2672256.764726083;2475000.0;-196138.87786380734
-2024;<plafond gemeentetotaal>;gas;;Noordoost-Brabant / GM0865;bijschatting_verlaagd;6493007.691254399;6370000.0;-123007.69125439879
-2024;<plafond gemeentetotaal>;gas;;Noordoost-Brabant / GM1721;bijschatting_verlaagd;4769627.944677295;4551000.0;-214491.0535703624
-2024;<plafond gemeentetotaal>;gas;;Noordoost-Brabant / GM1948;bijschatting_verlaagd;77939687.75579627;77236000.0;-550565.2711966522
-2024;<plafond gemeentetotaal>;gas;;Noordoost-Brabant / GM1991;bijschatting_verlaagd;21512478.779171925;21179000.0;-333478.77917192504
-2024;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM0502;bijschatting_verlaagd;8045437.567566302;7262000.0;-56316.39282927871
-2024;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM0503;bijschatting_verlaagd;44833698.60716103;44786000.0;-47698.60716103017
-2024;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM0518;bijschatting_verlaagd;70701688.02504799;70700000.0;-679.7990896248626
-2024;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM0542;bijschatting_verlaagd;3661630.005784242;3438000.0;-26085.948193648583
-2024;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM0556;bijschatting_verlaagd;2652318.6774557875;2511000.0;-37544.261886185806
-2024;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM0597;bijschatting_verlaagd;12402692.981355896;12378000.0;-11645.233350795334
-2024;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM0629;bijschatting_verlaagd;6651925.06579635;6639000.0;-12925.065796350129
-2024;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM0637;bijschatting_verlaagd;22238045.66355045;22213000.0;-25045.663550451398
-2024;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM1926;bijschatting_verlaagd;91917664.65624374;91863000.0;-50221.54512048231
-2024;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM1930;bijschatting_verlaagd;9400360.443415985;9332000.0;-68360.44341598451
-2024;<plafond gemeentetotaal>;gas;;Twente / GM0147;bijschatting_verlaagd;2740643.2864039447;2639000.0;-101643.28640394472
-2024;<plafond gemeentetotaal>;gas;;Twente / GM0163;bijschatting_verlaagd;14128124.209218895;13882000.0;-186599.61612217632
-2024;<plafond gemeentetotaal>;gas;;Twente / GM0168;bijschatting_verlaagd;6106225.321453452;5981000.0;-125225.32145345211
-2024;<plafond gemeentetotaal>;gas;;Twente / GM0173;bijschatting_verlaagd;12000180.27985195;11864000.0;-136180.2798519507
-2024;<plafond gemeentetotaal>;gas;;Twente / GM0183;bijschatting_verlaagd;3963341.476475516;3799000.0;-164341.47647551587
-2024;<plafond gemeentetotaal>;gas;;Twente / GM0189;bijschatting_verlaagd;8599554.73734848;8326000.0;-162184.71307815323
-2024;<plafond gemeentetotaal>;gas;;Twente / GM1700;bijschatting_verlaagd;9498507.570632217;9283000.0;-215507.57063221745
-2024;<plafond gemeentetotaal>;gas;;Twente / GM1742;bijschatting_verlaagd;10097952.80326555;9673000.0;-287747.07159027184
-2024;<plafond gemeentetotaal>;gas;;Twente / GM1774;bijschatting_verlaagd;8017403.624894654;7841000.0;-176403.62489465438
-2024;<plafond gemeentetotaal>;gas;;U16 / GM0312;bijschatting_verlaagd;4282508.854430833;4273000.0;-9078.602620087337
-2024;<plafond gemeentetotaal>;gas;;U16 / GM0331;bijschatting_verlaagd;2013406.4437723584;2003000.0;-10406.443772358354
-2024;<plafond gemeentetotaal>;gas;;U16 / GM0335;bijschatting_verlaagd;2158589.4404812;2148000.0;-10589.440481199883
-2024;<plafond gemeentetotaal>;gas;;U16 / GM0344;bijschatting_verlaagd;93638904.46314447;66850000.0;-26788904.463144466
-2024;<plafond gemeentetotaal>;gas;;U16 / GM0352;bijschatting_verlaagd;2202735.5457477337;2193000.0;-9735.545747733675
-2024;<plafond gemeentetotaal>;gas;;U16 / GM0353;bijschatting_verlaagd;5186081.029547681;5184000.0;-2081.0295476811007
-2024;<plafond gemeentetotaal>;gas;;U16 / GM0355;bijschatting_verlaagd;17361972.908246733;17323000.0;-25650.65502183406
-2024;<thema:bf>;gas;bf;U16 / GM0356;thema_bijschatting;9202096.041149486;9358000.0;155903.95885051414
-2024;<plafond gemeentetotaal>;gas;;U16 / GM0589;bijschatting_verlaagd;1288431.2646813649;1273000.0;-9943.231441048034
-2024;<plafond gemeentetotaal>;gas;;U16 / GM0632;bijschatting_verlaagd;38016069.494468756;37997000.0;-19069.49446875602
-2024;<plafond gemeentetotaal>;gas;;U16 / GM1581;bijschatting_verlaagd;9421729.942360204;9343000.0;-24209.606986899562
-2024;<plafond gemeentetotaal>;gas;;West-Brabant / GM0744;bijschatting_verlaagd;4769718.486986894;4747000.0;-12187.481046036286
-2024;<plafond gemeentetotaal>;gas;;West-Brabant / GM0748;bijschatting_verlaagd;260862918.86318758;260806000.0;-56918.8631875813
-2024;<plafond gemeentetotaal>;gas;;West-Brabant / GM0777;bijschatting_verlaagd;54616765.91564177;54570000.0;-46765.915641767155
-2024;<plafond gemeentetotaal>;gas;;West-Brabant / GM0840;bijschatting_verlaagd;5248249.415311509;5218000.0;-30249.415311508812
-2024;<thema:bf>;gas;bf;West-Brabant / GM0873;thema_bijschatting;7459118.1079590125;8294000.0;834881.8920409875
-2024;<plafond gemeentetotaal>;gas;;West-Brabant / GM0879;bijschatting_verlaagd;10787481.387406176;10683000.0;-30610.417510974865
-2024;<thema:bf>;gas;bf;West-Brabant / GM1655;thema_bijschatting;10383945.858161453;10403000.0;19054.141838546842
-2024;<thema:bf>;gas;bf;West-Brabant / GM1674;thema_bijschatting;32601947.22129482;32625000.0;23052.77870517969
-2024;<plafond gemeentetotaal>;gas;;West-Brabant / GM1709;bijschatting_verlaagd;363125213.93095136;320107000.0;-43808.758537565285
-2024;<plafond gemeentetotaal>;gas;;West-Brabant / GM1719;bijschatting_verlaagd;32026507.619987894;31927000.0;-35712.15376280401
-2024;<plafond gemeentetotaal>;gas;;West-Brabant / GM1723;bijschatting_verlaagd;2726803.7067130716;2700000.0;-14738.349171950858
-2024;<plafond gemeentetotaal>;gas;;West-Brabant / GM1959;bijschatting_verlaagd;15018513.831618177;14927000.0;-91513.83161817677
-2024;<plafond gemeentetotaal>;gas;;West-Overijssel / GM0193;bijschatting_verlaagd;38440383.16344274;38427000.0;-318.65144100054374
-2024;<plafond gemeentetotaal>;gas;;West-Overijssel / GM1708;bijschatting_verlaagd;7689771.067945109;7689000.0;-771.067945108749
-2024;<plafond gemeentetotaal>;gas;;West-Overijssel / GM1773;bijschatting_verlaagd;4135497.506311891;4126000.0;-3109.975985543393
-2024;<plafond gemeentetotaal>;gas;;West-Overijssel / GM1896;bijschatting_verlaagd;21746797.6283822;21739000.0;-5466.018398833842
-2024;<thema:bf>;gas;bf;Zeeland / GM0664;thema_bijschatting;17888564.832914952;18757000.0;868435.1670850478
-2024;<thema:bf>;gas;bf;Zeeland / GM0677;thema_bijschatting;6088234.006970762;6252000.0;163765.99302923772
-2024;<plafond gemeentetotaal>;gas;;Zeeland / GM0687;bijschatting_verlaagd;456244785.08045375;33248000.0;-422996785.08045375
-2024;<plafond gemeentetotaal>;gas;;Zeeland / GM0716;bijschatting_verlaagd;15931234.863890158;15823000.0;-108234.86389015801
-2024;<plafond gemeentetotaal>;gas;;Zeeland / GM0717;bijschatting_verlaagd;6812785.039538352;6738000.0;-74785.03953835182
-2024;<plafond gemeentetotaal>;gas;;Zeeland / GM1676;bijschatting_verlaagd;23168258.95987835;23055000.0;-113258.95987835154
-2024;<plafond gemeentetotaal>;gas;;Zeeland / GM1695;bijschatting_verlaagd;2943431.159465367;2932000.0;-11431.159465366974
-2024;<plafond gemeentetotaal>;gas;;Zeeland / GM1714;bijschatting_verlaagd;8941488.72755967;8895000.0;-46488.727559670806
-2024;<plafond gemeentetotaal>;gas;;Zuid-Limburg / GM0882;bijschatting_verlaagd;6007800.098401155;5988000.0;-19800.098401155323
-2024;<plafond gemeentetotaal>;gas;;Zuid-Limburg / GM0888;bijschatting_verlaagd;5688448.851541445;5495000.0;-9654.008438818564
-2024;<thema:bf>;gas;bf;Zuid-Limburg / GM0899;thema_bijschatting;4391753.137268879;5404000.0;1012246.8627311205
-2024;<thema:bf>;gas;bf;Zuid-Limburg / GM0917;thema_bijschatting;30553489.197991494;31102000.0;548510.8020085059
-2024;<plafond gemeentetotaal>;gas;;Zuid-Limburg / GM0928;bijschatting_verlaagd;24486008.635124832;24467000.0;-19008.63512483239
-2024;<thema:bf>;gas;bf;Zuid-Limburg / GM0935;thema_bijschatting;166064329.58591622;166897000.0;832670.4140837789
-2024;<plafond gemeentetotaal>;gas;;Zuid-Limburg / GM0938;bijschatting_verlaagd;1751019.0678149103;1743000.0;-8019.067814910319
-2024;<thema:bf>;gas;bf;Zuid-Limburg / GM0965;thema_bijschatting;987752.770420447;992000.0;4247.229579553008
-2024;<thema:bf>;gas;bf;Zuid-Limburg / GM0971;thema_bijschatting;5619845.882434787;8367000.0;2747154.117565213
-2024;<plafond gemeentetotaal>;gas;;Zuid-Limburg / GM0986;bijschatting_verlaagd;1078934.2208568698;1003000.0;-6838.255977496483
-2024;<thema:bf>;gas;bf;Zuid-Limburg / GM0994;thema_bijschatting;4816581.650248288;5083000.0;266418.3497517118
-2024;<plafond gemeentetotaal>;gas;;Zuid-Limburg / GM1729;bijschatting_verlaagd;3127505.7482629986;3109000.0;-9654.008438818564
-2024;<plafond gemeentetotaal>;gas;;Zuid-Limburg / GM1954;bijschatting_verlaagd;6632278.562139686;6376000.0;-22526.019690576653
-2023;<thema:bf>;elec;bf;Fruitdelta Rivierenland;thema_bijschatting;1027091000.0;1033155000.0;6064000.0
-2023;<thema:bf>;elec;bf;Stedendriehoek;thema_bijschatting;1084648000.0;1147866000.0;63218000.0
-2023;<thema:bf>;elec;bf;U16;thema_bijschatting;2458093000.0;2458142000.0;49000.0
-2023;<thema:bf>;elec;bf;Noord-Holland Noord;thema_bijschatting;2147742000.0;3496161000.0;1348419000.0
-2023;<thema:bf>;elec;bf;Noord-Holland Zuid;thema_bijschatting;11219668000.0;11397134000.0;177466000.0
+2023;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM0489;bijschatting_verlaagd;6776568.450948428;6753000.0;-23568.450948428363
+2023;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM0502;bijschatting_verlaagd;7827489.9615352135;7767000.0;-1587.3367528662384
+2023;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM0503;bijschatting_verlaagd;48171361.89593873;48104000.0;-36915.31462247182
+2023;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM0542;bijschatting_verlaagd;3988855.0544116693;3968000.0;-3375.263842573715
+2023;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM0556;bijschatting_verlaagd;2870000.4178933324;2845000.0;-6680.634574995856
+2023;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM0597;bijschatting_verlaagd;13336158.616487566;13290000.0;-147.52831163828705
+2023;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM0603;bijschatting_verlaagd;11282048.78744881;11281000.0;-1048.7874488104135
+2023;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM0606;bijschatting_verlaagd;13996964.933406636;13933000.0;-41.52905099495911
+2023;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM0613;bijschatting_verlaagd;3485603.8660163553;3471000.0;-14603.866016355343
+2023;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM0622;bijschatting_verlaagd;15047249.607856698;14993000.0;-5053.7493016445005
+2023;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM0629;bijschatting_verlaagd;6716174.451427334;6691000.0;-32.08101805037495
+2023;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM0637;bijschatting_verlaagd;26203232.99243007;26042000.0;-161232.99243006855
+2023;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM1621;bijschatting_verlaagd;215818043.53233716;215755000.0;-8255.47999503063
+2023;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM1783;bijschatting_verlaagd;750098187.9108794;750010000.0;-69881.21624047714
+2023;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM1842;bijschatting_verlaagd;67048173.52976463;67013000.0;-369.4639797367049
+2023;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM1916;bijschatting_verlaagd;8988875.059179673;8959000.0;-29875.05917967297
+2023;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM1926;bijschatting_verlaagd;88106589.00035685;88067000.0;-2238.355067307147
+2023;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM1930;bijschatting_verlaagd;10311137.026004707;10253000.0;-2324.0470669617625
+2023;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM1992;bijschatting_verlaagd;92735701.27203587;91938000.0;-797701.272035867
+2023;<plafond gemeentetotaal>;gas;;Twente / GM0141;bijschatting_verlaagd;32065589.849145636;31518000.0;-547589.849145636
+2023;<plafond gemeentetotaal>;gas;;Twente / GM0147;bijschatting_verlaagd;3011656.8660611077;2973000.0;-38656.86606110772
+2023;<plafond gemeentetotaal>;gas;;Twente / GM0153;bijschatting_verlaagd;37955011.06056729;37709000.0;-18083.333333333336
+2023;<plafond gemeentetotaal>;gas;;Twente / GM0158;bijschatting_verlaagd;5740563.926117532;5515000.0;-211006.07332757014
+2023;<plafond gemeentetotaal>;gas;;Twente / GM0163;bijschatting_verlaagd;15613393.984119752;15356000.0;-244590.91490097318
+2023;<plafond gemeentetotaal>;gas;;Twente / GM0164;bijschatting_verlaagd;141220445.06709313;141082000.0;-138445.06709313393
+2023;<plafond gemeentetotaal>;gas;;Twente / GM0168;bijschatting_verlaagd;6527237.139609591;6321000.0;-154424.08723241807
+2023;<plafond gemeentetotaal>;gas;;Twente / GM0173;bijschatting_verlaagd;13625887.99030882;13477000.0;-148887.99030881934
+2023;<plafond gemeentetotaal>;gas;;Twente / GM0183;bijschatting_verlaagd;4614037.437664646;4306000.0;-209085.30940992557
+2023;<plafond gemeentetotaal>;gas;;Twente / GM0189;bijschatting_verlaagd;9023564.888959158;8780000.0;-201170.25194718843
+2023;<plafond gemeentetotaal>;gas;;Twente / GM1700;bijschatting_verlaagd;10206478.80902139;9852000.0;-351985.1328867398
+2023;<plafond gemeentetotaal>;gas;;Twente / GM1735;bijschatting_verlaagd;14989670.809666162;14850000.0;-139670.80966616236
+2023;<plafond gemeentetotaal>;gas;;Twente / GM1742;bijschatting_verlaagd;11125738.617208589;10738000.0;-360919.15385400236
+2023;<plafond gemeentetotaal>;gas;;Twente / GM1774;bijschatting_verlaagd;8702723.543137908;8387000.0;-212983.33766178403
+2023;<thema:bf>;gas;bf;U16 / GM0736;thema_bijschatting;13484244.129355466;13486000.0;1755.8706445340067
+2023;<thema:bf>;gas;bf;U16 / GM1581;thema_bijschatting;10241884.332197733;10244000.0;2115.6678022667766
+2023;<plafond gemeentetotaal>;gas;;West-Brabant / GM0744;bijschatting_verlaagd;5125072.25706818;5125000.0;-5.653752235996308
+2023;<thema:bf>;gas;bf;West-Brabant / GM0840;thema_bijschatting;5712404.730693993;5715000.0;2595.2693060068414
+2023;<thema:bf>;gas;bf;West-Brabant / GM1655;thema_bijschatting;10951738.656394381;10953000.0;1261.343605618924
+2023;<plafond gemeentetotaal>;gas;;West-Brabant / GM1959;bijschatting_verlaagd;14915000.000000002;14915000.0;-1.862645149230957e-09
+2023;<plafond gemeentetotaal>;gas;;West-Overijssel / GM0148;bijschatting_verlaagd;8378684.532042246;8283000.0;-6397.384587865286
+2023;<plafond gemeentetotaal>;gas;;West-Overijssel / GM0150;bijschatting_verlaagd;30600425.72002978;30542000.0;-296.4705882352941
+2023;<plafond gemeentetotaal>;gas;;West-Overijssel / GM0160;bijschatting_verlaagd;18199597.795250293;18107000.0;-270.5882352941176
+2023;<plafond gemeentetotaal>;gas;;West-Overijssel / GM0166;bijschatting_verlaagd;59605031.46492663;59506000.0;-15391.395035111582
+2023;<plafond gemeentetotaal>;gas;;West-Overijssel / GM0175;bijschatting_verlaagd;8215716.07307725;8152000.0;-6003.711273405032
+2023;<plafond gemeentetotaal>;gas;;West-Overijssel / GM0177;bijschatting_verlaagd;13479265.918803325;13364000.0;-3502.8025737235516
+2023;<plafond gemeentetotaal>;gas;;West-Overijssel / GM0180;bijschatting_verlaagd;7113194.046804579;7042000.0;-10151.111644600636
+2023;<plafond gemeentetotaal>;gas;;West-Overijssel / GM0193;bijschatting_verlaagd;44303465.20751018;44198000.0;-315.29411764705884
+2023;<plafond gemeentetotaal>;gas;;West-Overijssel / GM1708;bijschatting_verlaagd;8518772.505398935;8391000.0;-6520.2835991485035
+2023;<plafond gemeentetotaal>;gas;;West-Overijssel / GM1773;bijschatting_verlaagd;4614746.701112855;4560000.0;-4377.8074694307625
+2023;<plafond gemeentetotaal>;gas;;West-Overijssel / GM1896;bijschatting_verlaagd;22459100.034293246;22412000.0;-1773.1508413730253
+2023;<plafond gemeentetotaal>;gas;;Zeeland / GM0687;bijschatting_verlaagd;33135000.000000015;33135000.0;-1.4901161193847656e-08
+2023;<thema:bf>;gas;bf;Zeeland / GM1676;thema_bijschatting;21870081.23825325;21872000.0;1918.7617467492819
+2023;<thema:bf>;gas;bf;Zuid-Limburg / GM0888;thema_bijschatting;7037392.620486152;7219000.0;181607.37951384764
+2023;<thema:bf>;gas;bf;Zuid-Limburg / GM0899;thema_bijschatting;4462095.110411129;5393000.0;930904.889588871
+2023;<thema:bf>;gas;bf;Zuid-Limburg / GM0917;thema_bijschatting;30203437.296234712;32528000.0;2324562.703765288
+2023;<thema:bf>;gas;bf;Zuid-Limburg / GM0935;thema_bijschatting;26894457.541549113;152601000.0;125706542.45845088
+2023;<thema:bf>;gas;bf;Zuid-Limburg / GM0971;thema_bijschatting;5064362.968037987;7836000.0;2771637.031962013
+2023;<thema:bf>;gas;bf;Zuid-Limburg / GM1883;thema_bijschatting;17300254.462779637;872099000.0;854798745.5372204
+2024;<plafond gemeentetotaal>;gas;;Alblasserwaard / GM1978;bijschatting_verlaagd;11593999.994625142;11591000.0;-2999.994625141844
+2024;<plafond gemeentetotaal>;gas;;Amersfoort / GM0313;bijschatting_verlaagd;10439000.000000002;10439000.0;-1.862645149230957e-09
+2024;<plafond gemeentetotaal>;gas;;Arnhem/Nijmegen / GM0226;bijschatting_verlaagd;3228000.766597447;3228000.0;-0.7665974469855428
+2024;<plafond gemeentetotaal>;gas;;Arnhem/Nijmegen / GM0252;bijschatting_verlaagd;1566002.3720353362;1566000.0;-2.372035336215049
+2024;<plafond gemeentetotaal>;gas;;Arnhem/Nijmegen / GM0277;bijschatting_verlaagd;162025.95987079068;159000.0;-3025.9598707906844
+2024;<plafond gemeentetotaal>;gas;;Arnhem/Nijmegen / GM0293;bijschatting_verlaagd;749000.0382047137;749000.0;-0.038204713724553585
+2024;<plafond gemeentetotaal>;gas;;Arnhem/Nijmegen / GM1945;bijschatting_verlaagd;7543607.234712203;7543000.0;-607.2347122030333
+2024;<plafond gemeentetotaal>;gas;;Cleantech / GM0200;bijschatting_verlaagd;66707485.69856986;66707000.0;-485.6985698565841
+2024;<plafond gemeentetotaal>;gas;;Cleantech / GM0213;bijschatting_verlaagd;41957412.640579544;41956000.0;-1412.6405795440078
+2024;<plafond gemeentetotaal>;gas;;Cleantech / GM0232;bijschatting_verlaagd;11839041.054399027;11838000.0;-1041.0543990265578
+2024;<plafond gemeentetotaal>;gas;;Cleantech / GM0246;bijschatting_verlaagd;4664422.460391601;4664000.0;-422.4603916006163
+2024;<plafond gemeentetotaal>;gas;;Cleantech / GM0262;bijschatting_verlaagd;23689968.81085498;23689000.0;-968.8108549788594
+2024;<plafond gemeentetotaal>;gas;;Cleantech / GM0285;bijschatting_verlaagd;6055596.4994904315;6055000.0;-596.4994904315099
+2024;<plafond gemeentetotaal>;gas;;Cleantech / GM0301;bijschatting_verlaagd;10776072.835714553;10775000.0;-1072.8357145525515
+2024;<thema:bf>;gas;bf;Drechtsteden / GM0610;thema_bijschatting;8935999.99985028;8936000.0;0.00014971941709518433
+2024;<thema:bf>;gas;bf;Drenthe / GM0109;thema_bijschatting;24469725.73771251;24506000.0;36274.26228749007
+2024;<thema:bf>;gas;bf;Drenthe / GM0119;thema_bijschatting;23981969.050871413;24030000.0;48030.9491285868
+2024;<plafond gemeentetotaal>;gas;;Drenthe / GM1681;bijschatting_verlaagd;6112000.000000001;6112000.0;-9.313225746154785e-10
+2024;<plafond gemeentetotaal>;gas;;Drenthe / GM1690;bijschatting_verlaagd;3708043.6383110923;3708000.0;-43.638311092276126
+2024;<thema:bf>;gas;bf;Drenthe / GM1699;thema_bijschatting;6274525.812382062;6306000.0;31474.187617938034
+2024;<thema:bf>;gas;bf;Drenthe / GM1701;thema_bijschatting;5504978.45998247;5505000.0;21.540017530322075
+2024;<thema:bf>;gas;bf;Drenthe / GM1730;thema_bijschatting;6392570.635858564;6394000.0;1429.3641414362937
+2024;<plafond gemeentetotaal>;gas;;Drenthe / GM1731;bijschatting_verlaagd;32096005.786374964;32093000.0;-0.07056707720920485
+2024;<thema:bf>;gas;bf;Flevoland / GM0050;thema_bijschatting;8710852.659637764;9126000.0;415147.3403622359
+2024;<plafond gemeentetotaal>;gas;;Friesland / GM0059;bijschatting_verlaagd;10585000.02514521;10585000.0;-0.025145210325717926
+2024;<plafond gemeentetotaal>;gas;;Friesland / GM0060;bijschatting_verlaagd;3528000.0052338047;3528000.0;-0.0052338046953082085
+2024;<plafond gemeentetotaal>;gas;;Friesland / GM0072;bijschatting_verlaagd;5468000.000000001;5468000.0;-9.313225746154785e-10
+2024;<plafond gemeentetotaal>;gas;;Friesland / GM0080;bijschatting_verlaagd;56293000.9729319;56293000.0;-0.9729318991303444
+2024;<plafond gemeentetotaal>;gas;;Friesland / GM0085;bijschatting_verlaagd;6048000.021503288;6048000.0;-0.02150328829884529
+2024;<plafond gemeentetotaal>;gas;;Friesland / GM0086;bijschatting_verlaagd;5109000.028783854;5109000.0;-0.028783854097127914
+2024;<plafond gemeentetotaal>;gas;;Friesland / GM0088;bijschatting_verlaagd;964128.43545175;960000.0;-4128.435451749945
+2024;<plafond gemeentetotaal>;gas;;Friesland / GM0093;bijschatting_verlaagd;2802000.008857441;2802000.0;-0.008857441134750843
+2024;<plafond gemeentetotaal>;gas;;Friesland / GM0096;bijschatting_verlaagd;1172007.3149276783;1172000.0;-7.3149276783224195
+2024;<plafond gemeentetotaal>;gas;;Friesland / GM0737;bijschatting_verlaagd;26403001.3223916;26403000.0;-1.3223915994167328
+2024;<plafond gemeentetotaal>;gas;;Friesland / GM1891;bijschatting_verlaagd;1931000.0112076718;1931000.0;-0.011207671836018562
+2024;<thema:bf>;gas;bf;Groningen / GM0014;thema_bijschatting;115345636.73742047;116554000.0;1208363.2625795305
+2024;<thema:bf>;gas;bf;Groningen / GM0037;thema_bijschatting;6597492.94962327;6598000.0;507.0503767300397
+2024;<thema:bf>;gas;bf;Groningen / GM0765;thema_bijschatting;12065999.999999998;12066000.0;1.862645149230957e-09
+2024;<thema:bf>;gas;bf;Groningen / GM1969;thema_bijschatting;17351980.13116299;17357000.0;5019.868837010115
+2024;<plafond gemeentetotaal>;gas;;HollandRijnland / GM0484;bijschatting_verlaagd;18854000.000000004;18854000.0;-3.725290298461914e-09
+2024;<plafond gemeentetotaal>;gas;;HollandRijnland / GM0546;bijschatting_verlaagd;21393000.000000004;21393000.0;-3.725290298461914e-09
+2024;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM0762;bijschatting_verlaagd;13152000.000000002;13152000.0;-1.862645149230957e-09
+2024;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM0820;bijschatting_verlaagd;3672000.000132697;3672000.0;-0.00013269716873764992
+2024;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM1659;bijschatting_verlaagd;38865000.00000001;38865000.0;-7.450580596923828e-09
+2024;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM1724;bijschatting_verlaagd;5822000.000000001;5822000.0;-9.313225746154785e-10
+2024;<plafond gemeentetotaal>;gas;;MetropoolregioEindhoven / GM1728;bijschatting_verlaagd;7552000.000000001;7552000.0;-9.313225746154785e-10
+2024;<plafond gemeentetotaal>;gas;;Midden-Holland / GM0627;bijschatting_verlaagd;44183000.00004857;44183000.0;-4.8570334911346436e-05
+2024;<thema:bf>;gas;bf;Noord-HollandZuid / GM0358;thema_bijschatting;21316022.47049758;26735000.0;5418977.529502422
+2024;<thema:bf>;gas;bf;Noord-HollandZuid / GM0362;thema_bijschatting;22020071.815081827;22138000.0;117928.18491817266
+2024;<thema:bf>;gas;bf;Noord-HollandZuid / GM0363;thema_bijschatting;292672239.0568216;305838000.0;13165760.943178415
+2024;<thema:bf>;gas;bf;Noord-HollandZuid / GM0375;thema_bijschatting;7366489.694434588;22733000.0;15366510.305565413
+2024;<thema:bf>;gas;bf;Noord-HollandZuid / GM0376;thema_bijschatting;1446010.6125347218;1459000.0;12989.387465278152
+2024;<thema:bf>;gas;bf;Noord-HollandZuid / GM0377;thema_bijschatting;3191022.217703629;3197000.0;5977.782296371181
+2024;<thema:bf>;gas;bf;Noord-HollandZuid / GM0385;thema_bijschatting;7152025.484627138;7166000.0;13974.515372862108
+2024;<thema:bf>;gas;bf;Noord-HollandZuid / GM0394;thema_bijschatting;104903110.2045242;105454000.0;550889.7954757959
+2024;<thema:bf>;gas;bf;Noord-HollandZuid / GM0397;thema_bijschatting;3614325.832226431;3768000.0;153674.167773569
+2024;<thema:bf>;gas;bf;Noord-HollandZuid / GM0402;thema_bijschatting;17704086.976052493;17726000.0;21913.023947507143
+2024;<thema:bf>;gas;bf;Noord-HollandZuid / GM0417;thema_bijschatting;2779999.9999999995;2780000.0;4.656612873077393e-10
+2024;<thema:bf>;gas;bf;Noord-HollandZuid / GM0437;thema_bijschatting;4158015.088598204;4214000.0;55984.911401796155
+2024;<thema:bf>;gas;bf;Noord-HollandZuid / GM0439;thema_bijschatting;7305217.826447892;14578000.0;7272782.173552108
+2024;<thema:bf>;gas;bf;Noord-HollandZuid / GM0453;thema_bijschatting;8889511.33568509;327233000.0;318343488.6643149
+2024;<thema:bf>;gas;bf;Noord-HollandZuid / GM0473;thema_bijschatting;4067683.33828161;4752000.0;684316.66171839
+2024;<thema:bf>;gas;bf;Noord-HollandZuid / GM0479;thema_bijschatting;101339106.46448174;103257000.0;1917893.5355182588
+2024;<thema:bf>;gas;bf;Noord-HollandZuid / GM1942;thema_bijschatting;10804061.581585132;10806000.0;1938.4184148684144
+2024;<plafond gemeentetotaal>;gas;;Noord-Veluwe / GM0230;bijschatting_verlaagd;5896666.599483845;5894000.0;-1666.599483844615
+2024;<plafond gemeentetotaal>;gas;;Noord-Veluwe / GM0243;bijschatting_verlaagd;16587383.18120515;16586000.0;-1383.18120514974
+2024;<plafond gemeentetotaal>;gas;;Noord-Veluwe / GM0244;bijschatting_verlaagd;4618000.049145143;4618000.0;-0.049145142547786236
+2024;<plafond gemeentetotaal>;gas;;Noord-Veluwe / GM0269;bijschatting_verlaagd;6578610.713670569;6575000.0;-3610.7136705685407
+2024;<plafond gemeentetotaal>;gas;;Noord-Veluwe / GM0302;bijschatting_verlaagd;16597339.456495294;16597000.0;-339.4564952943474
+2024;<thema:bf>;gas;bf;Noord-enMidden-Limburg / GM0893;thema_bijschatting;14918999.999999998;14919000.0;1.862645149230957e-09
+2024;<thema:bf>;gas;bf;Noord-enMidden-Limburg / GM0944;thema_bijschatting;1006013.5294310151;1508000.0;501986.47056898486
+2024;<thema:bf>;gas;bf;Noord-enMidden-Limburg / GM0988;thema_bijschatting;28343669.81094272;28363000.0;19330.189057279378
+2024;<thema:bf>;gas;bf;Noord-enMidden-Limburg / GM1711;thema_bijschatting;9837316.658914963;9842000.0;4683.3410850372165
+2024;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM0542;bijschatting_verlaagd;3438000.0000000005;3438000.0;-4.656612873077393e-10
+2024;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM0556;bijschatting_verlaagd;2511753.2141940175;2511000.0;-753.2141940174624
+2024;<plafond gemeentetotaal>;gas;;Rotterdam/DenHaag / GM0597;bijschatting_verlaagd;12378113.740545187;12378000.0;-113.74054518714547
+2024;<plafond gemeentetotaal>;gas;;Twente / GM0141;bijschatting_verlaagd;29722378.644830402;29722000.0;-378.64483040198684
+2024;<plafond gemeentetotaal>;gas;;Twente / GM0147;bijschatting_verlaagd;2639390.2004057756;2639000.0;-390.2004057755694
+2024;<plafond gemeentetotaal>;gas;;Twente / GM0153;bijschatting_verlaagd;34779663.95271303;34779000.0;-663.9527130275965
+2024;<plafond gemeentetotaal>;gas;;Twente / GM0158;bijschatting_verlaagd;5040380.867876752;5040000.0;-380.8678767522797
+2024;<plafond gemeentetotaal>;gas;;Twente / GM0163;bijschatting_verlaagd;13882523.582548492;13882000.0;-523.5825484916568
+2024;<plafond gemeentetotaal>;gas;;Twente / GM0164;bijschatting_verlaagd;76089373.22159696;76089000.0;-373.22159695625305
+2024;<plafond gemeentetotaal>;gas;;Twente / GM0168;bijschatting_verlaagd;5981436.481837667;5981000.0;-436.4818376665935
+2024;<plafond gemeentetotaal>;gas;;Twente / GM0173;bijschatting_verlaagd;11864328.527679738;11864000.0;-328.5276797376573
+2024;<plafond gemeentetotaal>;gas;;Twente / GM0183;bijschatting_verlaagd;3799558.1263280846;3799000.0;-558.1263280846179
+2024;<plafond gemeentetotaal>;gas;;Twente / GM0189;bijschatting_verlaagd;8326500.51147205;8326000.0;-500.51147205010056
+2024;<plafond gemeentetotaal>;gas;;Twente / GM1700;bijschatting_verlaagd;9283787.913999887;9283000.0;-787.9139998871833
+2024;<plafond gemeentetotaal>;gas;;Twente / GM1735;bijschatting_verlaagd;14199191.508222874;14199000.0;-191.508222874254
+2024;<plafond gemeentetotaal>;gas;;Twente / GM1742;bijschatting_verlaagd;9673874.921827972;9673000.0;-874.9218279719353
+2024;<plafond gemeentetotaal>;gas;;Twente / GM1774;bijschatting_verlaagd;7841611.536074686;7841000.0;-611.5360746858642
+2024;<thema:bf>;gas;bf;U16 / GM0356;thema_bijschatting;9357595.688445065;9358000.0;404.3115549348295
+2024;<thema:bf>;gas;bf;West-Brabant / GM1674;thema_bijschatting;32621890.32086419;32625000.0;3109.679135810584
+2024;<plafond gemeentetotaal>;gas;;West-Brabant / GM1719;bijschatting_verlaagd;31927095.698433924;31927000.0;-95.69843392446637
+2024;<plafond gemeentetotaal>;gas;;West-Overijssel / GM0193;bijschatting_verlaagd;38427000.00000001;38427000.0;-7.450580596923828e-09
+2024;<thema:bf>;gas;bf;Zeeland / GM0664;thema_bijschatting;18730583.51346011;18757000.0;26416.486539889127
+2024;<thema:bf>;gas;bf;Zeeland / GM0677;thema_bijschatting;6089212.546382942;6252000.0;162787.45361705776
+2024;<plafond gemeentetotaal>;gas;;Zeeland / GM0687;bijschatting_verlaagd;33248000.00000001;33248000.0;-1.1175870895385742e-08
+2024;<thema:bf>;gas;bf;Zeeland / GM0716;thema_bijschatting;15822999.999999998;15823000.0;1.862645149230957e-09
+2024;<plafond gemeentetotaal>;gas;;Zeeland / GM1695;bijschatting_verlaagd;2932000.000000001;2932000.0;-9.313225746154785e-10
+2024;<thema:bf>;gas;bf;Zuid-Limburg / GM0899;thema_bijschatting;5305975.998304828;5404000.0;98024.00169517193
+2024;<thema:bf>;gas;bf;Zuid-Limburg / GM0917;thema_bijschatting;31101999.999999996;31102000.0;3.725290298461914e-09
+2024;<thema:bf>;gas;bf;Zuid-Limburg / GM0935;thema_bijschatting;166666158.43329352;166897000.0;230841.5667064786
+2024;<thema:bf>;gas;bf;Zuid-Limburg / GM0971;thema_bijschatting;6615979.138135523;8367000.0;1751020.8618644774
+2023;<plafond gemeentetotaal>;elec;;Achterhoek / GM0197;bijschatting_verlaagd;56252105.27662768;56250000.0;-2105.2766276821494
+2023;<plafond gemeentetotaal>;elec;;Achterhoek / GM0222;bijschatting_verlaagd;228831011.69835973;228825000.0;-6011.6983597278595
+2023;<plafond gemeentetotaal>;elec;;Achterhoek / GM0294;bijschatting_verlaagd;67930507.60840078;67928000.0;-2507.6084007769823
+2023;<plafond gemeentetotaal>;elec;;Achterhoek / GM1509;bijschatting_verlaagd;104699941.53754643;104697000.0;-2941.537546426058
+2023;<plafond gemeentetotaal>;elec;;Achterhoek / GM1586;bijschatting_verlaagd;126782443.56896994;126780000.0;-2443.5689699351788
+2023;<plafond gemeentetotaal>;elec;;Achterhoek / GM1859;bijschatting_verlaagd;178285665.1006518;178282000.0;-3665.1006518006325
+2023;<plafond gemeentetotaal>;elec;;Achterhoek / GM1876;bijschatting_verlaagd;103834638.81623898;103831000.0;-382.4323467972517
+2023;<plafond gemeentetotaal>;elec;;Achterhoek / GM1955;bijschatting_verlaagd;87778686.38876384;87776000.0;-2686.388763844967
+2023;<plafond gemeentetotaal>;elec;;Amersfoort / GM0307;bijschatting_verlaagd;324833980.4208944;324833000.0;-980.4208943843842
+2023;<plafond gemeentetotaal>;elec;;Amersfoort / GM0308;bijschatting_verlaagd;39417618.650139935;39417000.0;-618.6501399353147
+2023;<plafond gemeentetotaal>;elec;;Amersfoort / GM0313;bijschatting_verlaagd;104112725.65569848;104112000.0;-725.6556984782219
+2023;<plafond gemeentetotaal>;elec;;Amersfoort / GM0317;bijschatting_verlaagd;19603233.303280763;19603000.0;-233.30328076332808
+2023;<plafond gemeentetotaal>;elec;;Amersfoort / GM0327;bijschatting_verlaagd;55163423.22564602;55163000.0;-423.22564601898193
+2023;<plafond gemeentetotaal>;elec;;Amersfoort / GM0342;bijschatting_verlaagd;97191581.95077513;97190000.0;-1432.713918154536
+2023;<plafond gemeentetotaal>;elec;;Amersfoort / GM0351;bijschatting_verlaagd;27080436.792629324;27080000.0;-436.79262932389975
+2023;<plafond gemeentetotaal>;elec;;Arnhem/Nijmegen / GM0209;bijschatting_verlaagd;80124315.1766851;80124000.0;-315.1766850948334
+2023;<plafond gemeentetotaal>;elec;;Arnhem/Nijmegen / GM0221;bijschatting_verlaagd;33639095.19495742;33639000.0;-95.19495742022991
+2023;<plafond gemeentetotaal>;elec;;Arnhem/Nijmegen / GM0225;bijschatting_verlaagd;46835253.480387956;46835000.0;-253.480387955904
+2023;<plafond gemeentetotaal>;elec;;Arnhem/Nijmegen / GM0226;bijschatting_verlaagd;71847247.82233171;71847000.0;-247.8223317116499
+2023;<plafond gemeentetotaal>;elec;;Arnhem/Nijmegen / GM0252;bijschatting_verlaagd;21662194.490072496;21662000.0;-194.49007249623537
+2023;<plafond gemeentetotaal>;elec;;Arnhem/Nijmegen / GM0274;bijschatting_verlaagd;386858046.61835754;386858000.0;-46.61835753917694
+2023;<plafond gemeentetotaal>;elec;;Arnhem/Nijmegen / GM0275;bijschatting_verlaagd;65729099.22961214;65729000.0;-99.22961214184761
+2023;<plafond gemeentetotaal>;elec;;Arnhem/Nijmegen / GM0277;bijschatting_verlaagd;1967036.5876426757;1967000.0;-36.58764267573133
+2023;<plafond gemeentetotaal>;elec;;Arnhem/Nijmegen / GM0293;bijschatting_verlaagd;9550172.170328341;9550000.0;-172.17032834142447
+2023;<plafond gemeentetotaal>;elec;;Arnhem/Nijmegen / GM0296;bijschatting_verlaagd;114183534.83808737;114183000.0;-534.8380873650312
+2023;<plafond gemeentetotaal>;elec;;Arnhem/Nijmegen / GM1705;bijschatting_verlaagd;79819047.82531801;79819000.0;-47.82531800866127
+2023;<plafond gemeentetotaal>;elec;;Arnhem/Nijmegen / GM1734;bijschatting_verlaagd;157214585.65168458;157214000.0;-585.6516845822334
+2023;<plafond gemeentetotaal>;elec;;Arnhem/Nijmegen / GM1945;bijschatting_verlaagd;53038464.1734495;53038000.0;-464.1734495013952
+2023;<plafond gemeentetotaal>;elec;;Drenthe / GM0119;bijschatting_verlaagd;171768000.00000003;171768000.0;-2.9802322387695312e-08
+2023;<plafond gemeentetotaal>;elec;;Drenthe / GM1690;bijschatting_verlaagd;40704000.00000001;40704000.0;-7.450580596923828e-09
+2023;<plafond gemeentetotaal>;elec;;Flevoland / GM0034;bijschatting_verlaagd;454125227.31783915;454016000.0;-10218.058864972694
+2023;<plafond gemeentetotaal>;elec;;Flevoland / GM0050;bijschatting_verlaagd;171167668.84888667;171151000.0;-763.5160285611541
+2023;<plafond gemeentetotaal>;elec;;Flevoland / GM0171;bijschatting_verlaagd;238244930.6039407;238214000.0;-6703.630494452586
+2023;<plafond gemeentetotaal>;elec;;Flevoland / GM0303;bijschatting_verlaagd;156689096.1140801;156663000.0;-3096.6956405133624
+2023;<plafond gemeentetotaal>;elec;;Flevoland / GM0995;bijschatting_verlaagd;265488475.3713567;265450000.0;-5218.098952260415
+2023;<plafond gemeentetotaal>;elec;;Friesland / GM0059;bijschatting_verlaagd;81935000.00000001;81935000.0;-1.4901161193847656e-08
+2023;<plafond gemeentetotaal>;elec;;Groningen / GM0014;bijschatting_verlaagd;607555441.5497484;607555000.0;-441.54974842071533
+2023;<plafond gemeentetotaal>;elec;;Groningen / GM0765;bijschatting_verlaagd;26951008.65606719;26950000.0;-1008.6560671888292
+2023;<plafond gemeentetotaal>;elec;;Groningen / GM1950;bijschatting_verlaagd;66828132.47203705;66823000.0;-5132.472037047148
+2023;<plafond gemeentetotaal>;elec;;Groningen / GM1952;bijschatting_verlaagd;467776090.89107805;467776000.0;-90.89107805490494
+2023;<plafond gemeentetotaal>;elec;;HartvanBrabant / GM0766;bijschatting_verlaagd;172565094.69741303;172565000.0;-94.69741302728653
+2023;<plafond gemeentetotaal>;elec;;HartvanBrabant / GM0784;bijschatting_verlaagd;98570109.76625168;98570000.0;-109.76625168323517
+2023;<plafond gemeentetotaal>;elec;;HartvanBrabant / GM0797;bijschatting_verlaagd;99010195.75426823;99010000.0;-195.75426822900772
+2023;<plafond gemeentetotaal>;elec;;HartvanBrabant / GM0798;bijschatting_verlaagd;40333072.981924;40333000.0;-72.98192399740219
+2023;<plafond gemeentetotaal>;elec;;HartvanBrabant / GM0809;bijschatting_verlaagd;55191089.64441101;55191000.0;-89.64441101253033
+2023;<plafond gemeentetotaal>;elec;;HartvanBrabant / GM0824;bijschatting_verlaagd;68883161.66222827;68883000.0;-161.66222827136517
+2023;<plafond gemeentetotaal>;elec;;HartvanBrabant / GM0855;bijschatting_verlaagd;820474992.3333215;820474000.0;-341.12559305079753
+2023;<plafond gemeentetotaal>;elec;;HartvanBrabant / GM0867;bijschatting_verlaagd;284803184.0010827;284803000.0;-184.00108271837234
+2023;<plafond gemeentetotaal>;elec;;HollandRijnland / GM0579;bijschatting_verlaagd;33464000.000000004;33464000.0;-3.725290298461914e-09
+2023;<plafond gemeentetotaal>;elec;;MetropoolregioEindhoven / GM0753;bijschatting_verlaagd;145424161.9656898;145410000.0;-14161.96568980813
+2023;<plafond gemeentetotaal>;elec;;MetropoolregioEindhoven / GM1706;bijschatting_verlaagd;877970045.0879052;877970000.0;-45.087905168533325
+2023;<plafond gemeentetotaal>;elec;;Midden-Holland / GM0513;bijschatting_verlaagd;162625370.15220845;162625000.0;-370.15220844745636
+2023;<plafond gemeentetotaal>;elec;;Midden-Holland / GM0627;bijschatting_verlaagd;134825189.40667784;134825000.0;-189.4066778421402
+2023;<plafond gemeentetotaal>;elec;;Midden-Holland / GM1892;bijschatting_verlaagd;144118184.98659515;144118000.0;-184.9865951538086
+2023;<plafond gemeentetotaal>;elec;;Midden-Holland / GM1901;bijschatting_verlaagd;114621437.37041366;114620000.0;-1437.370413661003
+2023;<plafond gemeentetotaal>;elec;;Midden-Holland / GM1931;bijschatting_verlaagd;104574818.08410484;104574000.0;-818.0841048359871
+2023;<plafond gemeentetotaal>;elec;;Noord-HollandZuid / GM0397;bijschatting_verlaagd;39889000.00000001;39889000.0;-7.450580596923828e-09
+2023;<plafond gemeentetotaal>;elec;;Noord-HollandZuid / GM0406;bijschatting_verlaagd;50250000.00000001;50250000.0;-7.450580596923828e-09
+2023;<plafond gemeentetotaal>;elec;;Noord-HollandZuid / GM0453;bijschatting_verlaagd;2819656000.0000005;2819656000.0;-4.76837158203125e-07
+2023;<plafond gemeentetotaal>;elec;;Noord-HollandZuid / GM0479;bijschatting_verlaagd;524046000.00000006;524046000.0;-5.960464477539063e-08
+2023;<plafond gemeentetotaal>;elec;;Noord-Veluwe / GM0230;bijschatting_verlaagd;52466324.05678809;52466000.0;-324.0567880868912
+2023;<plafond gemeentetotaal>;elec;;Noord-Veluwe / GM0233;bijschatting_verlaagd;94509521.56843287;94509000.0;-521.568432867527
+2023;<plafond gemeentetotaal>;elec;;Noord-Veluwe / GM0243;bijschatting_verlaagd;131436857.15678671;131436000.0;-857.1567867100239
+2023;<plafond gemeentetotaal>;elec;;Noord-Veluwe / GM0244;bijschatting_verlaagd;31049222.26494905;31049000.0;-222.26494904980063
+2023;<plafond gemeentetotaal>;elec;;Noord-Veluwe / GM0273;bijschatting_verlaagd;79938360.35253766;79938000.0;-360.35253766179085
+2023;<plafond gemeentetotaal>;elec;;Noord-Veluwe / GM0302;bijschatting_verlaagd;87480388.61633308;87480000.0;-388.6163330823183
+2023;<plafond gemeentetotaal>;elec;;Noord-enMidden-Limburg / GM0889;bijschatting_verlaagd;38851198.345119156;38850000.0;-1198.3451191559434
+2023;<plafond gemeentetotaal>;elec;;Noord-enMidden-Limburg / GM0893;bijschatting_verlaagd;42316220.95576531;42315000.0;-1220.9557653069496
+2023;<plafond gemeentetotaal>;elec;;Noord-enMidden-Limburg / GM0907;bijschatting_verlaagd;108052012.19841659;108050000.0;-2012.1984165906906
+2023;<plafond gemeentetotaal>;elec;;Noord-enMidden-Limburg / GM0944;bijschatting_verlaagd;12118343.08631892;12117000.0;-1343.0863189194351
+2023;<plafond gemeentetotaal>;elec;;Noord-enMidden-Limburg / GM0946;bijschatting_verlaagd;64484890.057593755;64483000.0;-1890.057593755424
+2023;<plafond gemeentetotaal>;elec;;Noord-enMidden-Limburg / GM0957;bijschatting_verlaagd;444083446.2740115;444076000.0;-7446.274011492729
+2023;<plafond gemeentetotaal>;elec;;Noord-enMidden-Limburg / GM0988;bijschatting_verlaagd;208394702.88634023;208389000.0;-5702.886340230703
+2023;<plafond gemeentetotaal>;elec;;Noord-enMidden-Limburg / GM1640;bijschatting_verlaagd;106105081.75592105;106101000.0;-4081.755921050906
+2023;<plafond gemeentetotaal>;elec;;Noord-enMidden-Limburg / GM1641;bijschatting_verlaagd;101226092.73420937;101223000.0;-3092.7342093735933
+2023;<plafond gemeentetotaal>;elec;;Noord-enMidden-Limburg / GM1669;bijschatting_verlaagd;36169979.97444557;36168000.0;-1979.974445566535
+2023;<plafond gemeentetotaal>;elec;;Noord-enMidden-Limburg / GM1894;bijschatting_verlaagd;167587409.40176803;167583000.0;-4409.401768028736
+2023;<plafond gemeentetotaal>;elec;;Noordoost-Brabant / GM1982;bijschatting_verlaagd;413412000.00000006;413412000.0;-5.960464477539063e-08
+2023;<plafond gemeentetotaal>;elec;;Rotterdam/DenHaag / GM0597;bijschatting_verlaagd;132897000.00000001;132897000.0;-1.4901161193847656e-08
+2023;<plafond gemeentetotaal>;elec;;U16 / GM0310;bijschatting_verlaagd;90652259.95117182;90652000.0;-259.95117181539536
+2023;<plafond gemeentetotaal>;elec;;U16 / GM0312;bijschatting_verlaagd;49642149.785756305;49642000.0;-149.78575630486012
+2023;<plafond gemeentetotaal>;elec;;U16 / GM0321;bijschatting_verlaagd;86680073.078174;86680000.0;-73.078173995018
+2023;<plafond gemeentetotaal>;elec;;U16 / GM0331;bijschatting_verlaagd;36612051.81779259;36612000.0;-51.81779258698225
+2023;<plafond gemeentetotaal>;elec;;U16 / GM0335;bijschatting_verlaagd;28366091.58255797;28366000.0;-91.5825579687953
+2023;<plafond gemeentetotaal>;elec;;U16 / GM0344;bijschatting_verlaagd;1014411259.2864331;1014411000.0;-259.2864331007004
+2023;<plafond gemeentetotaal>;elec;;U16 / GM0589;bijschatting_verlaagd;17802069.93896171;17802000.0;-69.93896171078086
+2023;<plafond gemeentetotaal>;elec;;U16 / GM0736;bijschatting_verlaagd;90425210.93559797;90425000.0;-210.93559797108173
+2023;<plafond gemeentetotaal>;elec;;West-Brabant / GM0744;bijschatting_verlaagd;60125013.56825622;60125000.0;-13.568256221711636
+2023;<plafond gemeentetotaal>;elec;;West-Brabant / GM0758;bijschatting_verlaagd;495268000.00000006;495268000.0;-5.960464477539063e-08
+2023;<plafond gemeentetotaal>;elec;;West-Brabant / GM1655;bijschatting_verlaagd;94852000.00000001;94852000.0;-1.4901161193847656e-08
+2023;<plafond gemeentetotaal>;elec;;West-Brabant / GM1674;bijschatting_verlaagd;268561000.47929144;268561000.0;-0.4792914390563965
+2023;<plafond gemeentetotaal>;elec;;West-Brabant / GM1719;bijschatting_verlaagd;56748052.08517957;56748000.0;-5.127119730078725
+2023;<plafond gemeentetotaal>;elec;;West-Brabant / GM1723;bijschatting_verlaagd;27768294.632989526;27768000.0;-294.632989525795
+2023;<plafond gemeentetotaal>;elec;;Zeeland / GM0654;bijschatting_verlaagd;448378299.0302444;448378000.0;-299.030244410038
+2023;<plafond gemeentetotaal>;elec;;Zeeland / GM0664;bijschatting_verlaagd;120597625.76464258;120597000.0;-625.7646425813437
+2023;<plafond gemeentetotaal>;elec;;Zeeland / GM0677;bijschatting_verlaagd;55395293.58988361;55395000.0;-15.848661726556628
+2023;<plafond gemeentetotaal>;elec;;Zeeland / GM0678;bijschatting_verlaagd;45741188.72414541;45741000.0;-188.72414541244507
+2023;<plafond gemeentetotaal>;elec;;Zeeland / GM0687;bijschatting_verlaagd;116246652.55098882;116246000.0;-652.5509888231754
+2023;<plafond gemeentetotaal>;elec;;Zeeland / GM0703;bijschatting_verlaagd;199327284.59564218;199327000.0;-32.92827794472807
+2023;<plafond gemeentetotaal>;elec;;Zeeland / GM0715;bijschatting_verlaagd;538420557.6672072;538420000.0;-557.6672072410583
+2023;<plafond gemeentetotaal>;elec;;Zeeland / GM0716;bijschatting_verlaagd;60397269.30691095;60397000.0;-269.3069109469652
+2023;<plafond gemeentetotaal>;elec;;Zeeland / GM0717;bijschatting_verlaagd;55448341.57111249;55448000.0;-341.57111249119043
+2023;<plafond gemeentetotaal>;elec;;Zeeland / GM0718;bijschatting_verlaagd;225953435.62034142;225953000.0;-435.62034142017365
+2023;<plafond gemeentetotaal>;elec;;Zeeland / GM1676;bijschatting_verlaagd;99815574.44112861;99815000.0;-574.4411286115646
+2023;<plafond gemeentetotaal>;elec;;Zeeland / GM1695;bijschatting_verlaagd;31046122.25617036;31046000.0;-122.25617035850883
+2023;<plafond gemeentetotaal>;elec;;Zeeland / GM1714;bijschatting_verlaagd;78133354.63061216;78133000.0;-354.6306121647358
+2024;<plafond gemeentetotaal>;elec;;Amersfoort / GM0313;bijschatting_verlaagd;99456565.52619015;99455000.0;-1565.5261901468039
+2024;<plafond gemeentetotaal>;elec;;Amersfoort / GM0317;bijschatting_verlaagd;21110635.671749033;21110000.0;-635.6717490330338
+2024;<plafond gemeentetotaal>;elec;;Amersfoort / GM0351;bijschatting_verlaagd;26534978.757127568;26534000.0;-978.7571275681257
+2024;<plafond gemeentetotaal>;elec;;Arnhem/Nijmegen / GM0221;bijschatting_verlaagd;33307084.509449344;33307000.0;-84.50944934412837
+2024;<plafond gemeentetotaal>;elec;;Arnhem/Nijmegen / GM0225;bijschatting_verlaagd;47270227.300140485;47270000.0;-227.3001404851675
+2024;<plafond gemeentetotaal>;elec;;Arnhem/Nijmegen / GM0226;bijschatting_verlaagd;79656105.61603133;79656000.0;-105.61603133380413
+2024;<plafond gemeentetotaal>;elec;;Arnhem/Nijmegen / GM0252;bijschatting_verlaagd;21571152.593789082;21571000.0;-152.59378908202052
+2024;<plafond gemeentetotaal>;elec;;Arnhem/Nijmegen / GM0274;bijschatting_verlaagd;377291011.598371;377291000.0;-11.598371028900146
+2024;<plafond gemeentetotaal>;elec;;Arnhem/Nijmegen / GM0275;bijschatting_verlaagd;63841005.618676275;63841000.0;-5.618676275014877
+2024;<plafond gemeentetotaal>;elec;;Arnhem/Nijmegen / GM0277;bijschatting_verlaagd;2012029.4609488652;2012000.0;-29.46094886516221
+2024;<plafond gemeentetotaal>;elec;;Arnhem/Nijmegen / GM0293;bijschatting_verlaagd;9716149.104678715;9716000.0;-149.1046787146479
+2024;<plafond gemeentetotaal>;elec;;Arnhem/Nijmegen / GM0296;bijschatting_verlaagd;112767499.8587321;112767000.0;-499.85873210430145
+2024;<plafond gemeentetotaal>;elec;;Arnhem/Nijmegen / GM1734;bijschatting_verlaagd;157686884.39714098;157686000.0;-884.3971409797668
+2024;<plafond gemeentetotaal>;elec;;Arnhem/Nijmegen / GM1945;bijschatting_verlaagd;52153372.610587485;52153000.0;-372.6105874851346
+2024;<plafond gemeentetotaal>;elec;;Drenthe / GM0106;bijschatting_verlaagd;139198144.04703578;139198000.0;-144.04703578352928
+2024;<plafond gemeentetotaal>;elec;;Drenthe / GM0109;bijschatting_verlaagd;199699063.2043116;199699000.0;-63.20431160926819
+2024;<plafond gemeentetotaal>;elec;;Drenthe / GM0114;bijschatting_verlaagd;352508169.0347869;352508000.0;-169.03478688001633
+2024;<plafond gemeentetotaal>;elec;;Drenthe / GM0118;bijschatting_verlaagd;202968093.09162176;202968000.0;-93.09162175655365
+2024;<plafond gemeentetotaal>;elec;;Drenthe / GM0119;bijschatting_verlaagd;178464076.92307693;178464000.0;-76.9230769276619
+2024;<plafond gemeentetotaal>;elec;;Drenthe / GM1680;bijschatting_verlaagd;45912059.77462029;45912000.0;-59.77462028712034
+2024;<plafond gemeentetotaal>;elec;;Drenthe / GM1681;bijschatting_verlaagd;50343051.44536992;50343000.0;-51.44536992162466
+2024;<plafond gemeentetotaal>;elec;;Drenthe / GM1699;bijschatting_verlaagd;286041067.0129625;286041000.0;-67.01296252012253
+2024;<plafond gemeentetotaal>;elec;;Drenthe / GM1701;bijschatting_verlaagd;41925054.875061244;41925000.0;-54.87506124377251
+2024;<plafond gemeentetotaal>;elec;;Drenthe / GM1730;bijschatting_verlaagd;57203097.99118079;57203000.0;-97.9911807924509
+2024;<plafond gemeentetotaal>;elec;;Drenthe / GM1731;bijschatting_verlaagd;137093062.2243998;137093000.0;-62.22439980506897
+2024;<plafond gemeentetotaal>;elec;;Flevoland / GM0034;bijschatting_verlaagd;454681594.21318907;454680000.0;-1594.2131890654564
+2024;<plafond gemeentetotaal>;elec;;Flevoland / GM0050;bijschatting_verlaagd;183858187.67289522;183858000.0;-187.6728952229023
+2024;<plafond gemeentetotaal>;elec;;Flevoland / GM0171;bijschatting_verlaagd;252094323.6432904;252094000.0;-323.64329040050507
+2024;<plafond gemeentetotaal>;elec;;Flevoland / GM0184;bijschatting_verlaagd;105663105.59500867;105663000.0;-105.59500867128372
+2024;<plafond gemeentetotaal>;elec;;Flevoland / GM0995;bijschatting_verlaagd;274951501.14466846;274951000.0;-501.1446684598923
+2024;<plafond gemeentetotaal>;elec;;Foodvalley / GM0267;bijschatting_verlaagd;167263000.00000003;167263000.0;-2.9802322387695312e-08
+2024;<plafond gemeentetotaal>;elec;;Foodvalley / GM0340;bijschatting_verlaagd;30784000.000000004;30784000.0;-3.725290298461914e-09
+2024;<plafond gemeentetotaal>;elec;;Friesland / GM0059;bijschatting_verlaagd;80816840.70435062;80816000.0;-840.7043506205082
+2024;<plafond gemeentetotaal>;elec;;Friesland / GM0072;bijschatting_verlaagd;46730459.48327702;46730000.0;-459.4832770228386
+2024;<plafond gemeentetotaal>;elec;;Friesland / GM0074;bijschatting_verlaagd;286658625.28164756;286658000.0;-625.2816475629807
+2024;<plafond gemeentetotaal>;elec;;Friesland / GM0085;bijschatting_verlaagd;60080724.40683268;60080000.0;-724.4068326801062
+2024;<plafond gemeentetotaal>;elec;;Friesland / GM0086;bijschatting_verlaagd;62321398.9830346;62321000.0;-398.9830346032977
+2024;<plafond gemeentetotaal>;elec;;Friesland / GM0088;bijschatting_verlaagd;4550100.052833108;4550000.0;-100.05283310823143
+2024;<plafond gemeentetotaal>;elec;;Friesland / GM0093;bijschatting_verlaagd;17592181.12851207;17592000.0;-181.12851206958294
+2024;<plafond gemeentetotaal>;elec;;Friesland / GM0096;bijschatting_verlaagd;6669059.259671674;6669000.0;-59.259671674109995
+2024;<plafond gemeentetotaal>;elec;;Friesland / GM0098;bijschatting_verlaagd;72898745.0429361;72898000.0;-745.0429361015558
+2024;<plafond gemeentetotaal>;elec;;Friesland / GM0737;bijschatting_verlaagd;158190009.3362979;158190000.0;-9.336297899484634
+2024;<plafond gemeentetotaal>;elec;;Friesland / GM1891;bijschatting_verlaagd;17517723.35539429;17517000.0;-723.3553942888975
+2024;<plafond gemeentetotaal>;elec;;Friesland / GM1970;bijschatting_verlaagd;133629349.46004185;133629000.0;-349.4600418508053
+2024;<plafond gemeentetotaal>;elec;;FruitdeltaRivierenland / GM0263;bijschatting_verlaagd;117583000.00000001;117583000.0;-1.4901161193847656e-08
+2024;<plafond gemeentetotaal>;elec;;Groningen / GM0014;bijschatting_verlaagd;606523659.1139395;606522000.0;-1659.113939523697
+2024;<plafond gemeentetotaal>;elec;;Groningen / GM0037;bijschatting_verlaagd;56464226.133700654;56463000.0;-65.50449022715267
+2024;<plafond gemeentetotaal>;elec;;Groningen / GM0047;bijschatting_verlaagd;184063175.13137066;184063000.0;-175.13137066364288
+2024;<plafond gemeentetotaal>;elec;;Groningen / GM0765;bijschatting_verlaagd;21368062.233622253;21368000.0;-62.23362225294113
+2024;<plafond gemeentetotaal>;elec;;Groningen / GM1895;bijschatting_verlaagd;199378245.25384092;199376000.0;-67.0892762810354
+2024;<plafond gemeentetotaal>;elec;;Groningen / GM1950;bijschatting_verlaagd;71832182.40785107;71832000.0;-182.40785107016563
+2024;<plafond gemeentetotaal>;elec;;Groningen / GM1952;bijschatting_verlaagd;627006399.3822936;627005000.0;-126.78288431061806
+2024;<plafond gemeentetotaal>;elec;;Groningen / GM1966;bijschatting_verlaagd;1810612305.3779666;1810612000.0;-305.37796664237976
+2024;<plafond gemeentetotaal>;elec;;Groningen / GM1969;bijschatting_verlaagd;304915488.66705257;304915000.0;-488.66705256700516
+2024;<plafond gemeentetotaal>;elec;;Groningen / GM1979;bijschatting_verlaagd;492003256.0164166;492003000.0;-79.7675647120972
+2024;<plafond gemeentetotaal>;elec;;HartvanBrabant / GM0766;bijschatting_verlaagd;159555859.3677712;159553000.0;-2859.3677712082863
+2024;<plafond gemeentetotaal>;elec;;HartvanBrabant / GM0798;bijschatting_verlaagd;44243302.385692134;44241000.0;-2302.3856921344995
+2024;<plafond gemeentetotaal>;elec;;HollandRijnland / GM0534;bijschatting_verlaagd;56753000.00000001;56753000.0;-7.450580596923828e-09
+2024;<plafond gemeentetotaal>;elec;;MetropoolregioEindhoven / GM0743;bijschatting_verlaagd;82428002.85307842;82428000.0;-2.8530784249305725
+2024;<plafond gemeentetotaal>;elec;;MetropoolregioEindhoven / GM0866;bijschatting_verlaagd;17267410.60985928;17267000.0;-410.6098592802882
+2024;<plafond gemeentetotaal>;elec;;MetropoolregioEindhoven / GM1652;bijschatting_verlaagd;86219252.26806675;86219000.0;-252.2680667489767
+2024;<plafond gemeentetotaal>;elec;;Midden-Holland / GM0513;bijschatting_verlaagd;171735680.4197032;171735000.0;-680.4197031855583
+2024;<plafond gemeentetotaal>;elec;;Midden-Holland / GM0627;bijschatting_verlaagd;156426336.07654884;156426000.0;-336.0765488445759
+2024;<plafond gemeentetotaal>;elec;;Midden-Holland / GM1892;bijschatting_verlaagd;149889392.00068223;149889000.0;-392.0006822347641
+2024;<plafond gemeentetotaal>;elec;;Midden-Holland / GM1901;bijschatting_verlaagd;111200646.56720595;111200000.0;-646.5672059506178
+2024;<plafond gemeentetotaal>;elec;;Midden-Holland / GM1931;bijschatting_verlaagd;105567944.93585978;105567000.0;-944.9358597844839
+2024;<plafond gemeentetotaal>;elec;;Noord-HollandZuid / GM0377;bijschatting_verlaagd;43464000.00000001;43464000.0;-7.450580596923828e-09
+2024;<plafond gemeentetotaal>;elec;;Noord-HollandZuid / GM1942;bijschatting_verlaagd;97747000.00000001;97747000.0;-1.4901161193847656e-08
+2024;<plafond gemeentetotaal>;elec;;Noord-Veluwe / GM0230;bijschatting_verlaagd;54265287.06900981;54265000.0;-287.0690098106861
+2024;<plafond gemeentetotaal>;elec;;Noord-Veluwe / GM0233;bijschatting_verlaagd;93805490.80595356;93805000.0;-490.8059535622597
+2024;<plafond gemeentetotaal>;elec;;Noord-Veluwe / GM0243;bijschatting_verlaagd;128430890.30468822;128430000.0;-890.3046882152557
+2024;<plafond gemeentetotaal>;elec;;Noord-Veluwe / GM0244;bijschatting_verlaagd;31225200.282117978;31225000.0;-200.28211797773838
+2024;<plafond gemeentetotaal>;elec;;Noord-Veluwe / GM0273;bijschatting_verlaagd;78344397.13042364;78344000.0;-397.13042363524437
+2024;<plafond gemeentetotaal>;elec;;Noord-Veluwe / GM0302;bijschatting_verlaagd;90077454.75800237;90077000.0;-454.75800237059593
+2024;<plafond gemeentetotaal>;elec;;Noord-enMidden-Limburg / GM0889;bijschatting_verlaagd;38443129.652045615;38443000.0;-129.6520456150174
+2024;<plafond gemeentetotaal>;elec;;Noord-enMidden-Limburg / GM0893;bijschatting_verlaagd;43537151.377370246;43537000.0;-151.37737024575472
+2024;<plafond gemeentetotaal>;elec;;Noord-enMidden-Limburg / GM0907;bijschatting_verlaagd;115055202.21956214;115055000.0;-202.2195621430874
+2024;<plafond gemeentetotaal>;elec;;Noord-enMidden-Limburg / GM0944;bijschatting_verlaagd;12449132.700222796;12449000.0;-132.70022279582918
+2024;<plafond gemeentetotaal>;elec;;Noord-enMidden-Limburg / GM0946;bijschatting_verlaagd;65763261.002474606;65763000.0;-261.00247460603714
+2024;<plafond gemeentetotaal>;elec;;Noord-enMidden-Limburg / GM0957;bijschatting_verlaagd;457708863.40996337;457708000.0;-863.4099633693695
+2024;<plafond gemeentetotaal>;elec;;Noord-enMidden-Limburg / GM0988;bijschatting_verlaagd;207158729.26809534;207158000.0;-729.268095344305
+2024;<plafond gemeentetotaal>;elec;;Noord-enMidden-Limburg / GM1640;bijschatting_verlaagd;105965472.77585718;105965000.0;-472.775857180357
+2024;<plafond gemeentetotaal>;elec;;Noord-enMidden-Limburg / GM1669;bijschatting_verlaagd;37911221.01485967;37911000.0;-221.0148596689105
+2024;<plafond gemeentetotaal>;elec;;Noord-enMidden-Limburg / GM1894;bijschatting_verlaagd;172644551.14704293;172644000.0;-551.1470429301262
+2024;<plafond gemeentetotaal>;elec;;Noordoost-Brabant / GM0755;bijschatting_verlaagd;37001000.00000001;37001000.0;-7.450580596923828e-09
+2024;<plafond gemeentetotaal>;elec;;Rotterdam/DenHaag / GM0503;bijschatting_verlaagd;420815000.0867347;420815000.0;-0.08673471212387085
+2024;<plafond gemeentetotaal>;elec;;Rotterdam/DenHaag / GM0597;bijschatting_verlaagd;135256005.9029987;135256000.0;-5.902998685836792
+2024;<plafond gemeentetotaal>;elec;;Rotterdam/DenHaag / GM0613;bijschatting_verlaagd;50911008.22080123;50911000.0;-8.22080122679472
+2024;<plafond gemeentetotaal>;elec;;Rotterdam/DenHaag / GM1783;bijschatting_verlaagd;948833000.6133816;948833000.0;-0.6133816242218018
+2024;<plafond gemeentetotaal>;elec;;Rotterdam/DenHaag / GM1842;bijschatting_verlaagd;114885001.61230618;114885000.0;-1.6123061776161194
+2024;<plafond gemeentetotaal>;elec;;Rotterdam/DenHaag / GM1926;bijschatting_verlaagd;249273000.11096278;249273000.0;-0.11096277832984924
+2024;<plafond gemeentetotaal>;elec;;Rotterdam/DenHaag / GM1992;bijschatting_verlaagd;181853000.20659575;181853000.0;-0.2065957486629486
+2024;<plafond gemeentetotaal>;elec;;Twente / GM0147;bijschatting_verlaagd;38881045.68957083;38881000.0;-45.68957082927227
+2024;<plafond gemeentetotaal>;elec;;Twente / GM0153;bijschatting_verlaagd;421589292.57312655;421589000.0;-292.57312655448914
+2024;<plafond gemeentetotaal>;elec;;Twente / GM0158;bijschatting_verlaagd;88126951.3020768;88125000.0;-909.644311167609
+2024;<plafond gemeentetotaal>;elec;;Twente / GM0163;bijschatting_verlaagd;143890609.53934586;143889000.0;-1609.5393458604813
+2024;<plafond gemeentetotaal>;elec;;Twente / GM0164;bijschatting_verlaagd;306857153.91999996;306857000.0;-153.91999995708466
+2024;<plafond gemeentetotaal>;elec;;Twente / GM0168;bijschatting_verlaagd;48121437.23024099;48121000.0;-437.23024099320173
+2024;<plafond gemeentetotaal>;elec;;Twente / GM0173;bijschatting_verlaagd;122406068.46928471;122406000.0;-68.46928471326828
+2024;<plafond gemeentetotaal>;elec;;Twente / GM0183;bijschatting_verlaagd;44029372.79650681;44029000.0;-372.79650680720806
+2024;<plafond gemeentetotaal>;elec;;Twente / GM0189;bijschatting_verlaagd;54861084.2583904;54861000.0;-84.25839039683342
+2024;<plafond gemeentetotaal>;elec;;Twente / GM1735;bijschatting_verlaagd;129482080.41157174;129482000.0;-80.41157174110413
+2024;<plafond gemeentetotaal>;elec;;Twente / GM1742;bijschatting_verlaagd;101782686.41475749;101782000.0;-686.4147574901581
+2024;<plafond gemeentetotaal>;elec;;U16 / GM0335;bijschatting_verlaagd;28108000.000000004;28108000.0;-3.725290298461914e-09
+2024;<plafond gemeentetotaal>;elec;;U16 / GM0356;bijschatting_verlaagd;232517000.00000003;232517000.0;-2.9802322387695312e-08
+2024;<plafond gemeentetotaal>;elec;;U16 / GM0736;bijschatting_verlaagd;89815000.00000001;89815000.0;-1.4901161193847656e-08
+2024;<plafond gemeentetotaal>;elec;;West-Brabant / GM1723;bijschatting_verlaagd;26859001.16656155;26859000.0;-1.1665615513920784
+2024;<plafond gemeentetotaal>;elec;;Zeeland / GM0654;bijschatting_verlaagd;475055000.00000006;475055000.0;-5.960464477539063e-08
+2024;<plafond gemeentetotaal>;elec;;Zeeland / GM0687;bijschatting_verlaagd;119323000.00000001;119323000.0;-1.4901161193847656e-08
+2024;<plafond gemeentetotaal>;elec;;Zeeland / GM0715;bijschatting_verlaagd;618965182.7364235;618932000.0;-33182.73642349243
+2024;<plafond gemeentetotaal>;elec;;Zeeland / GM0717;bijschatting_verlaagd;54216000.00000001;54216000.0;-7.450580596923828e-09
+2024;<plafond gemeentetotaal>;elec;;Zuid-Limburg / GM1954;bijschatting_verlaagd;54931000.00000001;54931000.0;-7.450580596923828e-09
+2023;<thema:bf>;elec;bf;Groningen;thema_bijschatting;3888194326.4310694;3888197000.0;2673.5689306259155
+2023;<thema:bf>;elec;bf;Fruitdelta Rivierenland;thema_bijschatting;1027090999.9999999;1033155000.0;6064000.000000119
+2023;<thema:bf>;elec;bf;Stedendriehoek;thema_bijschatting;1084647999.9996622;1147866000.0;63218000.00033784
+2023;<thema:bf>;elec;bf;U16;thema_bijschatting;2458091833.623554;2458142000.0;50166.376445770264
+2023;<thema:bf>;elec;bf;Noord-Holland Noord;thema_bijschatting;2147741999.999033;3496161000.0;1348419000.000967
+2023;<thema:bf>;elec;bf;Noord-Holland Zuid;thema_bijschatting;11219667999.988401;11397134000.0;177466000.0115986
 2023;<thema:bf>;elec;bf;Alblasserwaard;thema_bijschatting;284785000.0;332147000.0;47362000.0
 2023;<thema:bf>;elec;bf;Goeree-Overflakkee;thema_bijschatting;126361000.0;127845000.0;1484000.0
 2023;<thema:bf>;elec;bf;Hoeksche Waard;thema_bijschatting;184240000.0;184241000.0;1000.0
-2023;<thema:bf>;elec;bf;Holland Rijnland;thema_bijschatting;1292471000.0;1298114000.0;5643000.0
-2023;<thema:bf>;elec;bf;Rotterdam/Den Haag;thema_bijschatting;10880209000.0;10899822000.0;19613000.0
-2023;<thema:bf>;elec;bf;Metropoolregio Eindhoven;thema_bijschatting;3859056000.0;3876779000.0;17723000.0
-2023;<thema:bf>;elec;bf;Noordoost-Brabant;thema_bijschatting;2373089000.0;2385009000.0;11920000.0
-2023;<thema:bf>;elec;bf;West-Brabant;thema_bijschatting;3890617000.0;3907895000.0;17278000.0
-2023;<thema:bf>;elec;bf;Drenthe;thema_bijschatting;1593529000.0000002;1593580000.0;50999.99999976158
-2023;<thema:bf>;elec;bf;Zuid-Limburg;thema_bijschatting;2500003000.0;2569527000.0;69524000.0
-2023;<thema:bf>;elec;bf;Twente;thema_bijschatting;2114799000.0000002;2118260000.0;3460999.9999997616
-2023;<thema:bf>;elec;bf;West-Overijssel;thema_bijschatting;1776828000.0;2096675000.0;319847000.0
-2023;<thema:bf>;elec;bf;Foodvalley;thema_bijschatting;1078413000.0;1082948000.0;4535000.0
-2024;<thema:bf>;elec;bf;Fruitdelta Rivierenland;thema_bijschatting;1024558000.0;1045256000.0;20698000.0
+2023;<thema:bf>;elec;bf;Holland Rijnland;thema_bijschatting;1292470999.9983354;1298114000.0;5643000.0016646385
+2023;<thema:bf>;elec;bf;Rotterdam/Den Haag;thema_bijschatting;10880208999.836956;10899822000.0;19613000.163043976
+2023;<thema:bf>;elec;bf;Metropoolregio Eindhoven;thema_bijschatting;3859041792.943904;3876779000.0;17737207.056096077
+2023;<thema:bf>;elec;bf;Noordoost-Brabant;thema_bijschatting;2373088999.995275;2385009000.0;11920000.00472498
+2023;<thema:bf>;elec;bf;West-Brabant;thema_bijschatting;3890616686.1923428;3907895000.0;17278313.80765724
+2023;<thema:bf>;elec;bf;Drenthe;thema_bijschatting;1593528999.900922;1593580000.0;51000.09907793999
+2023;<thema:bf>;elec;bf;Zuid-Limburg;thema_bijschatting;2500002999.996326;2569527000.0;69524000.00367403
+2023;<thema:bf>;elec;bf;Twente;thema_bijschatting;2114798999.9963014;2118260000.0;3461000.0036985874
+2023;<thema:bf>;elec;bf;West-Overijssel;thema_bijschatting;1776827999.830009;2096675000.0;319847000.169991
+2023;<thema:bf>;elec;bf;Foodvalley;thema_bijschatting;1078412999.9969451;1082948000.0;4535000.003054857
+2024;<thema:bf>;elec;bf;Fruitdelta Rivierenland;thema_bijschatting;1024557999.9999999;1045256000.0;20698000.00000012
 2024;<thema:bf>;elec;bf;Stedendriehoek;thema_bijschatting;1108114000.0000002;1185532000.0;77417999.99999976
-2024;<thema:bf>;elec;bf;U16;thema_bijschatting;2483773000.0;2483867000.0;94000.0
-2024;<thema:bf>;elec;bf;Noord-Holland Noord;thema_bijschatting;2429083000.0;3919773000.0;1490690000.0
-2024;<thema:bf>;elec;bf;Noord-Holland Zuid;thema_bijschatting;11846600000.0;12044858000.0;198258000.0
+2024;<thema:bf>;elec;bf;Amersfoort;thema_bijschatting;663777820.0449333;663779000.0;1179.9550666809082
+2024;<thema:bf>;elec;bf;U16;thema_bijschatting;2483772999.9723425;2483867000.0;94000.02765750885
+2024;<thema:bf>;elec;bf;Noord-Holland Noord;thema_bijschatting;2429082999.9958563;3919773000.0;1490690000.0041437
+2024;<thema:bf>;elec;bf;Noord-Holland Zuid;thema_bijschatting;11846599999.997143;12044858000.0;198258000.0028572
 2024;<thema:bf>;elec;bf;Alblasserwaard;thema_bijschatting;292459000.0;303648000.0;11189000.0
 2024;<thema:bf>;elec;bf;Goeree-Overflakkee;thema_bijschatting;129699000.0;131034000.0;1335000.0
-2024;<thema:bf>;elec;bf;Holland Rijnland;thema_bijschatting;1288461999.9999998;1297031000.0;8569000.000000238
-2024;<thema:bf>;elec;bf;Rotterdam/Den Haag;thema_bijschatting;11144985000.0;11185628000.0;40643000.0
-2024;<thema:bf>;elec;bf;Metropoolregio Eindhoven;thema_bijschatting;3661747000.0;3682215000.0;20468000.0
-2024;<thema:bf>;elec;bf;Noordoost-Brabant;thema_bijschatting;2313092000.0000005;2385363000.0;72270999.99999952
-2024;<thema:bf>;elec;bf;West-Brabant;thema_bijschatting;3693788999.9999995;3711759000.0;17970000.000000477
-2024;<thema:bf>;elec;bf;Zuid-Limburg;thema_bijschatting;1633109000.0;1710965000.0;77856000.0
-2024;<thema:bf>;elec;bf;West-Overijssel;thema_bijschatting;1812399000.0;2032814000.0;220415000.0
+2024;<thema:bf>;elec;bf;Fryslân;thema_bijschatting;2118681783.5051706;2118683000.0;1216.494829416275
+2024;<thema:bf>;elec;bf;Holland Rijnland;thema_bijschatting;1288461999.994565;1297031000.0;8569000.00543499
+2024;<thema:bf>;elec;bf;Rotterdam/Den Haag;thema_bijschatting;11144984983.243742;11185628000.0;40643016.75625801
+2024;<thema:bf>;elec;bf;Zeeland;thema_bijschatting;2295075817.2635765;2295104000.0;28182.73642349243
+2024;<thema:bf>;elec;bf;Hart van Brabant;thema_bijschatting;1642817838.2465367;1642818000.0;161.75346326828003
+2024;<thema:bf>;elec;bf;Metropoolregio Eindhoven;thema_bijschatting;3661746333.945773;3682215000.0;20468666.054226875
+2024;<thema:bf>;elec;bf;Noordoost-Brabant;thema_bijschatting;2313091999.9966893;2385363000.0;72271000.00331068
+2024;<thema:bf>;elec;bf;West-Brabant;thema_bijschatting;3693788998.8102827;3711759000.0;17970001.189717293
+2024;<thema:bf>;elec;bf;Zuid-Limburg;thema_bijschatting;1633108999.994196;1710965000.0;77856000.00580406
+2024;<thema:bf>;elec;bf;West-Overijssel;thema_bijschatting;1812398999.8912063;2032814000.0;220415000.10879374
 2024;<thema:bf>;elec;bf;Achterhoek;thema_bijschatting;946852000.0;957426000.0;10574000.0
-2024;<thema:bf>;elec;bf;Foodvalley;thema_bijschatting;1082902000.0;1086688000.0;3786000.0
-2023;<thema:bf>;gas;bf;Noord-Veluwe;thema_bijschatting;76114000.0;82039000.0;5925000.0
-2023;<thema:bf>;gas;bf;Stedendriehoek;thema_bijschatting;213746535.31058383;213784000.0;37464.68941617012
-2023;<thema:bf>;gas;bf;Noord-Holland Noord;thema_bijschatting;484402620.21445465;492670000.0;8267379.785545349
-2023;<thema:bf>;gas;bf;Alblasserwaard;thema_bijschatting;63890891.9961385;63897000.0;6108.003861501813
+2024;<thema:bf>;elec;bf;Arnhem/Nijmegen;thema_bijschatting;2298240477.3314543;2298241000.0;522.6685457229614
+2024;<thema:bf>;elec;bf;Foodvalley;thema_bijschatting;1082901999.9971075;1086688000.0;3786000.002892494
+2023;<thema:bf>;gas;bf;Noord-Veluwe;thema_bijschatting;76113999.99990904;82039000.0;5925000.000090957
+2023;<thema:bf>;gas;bf;Stedendriehoek;thema_bijschatting;213783000.00000003;213784000.0;999.9999999701977
+2023;<thema:bf>;gas;bf;Noord-Holland Noord;thema_bijschatting;490744999.99301374;492670000.0;1925000.0069862604
+2023;<thema:bf>;gas;bf;Alblasserwaard;thema_bijschatting;63896000.0;63897000.0;1000.0
 2023;<thema:bf>;gas;bf;Hoeksche Waard;thema_bijschatting;22533000.0;22557000.0;24000.0
-2023;<thema:bf>;gas;bf;Holland Rijnland;thema_bijschatting;157479311.33444703;171468000.0;13988688.665552974
-2023;<thema:bf>;gas;bf;Midden-Holland;thema_bijschatting;169775996.44970414;169847000.0;71003.55029585958
-2023;<thema:bf>;gas;bf;Rotterdam/Den Haag;thema_bijschatting;4432702299.21669;4434929000.0;2226700.7833099365
-2023;<thema:bf>;gas;bf;Twente;thema_bijschatting;251848497.20043975;310864000.0;59015502.79956025
-2023;<thema:bf>;gas;bf;Achterhoek;thema_bijschatting;153310057.30704626;153747000.0;436942.6929537356
-2023;<thema:bf>;gas;bf;Arnhem/Nijmegen;thema_bijschatting;285991652.280251;310775000.0;24783347.719748974
-2023;<thema:bf>;gas;bf;Foodvalley;thema_bijschatting;106228122.4489796;107215000.0;986877.5510203987
-2024;<thema:bf>;gas;bf;Noord-Veluwe;thema_bijschatting;75854615.75091211;77882000.0;2027384.249087885
-2024;<thema:bf>;gas;bf;Fruitdelta Rivierenland;thema_bijschatting;319208008.85725194;319845000.0;636991.1427480578
-2024;<thema:bf>;gas;bf;Stedendriehoek;thema_bijschatting;165558706.86340544;165685000.0;126293.13659456372
-2024;<thema:bf>;gas;bf;Amersfoort;thema_bijschatting;63202184.93430746;64347000.0;1144815.0656925365
-2024;<thema:bf>;gas;bf;Noord-Holland Noord;thema_bijschatting;499797382.8024143;511306000.0;11508617.197585702
-2024;<thema:bf>;gas;bf;Alblasserwaard;thema_bijschatting;37690584.60472153;61661000.0;23970415.39527847
+2023;<thema:bf>;gas;bf;Holland Rijnland;thema_bijschatting;170466529.9600919;171468000.0;1001470.0399081111
+2023;<thema:bf>;gas;bf;Midden-Holland;thema_bijschatting;169787488.3698095;169847000.0;59511.630190491676
+2023;<thema:bf>;gas;bf;Achterhoek;thema_bijschatting;153746000.0;153747000.0;1000.0
+2023;<thema:bf>;gas;bf;Arnhem/Nijmegen;thema_bijschatting;309753945.88421243;310775000.0;1021054.1157875657
+2023;<thema:bf>;gas;bf;Foodvalley;thema_bijschatting;106239999.90159905;107215000.0;975000.0984009504
+2024;<thema:bf>;gas;bf;Noord-Veluwe;thema_bijschatting;77881999.99999999;77882000.0;1.4901161193847656e-08
+2024;<thema:bf>;gas;bf;Fruitdelta Rivierenland;thema_bijschatting;319276999.9999793;319845000.0;568000.0000206828
+2024;<thema:bf>;gas;bf;Stedendriehoek;thema_bijschatting;165684000.0;165685000.0;1000.0
+2024;<thema:bf>;gas;bf;Amersfoort;thema_bijschatting;64271999.994417064;64347000.0;75000.00558293611
+2024;<thema:bf>;gas;bf;Noord-Holland Noord;thema_bijschatting;503563999.9886428;511306000.0;7742000.011357188
+2024;<thema:bf>;gas;bf;Alblasserwaard;thema_bijschatting;61660999.99999999;61661000.0;7.450580596923828e-09
 2024;<thema:bf>;gas;bf;Goeree-Overflakkee;thema_bijschatting;19522000.0;19523000.0;1000.0
-2024;<thema:bf>;gas;bf;Fryslân;thema_bijschatting;312030398.8582314;317506000.0;5475601.141768575
+2024;<thema:bf>;gas;bf;Fryslân;thema_bijschatting;317500861.8535658;317506000.0;5138.146434187889
 2024;<thema:bf>;gas;bf;Hoeksche Waard;thema_bijschatting;21739000.0;21755000.0;16000.0
-2024;<thema:bf>;gas;bf;Holland Rijnland;thema_bijschatting;139432880.9339363;159810000.0;20377119.066063702
-2024;<thema:bf>;gas;bf;Midden-Holland;thema_bijschatting;165894638.94967178;166002000.0;107361.0503282249
-2024;<thema:bf>;gas;bf;Rotterdam/Den Haag;thema_bijschatting;4704138477.039606;4726614000.0;22475522.960393906
-2024;<thema:bf>;gas;bf;Hart van Brabant;thema_bijschatting;211052361.07145786;212442000.0;1389638.9285421371
-2024;<thema:bf>;gas;bf;Metropoolregio Eindhoven;thema_bijschatting;367031429.6043699;380111000.0;13079570.395630121
-2024;<thema:bf>;gas;bf;Noordoost-Brabant;thema_bijschatting;263346417.96321657;265038000.0;1691582.036783427
-2024;<thema:bf>;gas;bf;Twente;thema_bijschatting;231568167.03949767;233118000.0;1549832.9605023265
-2024;<thema:bf>;gas;bf;West-Overijssel;thema_bijschatting;211605334.2862295;212892000.0;1286665.7137705088
+2024;<thema:bf>;gas;bf;Holland Rijnland;thema_bijschatting;139455999.9972837;159810000.0;20354000.002716303
+2024;<thema:bf>;gas;bf;Midden-Holland;thema_bijschatting;165909999.99986362;166002000.0;92000.00013637543
+2024;<thema:bf>;gas;bf;Rotterdam/Den Haag;thema_bijschatting;4704474133.045261;4726614000.0;22139866.954738617
+2024;<thema:bf>;gas;bf;Hart van Brabant;thema_bijschatting;211057999.99953946;212442000.0;1384000.0004605353
+2024;<thema:bf>;gas;bf;Metropoolregio Eindhoven;thema_bijschatting;379173999.9637468;380111000.0;937000.0362532139
+2024;<thema:bf>;gas;bf;Noordoost-Brabant;thema_bijschatting;265020999.9975705;265038000.0;17000.00242948532
+2024;<thema:bf>;gas;bf;Twente;thema_bijschatting;233117000.0;233118000.0;1000.0
+2024;<thema:bf>;gas;bf;West-Overijssel;thema_bijschatting;211614999.999743;212892000.0;1277000.0002569854
 2024;<thema:bf>;gas;bf;Achterhoek;thema_bijschatting;145522000.0;147020000.0;1498000.0
-2024;<thema:bf>;gas;bf;Arnhem/Nijmegen;thema_bijschatting;260315432.14825854;289080000.0;28764567.851741463
-2024;<thema:bf>;gas;bf;Foodvalley;thema_bijschatting;89610999.99999999;98438000.0;8827000.000000015
-2023;<thema:bf>;elec;bf;Drechtsteden;thema_bijschatting;682090000.0000001;870181000.0;188090999.99999988
-2024;<thema:bf>;elec;bf;Drechtsteden;thema_bijschatting;663291000.0;835136000.0;171845000.0
+2024;<thema:bf>;gas;bf;Arnhem/Nijmegen;thema_bijschatting;285985363.6285795;289080000.0;3094636.3714205027
+2024;<thema:bf>;gas;bf;Foodvalley;thema_bijschatting;89610999.99999693;98438000.0;8827000.00000307
+2023;<thema:bf>;elec;bf;Drechtsteden;thema_bijschatting;682089999.9996542;870181000.0;188091000.00034583
+2024;<thema:bf>;elec;bf;Drechtsteden;thema_bijschatting;663290999.9999995;835136000.0;171845000.00000048
