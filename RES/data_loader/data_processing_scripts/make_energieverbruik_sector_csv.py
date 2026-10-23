@@ -94,6 +94,10 @@ municipalities, distributed over the municipalities that look suppressed
 (value 0 or absent), weighted by their company locations for that SBI group
 (CBS KWB, the same counts make_buurten_csv.py uses to reach neighbourhoods).
 If no municipality looks suppressed, the residual is spread over all of them.
+That split is then redone per carrier and year over all letters at once
+(_verdeel_naar_gemeenteruimte): first into the room each municipality has below
+its own published total (vbrzg_tot / vbrze_tot), then to municipalities without
+one, and only then above a published total.
 
 The escalation ladder is regio -> provincie -> nederland
 (_KM_RECONCILIATIE_LADDER): a municipality whose region publishes no total for
@@ -141,8 +145,10 @@ import logging
 import re
 import sys
 import time
+from collections import deque
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 import requests
 
@@ -523,6 +529,14 @@ _THEMA_API_VARS = {
     "gas": "vbrzg_tot",
 }
 
+# Electricity: the measured total per municipality (vbrze_tot, gemeente level) caps each
+# municipality and steers where the regional Thema's residual goes, exactly like the gas
+# municipal totals do in regions with a published regional total. Without it the residual went
+# by company locations: Drechtsteden 2023 had 218 GWh imputed, of which Dordrecht got 107 GWh
+# while its measured total (449.7 GWh) is 104 GWh above the model (345.4); the other six
+# municipalities ended up 13-18 GWh each above their measured totals.
+GEMEENTE_CONTROLE_ELEC = True
+
 # Set False to get the old behaviour (gemeente-level only, no backfill).
 RECONCILIEER_MET_REGIO = True
 
@@ -835,6 +849,10 @@ def _verdeel_residual(
     `toegestaan` restricts the eligible set to municipalities not already
     reconciled at a finer rung of the ladder, so a coarser area's total can
     never reopen a figure a finer area already settled.
+
+    This split by company locations is a first estimate: _verdeel_naar_gemeenteruimte
+    then moves it, over all letters at once, towards municipalities that are still
+    below their own published total.
     """
     bijschatting = pd.Series(0.0, index=waarden.index)
     if not pd.notna(residual) or residual <= 0:
@@ -865,6 +883,205 @@ def _verdeel_residual(
     gecorrigeerd.loc[doelen] = gecorrigeerd.loc[doelen].fillna(0.0) + toegekend
     bijschatting.loc[doelen] = toegekend
     return gecorrigeerd, bijschatting
+
+
+def _max_stroom(vraag: np.ndarray, plafond: np.ndarray, kanten: np.ndarray,
+                rang: np.ndarray | None = None) -> np.ndarray:
+    """Maximum flow from letters (rows, supply `vraag`) to municipalities (columns,
+    capacity `plafond`) over the allowed `kanten`. Edmonds-Karp on the bipartite
+    graph; a path may run back over an existing flow, so one letter can make room
+    for another. Letters are routed in order of `rang` (lowest first, ties
+    together); later paths never lower what a letter already sends, so earlier
+    letters keep their priority. Returns the flow matrix."""
+    n, m = kanten.shape
+    stroom = np.zeros((n, m))
+    rest_v = vraag.astype(float).copy()
+    rest_p = plafond.astype(float).copy()
+    eps = 1e-9 * max(float(vraag.sum()), 1.0)
+    rang = np.zeros(n) if rang is None else rang
+    for grens in np.unique(rang):
+        _vul_stroom(stroom, rest_v, rest_p, kanten, rang <= grens, eps)
+    return stroom
+
+
+def _vul_stroom(stroom: np.ndarray, rest_v: np.ndarray, rest_p: np.ndarray,
+                kanten: np.ndarray, bronnen: np.ndarray, eps: float) -> None:
+    """Augment `stroom` in place from the letters in `bronnen` until no path is left."""
+    n = kanten.shape[0]
+    while True:
+        ouder: dict[tuple[str, int], tuple[str, int] | None] = {}
+        wachtrij = deque()
+        for i in range(n):
+            if bronnen[i] and rest_v[i] > eps:
+                ouder[("L", i)] = None
+                wachtrij.append(("L", i))
+        doel = None
+        while wachtrij and doel is None:
+            soort, k = wachtrij.popleft()
+            if soort == "L":
+                for j in np.flatnonzero(kanten[k]):
+                    if ("G", j) in ouder:
+                        continue
+                    ouder[("G", j)] = (soort, k)
+                    if rest_p[j] > eps:
+                        doel = ("G", j)
+                        break
+                    wachtrij.append(("G", j))
+            else:
+                for i in np.flatnonzero(stroom[:, k] > eps):
+                    if ("L", i) not in ouder:
+                        ouder[("L", i)] = (soort, k)
+                        wachtrij.append(("L", i))
+        if doel is None:
+            return
+
+        pad, knoop = [], doel
+        while ouder[knoop] is not None:
+            pad.append((ouder[knoop], knoop))
+            knoop = ouder[knoop]
+        b = min(rest_v[knoop[1]], rest_p[doel[1]])
+        for van, naar in pad:
+            if van[0] == "G":    # back over an existing flow: letter naar gives up room in van
+                b = min(b, stroom[naar[1], van[1]])
+        for van, naar in pad:
+            if van[0] == "L":
+                stroom[van[1], naar[1]] += b
+            else:
+                stroom[naar[1], van[1]] -= b
+        rest_v[knoop[1]] -= b
+        rest_p[doel[1]] -= b
+
+
+def _schaal_met_plafond(start: np.ndarray, rijtotaal: np.ndarray, plafond: np.ndarray,
+                        iteraties: int = 1000) -> np.ndarray:
+    """Iterative proportional fitting: rows to `rijtotaal` exactly, columns at most
+    `plafond`, staying as close as possible to `start` (the company-location split).
+    Converges when a feasible split exists on the support of `start`, which
+    _max_stroom guarantees for the row totals it hands in."""
+    x = start.astype(float).copy()
+    for _ in range(iteraties):
+        s = x.sum(axis=1)
+        x *= np.divide(rijtotaal, s, out=np.zeros_like(s), where=s > 0)[:, None]
+        k = x.sum(axis=0)
+        over = k > plafond * (1 + 1e-9) + 1e-6
+        if not over.any():
+            break
+        x[:, over] *= (plafond[over] / k[over])[None, :]
+    s = x.sum(axis=1)
+    return x * np.divide(rijtotaal, s, out=np.zeros_like(s), where=s > 0)[:, None]
+
+
+def _verdeel_naar_gemeenteruimte(bijschatting: pd.DataFrame, ruimte: pd.Series,
+                                 regio_van: pd.Series) -> tuple[pd.DataFrame, float, float]:
+    """Re-split the letter-level backfill of one carrier and year, all letters at once.
+
+    `bijschatting` (rows = variables, columns = gemeentecode) is the first
+    estimate by company locations from _verdeel_residual; its non-zero cells mark
+    where each letter may go (the suppressed cells). `ruimte` is the room below
+    each municipality's own published total (_ruimte_per_gemeente). Per region:
+
+      1. as much as possible goes to municipalities with room, never beyond it
+         (_max_stroom decides how much of each letter fits, letters with the
+         fewest alternatives first; _schaal_met_plafond spreads it by company
+         locations within the caps);
+      2. what does not fit goes to that letter's municipalities without a
+         published total, by company locations;
+      3. only if it has none, to all its municipalities, by what each is still
+         short of its company-location share.
+
+    Each letter's regional total is unchanged. Doing this jointly rather than
+    letter by letter matters: in Drechtsteden 2024 agriculture, handled first,
+    would fill Sliedrecht's room, which SBI K (suppressed only in Sliedrecht and
+    Hardinxveld) needs. Returns (new split, amount moved, amount that still had to
+    go above a published total).
+    """
+    uit = bijschatting.copy()
+    verschoven = overloop = 0.0
+    for _, leden in regio_van.groupby(regio_van):
+        kol = bijschatting.columns.intersection(leden.index)
+        if len(kol) == 0:
+            continue
+        x0 = bijschatting[kol].to_numpy(dtype=float).clip(min=0.0)
+        rij = x0.sum(axis=1)
+        if rij.sum() <= 0:
+            continue
+        r = ruimte.reindex(kol)
+        bekend = r.notna().to_numpy()
+        plafond = r.fillna(0.0).clip(lower=0.0).to_numpy()
+        kanten = (x0 > 0) & (bekend & (plafond > 0))[None, :]
+
+        # Room goes first to letters that cannot fall back on a municipality
+        # without a published total, and among those to the ones with the fewest
+        # candidate municipalities: a letter suppressed in one municipality only
+        # is that municipality's own hidden figure (Hart van Brabant 2023: SBI O,
+        # only in Gemert-Bakel, before SBI M, which goes everywhere).
+        uitwijk = ((x0 > 0) & ~bekend[None, :]).any(axis=1)
+        rang = uitwijk * x0.shape[1] + (x0 > 0).sum(axis=1)
+        x = np.zeros_like(x0)
+        if kanten.any():
+            past = _max_stroom(rij, plafond, kanten, rang=rang).sum(axis=1)
+            x = _schaal_met_plafond(np.where(kanten, x0, 0.0), past, plafond)
+            # IPF stops just short where caps bind; clip the last bit so no cap is
+            # exceeded, taking it first from letters that have a municipality
+            # without a published total to go to, and let it go the way of any
+            # other remainder below.
+            for j in np.flatnonzero(x.sum(axis=0) > plafond):
+                teveel = x[:, j].sum() - plafond[j]
+                los = np.where(uitwijk, x[:, j], 0.0)
+                if los.sum() > 0:
+                    af = min(teveel, float(los.sum()))
+                    x[:, j] -= los / los.sum() * af
+                    teveel -= af
+                if teveel > 0:
+                    x[:, j] *= plafond[j] / x[:, j].sum()
+        rest = rij - x.sum(axis=1)
+        for i in np.flatnonzero(rest > 1e-9 * np.maximum(rij, 1.0)):
+            onbekend = (x0[i] > 0) & ~bekend
+            if onbekend.any():
+                w = np.where(onbekend, x0[i], 0.0)
+            else:
+                vrij = np.where((x0[i] > 0) & bekend, np.clip(plafond - x.sum(axis=0), 0.0, None), 0.0)
+                if vrij.sum() > 0:
+                    erbij = min(rest[i], float(vrij.sum()))
+                    x[i] += vrij / vrij.sum() * erbij
+                    rest[i] -= erbij
+                    if rest[i] <= 1e-9 * max(rij[i], 1.0):
+                        continue
+                # Overflow goes back where the company-location split put it, minus
+                # what step 1 already placed there, so a municipality whose room
+                # this letter just filled is not pushed over its total as well.
+                overloop += float(rest[i])
+                w = np.clip(x0[i] - x[i], 0.0, None)
+                if w.sum() <= 0:
+                    w = x0[i]
+            x[i] += w / w.sum() * rest[i]
+        verschoven += float(np.abs(x - x0).sum()) / 2
+        uit[kol] = x
+    return uit, verschoven, overloop
+
+
+def _ruimte_per_gemeente(headers: dict, carrier: str, jaar: int,
+                         gepubliceerd: list[pd.Series]) -> pd.Series | None:
+    """Room per municipality below its own published total (vbrzg_tot / vbrze_tot,
+    gemeente level): that total minus the sum of its published letter values.
+    Clipped at 0 where the published letters alone already exceed it. Only
+    municipalities with a published total are in the index. None when the totals
+    cannot be fetched (the backfill then goes by company locations only)."""
+    if carrier == "elec" and not GEMEENTE_CONTROLE_ELEC:
+        return None
+    var_code = _THEMA_API_VARS.get(carrier)
+    if not var_code:
+        return None
+    df = _km_fetch_variable(headers, var_code, jaar, geolevel="gemeente")
+    if df is None or df.empty:
+        log.warning("  %s (%d): gemeentetotalen niet op te halen — bijschatting per letter "
+                    "blijft naar bedrijfsvestigingen.", var_code, jaar)
+        return None
+    totaal = (df.dropna(subset=["gemeentecode", "waarde"])
+              .groupby("gemeentecode")["waarde"].sum())
+    som = (pd.concat(gepubliceerd).groupby(level=0).sum() if gepubliceerd
+           else pd.Series(dtype=float))
+    return (totaal - som.reindex(totaal.index).fillna(0.0)).clip(lower=0.0)
 
 
 def _reconcilieer_variabele(
@@ -1087,6 +1304,22 @@ def _thema_totalen_via_api(headers: dict, jaren: list[int]) -> pd.DataFrame:
 
 def _gas_excl_sbid_uit_gemeenten(headers: dict, jaren: list[int], indeling: pd.DataFrame,
                                  al_gedekt: set[tuple[str, int]]) -> pd.DataFrame:
+    return _controletotalen_uit_gemeenten(headers, jaren, indeling, al_gedekt,
+                                          "vbrzg_tot", "gas", "Gas excl. SBI D")
+
+
+def _elec_uit_gemeenten(headers: dict, jaren: list[int], indeling: pd.DataFrame,
+                        al_gedekt: set[tuple[str, int]]) -> pd.DataFrame:
+    """Electricity control totals per municipality (vbrze_tot, measured total business
+    electricity via the public grid). The regional total is published for every RES region, so
+    in practice these rows only cap and steer the regional residual (see GEMEENTE_CONTROLE_ELEC)."""
+    return _controletotalen_uit_gemeenten(headers, jaren, indeling, al_gedekt,
+                                          "vbrze_tot", "elec", "Elektriciteit")
+
+
+def _controletotalen_uit_gemeenten(headers: dict, jaren: list[int], indeling: pd.DataFrame,
+                                   al_gedekt: set[tuple[str, int]], var_code: str, carrier: str,
+                                   label: str) -> pd.DataFrame:
     """Gas control totals excl. SBI D per municipality.
 
     vbrzg_tot (excl. SBI D) is suppressed at RES level for some regions, but
@@ -1110,10 +1343,10 @@ def _gas_excl_sbid_uit_gemeenten(headers: dict, jaren: list[int], indeling: pd.D
 
     rijen = []
     for jaar in jaren:
-        excl = _km_fetch_variable(headers, "vbrzg_tot", jaar, geolevel="gemeente")
+        excl = _km_fetch_variable(headers, var_code, jaar, geolevel="gemeente")
         if excl is None:
-            log.warning("  Gas excl. SBI D (%d): gemeentewaarden niet op te halen — "
-                        "geen aanvulling.", jaar)
+            log.warning("  %s (%d): gemeentewaarden niet op te halen — "
+                        "geen aanvulling.", label, jaar)
             continue
         excl_g = excl.dropna(subset=["gemeentecode", "waarde"]).set_index("gemeentecode")["waarde"]
 
@@ -1126,17 +1359,17 @@ def _gas_excl_sbid_uit_gemeenten(headers: dict, jaren: list[int], indeling: pd.D
                 continue
             geheim = list(e[e.isna()].index)
             if geheim and not alleen_plafond:
-                log.info("  Gas excl. SBI D %d %s: controletotaal over %d van %d gemeenten; "
-                         "%s ongemoeid (excl. SBI D geheim).",
-                         jaar, regio, len(gepubliceerd), len(e), ", ".join(geheim))
+                log.info("  %s %d %s: controletotaal over %d van %d gemeenten; "
+                         "%s ongemoeid (gemeentewaarde geheim).",
+                         label, jaar, regio, len(gepubliceerd), len(e), ", ".join(geheim))
             for gm in gepubliceerd:
                 rijen.append({
                     "regio_sleutel": sleutel,
                     "regio": f"{regio} / {gm}",
                     "jaar": jaar,
-                    "carrier": "gas",
+                    "carrier": carrier,
                     "totaal": float(e[gm]),
-                    "bestand": "ODS:vbrzg_tot (per gemeente)",
+                    "bestand": f"ODS:{var_code} (per gemeente)",
                     "leden": [gm],
                     "alleen_plafond": alleen_plafond,
                 })
@@ -1230,12 +1463,12 @@ def _reconcilieer_met_thema(
     municipalities by their company locations for that group — see the module
     constant block for the evidence that industry is where it belongs.
 
-    Never reduces a published figure. For gas, every municipality with a
-    published total excl. SBI D is also capped: when it ends up ABOVE that total,
+    Never reduces a published figure. For gas (total excl. SBI D) and electricity
+    (GEMEENTE_CONTROLE_ELEC), every municipality with a published total is also capped: when it ends up ABOVE that total,
     the part that earlier rungs imputed to it is lowered, down to that total at
     most (_plafond_bijschatting). That undoes letter-level fair shares that
     landed in the wrong municipality, e.g. Tata Steel gas spread from Velsen to
-    Haarlem. A regional gas residual then goes first to municipalities that are
+    Haarlem. A regional residual then goes first to municipalities that are
     still below their own total (_verdeel_naar_ruimte).
     """
     if not RECONCILIEER_MET_THEMA or indeling is None or merged.empty:
@@ -1258,6 +1491,15 @@ def _reconcilieer_met_thema(
         if not aanvulling.empty:
             log.info("  Gas excl. SBI D uit gemeenten: %d regio-jaar waarden", len(aanvulling))
             bronnen.append(aanvulling)
+        if GEMEENTE_CONTROLE_ELEC:
+            elec_gedekt = set()
+            if not api.empty:
+                elec_api = api[api["carrier"] == "elec"]
+                elec_gedekt = set(zip(elec_api["regio_sleutel"], elec_api["jaar"].astype(int)))
+            elec_aanvulling = _elec_uit_gemeenten(headers, jaren, indeling, elec_gedekt)
+            if not elec_aanvulling.empty:
+                log.info("  Elektriciteit uit gemeenten: %d gemeente-jaar waarden", len(elec_aanvulling))
+                bronnen.append(elec_aanvulling)
     export = _laad_thema_totalen()
     if not export.empty:
         bronnen.append(export)
@@ -1274,7 +1516,7 @@ def _reconcilieer_met_thema(
         thema[~per_gemeente].drop_duplicates(subset=["regio_sleutel", "jaar", "carrier"], keep="last"),
     ], ignore_index=True)
     gemeente_totaal = {
-        (r["leden"][0], int(r["jaar"])): float(r["totaal"])
+        (r["carrier"], r["leden"][0], int(r["jaar"])): float(r["totaal"])
         for _, r in thema[thema["leden"].apply(lambda v: isinstance(v, list))].iterrows()
     } if "leden" in thema else {}
 
@@ -1349,9 +1591,10 @@ def _reconcilieer_met_thema(
             continue
 
         verdeling = deel * residual
-        if carrier == "gas" and not isinstance(rij.get("leden"), list) and gemeente_totaal:
+        eigen_totalen = {(gm, j): t for (c, gm, j), t in gemeente_totaal.items() if c == carrier}
+        if not isinstance(rij.get("leden"), list) and eigen_totalen:
             verdeling = _verdeel_naar_ruimte(merged, masker, carrier, jaar, residual, leden,
-                                             gemeente_totaal, deel)
+                                             eigen_totalen, deel)
         toegekend = merged.loc[doelrijen, "gemeentecode"].map(verdeling).fillna(0.0)
         merged.loc[doelrijen, carrier] = (
             pd.to_numeric(merged.loc[doelrijen, carrier], errors="coerce").fillna(0.0)
@@ -1578,6 +1821,9 @@ def _km_download(jaren: list[int]) -> tuple[pd.DataFrame, pd.DataFrame] | None:
     n_gereconcilieerd = 0
 
     gewichten_per_jaar: dict[int, pd.DataFrame | None] = {}
+    regio_van = (indeling.dropna(subset=["res_regio"]).set_index("gemeentecode")["res_regio"]
+                 .map(_gebiedssleutel) if indeling is not None and "res_regio" in indeling.columns
+                 else pd.Series(dtype=object))
 
     for jaar in jaren:
         gewichten_df = (
@@ -1587,6 +1833,10 @@ def _km_download(jaren: list[int]) -> tuple[pd.DataFrame, pd.DataFrame] | None:
         gewichten_per_jaar[jaar] = gewichten_df
 
         for carrier, var_map in (("elec", _KM_ELEC_VARS), ("gas", _KM_GAS_VARS)):
+            # Reconcile every letter first, then re-split their backfill jointly
+            # (_verdeel_naar_gemeenteruimte): the room below each municipality's
+            # own published total depends on ALL its letters.
+            opgehaald = []
             for groep, var_codes in var_map.items():
                 gewichten = None
                 if gewichten_df is not None and groep in gewichten_df.columns:
@@ -1605,10 +1855,11 @@ def _km_download(jaren: list[int]) -> tuple[pd.DataFrame, pd.DataFrame] | None:
                     if per_gemeente.empty:
                         continue
                     per_gemeente = per_gemeente.groupby(level=0).sum(min_count=1)
+                    gepubliceerd = per_gemeente
 
                     bijschatting = pd.Series(0.0, index=per_gemeente.index)
+                    gebiedstotalen = {}
                     if RECONCILIEER_MET_REGIO and indeling is not None:
-                        gebiedstotalen = {}
                         for niveau in _KM_RECONCILIATIE_LADDER:
                             deel = df[df["level"].eq(niveau)]
                             if deel.empty:
@@ -1632,23 +1883,43 @@ def _km_download(jaren: list[int]) -> tuple[pd.DataFrame, pd.DataFrame] | None:
                                 rungs_gezien.update(rungs)
                                 n_gereconcilieerd += 1
 
-                        dekking_rijen.extend(_dekking_voor_variabele(
-                            var_code, carrier, groep, jaar, df,
-                            gebiedstotalen.get("res"), per_gemeente, indeling, headers,
-                        ))
+                    opgehaald.append([groep, var_code, df, gepubliceerd, per_gemeente,
+                                      bijschatting, gebiedstotalen])
 
-                    deel = per_gemeente.rename("waarde").reset_index()
-                    deel["jaar"] = jaar
-                    deel["groep"] = groep
-                    deel["carrier"] = carrier
-                    frames.append(deel)
+            if RECONCILIEER_MET_REGIO and indeling is not None and opgehaald:
+                ruimte = _ruimte_per_gemeente(headers, carrier, jaar,
+                                              [r[3].fillna(0.0) for r in opgehaald])
+                if ruimte is not None:
+                    eerst = pd.DataFrame({i: r[5] for i, r in enumerate(opgehaald)}).T.fillna(0.0)
+                    nieuw, verschoven, overloop = _verdeel_naar_gemeenteruimte(
+                        eerst, ruimte, regio_van)
+                    for i, r in enumerate(opgehaald):
+                        delta = (nieuw.loc[i] - eerst.loc[i]).reindex(r[4].index).fillna(0.0)
+                        r[4] = r[4].where(delta == 0, r[4].fillna(0.0) + delta)
+                        r[5] = r[5] + delta
+                    log.info("  Bijschatting per letter %s %d: %.4g verschoven naar gemeenten "
+                             "met ruimte onder hun eigen totaal; %.4g kon nergens onder een "
+                             "gepubliceerd totaal.", carrier, jaar, verschoven, overloop)
 
-                    if bijschatting.abs().sum() > 0:
-                        bij = bijschatting.rename("bijgeschat").reset_index()
-                        bij["jaar"] = jaar
-                        bij["carrier"] = carrier
-                        bij["groep"] = groep
-                        bijschat_frames.append(bij)
+            for groep, var_code, df, _, per_gemeente, bijschatting, gebiedstotalen in opgehaald:
+                if RECONCILIEER_MET_REGIO and indeling is not None:
+                    dekking_rijen.extend(_dekking_voor_variabele(
+                        var_code, carrier, groep, jaar, df,
+                        gebiedstotalen.get("res"), per_gemeente, indeling, headers,
+                    ))
+
+                deel = per_gemeente.rename("waarde").reset_index()
+                deel["jaar"] = jaar
+                deel["groep"] = groep
+                deel["carrier"] = carrier
+                frames.append(deel)
+
+                if bijschatting.abs().sum() > 0:
+                    bij = bijschatting.rename("bijgeschat").reset_index()
+                    bij["jaar"] = jaar
+                    bij["carrier"] = carrier
+                    bij["groep"] = groep
+                    bijschat_frames.append(bij)
 
     if not frames:
         log.error("  Klimaatmonitor: geen data ontvangen voor enige variabele.")

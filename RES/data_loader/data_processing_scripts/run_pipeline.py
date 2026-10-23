@@ -19,6 +19,16 @@ Usage:
     python run_pipeline.py --gemeenten-potentie --overmorgen # ... also cross-check/fill with Over Morgen wind WFS
     python run_pipeline.py --woningvoorraad # Woningen + m² per buurt in ETM-indeling (type × bouwperiode), BAG/3DBAG + CBS; opt-in
     python run_pipeline.py --etm-area       # ETM area-data (woningvoorraad + totalen) voor alle NL ETM-gebieden; opt-in
+    python run_pipeline.py --bedrijfsruimte # m² bedrijfsruimte per BAG-gebruiksfunctie per buurt (verdeelsleutel bedrijfsverbruik); opt-in
+    python run_pipeline.py --grootverbruikers # gas van grote uitstoters uit hun CO2 (Emissieregistratie); opt-in
+    python run_pipeline.py --wijkverbruik   # gemeten bedrijfsverbruik per wijk (Klimaatmonitor), ijkpunt elektriciteit; opt-in
+    python run_pipeline.py --bedrijventerreinen # vestigingen, m² en energie per IBIS-bedrijventerrein uit de buurten; opt-in, na --buurten
+
+--bedrijfsruimte, --grootverbruikers and --wijkverbruik feed --buurten: the sector electricity/gas of a gemeente
+then goes to large emitters first (gas) and is otherwise distributed by BAG floor area instead of
+the number of company locations. Run them before --buurten; without them --buurten keeps the
+company-location key. --wijkverbruik then scales electricity per wijk to the measured
+business total (sector totals per gemeente unchanged).
 
 Phase 6 (buurten) merges CBS kerncijfers + Phase 3 verwarmingsinstallaties + Phase 5 ElaadNL
 + Phase 5b TVW + Phase 5c WarmteTransitie + Phase 5d solar + Phase 5e bedrijfswagens + Phase 5f
@@ -69,6 +79,10 @@ import make_buurten_csv
 import make_gemeenten_potentie_csv
 import make_woningvoorraad_etm_csv
 import make_etm_area_csv
+import make_bedrijfsruimte_csv
+import make_bedrijventerreinen_csv
+import make_grootverbruikers_gas_csv
+import make_bedrijfsverbruik_wijk_csv
 
 TODAY = date.today().isoformat()
 
@@ -230,6 +244,46 @@ def run_woningvoorraad(log: logging.Logger) -> bool:
     return ok
 
 
+def run_bedrijfsruimte(log: logging.Logger) -> bool:
+    log.info("--- Bedrijfsruimte per buurt (BAG m² per gebruiksfunctie) ---")
+    ok = make_bedrijfsruimte_csv.main()
+    if ok:
+        log.info("--- Bedrijfsruimte complete ---")
+    else:
+        log.error("--- Bedrijfsruimte FAILED ---")
+    return ok
+
+
+def run_grootverbruikers(log: logging.Logger) -> bool:
+    log.info("--- Grootverbruikers gas (CO2 Emissieregistratie -> aardgas) ---")
+    ok = make_grootverbruikers_gas_csv.main()
+    if ok:
+        log.info("--- Grootverbruikers complete ---")
+    else:
+        log.error("--- Grootverbruikers FAILED ---")
+    return ok
+
+
+def run_wijkverbruik(log: logging.Logger) -> bool:
+    log.info("--- Bedrijfsverbruik per wijk (Klimaatmonitor) ---")
+    ok = make_bedrijfsverbruik_wijk_csv.main()
+    if ok:
+        log.info("--- Wijkverbruik complete ---")
+    else:
+        log.error("--- Wijkverbruik FAILED ---")
+    return ok
+
+
+def run_bedrijventerreinen(log: logging.Logger) -> bool:
+    log.info("--- Bedrijventerreinen (vestigingen, m² en energie per IBIS-terrein) ---")
+    ok = make_bedrijventerreinen_csv.main()
+    if ok:
+        log.info("--- Bedrijventerreinen complete ---")
+    else:
+        log.error("--- Bedrijventerreinen FAILED ---")
+    return ok
+
+
 def run_etm_area(log: logging.Logger) -> bool:
     log.info("--- ETM area-data voor alle NL ETM-gebieden ---")
     ok = make_etm_area_csv.main()
@@ -257,6 +311,10 @@ def main() -> None:
     group.add_argument("--gemeenten-potentie", action="store_true", help="Municipality PV/wind potential CSVs (2023, 2024); opt-in, not part of the full run")
     group.add_argument("--woningvoorraad", action="store_true", help="Woningen + m² per buurt per ETM woningtype × bouwperiode (BAG/3DBAG, gekalibreerd op CBS); opt-in, not part of the full run")
     group.add_argument("--etm-area", action="store_true", help="ETM area-data (woningvoorraad + totalen) for all Dutch ETM areas; opt-in, not part of the full run")
+    group.add_argument("--bedrijfsruimte", action="store_true", help="BAG floor area per building function per buurt (key for business demand); opt-in, run before --buurten")
+    group.add_argument("--grootverbruikers", action="store_true", help="Gas of large emitters from their CO2 (Emissieregistratie); opt-in, run before --buurten")
+    group.add_argument("--wijkverbruik", action="store_true", help="Measured business demand per wijk (Klimaatmonitor), calibrates electricity; opt-in, run before --buurten")
+    group.add_argument("--bedrijventerreinen", action="store_true", help="Company locations, floor area and energy per IBIS business park from the buurten; opt-in, run after --buurten")
     parser.add_argument("--overmorgen", action="store_true", help="With --gemeenten-potentie: also download + cross-check + fill using the Over Morgen wind WFS")
     parser.add_argument("--force", action="store_true", help="Re-process even if output CSVs already exist for the current raw data")
     args = parser.parse_args()
@@ -271,6 +329,8 @@ def main() -> None:
         or args.warmtetransitie or args.solar or args.bedrijfswagens
         or args.capaciteitskaart or args.buurten or args.gemeenten_potentie
         or args.woningvoorraad or args.etm_area
+        or args.bedrijfsruimte or args.grootverbruikers or args.wijkverbruik
+        or args.bedrijventerreinen
     )
     do_download          = no_flag or args.download
     do_process           = no_flag or args.process
@@ -361,6 +421,18 @@ def main() -> None:
             exit_code = 1
     if args.etm_area:
         if not run_etm_area(log):
+            exit_code = 1
+    if args.bedrijfsruimte:
+        if not run_bedrijfsruimte(log):
+            exit_code = 1
+    if args.grootverbruikers:
+        if not run_grootverbruikers(log):
+            exit_code = 1
+    if args.wijkverbruik:
+        if not run_wijkverbruik(log):
+            exit_code = 1
+    if args.bedrijventerreinen:
+        if not run_bedrijventerreinen(log):
             exit_code = 1
 
     elapsed = time.monotonic() - t0

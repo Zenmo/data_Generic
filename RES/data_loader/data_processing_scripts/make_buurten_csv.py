@@ -11,8 +11,12 @@ Produces one enriched CSV per CBS year with three data sources merged:
      kerncijfers_gemeenten_<jaar>.csv (see make_gemeenten_potentie_csv.py,
      which fetches it live from CBS StatLine 82538NED or, as a fallback,
      Klimaatmonitor). The municipality's demand per SBI-group (a/bf/gi/hj/kl/
-     mn/oq/ru) is allocated to buurten in proportion to each buurt's share of
-     that sector's company locations within the gemeente. A buurt with -99999
+     mn/oq/ru) is allocated to buurten: gas of large emitters first (estimated from their
+     CO2, make_grootverbruikers_gas_csv.py), the rest by BAG floor area of the matching
+     building functions where available (make_bedrijfsruimte_csv.py), otherwise in
+     proportion to each buurt's share of that sector's company locations within the
+     gemeente; electricity is then calibrated to the measured business total per wijk
+     (make_bedrijfsverbruik_wijk_csv.py). A buurt with -99999
      company locations for a sector doesn't count towards the total and gets 0
      demand for it; if a gemeente has no buurt with valid data for a sector,
      that sector's demand is split evenly instead so nothing is lost
@@ -38,6 +42,7 @@ import time
 from pathlib import Path
 
 import geopandas as gpd
+import numpy as np
 import pandas as pd
 
 from config import CBS_YEARS, CRS_RD, CRS_WGS84, OUTPUT_SEPARATOR, FILL_UNMATCHED, RAW_DIR, PROCESSED_DIR, DATA_GENERIC
@@ -195,6 +200,46 @@ def _laad_woningvoorraad() -> pd.DataFrame | None:
     ]
     df = df[keep].rename(columns={"buurtcode": "codering", "typeverdeling_bron": "woningvoorraad_etm_bron"})
     log.info("  Woningvoorraad-ETM geladen: %s (%d buurten, %d kolommen)", csv.name, len(df), len(keep) - 2)
+    return df
+
+
+def _laad_bedrijfsruimte() -> pd.DataFrame | None:
+    """BAG floor area per building function per buurt (make_bedrijfsruimte_csv.py), used as the
+    distribution key for business demand. None if not generated (run: python run_pipeline.py
+    --bedrijfsruimte); the company-location key is used then."""
+    csv = _find_latest("bedrijfsruimte_bag_buurten_2*.csv")
+    if csv is None:
+        log.info("  Bedrijfsruimte (BAG) niet gevonden — bedrijfsverbruik wordt op vestigingen verdeeld")
+        return None
+    df = pd.read_csv(csv, sep=OUTPUT_SEPARATOR, dtype={"codering": str, "gemeentecode": str})
+    log.info("  Bedrijfsruimte geladen: %s (%d gemeenten)", csv.name, df["gemeentecode"].nunique())
+    return df
+
+
+def _laad_bedrijfsverbruik_wijk() -> pd.DataFrame | None:
+    """Measured total business demand per wijk (make_bedrijfsverbruik_wijk_csv.py, Klimaatmonitor).
+    None if not generated (run: python run_pipeline.py --wijkverbruik); no wijk calibration then."""
+    csv = _find_latest("bedrijfsverbruik_wijken_2*.csv")
+    if csv is None:
+        log.info("  Bedrijfsverbruik per wijk niet gevonden — geen kalibratie op wijktotalen")
+        return None
+    df = pd.read_csv(csv, sep=OUTPUT_SEPARATOR, dtype={"wijkcode": str, "gemeentecode": str})
+    log.info("  Bedrijfsverbruik per wijk geladen: %s (%d rijen)", csv.name, len(df))
+    return df
+
+
+def _laad_grootverbruikers_gas() -> pd.DataFrame | None:
+    """Gas of large emitters estimated from their CO2 (make_grootverbruikers_gas_csv.py).
+    None if not generated (run: python run_pipeline.py --grootverbruikers)."""
+    csv = _find_latest("grootverbruikers_gas_2*.csv")
+    if csv is None:
+        log.info("  Grootverbruikers gas niet gevonden — geen vooraf geplaatst gas")
+        return None
+    df = pd.read_csv(csv, sep=OUTPUT_SEPARATOR, dtype=str)
+    for c in df.columns:
+        if c.startswith(("gas_m3_", "co2_ton_")):
+            df[c] = pd.to_numeric(df[c], errors="coerce").fillna(0)
+    log.info("  Grootverbruikers gas geladen: %s (%d inrichtingen)", csv.name, len(df))
     return df
 
 
@@ -410,6 +455,67 @@ _BEDRIJF_COL_TO_GROEP = [
     ("ru_cultuur_recreatie_overige_diensten",  "ru"),
     ("hj_vervoer_informatie_en_communicatie",  "hj"),  # compatibility, = h + j
 ]
+
+# Distribution key per sector group when BAG floor area is available (make_bedrijfsruimte_csv.py):
+# m² of the BAG building functions that sector typically occupies. None = company locations.
+_FUNCTIES_PER_GROEP = {
+    "a":  None,  # agriculture sits mostly in 'overige gebruiksfunctie' (barns, sheds): company locations
+    "bf": ["industriefunctie"],
+    "gi": ["winkelfunctie", "logiesfunctie", "bijeenkomstfunctie"],
+    "h":  ["industriefunctie", "kantoorfunctie"],          # warehouses and offices
+    "j":  ["kantoorfunctie"],
+    "kl": ["kantoorfunctie"],
+    "mn": ["kantoorfunctie"],
+    "oq": ["kantoorfunctie", "onderwijsfunctie", "gezondheidszorgfunctie", "celfunctie"],
+    "ru": ["sportfunctie", "bijeenkomstfunctie"],
+}
+# A building function used by several groups (offices, industrial halls, assembly) is split per buurt
+# over those groups by their company locations in that buurt (KWB), so office floor area on a business
+# park mostly counts for the groups actually located there. False = every group counts the full m².
+_DEEL_GEDEELDE_FUNCTIES = True
+_GROEP_KWB = {groep: col for col, groep in _BEDRIJF_COL_TO_GROEP if groep != "hj"}
+# Groups that also occupy a function without their energy following it: the offices of industrial and
+# trading companies (a BAG object 'industriefunctie, kantoorfunctie' counts half of its m² as office).
+# They take their share of the function in the split, so it does not all go to the office sectors.
+_MEDEGEBRUIKERS: dict[str, list[str]] = {"kantoorfunctie": ["bf", "gi"]}
+
+
+def aandeel_gedeelde_functies(vest: pd.DataFrame, h_aandeel: pd.Series) -> dict:
+    """
+    Share of a buurt's m² of a shared building function that belongs to each group using it.
+
+    vest: per buurt the KWB company locations per _BEDRIJF_CATS column (-99999/NaN = unknown).
+    h_aandeel: per buurt the share of H within the KWB group H+J (KWB counts them together); the
+      caller derives it from the gemeente's electricity of H versus J.
+    Returns {(functie, groep): Series}; functions used by one group only are left out (share 1).
+    A buurt without company locations for any of the groups splits the function evenly.
+    """
+    claim = {}
+    for groep, col in _GROEP_KWB.items():
+        v = pd.to_numeric(vest[col], errors="coerce") if col in vest.columns else pd.Series(0.0, index=vest.index)
+        v = v.where(v != _MISSING).fillna(0.0).clip(lower=0)
+        if groep == "h":
+            v = v * h_aandeel
+        elif groep == "j":
+            v = v * (1 - h_aandeel)
+        claim[groep] = v
+    gebruikers: dict[str, list[str]] = {}
+    for groep, functies in _FUNCTIES_PER_GROEP.items():
+        for f in functies or []:
+            gebruikers.setdefault(f, []).append(groep)
+    uit = {}
+    for f, groepen in gebruikers.items():
+        mede = [g for g in _MEDEGEBRUIKERS.get(f, []) if g not in groepen]
+        if len(groepen) + len(mede) < 2:
+            continue
+        som = sum(claim[g] for g in groepen + mede)
+        for g in groepen:
+            uit[(f, g)] = (claim[g] / som.where(som > 0)).fillna(1.0 / len(groepen))
+    return uit
+# Upper bound for gas placed up front at large emitters, as a share of the gemeente's gas for
+# that sector group. The CO2-to-gas conversion is an upper bound (process emissions, other
+# fuels), and the remaining companies need some gas too.
+_GROOTVERBRUIK_MAX_AANDEEL = 0.9
 
 # Columns from external datasets (solar, EV, bedrijfswagens) with no gemeente fallback → -99999.
 _MISSING_SENTINEL_PREFIXES = ("solar_", "ev_", "bestelautos_", "vrachtautos_")
@@ -660,19 +766,135 @@ def _vind_sector_kolom(columns, carrier: str, groep: str) -> str | None:
     return None
 
 
+_WIJK_IPF_ITERATIES = 500
+# Groups that take a wijk's surplus (measured above what floor area predicts) in the calibration:
+# large consumers sit in industry and energy (B-F), transport and storage (H) and wholesale (G, part of
+# G+I). Offices, education, care and culture follow floor area much more closely, so they only move
+# with their gemeente totals. A deficit lowers all groups in proportion. None = plain IPF.
+_WIJK_OVERSCHOT_GROEPEN = ("bf", "h", "gi")
+
+
+def _kalibreer_elektriciteit_op_wijk(
+    df: pd.DataFrame,
+    wijk_df: pd.DataFrame | None,
+    jaar: int,
+    gm_code: pd.Series,
+    elec_kolommen: list[str],
+) -> pd.Series:
+    """
+    Scale business electricity per buurt so that each wijk matches its measured total
+    (Klimaatmonitor vbrze_tot_wijk, make_bedrijfsverbruik_wijk_csv.py), while every gemeente keeps
+    its sector totals. Per gemeente a wijk x sector table is fitted with iterative proportional
+    fitting: rows to the measured wijk totals, columns to the sector totals. Within a wijk each
+    sector keeps the buurt distribution from step 1/2 (BAG m², large emitters or company locations).
+    In the row step a wijk that measures more than its current total gives the surplus to
+    _WIJK_OVERSCHOT_GROEPEN only (large consumers); a wijk that measures less lowers all groups.
+
+      - Wijken without a published total keep their current value; the published wijken share the
+        rest of the gemeente total in proportion to their measured values.
+      - A gemeente is skipped (logged) when a measured wijk code does not occur among its buurten,
+        i.e. when the 2024 wijk division used by Klimaatmonitor does not match this buurt year.
+
+    Electricity only: the wijk gas figure includes SBI D (energy companies), the model's does not.
+    Returns a per-buurt flag (True = calibrated).
+    """
+    gekalibreerd = pd.Series(False, index=df.index)
+    if wijk_df is None or wijk_df.empty or not elec_kolommen:
+        return gekalibreerd
+    jaren = sorted(wijk_df["jaar"].unique().tolist())
+    wj = min(jaren, key=lambda y: abs(y - jaar))
+    meting = wijk_df[(wijk_df["jaar"] == wj) & wijk_df["elec_kwh"].notna() & (wijk_df["elec_kwh"] > 0)]
+    meting = meting.set_index("wijkcode")["elec_kwh"]
+    wijk = "WK" + df["codering"].str[2:8]
+    flex = np.array([any(c.startswith(f"elec_verbruik_{g}_") for g in (_WIJK_OVERSCHOT_GROEPEN or ()))
+                     for c in elec_kolommen])
+    km_per_gm = {gm: set(s.index) for gm, s in meting.groupby("GM" + meting.index.str[2:6])}
+
+    n_ok = n_overgeslagen = 0
+    for gm, idx in df.groupby(gm_code).groups.items():
+        km_wijken = km_per_gm.get(gm)
+        if not km_wijken:
+            continue
+        if not km_wijken <= set(wijk.loc[idx]):
+            n_overgeslagen += 1
+            continue
+        waarden = df.loc[idx, elec_kolommen].apply(pd.to_numeric, errors="coerce")
+        waarden = waarden.where(waarden != _MISSING, 0.0).clip(lower=0).fillna(0.0)
+        M = waarden.groupby(wijk.loc[idx]).sum()
+        totaal = float(M.values.sum())
+        if totaal <= 0:
+            continue
+        rij_nu = M.sum(axis=1)
+        gepubliceerd = M.index.isin(list(km_wijken)) & (rij_nu > 0).values
+        beschikbaar = totaal - float(rij_nu[~gepubliceerd].sum())
+        som_meting = float(meting.reindex(M.index[gepubliceerd]).sum())
+        if beschikbaar <= 0 or som_meting <= 0:
+            n_overgeslagen += 1
+            continue
+        doel_rij = rij_nu.copy()
+        doel_rij[gepubliceerd] = meting.reindex(M.index[gepubliceerd]).values * beschikbaar / som_meting
+        doel_kol = M.sum(axis=0).values
+        X = M.values.astype(float).copy()
+        doel = doel_rij.values
+        for _ in range(_WIJK_IPF_ITERATIES):
+            r = X.sum(axis=1)
+            F = X[:, flex].sum(axis=1)
+            # surplus: only the groups with large consumers grow (while the wijk has any of them)
+            over = (doel > r) & (F > 0) & flex.any()
+            f_flex = np.divide(doel - (r - F), F, out=np.ones_like(F), where=F > 0)
+            f_alle = np.divide(doel, r, out=np.ones_like(r), where=r > 0)
+            X[np.ix_(over, flex)] *= f_flex[over][:, None]
+            X[~over] *= f_alle[~over][:, None]
+            c = X.sum(axis=0)
+            X *= np.divide(doel_kol, c, out=np.ones_like(c), where=c > 0)[None, :]
+            if np.allclose(X.sum(axis=1), doel, rtol=1e-6, atol=1.0):
+                break
+        else:
+            log.warning("  Wijkkalibratie %s niet geconvergeerd: grootste afwijking %.1f%% van een wijktotaal",
+                        gm, 100 * float(np.max(np.abs(X.sum(axis=1) - doel) / np.maximum(doel, 1.0))))
+        factor = pd.DataFrame(np.divide(X, M.values, out=np.ones_like(X), where=M.values > 0),
+                              index=M.index, columns=elec_kolommen)
+        for col in elec_kolommen:
+            ok = idx[(df.loc[idx, col] != _MISSING).values]
+            df.loc[ok, col] = df.loc[ok, col].astype(float) * wijk.loc[ok].map(factor[col]).values
+        gekalibreerd.loc[idx] = True
+        n_ok += 1
+
+    log.info("  Elektriciteit gekalibreerd op gemeten wijktotalen (%d): %d gemeenten, %d overgeslagen "
+             "(wijkindeling sluit niet aan of geen ruimte binnen het gemeentetotaal)", wj, n_ok, n_overgeslagen)
+    return gekalibreerd
+
+
 def _verdeel_energieverbruik_sector(
     df: pd.DataFrame,
     energie_df: pd.DataFrame | None,
     jaar: int,
+    bedrijfsruimte_df: pd.DataFrame | None = None,
+    grootverbruikers_df: pd.DataFrame | None = None,
+    wijkverbruik_df: pd.DataFrame | None = None,
 ) -> pd.DataFrame:
     """
     Assign each municipality's sector electricity/gas demand (make_energieverbruik_sector_csv.py)
-    down to its neighbourhoods, in proportion to each buurt's share of that sector's
-    company locations within the gemeente.
+    down to its neighbourhoods. Per sector group and gemeente:
 
-    Example: if a gemeente has 100 company locations of SBI-group "a" spread across
-    its buurten, and one buurt has 10 of them, that buurt gets 10% of the gemeente's
-    "a" electricity and gas demand.
+      1. Gas of large emitters first (grootverbruikers_df, make_grootverbruikers_gas_csv.py):
+         estimated from their CO2 and put in their own buurt, capped at
+         _GROOTVERBRUIK_MAX_AANDEEL of the gemeente's gas for that group. Gas only: there is
+         no open per-company source for electricity.
+      2. The rest by a distribution key:
+         - BAG floor area of the matching building functions (bedrijfsruimte_df,
+           make_bedrijfsruimte_csv.py; see _FUNCTIES_PER_GROEP) for gemeenten covered by that
+           file. Floor area does not count a self-employed person working from home, the
+           number of company locations does, which put far too little demand on business
+           parks. A function used by several groups (offices, industrial halls, assembly) is
+           split per buurt by their company locations there (aandeel_gedeelde_functies);
+         - otherwise each buurt's share of that sector's company locations (CBS KWB), as before.
+      3. Electricity only: calibration to the measured total business electricity per wijk
+         (wijkverbruik_df, see _kalibreer_elektriciteit_op_wijk), keeping the sector totals.
+
+    Example (company locations): if a gemeente has 100 company locations of SBI-group "a"
+    spread across its buurten, and one buurt has 10 of them, that buurt gets 10% of the
+    gemeente's "a" electricity and gas demand.
 
     Rules (as specified):
       - A buurt with -99999 for a sector's company-location count does not count
@@ -682,6 +904,11 @@ def _verdeel_energieverbruik_sector(
         count for a sector, there is no basis to allocate proportionally — the
         demand is split evenly across all of that gemeente's buurten instead
         (flagged via 'energieverbruik_sector_gelijk_verdeeld') so no demand is lost.
+      - hj (compatibility column) is h + j per buurt.
+
+    Extra columns: 'energieverbruik_sector_verdeelsleutel' ('bag_m2' or 'vestigingen'),
+    'gas_grootverbruikers_m3' (gas placed in step 1, all groups together) and
+    'elektriciteit_gekalibreerd_op_wijk' (True where step 3 applied).
 
     Must run AFTER _vul_ontbrekende_waarden(), so the -99999 sentinel reflects
     "truly no data anywhere" rather than a gap that could have been filled from
@@ -709,7 +936,48 @@ def _verdeel_energieverbruik_sector(
     n_buurten_per_gm = gm_code.groupby(gm_code).transform("size")
     fallback_flag = pd.Series(False, index=df.index)
 
+    # --- BAG floor area (nearest buurt year) ---
+    m2 = None
+    gedekt = pd.Series(False, index=df.index)
+    if bedrijfsruimte_df is not None and not bedrijfsruimte_df.empty:
+        jaren_br = sorted(bedrijfsruimte_df["jaar"].unique().tolist())
+        jaar_br = min(jaren_br, key=lambda y: abs(y - jaar))
+        m2 = bedrijfsruimte_df[bedrijfsruimte_df["jaar"] == jaar_br].set_index("codering")
+        gedekt = gm_code.isin(set(m2["gemeentecode"]))
+        log.info("  Verdeelsleutel bedrijfsverbruik: BAG-m² (%d) voor %d buurten in %d gemeenten, "
+                 "vestigingen voor de rest", jaar_br, int(gedekt.sum()), gm_code[gedekt].nunique())
+
+    # --- Large emitters (gas), nearest emission year ---
+    pins = None
+    if grootverbruikers_df is not None and not grootverbruikers_df.empty:
+        gas_jaren = sorted(int(c[len("gas_m3_"):]) for c in grootverbruikers_df.columns if c.startswith("gas_m3_"))
+        b_jaren = sorted(int(c[len("buurtcode_"):]) for c in grootverbruikers_df.columns if c.startswith("buurtcode_"))
+        if gas_jaren and b_jaren:
+            gj = min(gas_jaren, key=lambda y: abs(y - target_jaar))
+            bj = min(b_jaren, key=lambda y: abs(y - jaar))
+            pins = grootverbruikers_df[["naam", "groep", f"buurtcode_{bj}", f"gas_m3_{gj}"]].rename(
+                columns={f"buurtcode_{bj}": "codering", f"gas_m3_{gj}": "gas"})
+            pins = pins[pins["codering"].isin(set(df["codering"])) & (pins["gas"] > 0)].copy()
+            pins["gm"] = "GM" + pins["codering"].str[2:6]
+    df["gas_grootverbruikers_m3"] = 0.0
+    elec_kolommen: list[str] = []
+
+    # Shared building functions split over the groups using them (company locations per buurt)
+    deel = {}
+    if m2 is not None and _DEEL_GEDEELDE_FUNCTIES:
+        e_h = _vind_sector_kolom(energie_jaar.columns, "elec", "h")
+        e_j = _vind_sector_kolom(energie_jaar.columns, "elec", "j")
+        h_gm = pd.Series(0.5, index=energie_jaar.index)
+        if e_h and e_j:
+            eh = pd.to_numeric(energie_jaar[e_h], errors="coerce").clip(lower=0)
+            ej = pd.to_numeric(energie_jaar[e_j], errors="coerce").clip(lower=0)
+            h_gm = (eh / (eh + ej).where(eh + ej > 0)).fillna(0.5)
+        deel = aandeel_gedeelde_functies(df, gm_code.map(h_gm).fillna(0.5))
+
     for bedrijf_col, groep in _BEDRIJF_COL_TO_GROEP:
+        if groep == "hj":
+            continue  # compatibility column, set to h + j below
+
         waarden = pd.to_numeric(df.get(bedrijf_col), errors="coerce")
         valid_mask = waarden.notna() & (waarden != _MISSING)
         valid_vals = waarden.where(valid_mask)
@@ -733,6 +1001,17 @@ def _verdeel_energieverbruik_sector(
         # Split evenly in both cases, so the invariant in this docstring — all
         # demand ends up assigned — actually holds.
         geen_data_mask = (n_valid == 0) | (total_valid.fillna(0) <= 0)
+
+        # BAG floor area replaces the company-location key where the gemeente is covered
+        functies = _FUNCTIES_PER_GROEP.get(groep)
+        if m2 is not None and functies:
+            w = sum(df["codering"].map(m2[f"m2_{f}"]).fillna(0.0) * deel.get((f, groep), 1.0) for f in functies)
+            w = w.where(gedekt).fillna(0.0)
+            w_gm = w.groupby(gm_code).transform("sum")
+            op_m2 = gedekt & (w_gm > 0)
+            share[op_m2] = w[op_m2] / w_gm[op_m2]
+            geen_data_mask &= ~op_m2
+
         if geen_data_mask.any():
             share[geen_data_mask] = 1.0 / n_buurten_per_gm[geen_data_mask]
             fallback_flag |= geen_data_mask
@@ -744,15 +1023,53 @@ def _verdeel_energieverbruik_sector(
         gas_col = gas_col or f"gas_verbruik_{groep}"
         if elec_col in energie_jaar.columns:
             df[elec_col] = share * gm_code.map(energie_jaar[elec_col])
+            elec_kolommen.append(elec_col)
         else:
             df[elec_col] = pd.NA
+
         if gas_col in energie_jaar.columns:
-            df[gas_col] = share * gm_code.map(energie_jaar[gas_col])
+            gas_gm = pd.to_numeric(energie_jaar[gas_col], errors="coerce")
+            vast_buurt = pd.Series(0.0, index=df.index)
+            vast_gm = pd.Series(0.0, index=gas_gm.index)
+            p = pins[pins["groep"] == groep] if pins is not None else None
+            if p is not None and not p.empty and gas_col.endswith("_m3"):
+                som = p.groupby("gm")["gas"].sum()
+                plafond = (_GROOTVERBRUIK_MAX_AANDEEL * gas_gm.reindex(som.index)).fillna(0).clip(lower=0)
+                schaal = (plafond / som).clip(upper=1.0)
+                for gm, s in som.items():
+                    if schaal[gm] < 1:
+                        log.info("  Grootverbruik gas %s/%s: %.1f mln m³ uit CO2, begrensd op %.1f "
+                                 "(%.0f%% van het gemeentetotaal %.1f)", gm, groep, s / 1e6,
+                                 plafond[gm] / 1e6, _GROOTVERBRUIK_MAX_AANDEEL * 100, gas_gm.get(gm, 0) / 1e6)
+                p = p.assign(gas=p["gas"] * p["gm"].map(schaal))
+                vast_buurt = df["codering"].map(p.groupby("codering")["gas"].sum()).fillna(0.0)
+                vast_gm = p.groupby("gm")["gas"].sum().reindex(gas_gm.index).fillna(0.0)
+                df["gas_grootverbruikers_m3"] += vast_buurt
+            df[gas_col] = vast_buurt + share * gm_code.map(gas_gm - vast_gm)
         else:
             df[gas_col] = pd.NA
 
         df[elec_col] = pd.to_numeric(df[elec_col], errors="coerce").fillna(_MISSING)
         df[gas_col] = pd.to_numeric(df[gas_col], errors="coerce").fillna(_MISSING)
+
+    # Step 3: electricity per wijk to the measured totals (sector totals per gemeente unchanged)
+    df["elektriciteit_gekalibreerd_op_wijk"] = _kalibreer_elektriciteit_op_wijk(
+        df, wijkverbruik_df, jaar, gm_code, elec_kolommen)
+
+    # hj = h + j (compatibility column; h and j may now use different keys)
+    for carrier in ("elec", "gas"):
+        h = _vind_sector_kolom(df.columns, carrier, "h")
+        j = _vind_sector_kolom(df.columns, carrier, "j")
+        hj = (_vind_sector_kolom(energie_jaar.columns, carrier, "hj")
+              or (h.replace("_h_", "_hj_", 1) if h else None))
+        if h and j and hj:
+            beide = (df[h] != _MISSING) & (df[j] != _MISSING)
+            df[hj] = (df[h] + df[j]).where(beide, _MISSING)
+
+    df["energieverbruik_sector_verdeelsleutel"] = gedekt.map({True: "bag_m2", False: "vestigingen"})
+    if pins is not None and not pins.empty:
+        log.info("  Grootverbruik gas: %.1f mln m³ vooraf in %d buurten geplaatst",
+                 df["gas_grootverbruikers_m3"].sum() / 1e6, int((df["gas_grootverbruikers_m3"] > 0).sum()))
 
     n_fallback = int(fallback_flag.sum())
     if n_fallback:
@@ -777,6 +1094,9 @@ def maak_csv(
     bedrijfswagens_df: pd.DataFrame | None = None,
     capaciteitskaart_df: pd.DataFrame | None = None,
     woningvoorraad_df: pd.DataFrame | None = None,
+    bedrijfsruimte_df: pd.DataFrame | None = None,
+    grootverbruikers_df: pd.DataFrame | None = None,
+    wijkverbruik_df: pd.DataFrame | None = None,
 ) -> bool:
     """Generate enriched kerncijfers_buurten_met_geometrie_{jaar}.csv. Returns True on success."""
     log.info("  --- Jaar %d ---", jaar)
@@ -885,8 +1205,11 @@ def maak_csv(
     gemeente_df = _laad_gemeente_kwb(jaar, haal_kwb_fn)
     merged = _vul_ontbrekende_waarden(merged, gemeente_df=gemeente_df)
 
-    # --- Sector electricity/gas demand, allocated to buurten by company-location share ---
-    merged = _verdeel_energieverbruik_sector(merged, energie_df, jaar)
+    # --- Sector electricity/gas demand to buurten (large emitters, BAG m² or company locations) ---
+    merged = _verdeel_energieverbruik_sector(merged, energie_df, jaar,
+                                             bedrijfsruimte_df=bedrijfsruimte_df,
+                                             grootverbruikers_df=grootverbruikers_df,
+                                             wijkverbruik_df=wijkverbruik_df)
 
     _OUT_DIR.mkdir(parents=True, exist_ok=True)
     out = _OUT_DIR / f"kerncijfers_buurten_met_geometrie_{jaar}.csv"
@@ -997,6 +1320,9 @@ def main(jaren=None) -> bool:
     solar_df            = _laad_solar()
     energie_df          = _laad_energieverbruik_sector()
     woningvoorraad_df   = _laad_woningvoorraad()
+    bedrijfsruimte_df   = _laad_bedrijfsruimte()
+    grootverbruikers_df = _laad_grootverbruikers_gas()
+    wijkverbruik_df     = _laad_bedrijfsverbruik_wijk()
 
     all_ok = True
     t0 = time.monotonic()
@@ -1013,6 +1339,9 @@ def main(jaren=None) -> bool:
                 bedrijfswagens_df=_laad_bedrijfswagens(jaar),
                 capaciteitskaart_df=_laad_capaciteitskaart(jaar),
                 woningvoorraad_df=woningvoorraad_df,
+                bedrijfsruimte_df=bedrijfsruimte_df,
+                grootverbruikers_df=grootverbruikers_df,
+                wijkverbruik_df=wijkverbruik_df,
             )
         except FileNotFoundError as exc:
             log.error("FOUT jaar %d: %s", jaar, exc)

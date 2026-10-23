@@ -130,8 +130,16 @@ python run_pipeline.py --bedrijfswagens
 # Capaciteitskaart (RNB+TenneT transformers) downloaden + koppelen aan buurten
 python run_pipeline.py --capaciteitskaart
 
+# Bedrijfsverbruik per buurt: eerst de invoer (opt-in, nu voor de Drechtsteden), dan de buurten
+python run_pipeline.py --bedrijfsruimte     # BAG-m² per gebruiksfunctie per buurt
+python run_pipeline.py --grootverbruikers   # gas van grote uitstoters uit hun CO2 (Emissieregistratie)
+python run_pipeline.py --wijkverbruik       # gemeten bedrijfsverbruik per wijk (Klimaatmonitor)
+
 # Alleen buurten-CSV genereren
 python run_pipeline.py --buurten
+
+# Vestigingen, m² en energie per IBIS-bedrijventerrein, teruggerekend uit de buurten (na --buurten)
+python run_pipeline.py --bedrijventerreinen
 
 # Gemeente-CSV: PV/wind-potentie + provincie/RES-regio + sectorale energie (CBS 82538NED, valt terug op Klimaatmonitor)
 python run_pipeline.py --gemeenten-potentie
@@ -435,10 +443,52 @@ iemand die kolommen ooit als brondata wil citeren.
 
 ### Verdeling naar buurten
 
-Zie `_verdeel_energieverbruik_sector()` in `make_buurten_csv.py`: elke buurt
-krijgt `(buurt_vestigingen_groep / som_geldige_buurt_vestigingen_groep_in_gemeente)
-× gemeente_energieverbruik_groep`. Buurten met `-99999` (geen data) tellen niet
-mee in de som en krijgen 0.
+Zie `_verdeel_energieverbruik_sector()` in `make_buurten_csv.py`. Per gemeente en sectorgroep:
+
+1. **Gemeentetotaal.** Het bedrijfsverbruik per sectorgroep uit de Klimaatmonitor (zie hierboven), met het
+   gemeten gemeentetotaal elektriciteit als ijkpunt (`GEMEENTE_CONTROLE_ELEC`).
+2. **Grote uitstoters (gas).** Eerst op hun eigen buurt: CO2 uit de Emissieregistratie / 1,79 kg per m³
+   (`make_grootverbruikers_gas_csv.py`, `--grootverbruikers`), maximaal 90% van het sectortotaal.
+3. **Verdeelsleutel.** De rest naar het BAG-vloeroppervlak van de gebruiksfuncties van die sector
+   (`_FUNCTIES_PER_GROEP`; `make_bedrijfsruimte_csv.py`, `--bedrijfsruimte`). Gemeenten zonder BAG-m²
+   (nu alles buiten de Drechtsteden) houden de oude sleutel: het aantal vestigingen (KWB) per buurt.
+4. **Gedeelde functies.** Kantoor, industriehal en bijeenkomstruimte worden per buurt verdeeld over de
+   sectoren die ze gebruiken, naar hun aantal vestigingen in die buurt (`aandeel_gedeelde_functies`). KWB
+   telt H en J samen; die worden gesplitst naar het gemeentelijk elektriciteitsverbruik van H en J.
+   Industrie (B-F) en handel (G, I) tellen bij kantoor mee als medegebruiker (`_MEDEGEBRUIKERS`): een
+   fabriek met de BAG-functies 'industrie, kantoor' telt voor de helft als kantoor, en dat deel hoort niet
+   bij de kantoorsectoren.
+5. **IJking elektriciteit per wijk** (`--wijkverbruik`, `_kalibreer_elektriciteit_op_wijk`). Per gemeente
+   een tabel wijk x sector, met iterative proportional fitting geijkt op de gemeten wijktotalen en de
+   sectortotalen van de gemeente. Meet een wijk meer dan het vloeroppervlak doet verwachten, dan gaat dat
+   extra naar B-F, H en G/I (`_WIJK_OVERSCHOT_GROEPEN`, de sectoren met grootverbruikers); meet een wijk
+   minder, dan dalen alle sectoren naar rato. Gas niet: het wijkcijfer bevat SBI D.
+
+Zonder de opt-in-bestanden valt elke stap terug op de vorige werkwijze: elke buurt krijgt
+`(buurt_vestigingen_groep / som_geldige_buurt_vestigingen_groep_in_gemeente) × gemeente_energieverbruik_groep`.
+Buurten met `-99999` (geen data) tellen niet mee in de som en krijgen 0.
+
+### Bedrijventerreinen (`--bedrijventerreinen`)
+
+`make_bedrijventerreinen_csv.py` rekent de buurtwaarden terug naar de IBIS-bedrijventerreinen, in zes
+stappen (details in de docstring):
+
+1. **Terreinen**: IBIS-contouren (WarmteAtlas) in de gekozen gemeenten.
+2. **Koppeling**: doorsnede terrein x buurt, met per stuk het deel van de bedrijfsadressen en van alle
+   adressen (BAG) en de m² per gebruiksfunctie.
+3. **Energie**: per sector het deel van het buurtverbruik dat hoort bij de m² van de functies van die
+   sector op het terrein, met dezelfde sleutel als stap 3-4 hierboven. Wat niet op een terrein ligt,
+   blijft bij de buurt; terreinen plus de rest tellen precies op tot de buurtwaarden.
+4. **Vestigingen**: totaal = KWB van de buurt x het deel van de bedrijfsadressen op het terrein; verdeling
+   over de SBI-letters uit de CBS/TNO-telling 2019 op het terrein (de enige telling per terrein en letter).
+5. **Uitsplitsing**: B-F naar B-E en F, en alle groepen naar SBI-letters, naar vestigingen x de landelijke
+   levering per adres op terreinen (CBS/TNO 2019 Tabel 2, zonder grootverbruikers).
+6. **Industriegraad**: aandeel van B-E in elektriciteit plus gas.
+
+Bron voor stap 4-5: CBS, *Levering aardgas en elektriciteit via openbaar net aan bedrijventerreinen, 2019*
+(maatwerk juni 2021, alle 3.740 IBIS-terreinen), als referentiebestand in deze map. Uitvoer:
+`bedrijventerreinen_<jaar>_<datum>.csv` (per terrein) en `bedrijventerreinen_buurten_<jaar>_<datum>.csv`
+(per stuk terrein x buurt). De kaart en de Excel in `gebiedsdashboard/` gebruiken dezelfde berekening.
 
 **Wat betekent `energieverbruik_sector_gelijk_verdeeld`?** Normaal verdeel je
 naar rato van vestigingenaantal (10 van de 100 vestigingen in de buurt → 10%
