@@ -6,82 +6,68 @@ Bron: https://data.partnersinenergie.nl/capaciteitskaart/info/algemene-info
 Documentatie van de brondata zelf: raw/capaciteitskaart/{datum}/brondata_documentatie.txt
 (meegedownload, zie download_capaciteitskaart()).
 
-Structuur van de brondata (geverifieerd tegen de echte bestanden, niet alleen de
-documentatie — versie 2.0, 2024-11-20):
+Structuur van de brondata (geverifieerd tegen de echte bestanden, download 2026-10-29;
+de documentatie zelf is nog versie 2.0, 2024-11-20, en beschrijft de jaarbestanden niet):
 
-  congestie_pc6.csv (~462.600 rijen, 1 per PC6)
+  congestie_pc6.csv (~462.900 rijen, 1 per PC6)
       De centrale koppeltabel: postcode -> voedingsgebied_id (RNB) EN tennet_id
-      (TenneT) tegelijk, plus RNB_postcode (netbeheerder), Gemeentecode/naam.
-  voedingsgebieden.csv (608 rijen, 1 per voedingsgebied_id)
-      RNB-laag: transportcapaciteit/wachtrij per gebied. Eenmalige snapshot,
-      jaar is altijd 2026 (geen tijdreeks, ondanks de kolomnaam).
-  tennetgebieden.csv (150 rijen, 22 unieke congestiegebied x jaar 2026-2036)
-      TenneT-laag: transportcapaciteit/wachtrij per congestiegebied. Wél een
-      echte meerjarenreeks (2026-2036) — een structureel verschil met de
-      RNB-laag, niet alleen "TenneT vs RNB" maar ook "voorspelling vs snapshot".
+      (TenneT) tegelijk, plus kleurcode afname/opwek, voedingsgebied_naam,
+      RNB_postcode (netbeheerder), Gemeentecode/naam.
+  voedingsgebieden_year_granularity.csv (~2.400 rijen, voedingsgebied_id x jaar)
+      RNB-laag als jaarreeks 2026-2036. Niet elk gebied heeft elk jaar: alle 602
+      hebben 2026, ~330-375 hebben 2027-2031, daarna nog maar een handvol.
+  voedingsgebieden.csv (602 rijen)
+      Precies de 2026-rijen van het jaarbestand (geverifieerd: 0 verschillen) --
+      daarom niet meer gebruikt.
+  tennetgebieden.csv (23 rijen, 1 per congestiegebied)
+      TenneT-laag per congestiegebied. In juli 2026 nog een reeks 2026-2036
+      (150 rijen); nu alleen 2026 (16 rijen) of geen jaar (7 rijen, vrijwel leeg).
   tennetcongestie.csv (271 rijen, 1 per tennet_id)
-      Koppelt elk TenneT-tussenstation aan zijn congestiegebied — apart voor
-      afname en invoeding/opwek-richting (225/271 = 83% heeft dezelfde zone
-      voor beide richtingen; 46/271 = 17% heeft een andere zone per richting).
+      Koppelt elk TenneT-tussenstation aan zijn congestiegebied -- apart voor
+      afname en invoeding/opwek-richting -- plus kleurcode per richting.
+  projecten.csv (~940 rijen)
+      Netuitbreidingen per voedings- of congestiegebied, met jaar/kwartaal van
+      oplevering en netbeheerder.
 
-Geverifieerde referentiële integriteit (2026-07-09 download):
-  - voedingsgebied_id: 100% match in beide richtingen tussen congestie_pc6.csv
-    en voedingsgebieden.csv.
-  - tennet_id: elke tennet_id in congestie_pc6.csv bestaat in tennetcongestie.csv
-    (tennetcongestie.csv heeft 32 stations die door geen enkele postcode worden
-    gerefereerd — waarschijnlijk stations zonder rechtstreeks aangesloten
-    postcodegebied, bv. pure koppelstations).
-  - congestiegebied-namen komen overeen tussen tennetcongestie.csv en
-    tennetgebieden.csv op één spatie-artefact na ("Groningen Oost " met
-    trailing space) — hieronder genormaliseerd met .str.strip().
+LET OP: de TenneT-capaciteiten gelden voor een heel congestiegebied, niet voor één
+station. Alle stations in een gebied verwijzen naar dezelfde capaciteitsrij; tel ze dus
+niet per station op.
 
-Hiërarchie RNB <-> TenneT (uit congestie_pc6.csv afgeleid, niet uit een
-rechtstreekse kolom — voedingsgebieden.csv zelf bevat geen tennet_id):
-  536 van de 608 (88%) voedingsgebieden hebben precies 1 TenneT-ouder.
-  36 van de 608 (6%) hebben 2-4 TenneT-ouders (redundante voeding, geen fout).
-  Vandaar transformer_links.csv als aparte junction-tabel in plaats van een
-  enkele parent_id-kolom, die de 6% meervoudige-ouder-gevallen niet zou passen.
-
-Methode
--------
-1. Download de 4 brondata-CSV's (+ documentatie) van data.partnersinenergie.nl.
-2. Bouw transformers.csv: één "node" per RNB-voedingsgebied of TenneT-station,
-   met alle capaciteit/wachtrij-kolommen van beide bronnen (identieke
-   kolomnamen in voedingsgebieden.csv en tennetgebieden.csv, dus rechtstreeks
-   te unioneren) plus een `type`-kolom ("RNB"/"TenneT"). RNB-rijen worden
-   herhaald over alle jaren 2026-2036 (enkel-jaar brondata, maar één
-   samenhangende tabel met TenneT's meerjarenreeks is bruikbaarder dan een
-   aparte snapshot-tabel). Drie kolommen zijn niet in de brondata aanwezig en
-   worden hier afgeleid (zie bouw_transformer_geometrie() / _bouw_primary_parent()
-   / _extract_voltage_kv()):
-     - latitude/longitude/service_area_polygon: centroid + dissolved PC6-vlakken
-       per transformer_id (PC6 -> voedingsgebied_id/tennet_id uit congestie_pc6.csv).
+Uitvoer (drie tabellen + de koppeltabel)
+-----------------------------------------
+1. transformers.csv -- 1 rij per transformer_id (RNB-voedingsgebied of TenneT-station):
+   alles wat niet per jaar verandert. type, naam, operator, voltage_kv,
+   latitude/longitude, primary_parent_id, congestiegebied_afname/opwek (alleen
+   TenneT: de sleutel naar de capaciteitsrij), afname/opwek_kleurcode, provincie en
+   service_area_polygon (WKT, EPSG:4326). Afgeleid, niet in de brondata:
+     - latitude/longitude/service_area_polygon: centroid + dissolved PC6-vlakken per
+       transformer_id (PC6 -> voedingsgebied_id/tennet_id uit congestie_pc6.csv),
+       vereenvoudigd op SIMPLIFY_M meter. De downloads bevatten geen geometrie.
+     - naam (RNB) en afname/opwek_kleurcode (RNB): de meest voorkomende waarde onder
+       de PC6's van het gebied. 218 van de 602 gebieden hebben PC6's met verschillende
+       kleuren; de kaart kleurt een gebied met één status.
      - primary_parent_id: voor RNB-rijen de TenneT-ouder met de meeste gekoppelde
-       PC6's (voor de 6% met 2-4 ouders — zie hierarchy-sectie hieronder); voor
-       TenneT-rijen leeg (bovenste laag in dit model).
-     - voltage_kv: alleen voor TenneT (110/150/220/380), uit de stationsnaam
-       geparsed — RNB-brondata specificeert geen spanningsniveau.
-3. Bouw transformer_links.csv: (child=voedingsgebied_id, parent=tennet_id) —
-   één rij per écht in de brondata voorkomende koppeling, dus ook de 6%
-   meervoudige-ouder-gevallen correct (primary_parent_id in transformers.csv
-   kiest er hiervan telkens 1; transformer_links.csv blijft de volledige bron).
-4. Bouw per buurt het dominante voedingsgebied_id via een PC6->buurt
-   grootste-overlap-matching (dezelfde methode als process_features.py al
-   gebruikt voor WarmteAtlas-lagen), gevolgd door PC6->voedingsgebied_id uit
-   congestie_pc6.csv. Buurten met PC6's die naar meerdere voedingsgebieden
-   wijzen (grensgevallen) krijgen het meest voorkomende, met een dekkingsgraad
-   erbij zodat je onbetrouwbare gevallen kunt herkennen.
+       PC6's; voor TenneT-rijen leeg (bovenste laag in dit model).
+     - voltage_kv: alleen voor TenneT (110/150/220/380), uit de stationsnaam.
+2. transformer_capacity.csv -- 1 rij per gebied x jaar, precies de jaren die de bron
+   geeft: gebied_type ("RNB"/"TenneT"), gebied_id (voedingsgebied_id of TenneT-
+   congestiegebied), jaar, en de capaciteit/wachtrij-kolommen (MW). Een RNB-transformer
+   leest de rijen van zijn eigen transformer_id; een TenneT-station leest afname uit
+   zijn congestiegebied_afname en invoeding uit zijn congestiegebied_opwek.
+3. grid_projects.csv -- de netuitbreidingen uit projecten.csv, gebied_id verwijst naar
+   een voedingsgebied_id of TenneT-congestiegebied.
++  transformer_links.csv -- (child=voedingsgebied_id, parent=tennet_id), alle
+   koppelingen uit de brondata, ook de voedingsgebieden met 2-4 TenneT-ouders.
+
+Daarnaast per jaar capaciteitskaart_buurten_<jaar>_<datum>.csv: per buurt het dominante
+voedingsgebied_id via PC6->buurt grootste-overlap-matching, met een dekkingsgraad zodat
+je onbetrouwbare gevallen kunt herkennen (gaat via --buurten de kerncijfers in).
 
 Belangrijke caveats
 --------------------
-- Dit is een momentopname van de capaciteitskaart (versie 2.0, 2026-07-09
-  gedownload) — de brondata zelf wordt periodiek bijgewerkt door de
-  netbeheerders, dus regenereer dit bestand als je een actuelere stand wilt.
-- De RNB-laag is een 2026-snapshot herhaald over alle jaren — dit simuleert
-  GEEN werkelijke RNB-meerjarenprognose, het maakt alleen de tabel bruikbaar
-  als één samenhangend geheel met TenneT's echte meerjarenreeks.
-- Alle numerieke brondata gebruikt een komma als decimaalteken (brondata-
-  conventie van de netbeheerders zelf, niet deze pipeline) — hier omgezet naar
+- Momentopname van de capaciteitskaart op de downloaddatum. De netbeheerders werken de
+  brondata periodiek bij -- en veranderen soms de structuur (zie TenneT hierboven).
+- Alle numerieke brondata gebruikt een komma als decimaalteken -- hier omgezet naar
   punt bij het parsen.
 
 Run standalone:  python make_capaciteitskaart_csv.py [2023 [2024]]
@@ -111,9 +97,10 @@ _CK_BASE = "https://data.partnersinenergie.nl/api/download"
 _CK_FILES = [
     "brondata_documentatie.txt",
     "congestie_pc6.csv",
-    "voedingsgebieden.csv",
+    "voedingsgebieden_year_granularity.csv",
     "tennetgebieden.csv",
     "tennetcongestie.csv",
+    "projecten.csv",
 ]
 _CK_CACHE_DIR = RAW_DIR / "capaciteitskaart"
 
@@ -122,6 +109,11 @@ _CK_CACHE_DIR = RAW_DIR / "capaciteitskaart"
 # recent jaar volstaat; PC6-grenzen wijzigen nauwelijks jaar-op-jaar.
 _GEOM_JAAR = max(CBS_YEARS)
 
+# Vereenvoudiging van de dissolved PC6-vlakken, in meter (EPSG:28992). Ongeveer de
+# breedte van een straat: de vorm blijft herkenbaar, transformers.csv krimpt een factor
+# ~3 en de kaart in het model blijft vlot. Het vlak is sowieso een benadering uit PC6's.
+SIMPLIFY_M = 10.0
+
 # TenneT-stationsnamen bevatten het spanningsniveau in vrije tekst (bv. "Station
 # Aarle Rixtel 150 kV", "Station Almere 150 (CBL)", "Station Dinteloord 150kV" —
 # soms zonder spatie voor "kV", soms zonder "kV"-suffix helemaal). Geen trailing
@@ -129,8 +121,8 @@ _GEOM_JAAR = max(CBS_YEARS)
 # woordgrens). Geverifieerde spanningsniveaus in de brondata (2026-07-09): 150 kV
 # (179x), 110 kV (88x), 220 kV (3x), 2 stations zonder enig cijfer in de naam
 # ("Station Bunschoten", "Station Merwedekanaal") — echt onleesbaar, blijft n.a.
-# Geen 380 kV of lager gevonden. RNB-laag (voedingsgebieden.csv) bevat geen
-# spanningsniveau — blijft leeg (n.a.) voor die rijen.
+# Geen 380 kV of lager gevonden. RNB-laag bevat geen spanningsniveau — blijft leeg
+# (n.a.) voor die rijen.
 _VOLTAGE_RE = re.compile(r"\b(110|150|220|380)")
 
 
@@ -138,15 +130,33 @@ def _extract_voltage_kv(transformer_id: str) -> Optional[int]:
     m = _VOLTAGE_RE.search(str(transformer_id))
     return int(m.group(1)) if m else None
 
-# Identieke kolomnaam-set in voedingsgebieden.csv en tennetgebieden.csv — daardoor
-# rechtstreeks te unioneren in één transformers-tabel zonder hernoemen.
+# De capaciteit/wachtrij-kolommen, in MW (behalve verzoeken en jaartallen). Dezelfde
+# namen in het RNB-jaarbestand en tennetgebieden.csv; wat een bron niet heeft blijft leeg.
 _CAPACITEIT_NUM_COLS = [
-    "aanwezige_transportcapaciteit_invoeding", "aanwezige_transportcapaciteit_afname",
-    "benodigde_transportcapaciteit_invoeding", "benodigde_transportcapaciteit_afname",
-    "unieke_verzoeken_invoeding", "unieke_verzoeken_afname",
-    "wachtrij_invoeding", "wachtrij_afname",
-    "voorspelde_capaciteit_invoeding", "voorspelde_capaciteit_afname",
-    "jaartal_opgelost_invoeding", "jaartal_opgelost_afname",
+    "aanwezige_transportcapaciteit_afname", "aanwezige_transportcapaciteit_invoeding",
+    "benodigde_transportcapaciteit_afname", "benodigde_transportcapaciteit_invoeding",
+    "voorspelde_capaciteit_afname", "voorspelde_capaciteit_invoeding",
+    "wachtrij_afname", "wachtrij_invoeding",
+    "unieke_verzoeken_afname", "unieke_verzoeken_invoeding",
+    "jaartal_opgelost_afname", "jaartal_opgelost_invoeding",
+]
+# Tekstkolommen die per gebied x jaar in de bron staan. De *_beperking/*_tso_limiet-
+# kolommen bestaan alleen bij TenneT en waren bij de download van 2026-10-29 overal leeg.
+_CAPACITEIT_TEXT_COLS = [
+    "afname_beperking", "afname_tso_limiet", "opwek_beperking", "opwek_tso_limiet",
+    "start", "eind", "kwartaal", "info", "congestie_url",
+]
+
+_TRANSFORMER_COLS = [
+    "transformer_id", "type", "naam", "operator", "voltage_kv", "latitude", "longitude",
+    "primary_parent_id", "congestiegebied_afname", "congestiegebied_opwek",
+    "afname_kleurcode", "opwek_kleurcode", "provincie", "service_area_polygon",
+]
+
+_PROJECT_COLS = [
+    "projectnaam", "gebied_id", "netbeheerder", "jaar", "kwartaal", "einddatum",
+    "project_fase", "project_type", "beschrijving", "tijdschema_beschrijving",
+    "start", "eind", "bron", "project_url",
 ]
 
 
@@ -155,7 +165,7 @@ _CAPACITEIT_NUM_COLS = [
 # ---------------------------------------------------------------------------
 
 def download_capaciteitskaart(force: bool = False) -> dict[str, Path]:
-    """Download de 4 brondata-CSV's + documentatie, gecached in raw/capaciteitskaart/{datum}/."""
+    """Download de brondata-CSV's + documentatie, gecached in raw/capaciteitskaart/{datum}/."""
     out_dir = _CK_CACHE_DIR / TODAY
     out_dir.mkdir(parents=True, exist_ok=True)
     paths = {}
@@ -180,28 +190,32 @@ def _to_num(s: pd.Series) -> pd.Series:
     return pd.to_numeric(s.astype(str).str.replace(",", ".", regex=False), errors="coerce")
 
 
-def _laad_bronnen(paths: dict) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame, pd.DataFrame]:
-    pc6 = pd.read_csv(paths["congestie_pc6.csv"], sep=";", dtype=str)
-    vg = pd.read_csv(paths["voedingsgebieden.csv"], sep=";", dtype=str)
-    tg = pd.read_csv(paths["tennetgebieden.csv"], sep=";", dtype=str)
-    tc = pd.read_csv(paths["tennetcongestie.csv"], sep=";", dtype=str)
-
-    # Genormaliseerd: één bekend spatie-artefact ("Groningen Oost ") in de brondata.
-    pc6["voedingsgebied_id"] = pc6["voedingsgebied_id"].str.strip()
-    pc6["tennet_id"] = pc6["tennet_id"].str.strip()
-    tc["tennet_id"] = tc["tennet_id"].str.strip()
-    tc["congestiegebied_afname"] = tc["congestiegebied_afname"].str.strip()
-    tc["congestiegebied_opwek"] = tc["congestiegebied_opwek"].str.strip()
-    tg["congestiegebied"] = tg["congestiegebied"].str.strip()
-
-    return pc6, vg, tg, tc
+def _laad_bronnen(paths: dict) -> dict[str, pd.DataFrame]:
+    bron = {
+        "pc6": pd.read_csv(paths["congestie_pc6.csv"], sep=";", dtype=str),
+        "vg": pd.read_csv(paths["voedingsgebieden_year_granularity.csv"], sep=";", dtype=str),
+        "tg": pd.read_csv(paths["tennetgebieden.csv"], sep=";", dtype=str),
+        "tc": pd.read_csv(paths["tennetcongestie.csv"], sep=";", dtype=str),
+        "pr": pd.read_csv(paths["projecten.csv"], sep=";", dtype=str),
+    }
+    # Spatie-artefacten in de brondata ("Groningen Oost ", "Veenendaal 2 ").
+    for name, cols in {
+        "pc6": ["voedingsgebied_id", "voedingsgebied_naam", "tennet_id"],
+        "vg": ["voedingsgebied_id"],
+        "tg": ["congestiegebied"],
+        "tc": ["tennet_id", "congestiegebied_afname", "congestiegebied_opwek"],
+        "pr": ["gebied_id", "projectnaam"],
+    }.items():
+        for col in cols:
+            bron[name][col] = bron[name][col].str.strip()
+    return bron
 
 
 def _bouw_primary_parent(pc6: pd.DataFrame) -> pd.Series:
     """
     Eén TenneT-ouder per voedingsgebied_id, voor J_Transformer.parent_node_id (een
-    enkele String, geen lijst). 536/608 (88%) voedingsgebieden hebben toch al maar
-    1 TenneT-ouder; voor de 36/608 (6%) met 2-4 ouders wordt de ouder met de meeste
+    enkele String, geen lijst). Het overgrote deel van de voedingsgebieden heeft maar
+    1 TenneT-ouder; voor de gebieden met 2-4 ouders wordt de ouder met de meeste
     gekoppelde PC6's gekozen ("grootste-aandeel"). De volledige meervoudige-ouder-
     situatie blijft apart beschikbaar in transformer_links.csv.
     """
@@ -212,15 +226,22 @@ def _bouw_primary_parent(pc6: pd.DataFrame) -> pd.Series:
     return counts.loc[idx].set_index("voedingsgebied_id")["tennet_id"]
 
 
+def _meest_voorkomend(pc6: pd.DataFrame, col: str) -> pd.Series:
+    """Per voedingsgebied_id de meest voorkomende waarde van col onder zijn PC6's."""
+    sub = pc6[["voedingsgebied_id", col]].dropna()
+    sub = sub[(sub["voedingsgebied_id"] != "") & (sub[col] != "")]
+    return sub.groupby("voedingsgebied_id")[col].agg(lambda s: s.value_counts().idxmax())
+
+
 def bouw_transformer_geometrie(pc6: pd.DataFrame, jaar: int = _GEOM_JAAR) -> pd.DataFrame:
     """
     Service_area_polygon + centroid (latitude/longitude) per transformer_id, NIET
     aanwezig in de brondata zelf — afgeleid door alle PC6-vlakken die naar een
     transformer_id wijzen (RNB via voedingsgebied_id, TenneT via tennet_id) samen
-    te voegen (dissolve). Centroid berekend in EPSG:28992 (metrisch correct),
-    daarna herprojecteerd naar EPSG:4326 — zelfde conventie als process_features.py
-    hanteert voor WarmteAtlas-polygonen. service_area_polygon zelf als WKT in
-    EPSG:4326 (voor rechtstreekse weergave/gebruik, net als geom_wkt elders).
+    te voegen (dissolve). Centroid berekend in EPSG:28992 (metrisch correct) op het
+    onvereenvoudigde vlak, daarna herprojecteerd naar EPSG:4326 — zelfde conventie als
+    process_features.py hanteert voor WarmteAtlas-polygonen. service_area_polygon zelf
+    als WKT in EPSG:4326, vereenvoudigd op SIMPLIFY_M meter.
     """
     if not (RAW_DIR / "cbs_pc6" / str(jaar) / "pc6.gpkg").exists():
         download_sources.download_cbs_postcode("pc6", jaar)
@@ -244,117 +265,64 @@ def bouw_transformer_geometrie(pc6: pd.DataFrame, jaar: int = _GEOM_JAAR) -> pd.
 
     centroids_rd = gpd.GeoSeries(all_geoms.centroid, crs=CRS_RD)
     centroids_4326 = centroids_rd.to_crs(CRS_WGS84)
-    polys_4326 = all_geoms.to_crs(CRS_WGS84)
+    polys_4326 = all_geoms.simplify(SIMPLIFY_M, preserve_topology=True).to_crs(CRS_WGS84)
 
     out = pd.DataFrame({
         "transformer_id": all_geoms.index,
         "latitude": centroids_4326.y.values,
         "longitude": centroids_4326.x.values,
-        "service_area_polygon": polys_4326.to_wkt().values,
+        "service_area_polygon": polys_4326.to_wkt(rounding_precision=6).values,
     })
-    log.info("  Transformer-geometrie (%d): %d/%d met service_area_polygon", jaar, len(out), len(all_geoms))
+    log.info("  Transformer-geometrie (%d): %d transformers met service_area_polygon (vereenvoudigd op %.0f m)",
+             jaar, len(out), SIMPLIFY_M)
     return out
 
 
 # ---------------------------------------------------------------------------
-# 2+3. Transformers + links
+# 2. Transformers (1 rij per transformer) + links
 # ---------------------------------------------------------------------------
 
-def bouw_transformers(
-    pc6: pd.DataFrame, vg: pd.DataFrame, tg: pd.DataFrame, tc: pd.DataFrame,
-) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
-    """Bouwt transformers.csv (1 rij per transformer_id x jaar), transformer_links.csv,
-    en transformer_geometry.csv (1 rij per transformer_id -- zie service_area_polygon
-    caveat hieronder)."""
-    jaren = sorted(_to_num(tg["jaar"]).dropna().astype(int).unique().tolist())
-    log.info("  Jaren in TenneT-reeks: %s", jaren)
+def bouw_transformers(bron: dict[str, pd.DataFrame]) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Bouwt transformers.csv (1 rij per transformer_id) en transformer_links.csv."""
+    pc6, vg, tc = bron["pc6"], bron["vg"], bron["tc"]
 
-    # --- RNB-laag: eenmalige 2026-snapshot, herhaald over alle jaren (zie caveat in docstring) ---
-    vg2 = vg.copy()
-    for col in _CAPACITEIT_NUM_COLS:
-        vg2[col] = _to_num(vg2[col])
-    rnb_frames = []
-    for jaar in jaren:
-        block = vg2.copy()
-        block["jaar"] = jaar
-        rnb_frames.append(block)
-    rnb = pd.concat(rnb_frames, ignore_index=True)
-    rnb["transformer_id"] = rnb["voedingsgebied_id"]
+    # --- RNB-laag: wat niet per jaar verandert, uit de vroegste rij per gebied ---
+    vg_vast = (
+        vg.assign(_jaar=_to_num(vg["jaar"]))
+        .sort_values("_jaar")
+        .drop_duplicates("voedingsgebied_id", keep="first")
+        .set_index("voedingsgebied_id")
+    )
+    rnb = pd.DataFrame({"transformer_id": vg_vast.index})
     rnb["type"] = "RNB"
-    rnb["naam"] = rnb["voedingsgebied_id"]
-    rnb["operator"] = rnb["RNB"]
-    rnb["congestiegebied_afname"] = pd.NA
-    rnb["congestiegebied_opwek"] = pd.NA
-    rnb["afname_kleurcode"] = pd.NA
-    rnb["opwek_kleurcode"] = pd.NA
-    rnb["voltage_kv"] = pd.NA  # RNB-brondata bevat geen spanningsniveau (MS-net, niet gespecificeerd)
-    primary_parent = _bouw_primary_parent(pc6)
-    rnb["primary_parent_id"] = rnb["voedingsgebied_id"].map(primary_parent)
+    namen = _meest_voorkomend(pc6, "voedingsgebied_naam")
+    rnb["naam"] = rnb["transformer_id"].map(namen).fillna(rnb["transformer_id"])
+    rnb["operator"] = rnb["transformer_id"].map(vg_vast["RNB"])
+    rnb["provincie"] = rnb["transformer_id"].map(vg_vast["provincie"])
+    rnb["primary_parent_id"] = rnb["transformer_id"].map(_bouw_primary_parent(pc6))
+    rnb["afname_kleurcode"] = rnb["transformer_id"].map(_meest_voorkomend(pc6, "afname"))
+    rnb["opwek_kleurcode"] = rnb["transformer_id"].map(_meest_voorkomend(pc6, "opwek"))
 
-    # --- TenneT-laag: elk station (tennet_id) x jaar, capaciteit per richting uit
-    #     zijn eigen congestiegebied_afname/opwek (kunnen van elkaar verschillen). ---
-    tg2 = tg.copy()
-    for col in _CAPACITEIT_NUM_COLS:
-        tg2[col] = _to_num(tg2[col])
-    tg2["jaar"] = _to_num(tg2["jaar"]).astype("Int64")
-
-    afname_cols = [c for c in _CAPACITEIT_NUM_COLS if c.endswith("afname")]
-    invoeding_cols = [c for c in _CAPACITEIT_NUM_COLS if c.endswith("invoeding")]
-    tg_afname = tg2.set_index(["congestiegebied", "jaar"])[afname_cols]
-    tg_invoeding = tg2.set_index(["congestiegebied", "jaar"])[invoeding_cols]
-
-    tennet_rows = []
-    for _, station in tc.iterrows():
-        tennet_id = station["tennet_id"]
-        zone_afname = station["congestiegebied_afname"]
-        zone_opwek = station["congestiegebied_opwek"]
-        for jaar in jaren:
-            row = {
-                "transformer_id": tennet_id,
-                "type": "TenneT",
-                "naam": tennet_id,
-                "operator": "TenneT",
-                "jaar": jaar,
-                "congestiegebied_afname": zone_afname,
-                "congestiegebied_opwek": zone_opwek,
-                "afname_kleurcode": station.get("afname"),
-                "opwek_kleurcode": station.get("opwek"),
-                "voltage_kv": _extract_voltage_kv(tennet_id),
-                "primary_parent_id": pd.NA,  # TenneT is de bovenste laag in dit model, geen ouder
-            }
-            if (zone_afname, jaar) in tg_afname.index:
-                row.update(tg_afname.loc[(zone_afname, jaar)].to_dict())
-            if (zone_opwek, jaar) in tg_invoeding.index:
-                row.update(tg_invoeding.loc[(zone_opwek, jaar)].to_dict())
-            tennet_rows.append(row)
-    tennet = pd.DataFrame(tennet_rows)
+    # --- TenneT-laag: elk station, met de sleutel naar de capaciteitsrij van zijn congestiegebied per richting ---
+    tennet = pd.DataFrame({
+        "transformer_id": tc["tennet_id"],
+        "type": "TenneT",
+        "naam": tc["tennet_id"],
+        "operator": "TenneT",
+        "voltage_kv": tc["tennet_id"].map(_extract_voltage_kv).astype("Int64"),
+        "congestiegebied_afname": tc["congestiegebied_afname"],
+        "congestiegebied_opwek": tc["congestiegebied_opwek"],
+        "afname_kleurcode": tc["afname"],
+        "opwek_kleurcode": tc["opwek"],
+    })
 
     transformers = pd.concat([rnb, tennet], ignore_index=True, sort=False)
-
-    geometrie = bouw_transformer_geometrie(pc6)
-    transformers = transformers.merge(
-        geometrie[["transformer_id", "latitude", "longitude"]], on="transformer_id", how="left"
-    )
+    transformers = transformers.merge(bouw_transformer_geometrie(pc6), on="transformer_id", how="left")
     n_zonder_geom = int(transformers["latitude"].isna().sum())
     if n_zonder_geom:
-        log.warning("  %d/%d transformer-rijen zonder geometrie (geen gekoppelde PC6 gevonden)",
+        log.warning("  %d/%d transformers zonder geometrie (geen gekoppelde PC6 gevonden)",
                     n_zonder_geom, len(transformers))
-
-    # service_area_polygon (WKT) blijft BEWUST uit transformers.csv: identiek voor alle
-    # 11 jaar-rijen van eenzelfde transformer_id (geverifieerd 2026-07-09 -- 0/879
-    # transformer_id's met >1 unieke polygoonwaarde over hun jaar-rijen), dus 11x
-    # herhalen zou de polygoon-tekst 11x nutteloos dupliceren. transformers.csv
-    # zelf was daardoor 268MB (99,3% daarvan puur deze ene, herhaalde kolom) --
-    # te groot om te committen. Apart weggeschreven als transformer_geometry.csv
-    # (1 rij per transformer_id, ~24MB), zie main().
-    keep_cols = (
-        ["transformer_id", "type", "naam", "operator", "jaar", "voltage_kv",
-         "latitude", "longitude", "primary_parent_id"]
-        + _CAPACITEIT_NUM_COLS
-        + ["congestiegebied_afname", "congestiegebied_opwek", "afname_kleurcode", "opwek_kleurcode",
-           "provincie", "info"]
-    )
-    transformers = transformers[[c for c in keep_cols if c in transformers.columns]]
+    transformers = transformers.reindex(columns=_TRANSFORMER_COLS)
 
     # --- transformer_links.csv: (child=voedingsgebied_id) -> (parent=tennet_id), gededupliceerd ---
     links = pc6[["voedingsgebied_id", "tennet_id"]].dropna().drop_duplicates()
@@ -362,20 +330,69 @@ def bouw_transformers(
     links = links[links["child_transformer_id"] != ""]
 
     n_multi = links.groupby("child_transformer_id")["parent_transformer_id"].nunique()
-    log.info(
-        "  Transformers: %d RNB-rijen (%d gebieden x %d jaar), %d TenneT-rijen (%d stations x %d jaar)",
-        len(rnb), rnb["transformer_id"].nunique(), len(jaren),
-        len(tennet), tennet["transformer_id"].nunique(), len(jaren),
-    )
+    log.info("  Transformers: %d RNB-voedingsgebieden, %d TenneT-stations", len(rnb), len(tennet))
     log.info(
         "  Transformer-links: %d koppelingen, %d/%d voedingsgebieden met >1 TenneT-ouder",
         len(links), int((n_multi > 1).sum()), len(n_multi),
     )
-    return transformers, links, geometrie[["transformer_id", "latitude", "longitude", "service_area_polygon"]]
+    return transformers, links
 
 
 # ---------------------------------------------------------------------------
-# 4. Buurt -> dominant voedingsgebied_id
+# 3. Capaciteit per gebied x jaar
+# ---------------------------------------------------------------------------
+
+def bouw_capaciteit(bron: dict[str, pd.DataFrame]) -> pd.DataFrame:
+    """
+    transformer_capacity.csv: 1 rij per gebied x jaar, alleen de jaren die de bron geeft.
+    Een TenneT-congestiegebied zonder jaar (7 van de 23 in de download van 2026-10-29,
+    vrijwel leeg) krijgt het vroegste jaar van de TenneT-laag: het is de huidige stand.
+    """
+    vg, tg = bron["vg"], bron["tg"]
+
+    rnb = vg.rename(columns={"voedingsgebied_id": "gebied_id"}).assign(gebied_type="RNB")
+    tennet = tg.rename(columns={"congestiegebied": "gebied_id"}).assign(gebied_type="TenneT")
+    tennet_jaren = _to_num(tennet["jaar"])
+    n_zonder_jaar = int(tennet_jaren.isna().sum())
+    if n_zonder_jaar:
+        log.info("  %d TenneT-congestiegebieden zonder jaar -> %d (huidige stand)", n_zonder_jaar, int(tennet_jaren.min()))
+    tennet["jaar"] = tennet_jaren.fillna(tennet_jaren.min())
+
+    capaciteit = pd.concat([rnb, tennet], ignore_index=True, sort=False)
+    capaciteit["jaar"] = _to_num(capaciteit["jaar"]).astype("Int64")
+    for col in _CAPACITEIT_NUM_COLS:
+        capaciteit[col] = _to_num(capaciteit[col]) if col in capaciteit.columns else pd.NA
+    for col in ("jaartal_opgelost_afname", "jaartal_opgelost_invoeding", "unieke_verzoeken_afname", "unieke_verzoeken_invoeding"):
+        capaciteit[col] = capaciteit[col].round().astype("Int64")
+    for col in _CAPACITEIT_TEXT_COLS:
+        if col not in capaciteit.columns:
+            capaciteit[col] = pd.NA
+        capaciteit[col] = capaciteit[col].replace("", pd.NA)
+
+    capaciteit = capaciteit[["gebied_type", "gebied_id", "jaar"] + _CAPACITEIT_NUM_COLS + _CAPACITEIT_TEXT_COLS]
+    capaciteit = capaciteit.sort_values(["gebied_type", "gebied_id", "jaar"]).reset_index(drop=True)
+    jaren = capaciteit.groupby("gebied_type")["jaar"].agg(["min", "max", "size"])
+    for gebied_type, row in jaren.iterrows():
+        log.info("  Capaciteit %s: %d rijen, jaren %d-%d", gebied_type, row["size"], row["min"], row["max"])
+    return capaciteit
+
+
+# ---------------------------------------------------------------------------
+# 4. Netuitbreidingsprojecten
+# ---------------------------------------------------------------------------
+
+def bouw_projecten(bron: dict[str, pd.DataFrame]) -> pd.DataFrame:
+    """grid_projects.csv: projecten.csv zonder de interne hulpkolommen van de bron (index, *_num)."""
+    pr = bron["pr"].rename(columns={"einddatum_string": "einddatum"})
+    pr["jaar"] = _to_num(pr["jaar"]).astype("Int64")
+    pr["kwartaal"] = _to_num(pr["kwartaal"]).astype("Int64")
+    pr = pr.reindex(columns=_PROJECT_COLS).sort_values(["gebied_id", "jaar", "projectnaam"]).reset_index(drop=True)
+    log.info("  Netuitbreidingen: %d projecten in %d gebieden", len(pr), pr["gebied_id"].nunique())
+    return pr
+
+
+# ---------------------------------------------------------------------------
+# 5. Buurt -> dominant voedingsgebied_id
 # ---------------------------------------------------------------------------
 
 def koppel_buurten(jaar: int, pc6: pd.DataFrame) -> pd.DataFrame:
@@ -437,13 +454,20 @@ def koppel_buurten(jaar: int, pc6: pd.DataFrame) -> pd.DataFrame:
 # Main
 # ---------------------------------------------------------------------------
 
+def _schrijf(df: pd.DataFrame, path: Path) -> None:
+    tmp = path.with_suffix(".tmp.csv")
+    # object first: an Int64 column (jaar, kleurcode) cannot hold the FILL_UNMATCHED text
+    df.astype(object).where(df.notna(), FILL_UNMATCHED).to_csv(tmp, sep=OUTPUT_SEPARATOR, index=False, encoding="utf-8")
+    tmp.replace(path)
+
+
 def main(jaren: list[int] | None = None) -> bool:
     jaren = jaren or list(CBS_YEARS)
     t0 = time.monotonic()
 
     try:
         paths = download_capaciteitskaart()
-        pc6, vg, tg, tc = _laad_bronnen(paths)
+        bron = _laad_bronnen(paths)
     except Exception as exc:
         log.error("Kon capaciteitskaart-brondata niet laden: %s", exc, exc_info=True)
         return False
@@ -451,48 +475,44 @@ def main(jaren: list[int] | None = None) -> bool:
     PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
 
     try:
-        transformers, links, geometrie = bouw_transformers(pc6, vg, tg, tc)
+        transformers, links = bouw_transformers(bron)
+        capaciteit = bouw_capaciteit(bron)
+        projecten = bouw_projecten(bron)
     except Exception as exc:
-        log.error("FOUT bij bouwen transformers/links: %s", exc, exc_info=True)
+        log.error("FOUT bij bouwen transformers/capaciteit/projecten: %s", exc, exc_info=True)
         return False
 
-    transformers_path = PROCESSED_DIR / f"transformers_{TODAY}.csv"
-    links_path = PROCESSED_DIR / f"transformer_links_{TODAY}.csv"
-    geometry_path = PROCESSED_DIR / f"transformer_geometry_{TODAY}.csv"
-    for df, path, label in [
-        (transformers, transformers_path, "transformers"),
-        (links, links_path, "transformer_links"),
-        (geometrie, geometry_path, "transformer_geometry"),
-    ]:
-        tmp = path.with_suffix(".tmp.csv")
-        df.fillna(FILL_UNMATCHED).to_csv(tmp, sep=OUTPUT_SEPARATOR, index=False, encoding="utf-8")
-        tmp.replace(path)
+    tabellen = [
+        (transformers, "transformers"),
+        (capaciteit, "transformer_capacity"),
+        (projecten, "grid_projects"),
+        (links, "transformer_links"),
+    ]
+    for df, name in tabellen:
+        path = PROCESSED_DIR / f"{name}_{TODAY}.csv"
+        _schrijf(df, path)
         log.info("  Opgeslagen: %s (%d rijen)", path.name, len(df))
 
     # Stable copies (overwritten every run, no date suffix) for the model to read directly.
-    for df, name in [
-        (transformers, "transformers.csv"),
-        (links, "transformer_links.csv"),
-        (geometrie, "transformer_geometry.csv"),
-    ]:
-        model_path = DATA_GENERIC / name
-        tmp = model_path.with_suffix(".tmp.csv")
-        df.fillna(FILL_UNMATCHED).to_csv(tmp, sep=OUTPUT_SEPARATOR, index=False, encoding="utf-8")
-        tmp.replace(model_path)
-        log.info("  Kopie voor model: %s", model_path.name)
+    for df, name in tabellen:
+        _schrijf(df, DATA_GENERIC / f"{name}.csv")
+        log.info("  Kopie voor model: %s.csv", name)
+    # Since the 2026-10-29 restructure the polygon sits in transformers.csv itself.
+    oud = DATA_GENERIC / "transformer_geometry.csv"
+    if oud.exists():
+        oud.unlink()
+        log.info("  Verwijderd: %s (service_area_polygon staat nu in transformers.csv)", oud.name)
 
     all_ok = True
     for jaar in jaren:
         try:
-            buurt_koppeling = koppel_buurten(jaar, pc6)
+            buurt_koppeling = koppel_buurten(jaar, bron["pc6"])
         except Exception as exc:
             log.error("FOUT buurt-koppeling jaar %d: %s", jaar, exc, exc_info=True)
             all_ok = False
             continue
         out_path = PROCESSED_DIR / f"capaciteitskaart_buurten_{jaar}_{TODAY}.csv"
-        tmp = out_path.with_suffix(".tmp.csv")
-        buurt_koppeling.fillna(FILL_UNMATCHED).to_csv(tmp, sep=OUTPUT_SEPARATOR, index=False, encoding="utf-8")
-        tmp.replace(out_path)
+        _schrijf(buurt_koppeling, out_path)
         log.info("  Opgeslagen: %s", out_path.name)
 
     elapsed = time.monotonic() - t0
